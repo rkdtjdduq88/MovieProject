@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS</title>
+    <style>
+      * {
+        font-family: Consolas, monospace;
+        font-size: 16px;
+      }
+      .jb-text {
+        padding: 15px 20px;
+        background-color: #444444;
+        border-radius: 5px;
+        color: #ffffff;
+        position: absolute;
+        opacity: 0;
+        transition: all ease 0.5s;
+      }
+      .jb-title:hover + .jb-text {
+  		opacity: 1;
+	  }
+    </style>
+  </head>
+  <body>
+    <p class="jb-title"><div class="product__item__pic set-bg" data-setbg="img/trending/trend-1.jpg"></p>
+    <div class="jb-text">9.16</div>
+  </body>
+</html>
