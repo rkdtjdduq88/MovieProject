@@ -12,6 +12,10 @@ public class HomeController {
 	@GetMapping("/")
 	public String main() {
 		log.info("main 폼 요청");
+<<<<<<< HEAD
 		return "index";
+=======
+		return "boxoffice";
+>>>>>>> refs/heads/seungoh
 	}
 }
