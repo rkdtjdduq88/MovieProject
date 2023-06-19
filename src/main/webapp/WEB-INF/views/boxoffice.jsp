@@ -29,7 +29,6 @@
 <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
-<link rel="stylesheet" href="/css/hover.css" type="text/css">
 
 </head>
 
@@ -53,19 +52,17 @@
 					<div class="header__nav">
 						<nav class="header__menu mobile-menu">
 							<ul>
-								<li class="active"><a href="./index.html">Homepage</a></li>
-								<li><a href="./categories.html">Categories <span
+								<li class="active"><a href="#">홈</a></li>
+								<li><a href="#">메뉴<span
 										class="arrow_carrot-down"></span></a>
 									<ul class="dropdown">
-										<li><a href="./categories.html">Categories</a></li>
-										<li><a href="./anime-details.html">Anime Details</a></li>
-										<li><a href="./anime-watching.html">Anime Watching</a></li>
-										<li><a href="./blog-details.html">Blog Details</a></li>
-										<li><a href="./signup.html">Sign Up</a></li>
-										<li><a href="./login.html">Login</a></li>
+										<li><a href="#">이벤트 게시판</a></li>
+										<li><a href="#">회원가입</a></li>
+										<li><a href="#">리뷰 작성</a></li>
+										<li><a href="#">FAQ</a></li>
 									</ul></li>
-								<li><a href="./blog.html">Our Blog</a></li>
-								<li><a href="#">Contacts</a></li>
+								<li><a href="#">블로그</a></li>
+								<li><a href="#">문의사항</a></li>
 							</ul>
 						</nav>
 					</div>
