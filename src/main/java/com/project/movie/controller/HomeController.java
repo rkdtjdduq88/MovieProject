@@ -12,6 +12,10 @@ public class HomeController {
 	@GetMapping("/")
 	public String main() {
 		log.info("main 폼 요청");
-		return "index";
+
+		return "boxoffice";
+		
+		//return "index";
+
 	}
 }
