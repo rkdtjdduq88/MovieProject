@@ -29,5 +29,6 @@ public class BoxOfficeResponse {
         private String openDt;
         private String salesAmt;
         private String audiCnt;
+        private String rank;
     }
 }

@@ -41,4 +41,18 @@ public class BoxOfficeController {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
+    
+    @GetMapping("/api/boxoffice/carousel/{date}")
+    public ResponseEntity<List<Movie>> getDailyBoxOfficeCarousel(@PathVariable("date") String date,
+                                                         @RequestParam(value = "itemPerPage", defaultValue = "3 ") int itemPerPage,
+                                                         @RequestParam(value = "multiMovieYn", defaultValue = "") String multiMovieYn,
+                                                         @RequestParam(value = "repNationCd", defaultValue = "") String repNationCd,
+                                                         @RequestParam(value = "wideAreaCd", defaultValue = "") String wideAreaCd) {
+        List<Movie> movies = boxOfficeService.getDailyBoxOfficeMovies(date, itemPerPage, multiMovieYn, repNationCd, wideAreaCd);
+        if (movies != null && !movies.isEmpty()) {
+            return ResponseEntity.ok(movies);
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
 }

@@ -33,4 +33,25 @@ public class BoxOfficeService {
 
         return null;
     }
+    
+    public List<BoxOfficeResponse.Movie> getCarouselMovies(String date, int itemPerPage, String multiMovieYn,
+    													   String repNationCd, String wideAreaCd) {
+    	RestTemplate restTemplate = new RestTemplate();
+        String url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
+                .queryParam("key", API_KEY)
+                .queryParam("targetDt", date)
+                .queryParam("itemPerPage", itemPerPage)
+                .queryParam("multiMovieYn", multiMovieYn)
+                .queryParam("repNationCd", repNationCd)
+                .queryParam("wideAreaCd", wideAreaCd);
+
+        BoxOfficeResponse response = restTemplate.getForObject(builder.toUriString(), BoxOfficeResponse.class);
+        if (response != null && response.getBoxOfficeResult() != null) {
+            return response.getBoxOfficeResult().getDailyBoxOfficeList();
+        }
+
+        return null;
+    }
 }
