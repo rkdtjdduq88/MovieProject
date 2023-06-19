@@ -52,7 +52,6 @@ async function fetchAndDisplayMovies() {
           }
 
           // 영화 랭킹 아이템을 생성하여 문자열에 추가
-          var posterFilePath = '/src/views/poster.jsp';
           var movieItem = `
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
