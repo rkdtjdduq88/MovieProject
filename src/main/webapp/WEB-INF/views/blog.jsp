@@ -103,7 +103,7 @@
                             <div class="blog__item set-bg" data-setbg="/img/blog/blog-1.jpg">
                                 <div class="blog__item__text">
                                     <p><span class="icon_calendar"></span> 01 March 2020</p>
-                                    <h4><a href="#">Yuri Kuma Arashi Viverra Tortor Pharetra</a></h4>
+                                    <h4><a href="blog-details">Yuri Kuma Arashi Viverra Tortor Pharetra</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                             <div class="blog__item small__item set-bg" data-setbg="/img/blog/blog-4.jpg">
                                 <div class="blog__item__text">
                                     <p><span class="icon_calendar"></span> 01 March 2020</p>
-                                    <h4><a href="#">Bok no Hero Academia Season 4 â 18</a></h4>
+                                    <h4><a href="blog-details">Bok no Hero Academia Season 4 â 18</a></h4>
                                 </div>
                             </div>
                         </div>

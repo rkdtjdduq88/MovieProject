@@ -13,11 +13,16 @@ public class HomeController {
 	@GetMapping("/")
 	public String main() {
 		log.info("main 폼 요청");
-		return "boxoffice";
+		return "main";
 	}
 	  @GetMapping("/blog")
 	    public String goToBlog() {
 	        log.info("블로그 페이지 요청");
 	        return "blog";
 	    }
+	  @GetMapping("/blog-details")
+	  public String goToBlogDetails() {
+		  log.info("블로그 페이지 요청");
+		  return "blog-details";
+	  }
 }
