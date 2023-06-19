@@ -25,6 +25,7 @@ async function fetchAndDisplayMovies() {
     for (var i = 1; i <= 6; i++) {
       var imagePath = `/img/trending/trend-${i}.jpg`;
 
+<<<<<<< HEAD
       // 영화 랭킹 아이템을 생성하여 문자열에 추가
       var movieItem = `
         <div class="col-lg-4 col-md-6 col-sm-6">
@@ -40,6 +41,51 @@ async function fetchAndDisplayMovies() {
                         <li>영화</li>
                     </ul>
                     <h5><a href="#">${data[rank-1].movieNm}</a></h5>
+=======
+    // 데이터를 테이블에 표시
+    data.forEach(function (movie) {
+      // 영화 포스터 URL을 가져오기 위한 TMDB API 요청
+      var tmdbApiUrl = "https://api.themoviedb.org/3/search/movie";
+      var apiKey = "6461fff89d9af7c612e73b1e1146ff50";
+      var query = movie.movieNm; // 영화 제목을 기준으로 검색
+
+      var tmdbUrl = `${tmdbApiUrl}?api_key=${apiKey}&query=${query}`;
+
+      var promise = fetch(tmdbUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (tmdbData) {
+          // 가져온 TMDB 데이터에서 첫 번째 영화의 포스터 URL을 가져옴
+          var posterUrl = "";
+          if (
+            tmdbData.results &&
+            tmdbData.results.length > 0 &&
+            tmdbData.results[0].poster_path
+          ) {
+            posterUrl = tmdbData.results[0].poster_path;
+          } else {
+            // 포스터 URL이 없을 경우 기본값 설정
+            posterUrl = "기본 포스터 이미지 URL";
+          }
+
+          // 영화 랭킹 아이템을 생성하여 문자열에 추가
+          var movieItem = `
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="">
+                        <div class="ep">${rank}위</div>
+                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                    </div>
+                    <div class="product__item__text">
+                        <ul>
+                            <li>상영중</li>
+                            <li>영화</li>
+                        </ul>
+                        <h5><a href="#">${movie.movieNm}</a></h5>
+                    </div>
+>>>>>>> refs/heads/Sue
                 </div>
             </div>
         </div>
