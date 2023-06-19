@@ -44,8 +44,11 @@
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="header__logo">
-						<a href="./index.html"> <img src="/img/logo.png" alt="">
-						</a>
+					<html>
+   						<body>
+        					<h3 style="color:white;text-align:center;display:inline">Movie World</h3>
+   				 		</body>
+					</html>
 					</div>
 				</div>
 				<div class="col-lg-8">
@@ -61,7 +64,7 @@
 										<li><a href="#">리뷰 작성</a></li>
 										<li><a href="#">FAQ</a></li>
 									</ul></li>
-								<li><a href="#">블로그</a></li>
+								<li><a href="blog">블로그</a></li>
 								<li><a href="#">문의사항</a></li>
 							</ul>
 						</nav>

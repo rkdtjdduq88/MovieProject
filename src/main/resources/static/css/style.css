@@ -327,15 +327,15 @@ ol {
 -----------------------*/
 
 .header {
-	background: #070720;
+	background: #800000;
 }
 
 .header__logo {
-	padding: 20px 0 17px;
+	padding: 8px 0 17px;
 }
 
 .header__logo a {
-	display: inline-block;
+	display: inline;
 }
 
 .header__menu {
@@ -1313,7 +1313,7 @@ ol {
 	position: absolute;
 	right: -14px;
 	top: 0;
-	content: "";
+	content: "�꼨";
 	font-family: "FontAwesome";
 }
 

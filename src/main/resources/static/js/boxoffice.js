@@ -52,17 +52,18 @@ async function fetchAndDisplayMovies() {
           }
 
           // 영화 랭킹 아이템을 생성하여 문자열에 추가
+          var posterFilePath = '/src/views/poster.jsp';
           var movieItem = `
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="https://image.tmdb.org/t/p/w500${posterUrl}">
+                    <div class="product__item__pic set-bg" data-setbg="">
                         <div class="ep">${rank}위</div>
                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
                     </div>
                     <div class="product__item__text">
                         <ul>
-                            <li>활동중</li>
+                            <li>상영중</li>
                             <li>영화</li>
                         </ul>
                         <h5><a href="#">${movie.movieNm}</a></h5>
