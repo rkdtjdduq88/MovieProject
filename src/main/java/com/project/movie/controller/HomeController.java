@@ -1,28 +1,34 @@
-package com.project.movie.controller;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Controller
-public class HomeController {
+	package com.project.movie.controller;
 	
-	@GetMapping("/")
-	public String main() {
-		log.info("main 폼 요청");
-		return "main";
-	}
-	  @GetMapping("/blog")
-	    public String goToBlog() {
-	        log.info("블로그 페이지 요청");
-	        return "blog";
+	import com.project.movie.response.BoxOfficeResponse.Movie;
+	import com.project.movie.service.BoxOfficeService;
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.stereotype.Controller;
+	import org.springframework.ui.Model;
+	import org.springframework.web.bind.annotation.GetMapping;
+	
+	import java.util.List;
+	
+	@Controller
+	public class HomeController {
+	
+	    private final BoxOfficeService boxOfficeService;
+	
+	    @Autowired
+	    public HomeController(BoxOfficeService boxOfficeService) {
+	        this.boxOfficeService = boxOfficeService;
 	    }
-	  @GetMapping("/blog-details")
-	  public String goToBlogDetails() {
-		  log.info("블로그 페이지 요청");
-		  return "blog-details";
-	  }
-}
+	
+	    @GetMapping("/")
+	    public String getMainPage(Model model) {
+	        try {
+	            List<Movie> movieRanking = boxOfficeService.getPopularMovies();
+	            model.addAttribute("movieRanking", movieRanking);
+	        } catch (RuntimeException e) {
+	            e.printStackTrace();
+	            model.addAttribute("errorMessage", "Failed to retrieve movie ranking");
+	        }
+	
+	        return "main";
+	    }
+	}
