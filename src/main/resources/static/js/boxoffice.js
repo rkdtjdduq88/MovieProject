@@ -18,55 +18,10 @@ async function fetchAndDisplayMovies() {
     // 데이터를 표시할 HTML 문자열
     var movieItems = "";
 
-<<<<<<< HEAD
+
     // 영화 랭킹을 위한 카운터 변수
     var rank = 1;
-=======
-      // 데이터를 테이블에 표시
-      data.forEach(function (movie) {
-        // 영화 랭킹 아이템을 생성하여 문자열에 추가
-        var movieItem = `
-          <div class="col-lg-4 col-md-6 col-sm-6">
-              <div class="product__item">
-                  <div class="product__item__pic set-bg" data-setbg="img/trending/trend-1.jpg" style="background-image: url('img/trending/trend-1.jpg')">
-                      <div class="ep">${rank}위</div>
-                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                      <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                  </div>
-                  <div class="product__item__text">
-                      <ul>
-                          <li>활동중</li>
-                          <li>영화</li>
-                      </ul>
-                      <h5><a href="#">${movie.movieNm}</a></h5>
-                  </div>
-              </div>
-          </div>
-        `;
-        movieItems += movieItem;
->>>>>>> refs/heads/kang
 
-    // 반복문을 통해 영화 아이템 생성
-    for (var i = 1; i <= 6; i++) {
-      var imagePath = `/img/trending/trend-${i}.jpg`;
-
-<<<<<<< HEAD
-      // 영화 랭킹 아이템을 생성하여 문자열에 추가
-      var movieItem = `
-        <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="product__item">
-                <div class="product__item__pic set-bg" style="background-image: url('${imagePath}')">
-                    <div class="ep">${rank}위</div>
-                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                </div>
-                <div class="product__item__text">
-                    <ul>
-                        <li>활동중</li>
-                        <li>영화</li>
-                    </ul>
-                    <h5><a href="#">${data[rank-1].movieNm}</a></h5>
-=======
     // 데이터를 테이블에 표시
     data.forEach(function (movie) {
       // 영화 포스터 URL을 가져오기 위한 TMDB API 요청
@@ -110,7 +65,7 @@ async function fetchAndDisplayMovies() {
                         </ul>
                         <h5><a href="#">${movie.movieNm}</a></h5>
                     </div>
->>>>>>> refs/heads/Sue
+
                 </div>
             </div>
         </div>
@@ -132,7 +87,6 @@ async function fetchAndDisplayMovies() {
 // 페이지 로드 시 영화 목록 표시
 document.addEventListener("DOMContentLoaded", fetchAndDisplayMovies);
 
-////////////////////////////////////////////////////////////////////////
 // 캐러셀 api
 function fetchAndCarouselMovies() {
   var carouselMovie = document.querySelector(".container .hero__slider");
