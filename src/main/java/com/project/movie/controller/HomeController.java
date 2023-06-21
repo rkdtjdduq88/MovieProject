@@ -2,22 +2,20 @@
 	
 	import com.project.movie.response.BoxOfficeResponse.Movie;
 	import com.project.movie.service.BoxOfficeService;
-	import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.stereotype.Controller;
 	import org.springframework.ui.Model;
 	import org.springframework.web.bind.annotation.GetMapping;
 	
 	import java.util.List;
-	
+	@Slf4j
 	@Controller
 	public class HomeController {
-	
-	    private final BoxOfficeService boxOfficeService;
-	
-	    @Autowired
-	    public HomeController(BoxOfficeService boxOfficeService) {
-	        this.boxOfficeService = boxOfficeService;
-	    }
+		@Autowired
+	    private BoxOfficeService boxOfficeService;
 	
 	    @GetMapping("/")
 	    public String getMainPage(Model model) {
@@ -30,5 +28,10 @@
 	        }
 	
 	        return "main";
+	    }
+	    @GetMapping("/blog")
+	    public void goToBlog() {
+	    	log.info("블로그 폼 요청");
+	    	 
 	    }
 	}

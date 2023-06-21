@@ -55,59 +55,56 @@
 <!-- Product Section Begin -->
 <!-- 생략 -->
 <section class="product spad">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="trending__product">
-					<div class="row">
-						<div class="col-lg-8 col-md-8 col-sm-8">
-							<div class="section-title">
-								<h4>영화 랭킹</h4>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="btn__all">
-								<a href="#" class="primary-btn">모두 보기 <span
-									class="arrow_right"></span></a>
-							</div>
-						</div>
-					</div>
-					<div class="row" id="movieRankList">
-					<%
-    List<Movie> movieRanking = (List<Movie>) request.getAttribute("movieRanking");
-    if (movieRanking != null) {
-        int movieCount = Math.min(movieRanking.size(), 9); // Limit the movie count to 9
-        for (int i = 0; i < movieCount; i++) {
-            Movie movie = movieRanking.get(i);
-%>
-<div class="col-lg-4 col-md-6 col-sm-6">
-    <div class="product__item">
-        <div class="product__item__pic set-bg" data-setbg="<%=movie.getPoster_path()%>">
-            <div class="ep"><%=i + 1%></div>
-        </div>
-        <div class="product__item__text">
-            <h6>
-           <a href="#"><%=movie.getTitle()%></a>
-
-            </h6>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="trending__product">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="section-title">
+                                <h4>영화 랭킹</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="btn__all">
+                                <a href="#" class="primary-btn">모두 보기 <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="movieRankList">
+                        <%
+                            List<Movie> movieRanking = (List<Movie>) request.getAttribute("movieRanking");
+                            if (movieRanking != null) {
+                                int movieCount = Math.min(movieRanking.size(), 9); // Limit the movie count to 9
+                                for (int i = 0; i < movieCount; i++) {
+                                    Movie movie = movieRanking.get(i);
+                        %>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="<%= movie.getPoster_path() %>">
+                                    <div class="ep"><%= i + 1 %></div>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>
+                                        <a href="#"><%= movie.getTitle() %></a>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <%
+                            }
+                        }
+                        %>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<%
-    }
-}
-%>
+</section>
+<!-- Product Section End -->
 
-					</div>
-				</div>
-			</div>
+<!-- product__sidebar Start -->
 
-			<!-- Product Section End -->
-
-
-
-
-			<!-- product__sidebar Start -->
 			<div class="col-lg-4 col-md-6 col-sm-4">
 				<div class="product__sidebar">
 					<div class="product__sidebar__view">
