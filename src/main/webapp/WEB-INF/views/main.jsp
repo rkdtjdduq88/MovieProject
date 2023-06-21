@@ -85,9 +85,9 @@
                                     <div class="ep"><%= i + 1 %></div>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>
-                                        <a href="#"><%= movie.getTitle() %></a>
-                                    </h6>
+                                <h6>
+    <a href="#"><%= movie.getKoreanTitle() %></a>
+</h6>
                                 </div>
                             </div>
                         </div>

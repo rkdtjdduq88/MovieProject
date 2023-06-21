@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.movie.response.BoxOfficeResponse.Movie;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,12 @@ public class BoxOfficeService {
     @Value("${tmdb.api.key}")
     private String tmdbApiKey;
 
-    private final RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
+
     private final ObjectMapper objectMapper;
 
-    public BoxOfficeService(RestTemplate restTemplate, ObjectMapper objectMapper) {
-        this.restTemplate = restTemplate;
+    public BoxOfficeService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
@@ -42,11 +44,11 @@ public class BoxOfficeService {
                 String title = movieNode.get("title").asText();
                 String posterPath = movieNode.get("poster_path").asText();
                 double rating = movieNode.get("vote_average").asDouble();
-
+                
                 String posterUrl = "https://image.tmdb.org/t/p/w500" + posterPath;
-
-                Movie movie = new Movie(title, posterUrl, rating, null); // Pass null or a default value for the koreanTitle parameter
-
+                String koreanTitle = getKoreanTitleFromTmdb(title);
+                Movie movie = new Movie(title, posterUrl, rating, koreanTitle);
+              
                 movieList.add(movie);
             }
         } catch (Exception e) {
@@ -65,7 +67,8 @@ public class BoxOfficeService {
     }
 
     private String getKoreanTitleFromTmdb(String englishTitle) {
-        String tmdbApiUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + tmdbApiKey + "&language=ko-KR&query=" + englishTitle;
+        String tmdbApiUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + tmdbApiKey + "&language=ko-KR&query="
+                + englishTitle;
 
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(tmdbApiUrl, String.class);
         String response = responseEntity.getBody();
@@ -85,5 +88,4 @@ public class BoxOfficeService {
 
         return ""; // Return an empty string if the Korean title cannot be retrieved
     }
-
 }

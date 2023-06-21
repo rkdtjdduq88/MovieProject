@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
       })
       .then((data) => {
+      console.log(data);
         if (!Array.isArray(data) || data.length === 0) {
           throw new Error("Invalid response data");
         }
