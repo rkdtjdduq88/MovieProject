@@ -98,9 +98,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+      
 <!-- Product Section End -->
 
 <!-- product__sidebar Start -->
