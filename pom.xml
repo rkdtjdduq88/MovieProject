@@ -20,7 +20,7 @@
 
 	<dependencies>		
 
-	<dependencies>
+	
 	
 	   <!-- Spring Boot Web Starter -->
     <dependency>
@@ -29,7 +29,7 @@
     </dependency>
     
     
->>>>>>> refs/remotes/origin/seungoh
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>			
