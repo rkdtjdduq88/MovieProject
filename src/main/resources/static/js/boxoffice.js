@@ -1,7 +1,7 @@
-// JSON 데이터를 가져와서 표시하는 함수
-function fetchAndDisplayMovies() {
-  var movieListContainer = document.querySelector(".trending__product .row");
+document.addEventListener("DOMContentLoaded", function () {
+  const movieRankList = document.getElementById("movieRankList");
 
+<<<<<<< HEAD
   if (!movieListContainer) {
     console.log("영화 목록 컨테이너를 찾을 수 없습니다.");
     return;
@@ -51,8 +51,32 @@ function fetchAndDisplayMovies() {
         // 상위 10개 영화만 표시하도록 제한
         if (rank > 10) {
           return;
+=======
+  if (movieRankList) {
+    fetch("http://localhost:8080/api/popularMovies")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+>>>>>>> refs/remotes/origin/seungoh
         }
+        return response.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data) || data.length === 0) {
+          throw new Error("Invalid response data");
+        }
+
+        // 한글 제목으로 받아온 영화 목록을 표시하는 부분
+        data.forEach((movie) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = movie.koreanTitle;
+          movieRankList.appendChild(listItem);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching movie data:", error);
       });
+<<<<<<< HEAD
 
       // 영화 랭킹 아이템들을 movie-list-container에 추가
       movieListContainer.innerHTML = movieItems;
@@ -132,3 +156,9 @@ function fetchAndCarouselMovies() {
 fetchAndCarouselMovies();
 
 //document.addEventListener("DOMContentLoaded", fetchAndCarouselMovies);
+=======
+  } else {
+    console.error("movieRankList element not found in the DOM");
+  }
+});
+>>>>>>> refs/remotes/origin/seungoh

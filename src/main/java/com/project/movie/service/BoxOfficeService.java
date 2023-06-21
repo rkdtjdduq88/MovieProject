@@ -1,38 +1,61 @@
 package com.project.movie.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.movie.response.BoxOfficeResponse.Movie;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import com.project.movie.response.BoxOfficeResponse;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class BoxOfficeService {
 
-    private static final String API_KEY = "7083241ea008894c70a0978fe6fbc95c";
+    @Value("${tmdb.api.key}")
+    private String tmdbApiKey;
 
-    public List<BoxOfficeResponse.Movie> getDailyBoxOfficeMovies(String date, int itemPerPage, String multiMovieYn,
-                                                                 String repNationCd, String wideAreaCd) {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json";
+    private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper;
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("key", API_KEY)
-                .queryParam("targetDt", date)
-                .queryParam("itemPerPage", itemPerPage)
-                .queryParam("multiMovieYn", multiMovieYn)
-                .queryParam("repNationCd", repNationCd)
-                .queryParam("wideAreaCd", wideAreaCd);
+    public BoxOfficeService(RestTemplate restTemplate, ObjectMapper objectMapper) {
+        this.restTemplate = restTemplate;
+        this.objectMapper = objectMapper;
+    }
 
-        BoxOfficeResponse response = restTemplate.getForObject(builder.toUriString(), BoxOfficeResponse.class);
-        if (response != null && response.getBoxOfficeResult() != null) {
-            return response.getBoxOfficeResult().getDailyBoxOfficeList();
+    public List<Movie> getPopularMovies() {
+        String tmdbApiUrl = "https://api.themoviedb.org/3/movie/popular?api_key=" + tmdbApiKey;
+
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(tmdbApiUrl, String.class);
+        String response = responseEntity.getBody();
+
+        List<Movie> movieList = new ArrayList<>();
+
+        try {
+            JsonNode jsonNode = objectMapper.readTree(response);
+            JsonNode resultsNode = jsonNode.get("results");
+
+            for (JsonNode movieNode : resultsNode) {
+                String title = movieNode.get("title").asText();
+                String posterPath = movieNode.get("poster_path").asText();
+                double rating = movieNode.get("vote_average").asDouble();
+
+                String posterUrl = "https://image.tmdb.org/t/p/w500" + posterPath;
+
+                Movie movie = new Movie(title, posterUrl, rating, null); // Pass null or a default value for the koreanTitle parameter
+
+                movieList.add(movie);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return null;
+        return movieList;
     }
+<<<<<<< HEAD
     
     public List<BoxOfficeResponse.Movie> getCarouselMovies(String date, int itemPerPage, String multiMovieYn,
     													   String repNationCd, String wideAreaCd) {
@@ -54,4 +77,37 @@ public class BoxOfficeService {
 
         return null;
     }
+=======
+
+    public List<Movie> getMoviesWithKoreanTitle(List<Movie> movies) {
+        for (Movie movie : movies) {
+            String koreanTitle = getKoreanTitleFromTmdb(movie.getTitle());
+            movie.setKoreanTitle(koreanTitle);
+        }
+        return movies;
+    }
+
+    private String getKoreanTitleFromTmdb(String englishTitle) {
+        String tmdbApiUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + tmdbApiKey + "&language=ko-KR&query=" + englishTitle;
+
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity(tmdbApiUrl, String.class);
+        String response = responseEntity.getBody();
+
+        try {
+            JsonNode jsonNode = objectMapper.readTree(response);
+            JsonNode resultsNode = jsonNode.get("results");
+
+            if (resultsNode.isArray() && resultsNode.size() > 0) {
+                JsonNode movieNode = resultsNode.get(0);
+                String koreanTitle = movieNode.get("title").asText();
+                return koreanTitle;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ""; // Return an empty string if the Korean title cannot be retrieved
+    }
+
+>>>>>>> refs/remotes/origin/seungoh
 }
