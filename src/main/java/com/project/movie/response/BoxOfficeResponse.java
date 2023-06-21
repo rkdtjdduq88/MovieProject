@@ -10,25 +10,28 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoxOfficeResponse {
-
-    private BoxOfficeResult boxOfficeResult;
-
-    @Data
-    public static class BoxOfficeResult {
-        private String boxofficeType;
-        private String showRange;
-        private List<Movie> dailyBoxOfficeList;
-    }
+    private List<Movie> results;
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Movie {
+<<<<<<< HEAD
         private String movieCd;
         private String movieNm;
         private String openDt;
         private String salesAmt;
         private String audiCnt;
         private String rank;
+=======
+        private String title;
+        private String poster_path;
+        private double vote_average; // 기존의 rating 필드를 vote_average로 변경
+        private String koreanTitle; // Add the koreanTitle field
+
+        public String getPosterPath() {
+            return poster_path;
+        }
+>>>>>>> refs/remotes/origin/seungoh
     }
 }

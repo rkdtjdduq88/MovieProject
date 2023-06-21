@@ -1,310 +1,263 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.project.movie.response.BoxOfficeResponse.Movie"%>
+<%@ page import="java.util.List"%>
 
-<!DOCTYPE html>
-<html lang="zxx">
+<%@include file="./include/header.jsp"%>
 
-<head>
-<meta charset="UTF-8">
-<meta name="description" content="Anime Template">
-<meta name="keywords" content="Anime, unica, creative, html">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Anime | Template</title>
-
-<!-- Google Font -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-	rel="stylesheet">
-
-<!-- Css Styles -->
-<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="/css/plyr.css" type="text/css">
-<link rel="stylesheet" href="/css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="/css/style.css" type="text/css">
-</head>
-
-<body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
+<!-- Hero Section Begin -->
+<section class="hero">
+	<div class="container">
+		<div class="hero__slider owl-carousel">
+			<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="hero__text">
+							<div class="label">Adventure</div>
+							<h2>Fate / Stay Night: Unlimited Blade Works</h2>
+							<p>After 30 days of travel across the world...</p>
+							<a href="#" onclick="handlePayment()"><span>Watch Now</span>
+								<i class="fa fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="hero__text">
+							<div class="label">Adventure</div>
+							<h2>Fate / Stay Night: Unlimited Blade Works</h2>
+							<p>After 30 days of travel across the world...</p>
+							<a href="#" onclick="handlePayment()"><span>Watch Now</span>
+								<i class="fa fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="hero__text">
+							<div class="label">Adventure</div>
+							<h2>Fate / Stay Night: Unlimited Blade Works</h2>
+							<p>After 30 days of travel across the world...</p>
+							<a href="#" onclick="handlePayment()"><span>Watch Now</span>
+								<i class="fa fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<!-- Header Section Begin -->
-	<header class="header">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-2">
-					<div class="header__logo">
-						<a href="./index.html"> <img src="/img/logo.png" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-8">
-					<div class="header__nav">
-						<nav class="header__menu mobile-menu">
-							<ul>
-								<li class="active"><a href="./index.html">Homepage</a></li>
-								<li><a href="./categories.html">Categories <span
-										class="arrow_carrot-down"></span></a>
-									<ul class="dropdown">
-										<li><a href="./categories.html">Categories</a></li>
-										<li><a href="./anime-details.html">Anime Details</a></li>
-										<li><a href="./anime-watching.html">Anime Watching</a></li>
-										<li><a href="./blog-details.html">Blog Details</a></li>
-										<li><a href="./signup.html">Sign Up</a></li>
-										<li><a href="./login.html">Login</a></li>
-									</ul></li>
-								<li><a href="blog">Our Blog</a></li>
-								<li><a href="#">Contacts</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div class="header__right">
-						<a href="#" class="search-switch"><span class="icon_search"></span></a>
-						<a href="./login.html"><span class="icon_profile"></span></a>
-					</div>
-				</div>
-			</div>
-			<div id="mobile-menu-wrap"></div>
-		</div>
-	</header>
-	<!-- Header End -->
-
-	<!-- Hero Section Begin -->
-	<section class="hero">
-		<div class="container">
-			<div class="hero__slider owl-carousel">
-				<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hero__text">
-								<div class="label">Adventure</div>
-								<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-								<p>After 30 days of travel across the world...</p>
-								<a href="#"><span>Watch Now</span> <i
-									class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hero__text">
-								<div class="label">Adventure</div>
-								<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-								<p>After 30 days of travel across the world...</p>
-								<a href="#"><span>Watch Now</span> <i
-									class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hero__text">
-								<div class="label">Adventure</div>
-								<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-								<p>After 30 days of travel across the world...</p>
-								<a href="#"><span>Watch Now</span> <i
-									class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Hero Section End -->
-<!-- Movie Rank List Begin -->
+</section>
+<!-- Hero Section End -->
+<!-- Product Section Begin -->
+<!-- 생략 -->
 <section class="product spad">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="trending__product">
-          <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-8">
-              <div class="section-title">
-                <h4>영화 랭킹</h4>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4">
-              <div class="btn__all">
-                <a href="#" class="primary-btn">모두 보기 <span class="arrow_right"></span></a>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <!-- Add more movie ranking items here -->
-          </div>
-        </div>
-      </div>
-      <!-- product__sidebar Start -->
-      <div class="col-lg-4 col-md-6 col-sm-4">
-        <div class="product__sidebar">
-          <div class="product__sidebar__view">
-            <div class="section-title">
-              <h5>Top Views</h5>
-            </div>
-            <ul class="filter__controls">
-              <li class="active" data-filter="*">Day</li>
-              <li data-filter=".week">Week</li>
-              <li data-filter=".month">Month</li>
-              <li data-filter=".years">Years</li>
-            </ul>
-            <div class="filter__gallery">
-              <div class="product__sidebar__view__item set-bg mix day years" data-setbg="/img/sidebar/tv-1.jpg">
-                <div class="ep">18 / ?</div>
-                <div class="view">
-                  <i class="fa fa-eye"></i> 9141
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="trending__product">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="section-title">
+                                <h4>영화 랭킹</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="btn__all">
+                                <a href="#" class="primary-btn">모두 보기 <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="movieRankList">
+                        <%
+                            List<Movie> movieRanking = (List<Movie>) request.getAttribute("movieRanking");
+                            if (movieRanking != null) {
+                                int movieCount = Math.min(movieRanking.size(), 9); // Limit the movie count to 9
+                                for (int i = 0; i < movieCount; i++) {
+                                    Movie movie = movieRanking.get(i);
+                        %>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="<%= movie.getPoster_path() %>">
+                                    <div class="ep"><%= i + 1 %></div>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>
+                                        <a href="#"><%= movie.getTitle() %></a>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <%
+                            }
+                        }
+                        %>
+                    </div>
                 </div>
-                <h5>
-                  <a href="#">Boruto: Naruto next generations</a>
-                </h5>
-              </div>
-              <div class="product__sidebar__view__item set-bg mix month week" data-setbg="/img/sidebar/tv-2.jpg">
-                <div class="ep">18 / ?</div>
-                <div class="view">
-                  <i class="fa fa-eye"></i> 9141
-                </div>
-                <h5>
-                  <a href="#">The Seven Deadly Sins: Wrath of the Gods</a>
-                </h5>
-              </div>
-              <div class="product__sidebar__view__item set-bg mix week years" data-setbg="/img/sidebar/tv-3.jpg">
-                <div class="ep">18 / ?</div>
-                <div class="view">
-                  <i class="fa fa-eye"></i> 9141
-                </div>
-                <h5>
-                  <a href="#">Sword art online alicization war of underworld</a>
-                </h5>
-              </div>
-              <div class="product__sidebar__view__item set-bg mix years month" data-setbg="/img/sidebar/tv-4.jpg">
-                <div class="ep">18 / ?</div>
-                <div class="view">
-                  <i class="fa fa-eye"></i> 9141
-                </div>
-                <h5>
-                  <a href="#">Fate/stay night: Heaven's Feel I. presage flower</a>
-                </h5>
-              </div>
-              <div class="product__sidebar__view__item set-bg mix day" data-setbg="/img/sidebar/tv-5.jpg">
-                <div class="ep">18 / ?</div>
-                <div class="view">
-                  <i class="fa fa-eye"></i> 9141
-                </div>
-                <h5>
-                  <a href="#">Fate stay night unlimited blade works</a>
-                </h5>
-              </div>
             </div>
-          </div>
-          <div class="product__sidebar__comment">
-            <div class="section-title">
-              <h5>New Comment</h5>
-            </div>
-            <div class="product__sidebar__comment__item">
-              <div class="product__sidebar__comment__item__pic">
-                <img src="/img/sidebar/comment-1.jpg" alt="">
-              </div>
-              <div class="product__sidebar__comment__item__text">
-                <ul>
-                  <li>Active</li>
-                  <li>Movie</li>
-                </ul>
-                <h5>
-                  <a href="#">The Seven Deadly Sins: Wrath of the Gods</a>
-                </h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- product__sidebar End -->
-    </div>
-  </div>
+      
+<!-- Product Section End -->
+
+<!-- product__sidebar Start -->
+
+			<div class="col-lg-4 col-md-6 col-sm-4">
+				<div class="product__sidebar">
+					<div class="product__sidebar__view">
+						<div class="section-title">
+							<h5>Top Views</h5>
+						</div>
+						<ul class="filter__controls">
+							<li class="active" data-filter="*">Day</li>
+							<li data-filter=".week">Week</li>
+							<li data-filter=".month">Month</li>
+							<li data-filter=".years">Years</li>
+						</ul>
+						<div class="filter__gallery">
+							<div class="product__sidebar__view__item set-bg mix day years"
+								data-setbg="/img/sidebar/tv-1.jpg">
+								<div class="ep">18 / ?</div>
+								<div class="view">
+									<i class="fa fa-eye"></i> 9141
+								</div>
+								<h5>
+									<a href="#">Boruto: Naruto next generations</a>
+								</h5>
+							</div>
+							<div class="product__sidebar__view__item set-bg mix month week"
+								data-setbg="/img/sidebar/tv-2.jpg">
+								<div class="ep">18 / ?</div>
+								<div class="view">
+									<i class="fa fa-eye"></i> 9141
+								</div>
+								<h5>
+									<a href="#">The Seven Deadly Sins: Wrath of the Gods</a>
+								</h5>
+							</div>
+							<div class="product__sidebar__view__item set-bg mix week years"
+								data-setbg="/img/sidebar/tv-3.jpg">
+								<div class="ep">18 / ?</div>
+								<div class="view">
+									<i class="fa fa-eye"></i> 9141
+								</div>
+								<h5>
+									<a href="#">Sword art online alicization war of underworld</a>
+								</h5>
+							</div>
+							<div class="product__sidebar__view__item set-bg mix years month"
+								data-setbg="/img/sidebar/tv-4.jpg">
+								<div class="ep">18 / ?</div>
+								<div class="view">
+									<i class="fa fa-eye"></i> 9141
+								</div>
+								<h5>
+									<a href="#">Fate/stay night: Heaven's Feel I. presage
+										flower</a>
+								</h5>
+							</div>
+							<div class="product__sidebar__view__item set-bg mix day"
+								data-setbg="/img/sidebar/tv-5.jpg">
+								<div class="ep">18 / ?</div>
+								<div class="view">
+									<i class="fa fa-eye"></i> 9141
+								</div>
+								<h5>
+									<a href="#">Fate stay night unlimited blade works</a>
+								</h5>
+							</div>
+						</div>
+					</div>
+					<div class="product__sidebar__comment">
+						<div class="section-title">
+							<h5>New Comment</h5>
+						</div>
+						<div class="product__sidebar__comment__item">
+							<div class="product__sidebar__comment__item__pic">
+								<img src="/img/sidebar/comment-1.jpg" alt="">
+							</div>
+							<div class="product__sidebar__comment__item__text">
+								<ul>
+									<li>Active</li>
+									<li>Movie</li>
+								</ul>
+								<h5>
+									<a href="#">The Seven Deadly Sins: Wrath of the Gods</a>
+								</h5>
+								<span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- product__sidebar End -->
+		</div>
+	</div>
 </section>
 <!-- Movie Rank List End -->
 
+<%@include file="./include/footer.jsp"%>
 
-
-	<!-- Footer Section Begin -->
-	<footer class="footer">
-		<div class="page-up">
-			<a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+<!-- Search model Begin -->
+<div class="search-model">
+	<div class="h-100 d-flex align-items-center justify-content-center">
+		<div class="search-close-switch">
+			<i class="icon_close"></i>
 		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="footer__logo">
-						<a href="./index.html"><img src="/img/logo.png" alt=""></a>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="footer__nav">
-						<ul>
-							<li class="active"><a href="./index.html">Homepage</a></li>
-							<li><a href="./categories.html">Categories</a></li>
-							<li><a href="./blog.html">Our Blog</a></li>
-							<li><a href="#">Contacts</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<p>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;
-						<script>
-							document.write(new Date().getFullYear());
-						</script>
-						All rights reserved | This template is made with <i
-							class="fa fa-heart" aria-hidden="true"></i> by <a
-							href="https://colorlib.com" target="_blank">Colorlib</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer Section End -->
-
-	<!-- Search model Begin -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">
-				<i class="icon_close"></i>
-			</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
+		<form class="search-model-form">
+			<input type="text" id="search-input" placeholder="Search here.....">
+		</form>
 	</div>
-	<!-- Search model end -->
+</div>
+<!-- Search model end -->
 
-	<!-- /js Plugins -->
-	<script src="/js/jquery-3.3.1.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/player.js"></script>
-	<script src="/js/jquery.nice-select.min.js"></script>
-	<script src="/js/mixitup.min.js"></script>
-	<script src="/js/jquery.slicknav.js"></script>
-	<script src="/js/owl.carousel.min.js"></script>
-	<script src="/js/main.js"></script>
-	<script src="/js/boxoffice.js"></script>
+<!-- /js Plugins -->
+
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/player.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/mixitup.min.js"></script>
+<script src="/js/jquery.slicknav.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/boxoffice.js"></script>
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script>
+	// 결제 버튼 클릭 이벤트 핸들러
+	function handlePayment() {
+		var IMP = window.IMP;
+		IMP.init('imp07885133');
+
+		// 결제 정보 설정
+		var paymentInfo = {
+			pg : 'kakaopay', // PG사 종류 (예시: html5_inicis, kakaopay)
+			pay_method : 'card', // 결제 수단 (예시: card, vbank, trans, phone, samsung, kpay, cultureland)
+			merchant_uid : 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문번호
+			name : '결제', // 주문명
+			amount : 10000, // 결제금액
+			buyer_email : 'OHAL', // 구매자 이메일
+			buyer_name : 'POHAHOLE', // 구매자 이름
+			buyer_tel : '구매자 번호', // 구매자 전화번호
+			buyer_addr : 'POHAH F1', // 구매자 주소
+			buyer_postcode : '701', // 구매자 우편번호
+			m_redirect_url : '결제 완료 후 리다이렉트할 URL' // 결제 완료 후 리다이렉트할 URL
+		};
+
+		// Iamport 결제 요청
+		IMP.request_pay(paymentInfo, function(response) {
+			if (response.success) {
+				var msg = '결제가 완료되었습니다.';
+				location.href = '결제 완료 페이지 URL';
+			} else {
+				var msg = '결제에 실패하였습니다. 에러 메시지: ' + response.error_msg;
+				alert(msg);
+			}
+		});
+	}
+</script>
 </body>
 
 </html>
