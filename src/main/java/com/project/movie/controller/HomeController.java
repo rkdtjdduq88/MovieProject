@@ -12,9 +12,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String main() {
-		log.info("main 폼 요청");
 
-	
 
 		return "main";
 
@@ -29,4 +27,13 @@ public class HomeController {
 		  log.info("블로그 페이지 요청");
 		  return "blog-details";
 	  }
+	  
+	  @GetMapping("/movie-details")
+	  public String goToMovieDetails() {
+		  log.info("영화 상세 페이지 요청");
+		  return "movie-details";
+	  }
+
+	  
+	  
 }
