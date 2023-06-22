@@ -14,13 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!Array.isArray(data) || data.length === 0) {
           throw new Error("Invalid response data");
         }
-
-        // 한글 제목으로 받아온 영화 목록을 표시하는 부분
-        data.forEach((movie) => {
-          const listItem = document.createElement("li");
-          listItem.textContent = movie.koreanTitle;
-          movieRankList.appendChild(listItem);
-        });
       })
       .catch((error) => {
         console.error("Error fetching movie data:", error);
