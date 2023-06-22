@@ -14,5 +14,8 @@ public class KobisItem {
 	private String movieNm;
 	private String openDt;
 	private String rank;
+<<<<<<< HEAD
 	private String audiAcc;
+=======
+>>>>>>> branch 'kang' of https://github.com/rkdtjdduq88/MovieProject.git
 }

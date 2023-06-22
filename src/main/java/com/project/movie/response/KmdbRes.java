@@ -1,5 +1,6 @@
 package com.project.movie.response;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,5 +25,19 @@ public class KmdbRes {
 	private String keywords;	//키워드
 	private String posterUrl;	//포스터이미지
 	private String audiAcc;	//누적관람인원
+=======
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class KmdbRes {
+		
+	private String Result;	
+>>>>>>> branch 'kang' of https://github.com/rkdtjdduq88/MovieProject.git
 	private List<KmdbItem> kmdbItems;
 }

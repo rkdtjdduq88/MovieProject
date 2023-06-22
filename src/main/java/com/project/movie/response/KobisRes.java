@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+<<<<<<< HEAD
 
 @Data
 @AllArgsConstructor
@@ -25,3 +26,13 @@ public class KobisRes{
 	
 }
 
+=======
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class KobisRes {	
+	private String boxofficeType;	//박스오피스 종류를 출력합니다.
+	private String showRange; //박스오피스 조회 일자를 출력합니다.	
+	private List<KobisItem> kobisItems;
+}
+>>>>>>> branch 'kang' of https://github.com/rkdtjdduq88/MovieProject.git
