@@ -6,30 +6,31 @@ function fetchAndDisplayMovies() {
     console.log("영화 목록 컨테이너를 찾을 수 없습니다.");
     return;
   }
-
-  // JSON 데이터를 가져올 API 엔드포인트
-  var apiUrl = "http://localhost:8080/api/boxoffice/20230614";
+  // 전날 날짜 구하기
+  var currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
+  var year = currentDate.getFullYear();
+  var month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  var day = String(currentDate.getDate()).padStart(2, "0");
+  var targetDt = year + month + day;
 
   // API 요청을 보내고 데이터를 받아옴
-  fetch(apiUrl)
+  fetch("/api/boxoffice/" + targetDt)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       // 데이터를 표시할 HTML 문자열
+      console.log("박스오피스 리스트 요청", data);
       var movieItems = "";
-
-      // 영화 랭킹을 위한 카운터 변수
-      var rank = 1;
-
       // 데이터를 테이블에 표시
-      data.forEach(function (movie) {
+      data.list.forEach(function (movie) {
         // 영화 랭킹 아이템을 생성하여 문자열에 추가
         var movieItem = `
           <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="product__item">
-                  <div class="product__item__pic set-bg" data-setbg="img/trending/trend-1.jpg" style="background-image: url('img/trending/trend-1.jpg')">
-                      <div class="ep">${rank}위</div>
+                  <div class="product__item__pic set-bg" data-setbg="${movie.posterUrl}" style="background-image: url('${movie.posterUrl}')">
+                      <div class="ep">${movie.rank}위</div>
                       <div class="comment"><i class="fa fa-comments"></i> 11</div>
                       <div class="view"><i class="fa fa-eye"></i> 9141</div>
                   </div>
@@ -43,15 +44,8 @@ function fetchAndDisplayMovies() {
               </div>
           </div>
         `;
+        console.log(movieItem);
         movieItems += movieItem;
-
-        // 랭킹 카운터 증가
-        rank++;
-
-        // 상위 10개 영화만 표시하도록 제한
-        if (rank > 10) {
-          return;
-        }
       });
 
       // 영화 랭킹 아이템들을 movie-list-container에 추가
@@ -61,9 +55,9 @@ function fetchAndDisplayMovies() {
       console.log("데이터를 가져오는 중 오류가 발생했습니다:", error);
     });
 }
-
+fetchAndDisplayMovies();
 // 페이지 로드 시 영화 목록 표시
-document.addEventListener("DOMContentLoaded", fetchAndDisplayMovies);
+//document.addEventListener("DOMContentLoaded", fetchAndDisplayMovies);
 
 ////////////////////////////////////////////////////////////////////////
 // 캐러셀 api
@@ -73,24 +67,32 @@ function fetchAndCarouselMovies() {
     console.log("캐러셀 목록을 찾을 수 없습니다.");
     return;
   }
-  var apiCarouselUrl = "http://localhost:8080/api/boxoffice/carousel/20230614";
+
+  // 전날 날짜 구하기
+  var currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
+  var year = currentDate.getFullYear();
+  var month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  var day = String(currentDate.getDate()).padStart(2, "0");
+  var targetDt = year + month + day;
+
   // API 요청을 보내고 데이터를 받아옴
-  fetch(apiCarouselUrl)
+  fetch("/api/boxoffice/carousel/" + targetDt)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      //console.log(data);
+      console.log("캐러셀 데이타 요청", data);
       var carouselMovielItems = "";
-      data.forEach((movie) => {
+      data.list.forEach((movie) => {
         var carouselMovielItem = `
-        <div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg" style="background-image: url('/img/hero/hero-1.jpg')">
+        <div class="hero__items set-bg" data-setbg="${movie.posterUrl}" style="background-image: url('${movie.posterUrl}')">
           <div class="row">        
             <div class="col-lg-6">
               <div class="hero__text">
-                <div class="label">${movie.openDt}</div>
+                <div class="label">${movie.releaseDate}</div>
                 <h2>${movie.movieNm}</h2>
-                <p>${movie.rank}</p>
+                <p>${movie.genre}</p>
                 <a href="#"><span>Watch Now</span> <i
                   class="fa fa-angle-right"></i></a>
               </div>
