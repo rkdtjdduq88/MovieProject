@@ -1,10 +1,21 @@
 package com.project.movie.controller;
 	
 
+<<<<<<< HEAD
 
 import com.project.movie.response.BoxOfficeResponse.Movie;
 import com.project.movie.service.BoardService;
 import com.project.movie.service.BoxOfficeService;
+=======
+import java.net.URI;
+
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+>>>>>>> refs/heads/master
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +37,7 @@ import java.util.List;
 <<<<<<< HEAD
 	@GetMapping("/")
 	public String main() {
+<<<<<<< HEAD
 
 
 		return "main";
@@ -64,6 +76,12 @@ import java.util.List;
 
 	  
 	  
+=======
+		log.info("main 폼 요청");
+
+		return "index";					
+	}	
+>>>>>>> refs/heads/master
 }
 =======
 	}
