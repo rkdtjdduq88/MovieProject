@@ -21,4 +21,10 @@ public class BoardServiceImpl implements BoardService {
         System.out.println(boardList); // boardList 내용 출력
         return boardList;
     }
+
+	@Override
+	public BoardDTO getBlogDetails(int bno) {
+		
+	 return boardMapper.getBlogDetails(bno);
+	}
 }

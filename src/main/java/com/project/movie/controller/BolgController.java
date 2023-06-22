@@ -1,6 +1,5 @@
 package com.project.movie.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +21,17 @@ public class BolgController {
 	@Autowired
 	public BoardService boardService;
 
+	@GetMapping("/blog")
+	public void blog(Model model) {
+		log.info("블로그폼 요청");
+		List<BoardDTO> boardList = boardService.getBoardList();
+		System.out.println(boardList); // boardList 내용 출력
+		model.addAttribute("boardList", boardList);
+	}
 
-    @GetMapping("/blog")
-    public void blog(Model model) {
-        log.info("블로그폼 요청");
-            List<BoardDTO> boardList = boardService.getBoardList();
-            System.out.println(boardList); // boardList 내용 출력
-            model.addAttribute("boardList", boardList);
-        }
-    }
-
+	@GetMapping("/blog-details")
+	public void getBlogDetails(Model model, int bno) {
+		BoardDTO boardDetial = boardService.getBlogDetails(bno);
+		model.addAttribute("boardDto", boardDetial);
+	}
+}

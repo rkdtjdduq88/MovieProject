@@ -8,4 +8,5 @@ import com.project.movie.dto.BoardDTO;
 @Mapper
 public interface BoardMapper {
     List<BoardDTO> getBoardList();
+    BoardDTO getBlogDetails(int bno);
 }

@@ -6,5 +6,6 @@ import com.project.movie.dto.BoardDTO;
 
 public interface BoardService {
     List<BoardDTO> getBoardList();
+    BoardDTO getBlogDetails(int bno);
 }
 

@@ -2,9 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.movie.mapper.BoardMapper">
 
-
+	<!-- 블로그 리스트 출력 -->
 	<select id="getBoardList" parameterType="com.project.movie.dto.BoardDTO" resultType="com.project.movie.dto.BoardDTO">
-		SELECT bno, title, content, attach, regdate, updateddate, re_ref, re_lev, re_seq, cnt, userid FROM movieboard_tbl
+		SELECT bno, title, content, attach, regdate, updateddate, re_ref, re_lev, re_seq, cnt, userid FROM movieboard_tbl ORDER BY regdate DESC
 	</select>
-
+	
+	<!-- 블로그 상세 정보 -->
+	 <select id="getBlogDetails" resultType="com.project.movie.dto.BoardDTO">
+        SELECT * FROM movieboard_tbl WHERE bno = #{bno}
+    </select>
 </mapper>
