@@ -43,7 +43,7 @@ public class UploadAjaxController {
 	public void uploadAjaxGet() {
 		log.info("Ajax form request");
 
-	}  
+	}
 
 	// 파일 1개 업로드
 //	@PostMapping("/uploadAjax")
@@ -99,7 +99,7 @@ public class UploadAjaxController {
 //	}
 
 	@PostMapping("/uploadAjax")
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) { // js에서 append에 걸어준 변수명과 동일해야 한다.
 		log.info("upload request ");
 
@@ -224,7 +224,7 @@ public class UploadAjaxController {
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);		
 	}
 	
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	public ResponseEntity<String> deleteFile(String fileName, String type){
 		log.info("파일 제거 요청 "+fileName+", type "+type);

@@ -63,7 +63,10 @@ WHERE RN>(#{page}-1)*#{amount}
 
 <!-- 게시글 등록 -->
 <insert id="insert">
-    insert into MOVIEBOARD_TBL(bno, title, content, userid) values(seq_movieboard.nextval, #{title}, #{content}, #{userid})
+<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+        select seq_movieboard.nextval from dual
+</selectKey>
+    insert into MOVIEBOARD_TBL(bno, title, content, userid) values(#{bno}, #{title}, #{content}, #{userid})
 </insert>
 
 <!-- 특정 번호의 게시물 조회 -->

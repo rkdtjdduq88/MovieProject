@@ -68,7 +68,7 @@ public class MovieBoardServiceImpl implements MovieBoardService {
 		boolean modifyFlag = mapper.modify(boardDTO)==1 ? true:false;
 		
 		// 기존 첨부목록 제거
-//		attachMapper.deleteAll(boardDTO.getBno());
+		attachMapper.deleteAll(boardDTO.getBno());
 		
 		// 첨부파일이 있다면
 		if(boardDTO.getAttachList()==null || boardDTO.getAttachList().size()==0) {
@@ -91,7 +91,7 @@ public class MovieBoardServiceImpl implements MovieBoardService {
 //		replyMapper.deleteAll(bno);
 		
 		// 첨부파일 삭제
-//		attachMapper.deleteAll(bno);
+		attachMapper.deleteAll(bno);
 		
 		return mapper.remove(bno)==1 ? true:false;
 	}

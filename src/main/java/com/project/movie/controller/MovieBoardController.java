@@ -113,8 +113,8 @@ public class MovieBoardController {
 	public String removeGet(int bno, String userid, RedirectAttributes rttr, Criteria cri) {
 
 		// 폴더에서 첨부파일 제거
-//		List<AttachFileDTO> attachList = service.getAttachList(bno);
-//		deleteAttachFiles(attachList);
+		List<AttachFileDTO> attachList = service.getAttachList(bno);
+		deleteAttachFiles(attachList);
 		
 		// 삭제 성공 시 리스트로 가기
 		service.remove(bno);
