@@ -2,35 +2,34 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<<<<<<< HEAD
+
 <html lang="zxx">
 =======
 <html lang="ko">
->>>>>>> refs/heads/seungoh
 
 <head>
-<<<<<<< HEAD
+
     <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Anime | Template</title>
-=======
+
 <meta charset="UTF-8">
 <meta name="description" content="Anime Template">
 <meta name="keywords" content="Anime, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Anime | Template</title>
->>>>>>> refs/heads/seungoh
 
-<<<<<<< HEAD
+
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-=======
+
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap"
@@ -38,11 +37,11 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
 	rel="stylesheet">
->>>>>>> refs/heads/seungoh
 
-<<<<<<< HEAD
+
+
     <!-- Css Styles -->
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -51,7 +50,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-=======
+
 <!-- Css Styles -->
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
@@ -61,8 +60,7 @@
 <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
->>>>>>> refs/heads/seungoh
-=======
+
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
@@ -71,10 +69,9 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
->>>>>>> refs/heads/master
+
 </head>
-<<<<<<< HEAD
-=======
+
 
 <body>
 	<!-- Page Preloder -->
@@ -124,4 +121,3 @@
 		</div>
 	</header>
 	<!-- Header End -->
->>>>>>> refs/heads/seungoh

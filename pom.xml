@@ -17,17 +17,6 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-<<<<<<< HEAD
-	<dependencies>
-	
-	   <!-- Spring Boot Web Starter -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    
-    
-=======
 	<dependencies>	
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>
@@ -35,7 +24,6 @@
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1.1</version>
 		</dependency>	
->>>>>>> refs/heads/master
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>			
