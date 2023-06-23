@@ -1,6 +1,5 @@
 package com.project.movie.response;
 
-<<<<<<< HEAD
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -21,23 +20,6 @@ public class KobisReq {
 		LocalDate yesterday = LocalDate.now().minusDays(1);
 		private String targetDt= yesterday.format(DateTimeFormatter.ofPattern("YYYYMMdd"));
 		private String itemPerPage= "9";
-=======
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class KobisReq {	
-		
-		private String key = "7083241ea008894c70a0978fe6fbc95c";
-		private String targetDt= "";
-		private String itemPerPage= "10";
->>>>>>> branch 'kang' of https://github.com/rkdtjdduq88/MovieProject.git
 		private String multiMovieYn= "";
 		private String repNationCd= "";
 		private String wideAreaCd= "";

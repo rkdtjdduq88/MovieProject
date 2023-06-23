@@ -14,17 +14,12 @@ public class KmdbReq {
 	
 	private String ServiceKey = "8HPI107SND9Z42R0OM7H";	
 	private String collection= "kmdb_new";
-	private String query= "";	
-<<<<<<< HEAD
-	private String releaseDts = "";
-	
+	private String query= "";		
 	
 	public KmdbReq(String query) {
 		super();
 		this.query = query;
-	}
-	
-	
+	}	
 	
 	public MultiValueMap<String, String> toMultiValueMap(){
 		
@@ -37,23 +32,4 @@ public class KmdbReq {
 		
 		return map;		
 	}
-
-
-
-
-
-=======
-	
-	
-	public MultiValueMap<String, String> toMultiValueMap(){
-		
-		LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-		
-		map.add("ServiceKey", ServiceKey);		
-		map.add("collection", collection);
-		map.add("query", query);		
-		
-		return map;		
-	}
->>>>>>> branch 'kang' of https://github.com/rkdtjdduq88/MovieProject.git
 }

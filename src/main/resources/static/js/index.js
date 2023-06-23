@@ -21,7 +21,7 @@ function fetchAndDisplayMovies() {
     })
     .then(function (data) {
       // 데이터를 표시할 HTML 문자열
-      console.log("박스오피스 리스트 요청", data);
+      //console.log("박스오피스 리스트 요청", data);
       var movieItems = "";
       // 데이터를 테이블에 표시
       data.list.forEach(function (movie) {
@@ -82,7 +82,7 @@ function fetchAndCarouselMovies() {
       return response.json();
     })
     .then((data) => {
-      console.log("캐러셀 데이타 요청", data);
+      //console.log("캐러셀 데이타 요청", data);
       var carouselMovielItems = "";
       data.list.forEach((movie) => {
         var carouselMovielItem = `
