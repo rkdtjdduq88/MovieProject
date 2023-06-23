@@ -16,6 +16,6 @@ public class HomeController {
 		return "boxoffice";
 		
 		//return "index";
-
 	}
+	
 }
