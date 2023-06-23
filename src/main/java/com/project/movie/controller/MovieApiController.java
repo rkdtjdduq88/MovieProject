@@ -21,18 +21,18 @@ public class MovieApiController {
 	@Autowired
 	private MovieService movieService;
 	
-	@GetMapping("/{date}")
-	public TotalRes dailyBoxOfficeList(@PathVariable("date") String targetDt) {
-		log.info("검색 요청 "+targetDt);		
+	@GetMapping("")
+	public TotalRes dailyBoxOfficeList() {
+		log.info("검색 요청 ");		
 		
-		return movieService.movie(targetDt);
+		return movieService.movie();
 	}
 	
-	@GetMapping("/carousel/{date}")
-	public TotalRes mainCarousel(@PathVariable("date") String targetDt) {
+	@GetMapping("/carousel")
+	public TotalRes mainCarousel() {
 
-		log.info("검색 요청 "+targetDt);
-		return movieService.movie(targetDt);
-	}
+		log.info("검색 요청 ");
+		return movieService.movie();
+	}	
 	
 }

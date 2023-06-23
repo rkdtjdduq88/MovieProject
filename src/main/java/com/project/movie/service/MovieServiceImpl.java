@@ -24,7 +24,7 @@ public class MovieServiceImpl implements MovieService{
 	private KmdbAndKobisClient kmdbAndKobisClient;
 	
 	@Override
-	public TotalRes movie(String targetDt) {
+	public TotalRes movie() {
 		
 		// 최종 리턴
 		TotalRes totalRes = new TotalRes();
@@ -32,7 +32,7 @@ public class MovieServiceImpl implements MovieService{
 		
 		//영화진흥위원회 request 작업
 		KobisReq req = new KobisReq();		
-		req.setTargetDt(targetDt);	
+			
 		
 		//영화진흥위원회 response 받았음(1~10위)
 		KobisRes res = kmdbAndKobisClient.searchKobis(req);

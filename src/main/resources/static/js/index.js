@@ -6,16 +6,9 @@ function fetchAndDisplayMovies() {
     console.log("영화 목록 컨테이너를 찾을 수 없습니다.");
     return;
   }
-  // 전날 날짜 구하기
-  var currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1);
-  var year = currentDate.getFullYear();
-  var month = String(currentDate.getMonth() + 1).padStart(2, "0");
-  var day = String(currentDate.getDate()).padStart(2, "0");
-  var targetDt = year + month + day;
 
   // API 요청을 보내고 데이터를 받아옴
-  fetch("/api/boxoffice/" + targetDt)
+  fetch("/api/boxoffice/")
     .then(function (response) {
       return response.json();
     })
@@ -44,7 +37,7 @@ function fetchAndDisplayMovies() {
               </div>
           </div>
         `;
-        console.log(movieItem);
+        //console.log(movieItem);
         movieItems += movieItem;
       });
 
@@ -68,16 +61,8 @@ function fetchAndCarouselMovies() {
     return;
   }
 
-  // 전날 날짜 구하기
-  var currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1);
-  var year = currentDate.getFullYear();
-  var month = String(currentDate.getMonth() + 1).padStart(2, "0");
-  var day = String(currentDate.getDate()).padStart(2, "0");
-  var targetDt = year + month + day;
-
   // API 요청을 보내고 데이터를 받아옴
-  fetch("/api/boxoffice/carousel/" + targetDt)
+  fetch("/api/boxoffice/carousel/")
     .then((response) => {
       return response.json();
     })
@@ -102,7 +87,7 @@ function fetchAndCarouselMovies() {
       `;
         carouselMovielItems += carouselMovielItem;
       });
-      console.log(carouselMovielItems);
+      //console.log(carouselMovielItems);
       carouselMovie.insertAdjacentHTML("afterbegin", carouselMovielItems);
 
       /*------------------
