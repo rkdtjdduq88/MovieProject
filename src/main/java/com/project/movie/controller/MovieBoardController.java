@@ -1,4 +1,4 @@
-package com.spring.controller;
+package com.project.movie.controller;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,30 +15,32 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.spring.domain.AttachFileDTO;
-import com.spring.domain.BoardDTO;
-import com.spring.domain.Criteria;
-import com.spring.domain.PageDTO;
-import com.spring.service.BoardService;
+import com.project.movie.domain.AttachFileDTO;
+import com.project.movie.domain.Criteria;
+import com.project.movie.domain.MovieBoardDTO;
+import com.project.movie.domain.PageDTO;
+import com.project.movie.service.MovieBoardService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/board")
 @Slf4j
 @Controller
-public class BoardController {
+public class MovieBoardController {
 	
 	@Autowired
-	private BoardService service;
+	private MovieBoardService service;
+	
+	@GetMapping("/main-board")
+    public void MainBoard() {
+    	log.info("게시판 폼 요청");
+    }
 	
 	// 전체 리스트 보여주기 컨트롤러 작성: list.jsp 보여주기
 	@GetMapping("/list")
 	public void getList(Model model, @ModelAttribute("cri") Criteria cri) {
 		log.info("list request");
-		log.info("type "+Arrays.toString(cri.getTypeArr()));
 		
 		List<MovieBoardDTO> list=service.getList(cri); // 사용자가 요청한 번호에 맞는 게시물 목록 요청
 		int total=service.getTotalCnt(cri); // 전체 게시물 개수
@@ -48,7 +50,7 @@ public class BoardController {
 	}
 	
 	// register.jsp 보여주기
-	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
 	public void registerForm() {
 		log.info("register form request");
@@ -59,9 +61,9 @@ public class BoardController {
 		log.info("register request "+boardDTO);
 		
 		// 첨부파일 확인
-//		if(boardDTO.getAttachList() != null) {
-//			boardDTO.getAttachList().forEach(attach -> log.info(attach.toString()));
-//		}
+		if(boardDTO.getAttachList() != null) {
+			boardDTO.getAttachList().forEach(attach -> log.info(attach.toString()));
+		}
 		
 		boolean insertFlag=service.register(boardDTO);
 		if(insertFlag) {
@@ -72,9 +74,9 @@ public class BoardController {
 			rttr.addAttribute("page", cri.getPage());
 			rttr.addAttribute("amount", cri.getAmount());
 			
-			return "redirect:/board/list";
+			return "redirect:/list";
 		}
-		return "/board/register";
+		return "/register";
 	}
 	
 	// http://localhost:8080/board/read??page=1&amount=10&bno=917
@@ -100,19 +102,19 @@ public class BoardController {
 		rttr.addAttribute("amount", cri.getAmount());
 		
 		// 수정 버튼 눌렀을 때 검색 정보 주소줄에 보내기
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword", cri.getKeyword());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
 		
-		return "redirect:/board/list";
+		return "redirect:/list";
 	}
 	
 	@GetMapping("/remove")
-	@PreAuthorize("principal.username == #writer") // 로그인 사용자 == 작성자
-	public String removeGet(int bno, String writer, RedirectAttributes rttr, Criteria cri) {
+//	@PreAuthorize("principal.username == #userid") // 로그인 사용자 == 작성자
+	public String removeGet(int bno, String userid, RedirectAttributes rttr, Criteria cri) {
 
 		// 폴더에서 첨부파일 제거
-		List<AttachFileDTO> attachList = service.getAttachList(bno);
-		deleteAttachFiles(attachList);
+//		List<AttachFileDTO> attachList = service.getAttachList(bno);
+//		deleteAttachFiles(attachList);
 		
 		// 삭제 성공 시 리스트로 가기
 		service.remove(bno);
@@ -123,11 +125,11 @@ public class BoardController {
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("amount", cri.getAmount());
 		
-		// 삭제 버튼 눌렀을 때 검색 정보 주소줄에 보내기
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword", cri.getKeyword());
+//		// 삭제 버튼 눌렀을 때 검색 정보 주소줄에 보내기
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
 		
-		return "redirect:/board/list";
+		return "redirect:/list";
 	}
 	
 	// 첨부 파일 가져오기(/getAttachList) + GET + bno

@@ -1,12 +1,13 @@
-package com.spring.service;
+package com.project.movie.service;
 
 import java.util.List;
 
-import com.spring.domain.AttachFileDTO;
-import com.spring.domain.BoardDTO;
-import com.spring.domain.Criteria;
+import com.project.movie.domain.AttachFileDTO;
+import com.project.movie.domain.Criteria;
+import com.project.movie.domain.MovieBoardDTO;
+//import com.spring.domain.Criteria;
 
-public interface BoardService {
+public interface MovieBoardService {
 	// 전체 리스트 가져오기
 	public List<MovieBoardDTO> getList(Criteria cri);
 	// 글 등록
@@ -22,4 +23,5 @@ public interface BoardService {
 	// 첨부 파일 가져오기
 	public List<AttachFileDTO> getAttachList(int bno);
 
+	
 }

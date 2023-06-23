@@ -70,5 +70,5 @@
 	</div>
 
 </div>
-<script src="/js/visit.js"></script>
+<!-- <script src="/js/visit.js"></script> -->
 <%@ include file="include2/footer.jsp"%>

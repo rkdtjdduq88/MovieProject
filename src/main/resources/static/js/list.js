@@ -66,7 +66,7 @@ move.forEach((move) => {
     const bno = "<input type='hidden' name='bno' value='" + href + "'>";
     form.insertAdjacentHTML("beforeend", bno);
 
-    form.action = "/board/read";
+    form.action = "/read";
 
     // console.log(form);
     form.submit();

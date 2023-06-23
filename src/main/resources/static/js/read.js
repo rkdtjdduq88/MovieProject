@@ -32,7 +32,7 @@ function showAttachFile(uploadResultArr) {
   document.querySelector(".uploadResult ul").insertAdjacentHTML("beforeend", str);
 }
 
-fetch("/board/getAttachList?bno=" + bno)
+fetch("/getAttachList?bno=" + bno)
   .then((response) => {
     if (!response.ok) {
       throw new Error("첨부물 없음");
@@ -55,7 +55,7 @@ const form = document.querySelector("#operForm");
 const modify = document.querySelector(".btn-info");
 if (modify) {
   modify.addEventListener("click", () => {
-    form.action = "/board/modify";
+    form.action = "/modify";
     form.submit();
   });
 }
@@ -63,7 +63,7 @@ if (modify) {
 document.querySelector(".btn-secondary").addEventListener("click", () => {
   // bno 제거하고 전송
   form.firstElementChild.remove();
-  form.action = "/board/list";
+  form.action = "/list";
   form.submit();
 });
 

@@ -16,14 +16,7 @@ public class BoxOfficeResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Movie {
-<<<<<<< HEAD
-        private String movieCd;
-        private String movieNm;
-        private String openDt;
-        private String salesAmt;
-        private String audiCnt;
-        private String rank;
-=======
+
         private String title;
         private String poster_path;
         private double vote_average; // 기존의 rating 필드를 vote_average로 변경
@@ -32,6 +25,6 @@ public class BoxOfficeResponse {
         public String getPosterPath() {
             return poster_path;
         }
->>>>>>> refs/remotes/origin/seungoh
+
     }
 }

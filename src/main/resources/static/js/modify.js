@@ -1,4 +1,4 @@
-fetch("/board/getAttachList?bno=" + bno)
+fetch("/getAttachList?bno=" + bno)
   .then((response) => {
     if (!response.ok) {
       throw new Error("첨부물 없음");
@@ -38,8 +38,8 @@ modifyForm.addEventListener("submit", (e) => {
 // 수정, 삭제 클릭 시 동작하는 폼
 
 /**
- * 1. 삭제 버튼 클릭 시 operForm submit to /board/remove
- * 2. 목록 버튼 클릭 시 operForm submit to /board/list
+ * 1. 삭제 버튼 클릭 시 operForm submit to /remove
+ * 2. 목록 버튼 클릭 시 operForm submit to /list
  * 3. bno 제거하고 보내기
  */
 const form = document.querySelector("#operForm");
@@ -47,7 +47,7 @@ const form = document.querySelector("#operForm");
 const btnDan = document.querySelector(".btn-danger");
 if (btnDan) {
   btnDan.addEventListener("click", () => {
-    form.action = "/board/remove";
+    form.action = "/remove";
     form.submit();
   });
 }
@@ -55,6 +55,6 @@ if (btnDan) {
 document.querySelector(".btn-secondary").addEventListener("click", () => {
   // bno 제거하고 전송
   form.firstElementChild.remove();
-  form.action = "/board/list";
+  form.action = "/list";
   form.submit();
 });

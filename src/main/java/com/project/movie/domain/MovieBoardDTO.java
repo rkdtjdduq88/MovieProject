@@ -5,10 +5,8 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+
 
 @Data
 @AllArgsConstructor
@@ -24,6 +22,9 @@ public class MovieBoardDTO {
 	private int reLev;
 	private int reSeq;
 	private int cnt;
-	private String userId;
+	private String userid;
+	
+	// 첨부파일 정보
+	private List<AttachFileDTO> attachList;
 
 }

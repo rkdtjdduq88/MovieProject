@@ -1,0 +1,28 @@
+package com.project.movie.domain;
+
+import lombok.Data;
+
+@Data
+public class Criteria {
+	private int page; // 페이지 번호
+	private int amount; // 한 페이지당 몇 개의 게시물을 보여줄 것인가
+	
+	private String type; // 검색조건
+	private String keyword; // 검색어
+	
+	public Criteria() {
+		this(1,10); // 디폴트 생성자: 1페이지 당 10개
+	}
+
+	public Criteria(int page, int amount) {
+		super();
+		this.page = page;
+		this.amount = amount;
+	}
+	
+	public String[] getTypeArr() {
+		return type==null? new String[] {}: type.split("");
+	}
+	
+
+}

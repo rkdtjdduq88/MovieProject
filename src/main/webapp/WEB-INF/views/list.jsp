@@ -51,7 +51,7 @@
 		</select>
 	</div>
      <div class="pb-2">
-         <button class="btn btn-xs btn-success" type="button" onclick="location.href='/board/register'">Register New Board</button>
+         <button class="btn btn-xs btn-success" type="button" onclick="location.href='/register'">게시물 등록</button>
      </div>
 </div>
 <table class="table table-striped table-bordered table-hover">
@@ -68,8 +68,8 @@
 		<c:forEach var="dto" items="${list}">
 			<tr>
 				<th scope="row">${dto.bno}</th>
-				<td><a href="${dto.bno}" class="move">${dto.title}</a><strong>[${dto.replyCnt}]</strong></td>
-				<td>${dto.writer}</td>
+				<td><a href="${dto.bno}" class="move">${dto.title}</a></td>
+				<td>${dto.userid}</td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.regDate}" /></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.updateDate}" /></td>
 			</tr>
@@ -115,7 +115,7 @@
   </div>
 </div>
 <!-- 페이지 나누기 링크 처리를 위한 폼 -->
-<form action="/board/list" id="operForm">
+<form action="/list" id="operForm">
 	<!-- pageDTO.cri.page 가능 -->
 	<!-- input bno는 list.js에서 정의 -->
     <input type="hidden" name="page" value="${cri.page}" />
