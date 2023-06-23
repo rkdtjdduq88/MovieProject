@@ -6,22 +6,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class KobisRes{
-	
-	private BoxOfficeResult boxOfficeResult=new BoxOfficeResult();
+public class BoxOfficeResult {
+	private KobisRes kobisRes = new KobisRes();
 	
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
-	public class BoxOfficeResult {	
+	public class KobisRes {	
 		private String boxofficeType;	//박스오피스 종류를 출력합니다.
 		private String showRange; //박스오피스 조회 일자를 출력합니다.	
-		private List<KobisItem> dailyBoxOfficeList;
+		private List<KobisItem> kobisItems;
 	}
-	
 }

@@ -15,4 +15,5 @@ public class KobisItem {
 	private String openDt;
 	private String rank;
 	private String audiAcc;
+
 }

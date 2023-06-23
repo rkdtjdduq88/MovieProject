@@ -1,6 +1,7 @@
 package com.project.movie.api;
 
 import java.net.URI;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -145,9 +146,7 @@ public class KmdbAndKobisClient {
 			if(st.hasMoreTokens()) {
 				dto.setPosterUrl(st.nextToken());			
 			}			
-		}
-		
+		}		
 		return dto;
-	}
-	
+	}	
 }	

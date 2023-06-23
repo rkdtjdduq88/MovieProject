@@ -17,13 +17,26 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/heads/kang
 	<dependencies>	
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>
 		    <groupId>com.googlecode.json-simple</groupId>
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1.1</version>
+<<<<<<< HEAD
 		</dependency>	
+=======
+		</dependency>		
+	    <!-- Spring Boot Web Starter -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-web</artifactId>
+	    </dependency> 
+>>>>>>> refs/heads/kang
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>			

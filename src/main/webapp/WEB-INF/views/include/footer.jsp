@@ -55,7 +55,11 @@
 <script src="/js/main.js"></script>
 
 =======
+<<<<<<< HEAD
 >>>>>>> refs/heads/seungoh
+=======
+>>>>>>> refs/remotes/origin/seungoh
+>>>>>>> refs/heads/kang
 
 
 	<!-- Footer Section Begin -->

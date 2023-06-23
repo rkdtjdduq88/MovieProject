@@ -6,22 +6,15 @@ function fetchAndDisplayMovies() {
     console.log("영화 목록 컨테이너를 찾을 수 없습니다.");
     return;
   }
-  // 전날 날짜 구하기
-  var currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1);
-  var year = currentDate.getFullYear();
-  var month = String(currentDate.getMonth() + 1).padStart(2, "0");
-  var day = String(currentDate.getDate()).padStart(2, "0");
-  var targetDt = year + month + day;
 
   // API 요청을 보내고 데이터를 받아옴
-  fetch("/api/boxoffice/" + targetDt)
+  fetch("/api/boxoffice/")
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       // 데이터를 표시할 HTML 문자열
-      console.log("박스오피스 리스트 요청", data);
+      //console.log("박스오피스 리스트 요청", data);
       var movieItems = "";
       // 데이터를 테이블에 표시
       data.list.forEach(function (movie) {
@@ -44,7 +37,7 @@ function fetchAndDisplayMovies() {
               </div>
           </div>
         `;
-        console.log(movieItem);
+        //console.log(movieItem);
         movieItems += movieItem;
       });
 
@@ -68,21 +61,13 @@ function fetchAndCarouselMovies() {
     return;
   }
 
-  // 전날 날짜 구하기
-  var currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1);
-  var year = currentDate.getFullYear();
-  var month = String(currentDate.getMonth() + 1).padStart(2, "0");
-  var day = String(currentDate.getDate()).padStart(2, "0");
-  var targetDt = year + month + day;
-
   // API 요청을 보내고 데이터를 받아옴
-  fetch("/api/boxoffice/carousel/" + targetDt)
+  fetch("/api/boxoffice/carousel/")
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log("캐러셀 데이타 요청", data);
+      //console.log("캐러셀 데이타 요청", data);
       var carouselMovielItems = "";
       data.list.forEach((movie) => {
         var carouselMovielItem = `
@@ -102,7 +87,7 @@ function fetchAndCarouselMovies() {
       `;
         carouselMovielItems += carouselMovielItem;
       });
-      console.log(carouselMovielItems);
+      //console.log(carouselMovielItems);
       carouselMovie.insertAdjacentHTML("afterbegin", carouselMovielItems);
 
       /*------------------

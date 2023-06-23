@@ -18,8 +18,7 @@ public class KmdbAndKobisDTO {
 	private String plot;
 	private String releaseDate;
 	
-	// Kobis API 응답인자
+	// Kobis API 응답인자	
 	private String movieNm;
-	private String rank;	
-			
+	private String rank;				
 }

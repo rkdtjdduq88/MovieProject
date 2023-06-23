@@ -22,6 +22,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Anime | Template</title>
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/seungoh
+>>>>>>> refs/heads/kang
 
 
 
@@ -37,6 +41,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
 	rel="stylesheet">
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/seungoh
+>>>>>>> refs/heads/kang
 
 
 
@@ -60,6 +68,7 @@
 <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
@@ -70,6 +79,9 @@
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 
+=======
+>>>>>>> refs/remotes/origin/seungoh
+>>>>>>> refs/heads/kang
 </head>
 
 
@@ -121,3 +133,7 @@
 		</div>
 	</header>
 	<!-- Header End -->
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/seungoh
+>>>>>>> refs/heads/kang
