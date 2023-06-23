@@ -102,8 +102,8 @@ public class MovieBoardController {
 		rttr.addAttribute("amount", cri.getAmount());
 		
 		// 수정 버튼 눌렀을 때 검색 정보 주소줄에 보내기
-//		rttr.addAttribute("type", cri.getType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return "redirect:/list";
 	}
@@ -126,8 +126,8 @@ public class MovieBoardController {
 		rttr.addAttribute("amount", cri.getAmount());
 		
 //		// 삭제 버튼 눌렀을 때 검색 정보 주소줄에 보내기
-//		rttr.addAttribute("type", cri.getType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return "redirect:/list";
 	}
