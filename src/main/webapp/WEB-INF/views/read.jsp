@@ -36,7 +36,10 @@
 				</c:if>
 			</security:authorize> --%>
 			<button type="button" class="btn btn-info">수정</button>
-			<button type="button" class="btn btn-secondary">목록</button>
+			<button type="button" class="btn btn-secondary">
+			<a href="/list?page=1&amount=10&type=&keyword=">
+			<div style="color: #ffffff">목록</div>
+			</a></button>
 		</form>
 	</div>
 </div>

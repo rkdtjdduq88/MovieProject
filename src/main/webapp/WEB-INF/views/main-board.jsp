@@ -5,7 +5,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 </div>
-<div id="content">
+<div id="content1">
 	<%-- get 방식으로 주소줄에 총 4개의 변수를 보낸다. page=1, amount=10, type=, keyword= --%>
 	<div class="header">
 		<ol class="breadcrumb">
@@ -68,7 +68,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
-<!-- <script src="/js/visit.js"></script> -->
+
 <%@ include file="include2/footer.jsp"%>

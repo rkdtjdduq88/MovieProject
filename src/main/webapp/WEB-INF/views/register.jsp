@@ -1,18 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="include2/header.jsp" %>
-<!-- Page Heading -->
+<html lang="en">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Board Register</h1>
 </div>
 <div class="header">
 		<ol class="breadcrumb">
-			<li><a href="/main-board">Home</a></li>
-			<li><a href="/list?page=1&amount=10&type=&keyword=">Dashboard</a></li>
-			<li><a href="/blog">Blog</a></li>
+			<li class="breadcrumb-item"><a href="/main-board">Home</a></li>
+			<li class="breadcrumb-item"><a href="/list?page=1&amount=10&type=&keyword=">Dashboard</a></li>
+			<li class="breadcrumb-item"><a href="/blog">Blog</a></li>
 		</ol>
 </div>
-<div class="row">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+  </head>
+<body>
+<!-- Page Heading -->
+<div class="row"> 
     <div class="col">
 		<form action="" method="post" id="registerForm" novalidate>
 			<div class="form-group">
@@ -24,13 +32,13 @@
 			</div>
 			<div class="form-group">
 				<label for="content">Content</label>
-				<textarea class="form-control" id="content" rows="10" name="content" placeholder="content" required></textarea>
+				<textarea class="form-control" id="summernote" rows="10" name="content" placeholder="content" required></textarea>
 				<div class="invalid-feedback">
 					내용을 확인해주세요.
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="writer">User</label>
+				<label for="userid">User</label>
 				<input type="text" class="form-control" id="userid" name="userid">
 				<div class="invalid-feedback">
 					작성자를 확인해주세요.
@@ -38,7 +46,10 @@
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button type="submit" class="btn btn-primary">등록</button>
-			<button type="reset" class="btn btn-secondary">취소</button>
+			<button type="button" class="btn btn-secondary">
+			<a href="/list?page=1&amount=10&type=&keyword=">
+			<div style="color: #ffffff">취소</div>
+			</a></button>
 		</form>
 	</div>
 </div>
@@ -60,13 +71,41 @@
 		</div>
 	</div>
 </div>
-
+<!-- <div class="container">
+	<form>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Enter title" id="title">
+		</div>
+		<div class="form-group">
+			<textarea class="form-control" rows="5" id="summernote"></textarea>
+		</div>
+	</form>
+</div> -->
+<script>
+$(document).ready(function() {
+    $('#summernote').summernote({
+      tabsize: 2,
+      height: 300,
+      toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+      ]
+    });
+});
+</script>
 <script>
 	const path='${pageContext.request.requestURI}';
 	
 	// CSRF 토큰 값 생성
 	const csrfToken='${csrf.token}';
 </script>
+</body>
+</html>
 <script src="/js/register.js"></script>
 <script src="/js/upload.js"></script>
 <%@ include file="include2/footer.jsp" %>    

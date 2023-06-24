@@ -4415,8 +4415,8 @@ input[type="submit"].btn-block {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #772953;
+  border-color: #772953;
 }
 .page-item.disabled .page-link {
   color: #858796;
@@ -7010,7 +7010,7 @@ button.bg-dark:hover {
 }
 .mr-3,
 .mx-3 {
-  margin-right: 1rem !important;
+  /* margin-right: 1rem !important; */
 }
 .mb-3,
 .my-3 {
@@ -7018,7 +7018,7 @@ button.bg-dark:hover {
 }
 .ml-3,
 .mx-3 {
-  margin-left: 1rem !important;
+  /* margin-left: 1rem !important; */
 }
 .m-4 {
   margin: 1.5rem !important;
@@ -9444,7 +9444,7 @@ a:focus {
   padding: 0.5rem 1rem;
   margin: 0 0.5rem;
   display: block;
-  color: #3a3b45;
+  color: #ffffff;
   text-decoration: none;
   border-radius: 0.35rem;
   white-space: nowrap;
@@ -9496,7 +9496,7 @@ a:focus {
 .sidebar .sidebar-brand {
   height: 4.375rem;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 800;
   padding: 1.5rem 1rem;
   text-align: center;
@@ -9579,7 +9579,7 @@ a:focus {
     margin-right: 0.25rem;
   }
   .sidebar .nav-item .nav-link span {
-    font-size: 0.85rem;
+    font-size: 14px;
     display: inline;
   }
   .sidebar .nav-item .nav-link[data-toggle="collapse"]::after {

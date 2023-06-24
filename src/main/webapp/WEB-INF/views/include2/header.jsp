@@ -18,6 +18,7 @@
 
 <title>SB Admin 2 - Dashboard</title>
 
+
 <!-- Custom fonts for this template -->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -27,9 +28,7 @@
 
 <!-- Custom styles for this template -->
 <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-<link href="/css/bootstrap.css" rel="stylesheet" />
-<!-- <link href="/css/custom-styles.css" rel="stylesheet" /> -->
-<!-- <link href="/css/materialize.min.css" rel="stylesheet" /> -->
+<link href="/css/bootswatch.css" rel="stylesheet">
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
@@ -55,12 +54,7 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-laugh-wink"></i>
-				</div>
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/list?page=1&amount=10&type=&keyword=">
 				<div class="sidebar-brand-text mx-3">Admin Board</div>
 			</a>
 
@@ -82,7 +76,7 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>전체 게시물</span>
+					class="fas fa-fw fa-folder"></i> <span>전체 게시물</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
@@ -120,7 +114,7 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
-					class="fas fa-fw fa-folder"></i> <span>방문자수</span>
+					class="fas fa-fw fa-cog"></i> <span>방문자수</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
