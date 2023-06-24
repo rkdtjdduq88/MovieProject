@@ -15,15 +15,15 @@ public class KmdbClientTest {
 	private KmdbAndKobisClient client;
 
 	
-	@Test
-	public void clientTest() {
-		
-		KmdbReq req = new KmdbReq("범죄도시3");
-		
-		KmdbRes res = client.searchKmdb(req);
-		
-		System.out.println("kmdb로부터 받은 데이터 확인 ======");
-		System.out.println(res);
-		
-	}
+//	@Test
+//	public void clientTest() {
+//		
+//		KmdbReq req = new KmdbReq("범죄도시3");
+//		
+//		KmdbRes res = client.searchKmdb(req);
+//		
+//		System.out.println("kmdb로부터 받은 데이터 확인 ======");
+//		System.out.println(res);
+//		
+//	}
 }

@@ -61,6 +61,7 @@ public class MovieServiceImpl implements MovieService{
 				dto.setGenre(kmdbRes.getGenre());
 				dto.setPlot(kmdbRes.getPlot());
 				dto.setReleaseDate(kmdbRes.getReleaseDate());
+				dto.setAudiAcc(item.getAudiAcc());
 				totalRes.getList().add(dto);
 			}	
 		}		

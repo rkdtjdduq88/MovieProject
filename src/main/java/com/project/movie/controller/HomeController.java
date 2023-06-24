@@ -1,64 +1,49 @@
 package com.project.movie.controller;
 
-<<<<<<< HEAD
-=======
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> refs/heads/kang
+import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
-
-<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
+import com.project.movie.api.KmdbAndKobisClient;
+import com.project.movie.response.BoxOfficeResult.KobisRes;
+import com.project.movie.response.KmdbAndKobisDTO;
+import com.project.movie.response.KmdbReq;
+import com.project.movie.response.KmdbRes;
+import com.project.movie.response.KobisReq;
+import com.project.movie.response.TotalRes;
+import com.project.movie.service.MovieDetailService;
+import com.project.movie.service.MovieService;
 
-@Slf4j
-@Controller
-public class HomeController {
+import lombok.extern.slf4j.Slf4j;
 
-    @GetMapping("/")
-    public String main() {
-        log.info("index 폼 요청");
-
-//        try {
-//            List<Movie> movieRanking = boxOfficeService.getPopularMovies();
-//            model.addAttribute("movieRanking", movieRanking);
-//        } catch (RuntimeException e) {
-//            e.printStackTrace();
-//            model.addAttribute("errorMessage", "Failed to retrieve movie ranking");
-//        }
-
-        return "index";
-    }
-=======
 @Slf4j
 @Controller
 public class HomeController {
 		
+	@Autowired
+	private MovieDetailService movieDetailService;
+	@Autowired
+	private MovieService movieService;
+	
 	@GetMapping("/")
 	public String main() {
 		log.info("index 폼 요청");
 		return "index";
 	}	
 	
-	@GetMapping("/movie/movie-details/")
-	  public void movieDetails() {
+	@GetMapping("/movie/details")
+	  public String movieDetails(Model model, String movieNm, String movieDt) {
 		log.info("상세페이지 폼 요청");
-//		  log.info("영화 상세 정보 이동 "+movieNm+openDt);
-//		  log.info("영화 상세 정보 이동 ");
-//		  String rOpenDt = openDt.replaceAll("-", "");
-//		  System.out.println(rOpenDt);
-//		  MovieDetailRes detail = getKmdbService.detailView(movieNm,rOpenDt);
-		  
-		  // detail 객체에 포스터 이미지 URL 정보 추가
-//		    String posterUrl = detail.getPosterUrl(); // 포스터 이미지 URL 가져오기
-//		    detail.setPosterUrl(posterUrl);
-//		  
-//		  model.addAttribute("detail", detail);		 
+
+		TotalRes kres = movieService.movie();
+		KmdbRes res = movieDetailService.getDetails(movieNm, movieDt);
+		
+		model.addAttribute("detail", res);
+		model.addAttribute("list",kres.getList());
+		
+		return "/movie/movie-details";
 	  }
->>>>>>> refs/heads/kang
 }

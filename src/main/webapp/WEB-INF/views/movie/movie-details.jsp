@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -50,14 +50,14 @@
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="/">Homepage</a></li>
-                                <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                                <li><a href="/">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="./categories.html">Categories</a></li>
-                                        <li><a href="./anime-details.html">Movie Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
+                                        <li><a href="/">Categories</a></li>
+                                        <li><a href="/movie/details">Movie Details</a></li>
+                                        <li><a href="/">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
-                                        <li><a href="./login.html">Login</a></li>
+                                        <li><a href="/">Sign Up</a></li>
+                                        <li><a href="/">Login</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Our Blog</a></li>
@@ -84,8 +84,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
+                        <a href="/">Categories</a>
                         <span>${detail.genre}</span>
                     </div>
                 </div>
@@ -98,6 +98,8 @@
     <section class="anime-details spad">
         <div class="container">
             <div class="anime__details__content">
+           
+           
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="anime__details__pic set-bg" data-setbg="${detail.posterUrl} "> <!-- /img/anime/details-pic.jpg -->
@@ -128,24 +130,34 @@
                                         <ul>
                                             <li><span>Type:</span> ${detail.type }</li>
                                             <li><span>Studios:</span> ${detail.company}</li>
-                                          <%--   <li><span>Date aired:</span> ${detail.plot }</li> --%>
-                                           <!--  <li><span>Status:</span> Airing</li> -->
                                             <li><span>Genre:</span> ${detail.genre}</li>
+                                          <%--   <li><span>Actors:</span> ${detail.actors}</li> --%>
+                                          
+					                 <li><span>Actors:</span> 
+										  <c:forEach items="${detail.actors}" var="actor" varStatus="status">
+										    ${actor}
+										    <c:if test="${not status.last}">,</c:if>
+										  </c:forEach>
+										</li>
+                                       
+
+                                          
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
                                            <!--  <li><span>Scores:</span> 7.31 / 1,515</li> -->
                                             <li><span>Rating:</span> ${detail.rating}</li>
-                                            <li><span>Runtime:</span>${detail.runtime}</li>
+                                            <li><span>Runtime:</span>${detail.runtime} 분</li>
                                            <!--  <li><span>Quality:</span> HD</li> -->
-<%--                                            <foreach var="list" items="${list}">
-                                           <<c:if test="${list. }">
-                                           
-                                            <li><span>Views:</span> ${detail.audiAcc}</li>
-                                           </c:if>
-                                           </foreach>
- --%>                                        </ul>
+                                
+									<c:forEach var="list" items="${list}">
+									  <c:if test="${detail.title == list.movieNm}">
+									    <li><span>Views:</span> ${list.audiAcc} 명</li>
+									  </c:if>
+									</c:forEach>
+       
+ 										</ul>
                                     </div>
                                 </div>
                             </div>
@@ -157,6 +169,10 @@
                             </div>
                         </div>
                     </div>
+                    
+<%--                  </c:if>
+               </c:forEach> --%>
+                    
                 </div>
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
@@ -296,18 +312,18 @@
           </footer>
           <!-- Footer Section End -->
 
-          <!— Search model Begin —>
+          <!-- Search model Begin -->
           <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-switch"><i class="icon_close"></i></div>
                 <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here…..">
+                    <input type="text" id="search-input" placeholder="Search here.....">
                 </form>
             </div>
         </div>
-        <!— Search model end —>
+        <!-- Search model end -->
 
-        <!— Js Plugins —>
+        <!-- Js Plugins -->
         <script src="/js/jquery-3.3.1.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/player.js"></script>
@@ -316,9 +332,7 @@
         <script src="/js/jquery.slicknav.js"></script>
         <script src="/js/owl.carousel.min.js"></script>
         <script src="/js/main.js"></script>
-		<script>
-					
-		</script>
+
     </body>
 
     </html>

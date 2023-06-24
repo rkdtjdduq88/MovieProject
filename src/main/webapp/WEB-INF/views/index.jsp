@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Anime | Template</title>
 
-<!-- Google Font -->
+<!-- Google Font -->   
 <link
 	href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap"
 	rel="stylesheet">
@@ -77,9 +77,9 @@
 		</div>
 	</header>
 	<!-- Header End -->	
-	
-	
-		
+	      
+	   
+		     
 	
 
 	<!-- Hero Section Begin -->
@@ -205,8 +205,8 @@
 	</div>
 </section>
 <!-- Movie Rank List End -->
-
-
+    
+        
 	<!-- Footer Section Begin -->
 	<footer class="footer">
 		<div class="page-up">
@@ -274,4 +274,4 @@
 	<script src="/js/index.js"></script> 
 </body>
 
-</html>
+</html>      
