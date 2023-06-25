@@ -259,8 +259,8 @@
 			</form>
 		</div>
 	</div>
-	
-	
+	     
+	  
 	<!-- Search model end -->	
 	<!-- /js Plugins -->
 	<script src="/js/jquery-3.3.1.min.js"></script>
@@ -274,4 +274,4 @@
 	<script src="/js/index.js"></script> 
 </body>
 
-</html>      
+</html>          

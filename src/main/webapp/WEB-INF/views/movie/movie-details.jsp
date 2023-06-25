@@ -140,7 +140,6 @@
 										  </c:forEach>
 										</li>
                                        
-
                                           
                                         </ul>
                                     </div>
@@ -156,6 +155,7 @@
 									    <li><span>Views:</span> ${list.audiAcc} 명</li>
 									  </c:if>
 									</c:forEach>
+										 <li><span>ReleaseDate:</span> ${detail.releaseDate}</li>
        
  										</ul>
                                     </div>

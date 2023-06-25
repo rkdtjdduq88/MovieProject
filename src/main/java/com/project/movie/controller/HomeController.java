@@ -39,7 +39,10 @@ public class HomeController {
 		log.info("상세페이지 폼 요청");
 
 		TotalRes kres = movieService.movie();
-		KmdbRes res = movieDetailService.getDetails(movieNm, movieDt);
+//		System.out.println("상세 폼 "+kres);
+		 String rOpenDt = movieDt.replaceAll("-", "");
+		  System.out.println(rOpenDt);
+		KmdbRes res = movieDetailService.getDetails(movieNm, rOpenDt);
 		
 		model.addAttribute("detail", res);
 		model.addAttribute("list",kres.getList());

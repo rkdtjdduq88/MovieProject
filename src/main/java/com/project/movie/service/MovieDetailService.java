@@ -13,9 +13,11 @@ public class MovieDetailService {
 	@Autowired
 	private KmdbAndKobisClient kmdbAndKobisClient;
 	
-	public KmdbRes getDetails(String movieName, String movieDate) {
+	
+	public KmdbRes getDetails(String movieNm, String movieDt) {
 		
-		KmdbReq req = new KmdbReq(movieName, movieDate);
+		
+		KmdbReq req = new KmdbReq(movieNm, movieDt);
 		KmdbRes res = kmdbAndKobisClient.searchKmdb(req);
 		
 		return res;

@@ -19,11 +19,12 @@ public class KmdbReq {
 	
 	private String ServiceKey = "8HPI107SND9Z42R0OM7H";	
 //	private String collection= "kmdb_new";
-	private String query= "";		
+	private String query= "";	
+	private String releaseDts = "";
 	
-	LocalDate today = LocalDate.now();
-	   String year = today.format(DateTimeFormatter.ofPattern("YYYY"));
-	   private String releaseDts=year;
+//	LocalDate today = LocalDate.now();
+//	   String year = today.format(DateTimeFormatter.ofPattern("YYYY"));
+//	   private String releaseDts=year;
 	
 		public KmdbReq(String query) {
 			super();
