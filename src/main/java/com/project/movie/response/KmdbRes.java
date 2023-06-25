@@ -25,4 +25,6 @@ public class KmdbRes {
 	private String posterUrl;	//포스터이미지
 	private String audiAcc;	//누적관람인원
 	private List<KmdbItem> kmdbItems;
+	private String company;	// 제작사,배급사
+	private String type;	// 타입
 }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- Footer Section Begin -->
@@ -10,7 +9,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="footer__logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <a href="./index.html"><img src="/img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -56,7 +55,11 @@
 <script src="/js/main.js"></script>
 
 =======
+<<<<<<< HEAD
+>>>>>>> refs/heads/seungoh
+=======
 >>>>>>> refs/remotes/origin/seungoh
+>>>>>>> refs/heads/kang
 
 
 	<!-- Footer Section Begin -->

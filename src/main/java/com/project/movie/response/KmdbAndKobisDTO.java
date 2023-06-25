@@ -20,5 +20,7 @@ public class KmdbAndKobisDTO {
 	
 	// Kobis API 응답인자	
 	private String movieNm;
-	private String rank;				
+	private String rank;
+	private String openDt;
+	private String audiAcc;
 }

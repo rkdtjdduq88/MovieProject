@@ -112,12 +112,14 @@ public class KmdbAndKobisClient {
 		//System.out.println("jsonArr "+jsonArr);
 		
 		//directors
-		JSONArray directorArr = (JSONArray) item.get("director");		
+		JSONObject directors = (JSONObject) item.get("directors");
+		JSONArray directorArr = (JSONArray) directors.get("director");		
 		JSONObject diretor = (JSONObject) directorArr.get(0);
 		String directorNm = (String) diretor.get("directorNm");
 		
 		//actors
-		JSONArray actorArr = (JSONArray) item.get("actor");		
+		JSONObject actors = (JSONObject) item.get("actors");
+		JSONArray actorArr = (JSONArray) actors.get("actor");		
 		
 		List<String> actorsList = new ArrayList<String>();
 		
@@ -126,6 +128,16 @@ public class KmdbAndKobisClient {
 			JSONObject jsonObj = (JSONObject) object;			
 			actorsList.add((String) jsonObj.get("actorNm"));
 		}	
+		
+		//company
+		String company = (String) item.get("company");
+		String type = (String) item.get("type");
+		
+		// plot
+		JSONObject plots = (JSONObject) item.get("plots");
+		JSONArray plotArr = (JSONArray) plots.get("plot");
+		JSONObject plotOb = (JSONObject) plotArr.get(0);
+		String plot = (String) plotOb.get("plotText");
 		
 		
 		KmdbRes dto = new KmdbRes();
@@ -136,9 +148,12 @@ public class KmdbAndKobisClient {
 		dto.setKeywords(item.get("keywords").toString());
 		dto.setReleaseDate(item.get("repRlsDate").toString());
 		dto.setGenre(item.get("genre").toString());
-		dto.setPlot(item.get("plot").toString());
+//		dto.setPlot(item.get("plot").toString());	//**
+		dto.setPlot(plot);
 		dto.setAudiAcc(item.get("audiAcc").toString());
-		
+		dto.setCompany(company);
+		dto.setRating(item.get("rating").toString());
+		dto.setType(type);
 		
 		String posterUrl = item.get("posters").toString();	
 		if(!posterUrl.isBlank()) {

@@ -126,3 +126,5 @@ mvnw
 mvnw.cmd
 .project
 
+#DS파일
+.DS_Store
