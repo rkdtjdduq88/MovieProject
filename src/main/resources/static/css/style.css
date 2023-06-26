@@ -1364,11 +1364,13 @@ ol {
 }
 
 .blog__item {
-	height: 580px;
+	border-radius: 20px; /* 모서리를 둥글게 조정 */
+    overflow: hidden; /* 내용이 모서리를 벗어나지 않도록 숨김 처리 */
+	height: 500px;
 	position: relative;
-	margin-left: -10px;
-	margin-right: -10px;
-	margin-bottom: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 90px;
 	
 }
 .blog__item::before {
@@ -1424,6 +1426,31 @@ ol {
 .blog__item__text h4 a {
 	color: #ffffff;
 	line-height: 34px;
+}
+/*---------------------
+pagination
+-----------------------*/
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: #fff;
+  background-color: #000;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 4px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #555;
+}
+
+.pagination a:hover {
+  background-color: #333;
 }
 
 /*---------------------
@@ -1841,63 +1868,117 @@ ol {
 	padding: 12px 42px;
 }
 
-.login__social {
-	padding-top: 52px;
-}
 
-.login__social__links {
-	text-align: center;
-}
+/*---------------------
+  Register
+-----------------------*/
 
-.login__social__links span {
+.register__form h3 {
 	color: #ffffff;
-	display: block;
-	font-size: 13px;
 	font-weight: 700;
-	letter-spacing: 2px;
-	text-transform: uppercase;
+	font-family: "Oswald", sans-serif;
+	margin-bottom: 30px;
+}
+.register {
+	padding-top: 130px;
+	padding-bottom: 120px;
+}
+
+.register__form {
+	position: relative;
+	padding-left: 145px;
+}
+
+.register__form h3 {
+	color: #ffffff;
+	font-weight: 700;
+	font-family: "Oswald", sans-serif;
 	margin-bottom: 30px;
 }
 
-.login__social__links ul li {
-	list-style: none;
-	margin-bottom: 15px;
-}
-
-.login__social__links ul li:last-child {
-	margin-bottom: 0;
-}
-
-.login__social__links ul li a {
-	color: #ffffff;
-	display: block;
-	font-size: 13px;
-	font-weight: 700;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	width: 460px;
-	padding: 14px 0;
+.register__form form .input__item {
 	position: relative;
-	margin: 0 auto;
+	width: 370px;
+	margin-bottom: 20px;
 }
 
-.login__social__links ul li a.facebook {
-	background: #4267b2;
+.register__form form .input__item:before {
+	position: absolute;
+	left: 50px;
+	top: 10px;
+	height: 30px;
+	width: 1px;
+	background: #b7b7b7;
+	content: "";
 }
 
-.login__social__links ul li a.google {
-	background: #ff4343;
+.register__form form .input__item input {
+	height: 50px;
+	width: 100%;
+	font-size: 15px;
+	color: #b7b7b7;
+	background: #ffffff;
+	border: none;
+	padding-left: 76px;
 }
 
-.login__social__links ul li a.twitter {
-	background: #1da1f2;
+.register__form form .input__item input::-webkit-input-placeholder {
+	color: #b7b7b7;
 }
 
-.login__social__links ul li a i {
+.register__form form .input__item input::-moz-placeholder {
+	color: #b7b7b7;
+}
+
+.register__form form .input__item input:-ms-input-placeholder {
+	color: #b7b7b7;
+}
+
+.register__form form .input__item input::-ms-input-placeholder {
+	color: #b7b7b7;
+}
+
+.register__form form .input__item input::placeholder {
+	color: #b7b7b7;
+}
+
+.register__form form .input__item span {
+	color: #b7b7b7;
 	font-size: 20px;
 	position: absolute;
-	left: 32px;
-	top: 14px;
+	left: 15px;
+	top: 13px;
+}
+
+.register__form form button {
+	border-radius: 0;
+	margin-top: 10px;
+}
+
+.register__form .forget_pass {
+	font-size: 15px;
+	color: #ffffff;
+	display: inline-block;
+	position: absolute;
+	right: 60px;
+	bottom: 12px;
+}
+
+.notification {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.error {
+    background-color: #f2dede;
+    color: #a94442;
 }
 
 /*---------------------

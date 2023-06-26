@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zxx">
 
 <head>
 <meta charset="UTF-8">
@@ -63,7 +63,7 @@
 										<li><a href="./signup.html">Sign Up</a></li>
 										<li><a href="./login.html">Login</a></li>
 									</ul></li>
-								<li><a href="blog">Our Blog</a></li>
+								<li><a href="/blog">Our Blog</a></li>
 								<li><a href="#">Contacts</a></li>
 							</ul>
 						</nav>
@@ -72,7 +72,7 @@
 				<div class="col-lg-2">
 					<div class="header__right">
 						<a href="#" class="search-switch"><span class="icon_search"></span></a>
-						<a href="./login.html"><span class="icon_profile"></span></a>
+						<a href="/login"><span class="icon_profile"></span></a>
 					</div>
 				</div>
 			</div>
