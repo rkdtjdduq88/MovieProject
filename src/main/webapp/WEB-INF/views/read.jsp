@@ -7,7 +7,7 @@
 </div>
 <div class="header">
 		<ol class="breadcrumb">
-			<li><a href="/main-board">Home</a></li>
+			<li><a href="/main-board">Main</a></li>
 			<li><a href="/list?page=1&amount=10&type=&keyword=">Dashboard</a></li>
 			<li><a href="/blog">Blog</a></li>
 		</ol>

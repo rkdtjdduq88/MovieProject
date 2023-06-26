@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.movie.domain.AttachFileDTO;
@@ -33,8 +34,13 @@ public class MovieBoardController {
 	private MovieBoardService service;
 	
 	@GetMapping("/main-board")
-    public void MainBoard() {
+    public void MainBoard(Model model, @ModelAttribute("cri") Criteria cri) {
     	log.info("게시판 폼 요청");
+    	
+    	int totalPosts=service.getTotalCnt(cri);
+    	model.addAttribute("totalPosts", totalPosts);
+    	
+    	
     }
 	
 	// 전체 리스트 보여주기 컨트롤러 작성: list.jsp 보여주기
@@ -125,7 +131,7 @@ public class MovieBoardController {
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("amount", cri.getAmount());
 		
-//		// 삭제 버튼 눌렀을 때 검색 정보 주소줄에 보내기
+		// 삭제 버튼 눌렀을 때 검색 정보 주소줄에 보내기
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		

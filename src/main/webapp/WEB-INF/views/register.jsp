@@ -7,7 +7,7 @@
 </div>
 <div class="header">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="/main-board">Home</a></li>
+			<li class="breadcrumb-item"><a href="/main-board">Main</a></li>
 			<li class="breadcrumb-item"><a href="/list?page=1&amount=10&type=&keyword=">Dashboard</a></li>
 			<li class="breadcrumb-item"><a href="/blog">Blog</a></li>
 		</ol>
@@ -71,16 +71,7 @@
 		</div>
 	</div>
 </div>
-<!-- <div class="container">
-	<form>
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Enter title" id="title">
-		</div>
-		<div class="form-group">
-			<textarea class="form-control" rows="5" id="summernote"></textarea>
-		</div>
-	</form>
-</div> -->
+
 <script>
 $(document).ready(function() {
     $('#summernote').summernote({

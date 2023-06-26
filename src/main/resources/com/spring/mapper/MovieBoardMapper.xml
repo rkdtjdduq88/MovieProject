@@ -2,11 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.movie.mapper.MovieBoardMapper">
 
-<!-- 전체 조회(페이지 나누기 전) -->
-<!-- <select id="list" resultType="com.project.movie.domain.MovieBoardDTO">
-    select bno, title, userid, regdate, updatedate from movieboard_tbl order by bno desc, regdate desc
-</select> -->
-
 <!-- 전체 조회(페이지 나눈 후) -->
 <select id="list" resultType="com.project.movie.domain.MovieBoardDTO">
 <![CDATA[
