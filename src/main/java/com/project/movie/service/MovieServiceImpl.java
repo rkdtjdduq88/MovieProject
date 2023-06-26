@@ -46,9 +46,11 @@ public class MovieServiceImpl implements MovieService{
 				KmdbAndKobisDTO dto = new KmdbAndKobisDTO();
 				//영화이름 가져오기
 				String movieName = item.getMovieNm();			
+				// 개봉일 가져오기
+				String openDt = item.getOpenDt();
 				
 				// KMDB request 작업(1~10위까지의 박스오피스영화의 영화이름을 요청)
-				KmdbReq kmdbReq = new KmdbReq(movieName);
+				KmdbReq kmdbReq = new KmdbReq(movieName,openDt);
 				
 				// KMDB response 받았음
 				KmdbRes kmdbRes = kmdbAndKobisClient.searchKmdb(kmdbReq);
@@ -62,6 +64,7 @@ public class MovieServiceImpl implements MovieService{
 				dto.setPlot(kmdbRes.getPlot());
 				dto.setReleaseDate(kmdbRes.getReleaseDate());
 				dto.setAudiAcc(item.getAudiAcc());
+				dto.setOpenDt(item.getOpenDt());
 				totalRes.getList().add(dto);
 			}	
 		}		

@@ -3,13 +3,11 @@ package com.project.movie.response;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-<<<<<<< HEAD
-=======
+
 import org.springframework.stereotype.Component;
->>>>>>> refs/remotes/origin/young
+
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,11 +23,7 @@ public class KmdbReq {
 	private String query= "";		
 	LocalDate today = LocalDate.now();
 	String year = today.format(DateTimeFormatter.ofPattern("YYYY"));
-	private String releaseDts=year;
-	
-	LocalDate today = LocalDate.now();
-	   String year = today.format(DateTimeFormatter.ofPattern("YYYY"));
-	   private String releaseDts=year;
+	private String releaseDts=year;	
 	
 		public KmdbReq(String query) {
 			super();

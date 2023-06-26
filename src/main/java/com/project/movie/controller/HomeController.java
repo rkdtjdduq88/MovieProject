@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.project.movie.api.KmdbAndKobisClient;
+import com.project.movie.dto.MovieDetailReplyDTO;
 import com.project.movie.response.BoxOfficeResult.KobisRes;
 import com.project.movie.response.KmdbAndKobisDTO;
 import com.project.movie.response.KmdbReq;
@@ -26,7 +27,7 @@ public class HomeController {
 	@Autowired
 	private MovieDetailService movieDetailService;
 	@Autowired
-	private MovieService movieService;
+	private MovieService movieService;	
 	
 	@GetMapping("/")
 	public String main() {
@@ -35,7 +36,7 @@ public class HomeController {
 	}	
 	
 	@GetMapping("/movie/details")
-	  public String movieDetails(Model model, String movieNm, String movieDt) {
+	  public String movieDetails(Model model, String movieNm, String movieDt, String title) {
 		log.info("상세페이지 폼 요청");
 
 		TotalRes kres = movieService.movie();
@@ -43,7 +44,7 @@ public class HomeController {
 		
 		model.addAttribute("detail", res);
 		model.addAttribute("list",kres.getList());
-		
+										
 		return "/movie/movie-details";
 	  }
 }

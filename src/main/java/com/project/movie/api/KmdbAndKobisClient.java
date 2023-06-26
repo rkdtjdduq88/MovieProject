@@ -60,7 +60,7 @@ public class KmdbAndKobisClient {
 		
 		ResponseEntity<KobisRes> resEntity = new RestTemplate().exchange(uri, HttpMethod.GET, httpEntity, resReference);
 		
-		System.out.println("BoxOffice "+resEntity.getBody());
+		//System.out.println("BoxOffice "+resEntity.getBody());
 		
 		return resEntity.getBody();
 		
@@ -74,7 +74,7 @@ public class KmdbAndKobisClient {
 				.toUri();
 		
 		
-		System.out.println("uri "+uri);
+		//System.out.println("uri "+uri);
 		
 		
 		// 헤더 추가

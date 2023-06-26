@@ -12,5 +12,3 @@ public interface MovieService {
 	public TotalRes movie();
 	
 }
-
-

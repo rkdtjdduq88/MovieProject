@@ -86,7 +86,7 @@
                     <div class="breadcrumb__links">
                         <a href="/"><i class="fa fa-home"></i> Home</a>
                         <a href="/">Categories</a>
-                        <span>${detail.genre}</span>
+                        <span><c:out value="${detail.genre}" /></span>
                     </div>
                 </div>
             </div>
@@ -174,6 +174,7 @@
                </c:forEach> --%>
                     
                 </div>
+                <!-- 댓글 작업 시작 -->
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
@@ -332,6 +333,7 @@
         <script src="/js/jquery.slicknav.js"></script>
         <script src="/js/owl.carousel.min.js"></script>
         <script src="/js/main.js"></script>
+        <script src="/js/moviedetail.js"></script>
 
     </body>
 
