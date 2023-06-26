@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.project.movie.domain.AuthDTO;
+import com.project.movie.domain.LoginDTO;
 import com.project.movie.domain.MemberDTO;
 import com.project.movie.mapper.RegisterMapper;
 
@@ -27,5 +29,32 @@ public class RegisterServiceEmpl implements RegisterService {
 		
 		return mapper.insert(dto)==1?true:false;
 	}
+	
+	@Override
+	public AuthDTO login(LoginDTO dto) {
+	    try {
+	        // 아이디와 비밀번호 가져오기
+	        String userid = dto.getUserid();
+	        String password = dto.getPassword();
 
+	        // 데이터베이스에서 암호화된 비밀번호 가져오기
+	        String encryptedPassword = mapper.getPass(userid);
+
+	        // 비밀번호 일치 여부 확인
+	        if (passwordEncoder.matches(password, encryptedPassword)) {
+	            // 로그인 성공한 경우 AuthDTO 생성
+	            AuthDTO authDTO = new AuthDTO();
+	            authDTO.setUserid(userid);
+
+	            return authDTO; // 로그인 성공 시 AuthDTO 반환
+	        } else {
+	            // 비밀번호 불일치로 로그인 실패
+	            return null; // 로그인 실패 시 null 반환
+	        }
+	    } catch (Exception e) {
+	        // 예외 발생 시
+	        e.printStackTrace(); // 예외를 콘솔에 출력
+	        return null; // 로그인 실패 시 null 반환
+	    }
+	}
 }

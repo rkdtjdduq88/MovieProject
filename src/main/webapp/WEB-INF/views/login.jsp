@@ -100,17 +100,17 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>로그인</h3>
-                        <form action="#">
-                            <div class="input__item">
-                                <input type="text" placeholder="Email address">
-                                <span class="icon_mail"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="text" placeholder="Password">
-                                <span class="icon_lock"></span>
-                            </div>
-                            <button type="submit" class="site-btn">로그인</button>
-                        </form>
+                        <form action="/login" method="post" id="login-form">
+						  <div class="input__item">
+						    <input type="text" id="userid" name="userid" placeholder="아이디 입력" required>
+						    <span class="icon_profile"></span>
+						  </div>
+						  <div class="input__item">
+						    <input type="password" id="password" name="password" placeholder="비밀번호 입력" required>
+						    <span class="icon_lock"></span>
+						  </div>
+						  <button type="submit" class="site-btn">로그인</button>
+						</form>
                         <a href="#" class="forget_pass">비밀번호 찾기</a>
                     </div>
                 </div>
