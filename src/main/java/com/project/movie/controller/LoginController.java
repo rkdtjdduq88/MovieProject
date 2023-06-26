@@ -12,13 +12,8 @@ import com.project.movie.service.RegisterService;
 @Controller
 public class LoginController {
 
-	
-	private RegisterService service;
-	
 	@Autowired
-	public LoginController(RegisterService service) {
-		this.service = service;
-	}
+	private RegisterService service;
 	
 	@GetMapping("/login")
 	public String LoginPage() {
@@ -45,6 +40,7 @@ public class LoginController {
 	            return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
 	        }
 	    } catch (Exception e) {
+	    	e.printStackTrace();
 	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
 	    }
 	}
