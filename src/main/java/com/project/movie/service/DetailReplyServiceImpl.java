@@ -19,5 +19,11 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 		
 		return movieDetailReplyMapper.detailReplyList(title);
 	}
+	
+	@Override
+	public boolean insert(MovieDetailReplyDTO dto) {
+
+		return movieDetailReplyMapper.insert(dto)==1?true:false;
+	}
 
 }

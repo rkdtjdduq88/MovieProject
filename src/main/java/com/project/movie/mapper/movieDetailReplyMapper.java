@@ -9,4 +9,5 @@ import com.project.movie.dto.MovieDetailReplyDTO;
 @Mapper
 public interface movieDetailReplyMapper {
 	public List<MovieDetailReplyDTO> detailReplyList(String title);
+	public int insert(MovieDetailReplyDTO dto);
 }

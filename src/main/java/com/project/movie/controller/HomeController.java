@@ -36,7 +36,7 @@ public class HomeController {
 	}	
 	
 	@GetMapping("/movie/details")
-	  public String movieDetails(Model model, String movieNm, String movieDt, String title) {
+	  public String movieDetails(Model model, String movieNm, String movieDt) {
 		log.info("상세페이지 폼 요청");
 
 		TotalRes kres = movieService.movie();

@@ -6,4 +6,5 @@ import com.project.movie.dto.MovieDetailReplyDTO;
 
 public interface DetailReplyService {
 	public List<MovieDetailReplyDTO> getList(String title);
+	public boolean insert(MovieDetailReplyDTO dto);
 }
