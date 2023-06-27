@@ -8,15 +8,17 @@
 		values(#{userid},#{password},#{email},#{address},#{name},#{mobile})
 	</insert>
 	
-	<!-- 암호화된 비번 가져오기 -->
-	<select id="getPass" resultType="java.lang.String">
-		select password from moviemember_tbl 
-		where userid=#{userid}
-	</select>
-
-	<select id="login" resultType="com.project.movie.domain.AuthDTO">
-        select * from moviemember_tbl
-        where userid = #{userid}
+	<!-- 로그인  -->
+	 <select id="getMemberByUserId" resultType="com.project.movie.domain.MemberDTO">
+        SELECT * FROM moviemember_tbl WHERE userid = #{userid}
     </select>
+    
+	<select id="getMemberByEmail" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE email = #{email}
+	</select>
 	
+	<select id="getMemberByMobile" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE mobile = #{mobile}
+	</select>
+		
 </mapper>

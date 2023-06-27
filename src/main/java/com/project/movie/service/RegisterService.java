@@ -1,7 +1,5 @@
 package com.project.movie.service;
 
-import com.project.movie.domain.AuthDTO;
-import com.project.movie.domain.LoginDTO;
 import com.project.movie.domain.MemberDTO;
 
 public interface RegisterService {
@@ -9,5 +7,9 @@ public interface RegisterService {
 	public boolean insert(MemberDTO dto);
 	
 	//로그인
-	public AuthDTO login(LoginDTO dto);
+	MemberDTO getMemberByUserId(String userId);
+	
+	//회원 정보 가져오기
+    MemberDTO getMemberByEmail(String email);
+    MemberDTO getMemberByMobile(String mobile);
 }
