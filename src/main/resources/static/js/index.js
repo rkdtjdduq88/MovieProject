@@ -1,6 +1,6 @@
 // JSON 데이터를 가져와서 표시하는 함수
 function fetchAndDisplayMovies() {
-  var movieListContainer = document.querySelector(".trending__product .row");
+  var movieListContainer = document.querySelector(".trending__product #boxOfficeList");
 
   if (!movieListContainer) {
     console.log("영화 목록 컨테이너를 찾을 수 없습니다.");

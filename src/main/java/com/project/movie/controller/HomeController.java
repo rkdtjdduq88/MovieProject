@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.project.movie.api.KmdbAndKobisClient;
-import com.project.movie.dto.MovieDetailReplyDTO;
+import com.project.movie.domain.MovieDetailReplyDTO;
 import com.project.movie.response.BoxOfficeResult.KobisRes;
 import com.project.movie.response.KmdbAndKobisDTO;
 import com.project.movie.response.KmdbReq;

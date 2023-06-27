@@ -2,14 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.movie.mapper.movieDetailReplyMapper">
 	<!-- 전체 상세페이지 댓글 조회 -->
-	<select id="detailReplyList" resultType="com.project.movie.dto.MovieDetailReplyDTO">
+	<select id="detailReplyList" resultType="com.project.movie.domain.MovieDetailReplyDTO">
 		select * from detailreply_tbl where title=#{title}
 	</select>
 	
 	<!-- 상세페이지 댓글 추가 -->		
 	<insert id="insert">
-		insert into detailreply_tbl(title,rno,replyContent,userid,replydate,updatedate) 
-		values(#{title},detailreply_seq.nextval,#{replyContent},#{userid},replydate=sysdate,updatedate=sysdate)
+		insert into detailreply_tbl(title,rno,replyContent,userid) 
+		values(#{title},detailreply_seq.nextval,#{replyContent},#{userid})
 	</insert>
+	
+	<!-- 상세페이지 댓글 수정 -->
+	<update id="update">
+		update detailreply_tbl set replycontent=#{replyContent}, updatedate=sysdate where rno=#{rno}
+	</update>
 	
 </mapper>

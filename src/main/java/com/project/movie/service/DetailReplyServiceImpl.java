@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.movie.dto.MovieDetailReplyDTO;
+import com.project.movie.domain.MovieDetailReplyDTO;
 import com.project.movie.mapper.movieDetailReplyMapper;
 
 @Service
@@ -24,6 +24,11 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 	public boolean insert(MovieDetailReplyDTO dto) {
 
 		return movieDetailReplyMapper.insert(dto)==1?true:false;
+	}
+
+	@Override
+	public boolean update(MovieDetailReplyDTO dto) {		
+		return movieDetailReplyMapper.update(dto)==1?true:false;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.project.movie.dto;
+package com.project.movie.domain;
 
 import java.util.Date;
 
@@ -16,7 +16,7 @@ public class MovieDetailReplyDTO {
 	private String replyContent;
 	private String userid;	
 	private Date replydate;	
-	private Date updatedate;
+	private Date replyUpdatedate;
 	
 	
 	

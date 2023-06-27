@@ -17,12 +17,24 @@ function movieDetailReplyList() {
       console.log(data);
       var reviewList = "";
       data.forEach((list) => {
+        var isCurrentUser = list.userid === userid; // 현재 사용자와 댓글 작성자를 비교
+
+        var buttons = "";
+        if (isCurrentUser) {
+          buttons = `
+            <button class="btn btn-danger" type="button">삭제</button>                        
+            <button class="btn btn-warning" type="button">수정</button>
+          `;
+        }
+
         var review = `<div class="anime__review__item">
             <div class="anime__review__item__pic">
                 <img src="/img/anime/review-1.jpg" alt="">
             </div>
-            <div class="anime__review__item__text">
-                <h6>${list.userid}<span>1 hour ago</span></h6>
+            <div class="anime__review__item__text">                
+                    <h6>${list.userid}&nbsp;&nbsp;&nbsp;<span>${displayTime(list.replydate)}</span>                        
+                        ${buttons}
+                    </h6>                    
                 <p>${list.replyContent}</p>
             </div>
         </div>`;
@@ -33,6 +45,41 @@ function movieDetailReplyList() {
     .catch((error) => console.log("데이터를 가져올 수 없습니다.", error));
 }
 movieDetailReplyList();
+
+// 상세페이지 댓글 작성 기능넣기
+
+document.querySelector("#insertForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const replyContent = document.querySelector("#replyContent").value;
+  const userid = document.querySelector("#userid").value;
+
+  const data = {
+    replyContent: replyContent,
+    userid: userid,
+    title: title,
+  };
+
+  fetch("/replies/new", {
+    method: "post",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("입력 오류");
+      }
+      return response.text();
+    })
+    .then((data) => {
+      console.log(data);
+
+      movieDetailReplyList();
+    })
+    .catch((error) => console.log(error));
+});
 
 // 리뷰에 몇시간전에 달았는지 보는 기능 넣기
 function displayTime(timeVal) {

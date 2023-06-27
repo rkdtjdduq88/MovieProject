@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.project.movie.dto.MovieDetailReplyDTO;
+import com.project.movie.domain.MovieDetailReplyDTO;
 
 @Mapper
 public interface movieDetailReplyMapper {
 	public List<MovieDetailReplyDTO> detailReplyList(String title);
 	public int insert(MovieDetailReplyDTO dto);
+	public int update(MovieDetailReplyDTO dto);
 }
