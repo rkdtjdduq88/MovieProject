@@ -32,7 +32,7 @@ function fetchAndDisplayMovies() {
                           <li>활동중</li>
                           <li>영화</li>
                       </ul>
-                      <h5><a href="/movie/details?movieNm=${movie.movieNm}&movieDt=${movie.releaseDate}">${movie.movieNm}</a></h5>
+                      <h5><a href="/details?movieNm=${movie.movieNm}&movieDt=${movie.releaseDate}">${movie.movieNm}</a></h5>
                   </div>
               </div>
           </div>

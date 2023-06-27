@@ -53,7 +53,7 @@
                                 <li><a href="/">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="/">Categories</a></li>
-                                        <li><a href="/movie/details">Movie Details</a></li>
+                                        <li><a href="/details">Movie Details</a></li>
                                         <li><a href="/">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                         <li><a href="./login">Login</a></li>

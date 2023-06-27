@@ -3,8 +3,11 @@ package com.project.movie.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.movie.domain.AttachFileDTO;
@@ -33,14 +37,13 @@ public class MovieBoardController {
 	private MovieBoardService service;
 	
 	@GetMapping("/main-board")
-    public void MainBoard(Model model, @ModelAttribute("cri") Criteria cri) {
+    public void MainBoard(Model model, @ModelAttribute("cri") Criteria cri, HttpSession session) {
     	log.info("게시판 폼 요청");
     	
+    	// 1. 총 게시물 수
     	int totalPosts=service.getTotalCnt(cri);
     	model.addAttribute("totalPosts", totalPosts);
-    	
-    	
-    }
+	}
 	
 	// 전체 리스트 보여주기 컨트롤러 작성: list.jsp 보여주기
 	@GetMapping("/list")

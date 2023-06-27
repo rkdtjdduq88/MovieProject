@@ -27,7 +27,7 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping("/movie/details")
+	@GetMapping("/details")
 	public String movieDetails(Model model, String movieNm, String movieDt) {
 		log.info("상세페이지 폼 요청");
 
@@ -37,12 +37,7 @@ public class HomeController {
 		model.addAttribute("detail", res);
 		model.addAttribute("list", kres.getList());
 
-		return "/movie/movie-details";
-	}
-
-	@GetMapping("/blog")
-	public void goToBlog() {
-		log.info("블로그 폼 요청");
+		return "/movie-details";
 	}
 
 }
