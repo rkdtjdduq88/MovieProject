@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.movie.dto.MemberDTO;
@@ -29,23 +30,23 @@ public class LoginController {
 	    }
 
 	
-	     @PostMapping("/login")
-	     public String login(@RequestParam("userid") String userId, @RequestParam("password") String password, HttpSession session, Model model) {
-	         MemberDTO member = service.getMemberByUserId(userId);
 
-	         if (member != null && passwordEncoder.matches(password, member.getPassword())) {
-	             // 로그인 성공
-	             session.setAttribute("userid", userId); // 세션에 userid 저장
-	             model.addAttribute("loggedIn", true); // 로그인 상태를 true로 설정
-	             return "redirect:/";
-	         } else {
-	             // 로그인 실패
-	             model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
-	             model.addAttribute("loggedIn", false); // 로그인 상태를 false로 설정
-	             return "login";
-	         }
-	     }
+     @PostMapping("/login")
+     public String login(@RequestParam("userid") String userId, @RequestParam("password") String password, HttpSession session, Model model) {
+         MemberDTO member = service.getMemberByUserId(userId);
 
+         if (member != null && passwordEncoder.matches(password, member.getPassword())) {
+             // 로그인 성공
+             session.setAttribute("userid", userId); // 세션에 userid 저장
+             model.addAttribute("loggedIn", true); // 로그인 상태를 true로 설정
+             return "redirect:/";
+         } else {
+             // 로그인 실패
+             model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
+             model.addAttribute("loggedIn", false); // 로그인 상태를 false로 설정
+             return "login";
+         }
+     }
 
 
 

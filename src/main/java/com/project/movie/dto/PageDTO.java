@@ -2,9 +2,9 @@ package com.project.movie.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data@AllArgsConstructor
+
+@Data@AllArgsConstructor  
 public class PageDTO {
 
 	private int page; // 현재 페이지 번호

@@ -1638,6 +1638,7 @@ pagination
 
 .blog__details__comment__item__text {
 	overflow: hidden;
+	
 }
 
 .blog__details__comment__item__text span {
@@ -1752,6 +1753,27 @@ pagination
 .blog__details__form form textarea::placeholder {
 	color: #a6a6a6;
 }
+ .site-btn {
+     
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .site-btn:hover {
+        background-color: #45a049;
+    }
+    
+  .blog__details__comment__item__text {
+    max-width: 80%; /* 원하는 가로 길이로 조정 */
+  }
 
 /*---------------------
   Login

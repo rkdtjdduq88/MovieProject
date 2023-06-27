@@ -3,9 +3,7 @@ package com.project.movie.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.project.movie.dto.BlogCommentDTO;
@@ -13,7 +11,6 @@ import com.project.movie.dto.BoardDTO;
 import com.project.movie.dto.MemberDTO;
 import com.project.movie.mapper.BoardMapper;
 
-@Repository
 @Service
 public class BoardServiceImpl implements BoardService {
 
@@ -21,7 +18,7 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper boardMapper;
 	
 	@Autowired
-	private PasswordEncoder passwordEncoder;  // Use PasswordEncoder instead of BCryptPasswordEncoder
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public List<BoardDTO> getBoardList(int page, int recordSize) {
@@ -32,13 +29,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int getBlogCount() {
-
 		return boardMapper.getBlogCount();
 	}
 
 	@Override
 	public BoardDTO getBlogDetails(int bno) {
-
 		return boardMapper.getBlogDetails(bno);
 	}
 
@@ -53,8 +48,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BlogCommentDTO> getCommentsByBoard(int bno) {
-		return boardMapper.getCommentsByBoard(bno);
+	public List<BlogCommentDTO> getRepliesByComment(int rno) {
+		return boardMapper.getRepliesByComment(rno);
 	}
 
 	@Override
@@ -71,13 +66,16 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDTO> getBoardListByPage(int offset, int recordSize) {
 		return boardMapper.getBoardListByPage(offset, recordSize);
 	}
-	
-	@Override // 회원가입
+
+	@Override
+	public void insertReply(BlogCommentDTO reply) {
+		boardMapper.insertReply(reply);
+	}
+
+	@Override
 	public boolean insert(MemberDTO dto) {
-		// 비밀번호 암호화
 		String encryptedPassword = passwordEncoder.encode(dto.getPassword());
 		dto.setPassword(encryptedPassword);
-
 		return boardMapper.insert(dto) == 1;
 	}
 
@@ -85,4 +83,15 @@ public class BoardServiceImpl implements BoardService {
 	public MemberDTO getMemberByUserId(String userId) {
 		return boardMapper.getMemberByUserId(userId);
 	}
+
+	@Override
+	public List<BlogCommentDTO> getCommentsByBoard(int bno) {
+		return boardMapper.getCommentsByBoard(bno);
+	}
+
+	@Override
+	public BlogCommentDTO getParentCommentByRno(int rno) {
+		return boardMapper.getParentCommentByRno(rno);
+	}
+
 }

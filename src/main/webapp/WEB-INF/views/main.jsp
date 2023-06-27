@@ -1,108 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.project.movie.response.BoxOfficeResponse.Movie"%>
+
 <%@ page import="java.util.List"%>
 
 <%@include file="./include/header.jsp"%>
 
 <!-- Hero Section Begin -->
-<section class="hero">
-	<div class="container">
-		<div class="hero__slider owl-carousel">
-			<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="hero__text">
-							<div class="label">Adventure</div>
-							<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-							<p>After 30 days of travel across the world...</p>
-							<a href="#" onclick="handlePayment()"><span>Watch Now</span>
-								<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="hero__text">
-							<div class="label">Adventure</div>
-							<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-							<p>After 30 days of travel across the world...</p>
-							<a href="#" onclick="handlePayment()"><span>Watch Now</span>
-								<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="hero__items set-bg" data-setbg="/img/hero/hero-1.jpg">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="hero__text">
-							<div class="label">Adventure</div>
-							<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-							<p>After 30 days of travel across the world...</p>
-							<a href="#" onclick="handlePayment()"><span>Watch Now</span>
-								<i class="fa fa-angle-right"></i></a>
-						</div>
-					</div>
-				</div>
+	<section class="hero">
+		<div class="container">
+			<div class="hero__slider owl-carousel">
+				<!-- carousel script -->
 			</div>
 		</div>
-	</div>
-</section>
-<!-- Hero Section End -->
-<!-- Product Section Begin -->
-<!-- 생략 -->
+	</section>
+	<!-- Hero Section End -->
+
+<!-- Movie Rank List Begin -->
 <section class="product spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="trending__product">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8 col-sm-8">
-                            <div class="section-title">
-                                <h4>영화 랭킹</h4>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                            <div class="btn__all">
-                                <a href="#" class="primary-btn">모두 보기 <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" id="movieRankList">
-                        <%
-                            List<Movie> movieRanking = (List<Movie>) request.getAttribute("movieRanking");
-                            if (movieRanking != null) {
-                                int movieCount = Math.min(movieRanking.size(), 9); // Limit the movie count to 9
-                                for (int i = 0; i < movieCount; i++) {
-                                    Movie movie = movieRanking.get(i);
-                        %>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="<%= movie.getPoster_path() %>">
-                                    <div class="ep"><%= i + 1 %></div>
-                                </div>
-                                <div class="product__item__text">
-                                	<h6>
-   									 <a href="#"><%= movie.getKoreanTitle() %></a>
-									</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <%
-                            }
-                        }
-                        %>
-                    </div>
-                </div>
-            </div>
-      
-<!-- Product Section End -->
-
-<!-- product__sidebar Start -->
-
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="trending__product">
+					<div class="row">
+						<div class="col-lg-8 col-md-8 col-sm-8">
+							<div class="section-title">
+								<h4>영화 랭킹</h4>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4">
+							<div class="btn__all">
+								<a href="#" class="primary-btn">모두 보기 <span class="arrow_right"></span></a>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="boxOfficeList">
+						
+						<!-- Add more movie ranking items here -->
+						
+					</div>
+				</div>
+			</div>
+			<!-- product__sidebar Start -->
 			<div class="col-lg-4 col-md-6 col-sm-4">
 				<div class="product__sidebar">
 					<div class="product__sidebar__view">
@@ -116,8 +54,7 @@
 							<li data-filter=".years">Years</li>
 						</ul>
 						<div class="filter__gallery">
-							<div class="product__sidebar__view__item set-bg mix day years"
-								data-setbg="/img/sidebar/tv-1.jpg">
+							<div class="product__sidebar__view__item set-bg mix day years" data-setbg="/img/sidebar/tv-1.jpg">
 								<div class="ep">18 / ?</div>
 								<div class="view">
 									<i class="fa fa-eye"></i> 9141
@@ -126,8 +63,7 @@
 									<a href="#">Boruto: Naruto next generations</a>
 								</h5>
 							</div>
-							<div class="product__sidebar__view__item set-bg mix month week"
-								data-setbg="/img/sidebar/tv-2.jpg">
+							<div class="product__sidebar__view__item set-bg mix month week" data-setbg="/img/sidebar/tv-2.jpg">
 								<div class="ep">18 / ?</div>
 								<div class="view">
 									<i class="fa fa-eye"></i> 9141
@@ -136,8 +72,7 @@
 									<a href="#">The Seven Deadly Sins: Wrath of the Gods</a>
 								</h5>
 							</div>
-							<div class="product__sidebar__view__item set-bg mix week years"
-								data-setbg="/img/sidebar/tv-3.jpg">
+							<div class="product__sidebar__view__item set-bg mix week years" data-setbg="/img/sidebar/tv-3.jpg">
 								<div class="ep">18 / ?</div>
 								<div class="view">
 									<i class="fa fa-eye"></i> 9141
@@ -146,19 +81,16 @@
 									<a href="#">Sword art online alicization war of underworld</a>
 								</h5>
 							</div>
-							<div class="product__sidebar__view__item set-bg mix years month"
-								data-setbg="/img/sidebar/tv-4.jpg">
+							<div class="product__sidebar__view__item set-bg mix years month" data-setbg="/img/sidebar/tv-4.jpg">
 								<div class="ep">18 / ?</div>
 								<div class="view">
 									<i class="fa fa-eye"></i> 9141
 								</div>
 								<h5>
-									<a href="#">Fate/stay night: Heaven's Feel I. presage
-										flower</a>
+									<a href="#">Fate/stay night: Heaven's Feel I. presage flower</a>
 								</h5>
 							</div>
-							<div class="product__sidebar__view__item set-bg mix day"
-								data-setbg="/img/sidebar/tv-5.jpg">
+							<div class="product__sidebar__view__item set-bg mix day" data-setbg="/img/sidebar/tv-5.jpg">
 								<div class="ep">18 / ?</div>
 								<div class="view">
 									<i class="fa fa-eye"></i> 9141
@@ -199,6 +131,7 @@
 
 <%@include file="./include/footer.jsp"%>
 
+
 <!-- Search model Begin -->
 <div class="search-model">
 	<div class="h-100 d-flex align-items-center justify-content-center">
@@ -226,6 +159,7 @@
 <script src="/js/boxoffice.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="/js/payment.js"></script>
+<script src="/js/index.js"></script>
 </body>
 
 </html>

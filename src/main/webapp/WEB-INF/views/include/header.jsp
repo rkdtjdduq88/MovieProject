@@ -33,11 +33,12 @@
 </head>
 
 <body>
-	<!-- Page Preloder -->	
+
+
+	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
-	</div> 
-
+	</div>
 	<!-- Header Section Begin -->
 	<header class="header">
 		<div class="container">
@@ -57,7 +58,7 @@
 										class="arrow_carrot-down"></span></a>
 									<ul class="dropdown">
 										<li><a href="./categories.html">Categories</a></li>
-										<li><a href="./anime-details.html">Anime Details</a></li>
+										<li><a href="/movie/movie-details/">Anime Details</a></li>
 										<li><a href="./anime-watching.html">Anime Watching</a></li>
 										<li><a href="./blog-details.html">Blog Details</a></li>
 										<li><a href="./signup.html">Sign Up</a></li>

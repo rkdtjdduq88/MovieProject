@@ -5,9 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +22,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class BolgController {
+public class BlogController {
 
-	@Autowired
-	private BoardService boardService;
-
+    @Autowired
+    private BoardService boardService;
 
     @GetMapping("/blog")
     public String blog(@RequestParam(defaultValue = "1") int page, Model model) {
@@ -56,25 +53,45 @@ public class BolgController {
         List<BlogCommentDTO> comments = boardService.getCommentsByBoard(bno);
         model.addAttribute("comments", comments);
 
-        return "blog-details";
-    }
- 
-        @PostMapping("/blog-details/{bno}/comment")
-        public String addComment(@PathVariable int bno, @ModelAttribute BlogCommentDTO comment, HttpSession session) {
-            comment.setBno(bno); // 댓글의 게시물 번호 설정
-            String currentUserId = (String) session.getAttribute("userid");
-            if (currentUserId != null) {
-                comment.setUserid(currentUserId);
-            } else {
-                // 로그인하지 않은 사용자의 경우 처리 방법을 지정 (예: 익명 사용자로 설정)
-                comment.setUserid("anonymousUser");
-            }
-
-            boardService.insertComment(comment);
-            log.info("댓글 입력 요청" + bno, comment);
-            return "redirect:/blog-details/" + bno;
+        // 대댓글 조회
+        for (BlogCommentDTO comment : comments) {
+            List<BlogCommentDTO> replies = boardService.getRepliesByComment(comment.getRno());
+            comment.setReplies(replies);
         }
 
-    
+        return "blog-details";
+    }
+
+
+    @PostMapping("/blog-details/{bno}/comment")
+    public String addComment(@PathVariable int bno, @ModelAttribute BlogCommentDTO comment, HttpSession session) {
+        comment.setBno(bno); // 댓글의 게시물 번호 설정
+        String currentUserId = (String) session.getAttribute("userid");
+        if (currentUserId != null) {
+            comment.setUserid(currentUserId);
+        } else {
+            // 로그인하지 않은 사용자의 경우 처리 방법을 지정 (예: 익명 사용자로 설정)
+            comment.setUserid("anonymousUser");
+        }
+
+        boardService.insertComment(comment);
+        log.info("댓글 입력 요청: " + bno + ", " + comment);
+        return "redirect:/blog-details/" + bno;
+    }
+    @PostMapping("/blog-details/{bno}/reply")
+    public String addReply(@PathVariable int bno, @ModelAttribute BlogCommentDTO reply, HttpSession session) {
+        reply.setBno(bno); // 대댓글의 게시물 번호 설정
+        String currentUserId = (String) session.getAttribute("userid");
+        if (currentUserId != null) {
+            reply.setUserid(currentUserId);
+        } else {
+            // 로그인하지 않은 사용자의 경우 처리 방법을 지정 (예: 익명 사용자로 설정)
+            reply.setUserid("anonymousUser");
+        }
+
+        boardService.insertReply(reply);
+        log.info("대댓글 입력 요청: " + bno + ", " + reply);
+        return "redirect:/blog-details/" + bno;
+    }
 
 }
