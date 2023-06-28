@@ -103,17 +103,17 @@
 							<div class="section-title">
 								<h4>영화 랭킹</h4>
 							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4">
+						</div>    
+						 <div class="col-lg-4 col-md-4 col-sm-4">
 							<div class="btn__all">
 								<a href="#" class="primary-btn">모두 보기 <span class="arrow_right"></span></a>
 							</div>
-						</div>
+						 </div>
 					</div>
 					<div class="row" id="boxOfficeList">
-						
+						      
 						<!-- Add more movie ranking items here -->
-						
+						    
 					</div>
 				</div>
 			</div>
@@ -254,8 +254,8 @@
 			<div class="search-close-switch">
 				<i class="icon_close"></i>
 			</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
+			<form class="search-model-form" action="/search">
+				<input type="text" id="search-input" placeholder="Search here....." name="query">
 			</form>
 		</div>
 	</div>

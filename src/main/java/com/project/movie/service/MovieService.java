@@ -10,6 +10,7 @@ import com.project.movie.response.TotalRes;
 
 public interface MovieService {
 	public TotalRes movie();
+	public List<KmdbRes> search(String query);
 	
 }
 

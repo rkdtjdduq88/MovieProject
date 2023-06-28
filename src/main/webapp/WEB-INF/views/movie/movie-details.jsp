@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/moviedetail.css" type="text/css">
+    
+      
 </head>
 
 <body>
@@ -99,20 +102,25 @@
         <div class="container">
             <div class="anime__details__content">
            
-           
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="${detail.posterUrl} "> <!-- /img/anime/details-pic.jpg -->
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
+                   
+		            <div class="col-lg-3">
+					  <div class="anime__details__pic set-bg" data-setbg="${empty detail.posterUrl ? 'https://www28.cs.kobe-u.ac.jp/wp-content/uploads/2021/04/noimage.png' : detail.posterUrl}">
+					    <div class="comment"><i class="fa fa-comments"></i> 11</div>
+					    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+					  </div>
+					</div>
+	
+	
+
+
+					 <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
                                 <h3>${detail.title}</h3>
                                 <span>${detail.directorNm}</span>
                             </div>
+                            <!-- 평점수정 -->
                             <div class="anime__details__rating">
                                 <div class="rating">
                                     <a href="#"><i class="fa fa-star"></i></a>
@@ -122,6 +130,8 @@
                                     <a href="#"><i class="fa fa-star-half-o"></i></a>
                                 </div>
                                 <span>평점 수정하기</span>
+                                
+                                 
                             </div>
                             <p>${detail.plot }</p>
                             <div class="anime__details__widget">
@@ -166,20 +176,44 @@
                                 <a href="#" class="watch-btn"><span>Watch Now</span> <i
                                     class="fa fa-angle-right"></i></a>
                                 </div>
+                      
                             </div>
+                                    
+                           <c:if test="${not empty detail.stills}">
+			                    <div class="description-wrapper">
+							        <div>still cut</div>
+							    </div>
+							    
+						<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+							  <div class="carousel-inner">
+							    <c:forEach items="${detail.stills}" var="still" varStatus="status">
+							      <div class="carousel-item ${status.first ? 'active' : ''}">
+							        <img src="${still}" class="d-block w-100" alt="Still Image">
+							      </div>
+							    </c:forEach>
+							  </div>
+							  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="visually-hidden"></span>
+							  </button>
+							  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="visually-hidden"></span>
+							  </button>
+							</div>
+						</c:if>                    
+							
                         </div>
                     </div>
-                    
-<%--                  </c:if>
-               </c:forEach> --%>
-                    
-                </div>
+                   </div>
+                   
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
                             <div class="section-title">
                                 <h5>Reviews</h5>
                             </div>
+                            
                             <div class="anime__review__item">
                                 <div class="anime__review__item__pic">
                                     <img src="/img/anime/review-1.jpg" alt="">
@@ -190,6 +224,7 @@
                                     "demons" LOL</p>
                                 </div>
                             </div>
+                            
                             <div class="anime__review__item">
                                 <div class="anime__review__item__pic">
                                     <img src="/img/anime/review-2.jpg" alt="">
@@ -199,7 +234,8 @@
                                     <p>Finally it came out ages ago</p>
                                 </div>
                             </div>
-                            <div class="anime__review__item">
+                           
+ 							 <div class="anime__review__item">
                                 <div class="anime__review__item__pic">
                                     <img src="/img/anime/review-3.jpg" alt="">
                                 </div>
@@ -208,7 +244,8 @@
                                     <p>Where is the episode 15 ? Slow update! Tch</p>
                                 </div>
                             </div>
-                            <div class="anime__review__item">
+                            
+ 							<div class="anime__review__item">
                                 <div class="anime__review__item__pic">
                                     <img src="/img/anime/review-4.jpg" alt="">
                                 </div>
@@ -218,7 +255,8 @@
                                     "demons" LOL</p>
                                 </div>
                             </div>
-                            <div class="anime__review__item">
+                            
+ 							<div class="anime__review__item">
                                 <div class="anime__review__item__pic">
                                     <img src="/img/anime/review-5.jpg" alt="">
                                 </div>
@@ -227,7 +265,8 @@
                                     <p>Finally it came out ages ago</p>
                                 </div>
                             </div>
-                            <div class="anime__review__item">
+                           
+  							<div class="anime__review__item">
                                 <div class="anime__review__item__pic">
                                     <img src="/img/anime/review-6.jpg" alt="">
                                 </div>
@@ -236,16 +275,48 @@
                                     <p>Where is the episode 15 ? Slow update! Tch</p>
                                 </div>
                             </div>
+                       
+ 						 </div>
+                        <div class="anime__details__review_footer">
+                        <!-- 페이지 나누기 들어올 곳 -->
                         </div>
+                        
                         <div class="anime__details__form">
                             <div class="section-title">
                                 <h5>Your Comment</h5>
                             </div>
-                            <form action="#">
-                                <textarea placeholder="Your Comment"></textarea>
+                            <form action="" id="replyForm">
+                                <textarea name="reply" id="reply" placeholder="Your Comment"></textarea>
                                 <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                              <div class="form-group">
+							    <label for="userid">Writer</label>
+							    <input type="text" id="userid" name="userid" >
+							  </div>
+					     <%--   <input type="hidden" id="title" name="title" value="${detail.title}"/> --%>
                             </form>
                         </div>
+                              
+                         <!-- 댓글 작성 폼 : 수정하기 -->
+<%-- 						  <security:authorize access="isAuthenticated()">
+							 <form action="" class="mt-3" id="replyForm">
+							 	<div class="form-row">
+							 		<div class="col-11">
+							 			<textarea name="reply" id="reply" rows="5" class="form-control"></textarea>
+							 		</div>
+							 		<div class="col my-2">
+							 			<div class="form-row my-2">
+							 				<input type="text" name="replyer" id="replyer" class="form-control" readonly
+									    				value='<security:authentication property="principal.username"/>'/>
+							 			</div>
+							 			 <div class="form-row my-2">
+											<button class="btn btn-success btn-block">댓글 작성</button>
+							 			</div>
+							 		</div>
+							 	</div>
+							 </form>
+						 </security:authorize> --%>
+                        
+                        
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
@@ -316,8 +387,8 @@
           <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-switch"><i class="icon_close"></i></div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here.....">
+                <form class="search-model-form" action="/search">
+                    <input type="text" id="search-input" placeholder="Search here....." name="query">
                 </form>
             </div>
         </div>
@@ -332,7 +403,10 @@
         <script src="/js/jquery.slicknav.js"></script>
         <script src="/js/owl.carousel.min.js"></script>
         <script src="/js/main.js"></script>
-
+        <script src="/js/reply.js"></script>
+ 		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+  
     </body>
 
     </html>

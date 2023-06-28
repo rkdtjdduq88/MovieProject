@@ -36,7 +36,7 @@ public class HomeController {
 	
 	@GetMapping("/movie/details")
 	  public String movieDetails(Model model, String movieNm, String movieDt) {
-		log.info("상세페이지 폼 요청");
+		log.info("박스오피스 상세페이지 폼 요청");
 
 		TotalRes kres = movieService.movie();
 //		System.out.println("상세 폼 "+kres);
@@ -49,4 +49,14 @@ public class HomeController {
 		
 		return "/movie/movie-details";
 	  }
+	
+	@GetMapping("/search")
+	public String searchList(String query, Model model){
+		log.info("영화 검색 ");
+		model.addAttribute("list",movieService.search(query));
+		model.addAttribute("query",query);
+		return "/movie/search";
+	}
+
+	
 }

@@ -1,6 +1,6 @@
 // JSON 데이터를 가져와서 표시하는 함수
 function fetchAndDisplayMovies() {
-  var movieListContainer = document.querySelector(".trending__product .row");
+  var movieListContainer = document.querySelector(".trending__product #boxOfficeList");
 
   if (!movieListContainer) {
     console.log("영화 목록 컨테이너를 찾을 수 없습니다.");
@@ -20,7 +20,7 @@ function fetchAndDisplayMovies() {
       data.list.forEach(function (movie) {
         // 영화 랭킹 아이템을 생성하여 문자열에 추가
         var movieItem = `
-          <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="product__item">
                   <div class="product__item__pic set-bg" data-setbg="${movie.posterUrl}" style="background-image: url('${movie.posterUrl}')">
                       <div class="ep">${movie.rank}위</div>

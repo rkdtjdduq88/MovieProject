@@ -79,12 +79,8 @@ public class KmdbAndKobisClient {
 		
 		// 헤더 추가
 		HttpHeaders headers = new HttpHeaders();
-		//headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		HttpEntity<HttpHeaders> httpEntity = new HttpEntity<>(headers);
-//		ParameterizedTypeReference<KmdbRes> resReference = new ParameterizedTypeReference<KmdbRes>() {};
-		
-//		ResponseEntity<KmdbRes> resEntity = new RestTemplate().exchange(uri, HttpMethod.GET, httpEntity, resReference);
 		
         ResponseEntity<String> resEntity = new RestTemplate().exchange(uri, HttpMethod.GET, httpEntity, String.class);
 		
@@ -162,6 +158,133 @@ public class KmdbAndKobisClient {
 				dto.setPosterUrl(st.nextToken());			
 			}			
 		}		
+		
+        // 스틸이미지 담기
+        List<String> stillImages = new ArrayList<>();
+        
+        String stillsUrl = (String) item.get("stlls");
+        if (!stillsUrl.isBlank()) {
+            StringTokenizer st = new StringTokenizer(stillsUrl, "|");
+            while (st.hasMoreTokens()) {
+                stillImages.add(st.nextToken());
+            }
+        }
+        dto.setStills(stillImages);
+		
 		return dto;
 	}	
+	
+	public List<KmdbRes> searchMovies(KmdbReq kmdbReq) {
+	    URI uri = UriComponentsBuilder.fromUriString(kmdbSearchUrl)
+	            .queryParams(kmdbReq.toMultiValueMap())
+	            .encode()
+	            .build()
+	            .toUri();
+
+	    System.out.println("uri " + uri);
+
+	    // 헤더 추가
+	    HttpHeaders headers = new HttpHeaders();
+
+	    HttpEntity<HttpHeaders> httpEntity = new HttpEntity<>(headers);
+
+	    ResponseEntity<String> resEntity = new RestTemplate().exchange(uri, HttpMethod.GET, httpEntity, String.class);
+
+	    JSONParser jsonParser = new JSONParser();
+	    JSONObject jsonObject = null;
+
+	    try {
+	        jsonObject = (JSONObject) jsonParser.parse(resEntity.getBody());
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
+
+	    /// 가장 큰 JSON 객체 response 가져오기
+//	    String movieName = (String) jsonObject.get("Query");
+
+	    JSONArray jsonArray = (JSONArray) jsonObject.get("Data");
+
+	    List<KmdbRes> movieList = new ArrayList<>();
+
+	        JSONObject jsonItems = (JSONObject) jsonArray.get(0);
+	        JSONArray jsonArr = (JSONArray) jsonItems.get("Result");
+	        for (Object jsonMovie : jsonArr) {
+	            JSONObject item = (JSONObject) jsonMovie;
+
+	            //directors
+	            JSONObject directors = (JSONObject) item.get("directors");
+	            JSONArray directorArr = (JSONArray) directors.get("director");
+	            JSONObject diretor = (JSONObject) directorArr.get(0);
+	            String directorNm = (String) diretor.get("directorNm");
+
+	            //actors
+	            JSONObject actors = (JSONObject) item.get("actors");
+	            JSONArray actorArr = (JSONArray) actors.get("actor");
+
+	            List<String> actorsList = new ArrayList<>();
+
+	            for (Object object : actorArr) {
+	                JSONObject jsonObj = (JSONObject) object;
+	                actorsList.add((String) jsonObj.get("actorNm"));
+	            }
+
+	            //title
+	            String title = (String) item.get("title");
+	            title = title.replaceAll("!HS|!HE", "");
+	            
+	            
+	            //company
+	            String company = (String) item.get("company");
+	            String type = (String) item.get("type");
+
+	            // plot
+	            JSONObject plots = (JSONObject) item.get("plots");
+	            JSONArray plotArr = (JSONArray) plots.get("plot");
+	            JSONObject plotOb = (JSONObject) plotArr.get(0);
+	            String plot = (String) plotOb.get("plotText");
+
+	            KmdbRes dto = new KmdbRes();
+	            dto.setTitle(title);
+	            dto.setRuntime(item.get("runtime").toString());
+	            dto.setDirectorNm(directorNm);
+	            dto.setActors(actorsList);
+	            dto.setKeywords(item.get("keywords").toString());
+	            dto.setReleaseDate(item.get("repRlsDate").toString());
+	            dto.setGenre(item.get("genre").toString());
+	            dto.setPlot(plot);
+	            dto.setAudiAcc(item.get("audiAcc").toString());
+	            dto.setCompany(company);
+	            dto.setRating(item.get("rating").toString());
+	            dto.setType(type);
+
+	            String posterUrl = item.get("posters").toString();
+	            if (!posterUrl.isBlank()) {
+	                StringTokenizer st = new StringTokenizer(posterUrl, "|");
+	                if (st.hasMoreTokens()) {
+	                    dto.setPosterUrl(st.nextToken());
+	                }
+	            }
+	            
+	            // 스틸이미지 담기
+	            List<String> stillImages = new ArrayList<>();
+	            
+	            String stillsUrl = (String) item.get("stlls");
+	            if (!stillsUrl.isBlank()) {
+	                StringTokenizer st = new StringTokenizer(stillsUrl, "|");
+	                while (st.hasMoreTokens()) {
+	                    stillImages.add(st.nextToken());
+	                }
+	            }
+	            
+	            dto.setStills(stillImages);
+
+	            movieList.add(dto);
+	        }
+
+	    return movieList;
+	}
+
+	
+	
+	
 }	

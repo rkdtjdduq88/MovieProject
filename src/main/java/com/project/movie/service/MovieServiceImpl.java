@@ -69,5 +69,21 @@ public class MovieServiceImpl implements MovieService{
 			}	
 		}		
 		return totalRes;	
+	}
+
+	@Override
+	public List<KmdbRes> search(String query) {
+		// 요청
+		
+		KmdbReq kmdbReq = new KmdbReq(query);
+//		KmdbReq kmdbReq = new KmdbReq(query.replaceAll("\\s", ""));
+		List<KmdbRes> kmdbRes = kmdbAndKobisClient.searchMovies(kmdbReq);
+		
+		System.out.println("영화 여러개 넘어오는지 확인"+kmdbRes);
+		return kmdbRes;
 	}	
+	
+	
+	
+	
 }

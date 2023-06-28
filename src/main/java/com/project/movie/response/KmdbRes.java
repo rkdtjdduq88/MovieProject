@@ -27,4 +27,5 @@ public class KmdbRes {
 	private List<KmdbItem> kmdbItems;
 	private String company;	// 제작사,배급사
 	private String type;	// 타입
+	private List<String> stills=new ArrayList<String>();	// 스틸 이미지
 }
