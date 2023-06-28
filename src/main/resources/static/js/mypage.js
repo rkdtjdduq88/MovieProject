@@ -20,8 +20,28 @@ function openPopup() {
   popup.style.display = "block";
 }
 
+ function delPopup() {
+    var button = document.getElementById("change-password-button");
+    var popup = document.getElementById("delete-popup");
+
+    // 버튼의 위치와 크기를 가져와서 팝업 창의 위치를 설정합니다.
+    var buttonRect = button.getBoundingClientRect();
+    var buttonTop = buttonRect.top + buttonRect.height;
+    var buttonLeft = buttonRect.left;
+    var buttonWidth = buttonRect.width;
+
+    // 팝업 창의 위치를 설정합니다.
+    popup.style.top = buttonTop + "px";
+    popup.style.left = buttonLeft + "px";
+    popup.style.width = buttonWidth + "px";
+
+    // 팝업 창을 보여줍니다.
+    popup.style.display = "block";
+  }
+
 function closePopup() {
   document.getElementById("password-popup").style.display = "none";
+  document.getElementById("delete-popup").style.display = "none";
 }
 
 
@@ -54,11 +74,36 @@ function changePassword(userId) {
 
   document.body.appendChild(form);
   form.submit();
+
 }
 
-function closePopup() {
-  // 팝업 닫기 처리
 
+function deleteProfile(userId) {
+  var password = document.getElementById("password-check").value;
+
+  var form = document.createElement("form");
+  form.setAttribute("method", "post");
+  form.setAttribute("action", "/deleteProfile");
+
+  var userIdInput = document.createElement("input");
+  userIdInput.setAttribute("type", "hidden");
+  userIdInput.setAttribute("name", "userId");
+  userIdInput.setAttribute("value", userId);
+  form.appendChild(userIdInput);
+
+  var passwordInput = document.createElement("input");
+  passwordInput.setAttribute("type", "hidden");
+  passwordInput.setAttribute("name", "password");
+  passwordInput.setAttribute("value", password);
+  form.appendChild(passwordInput);
+
+  document.body.appendChild(form);
+  
+  // 폼 제출
+  form.submit();
+  
+  // 문서에서 폼 제거
+  document.body.removeChild(form);
 }
 
 

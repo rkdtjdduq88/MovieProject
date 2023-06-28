@@ -29,9 +29,9 @@
 		        <button id="change-password-button" class="btn_change" onclick="openPopup()">
 				  <span class="text">비밀번호 변경</span>
 				</button>
-		        <button class="btn_unregister" onclick="deleteProfile()">
-		          <span class="text">회원 탈퇴</span>
-		        </button>
+		        <button id="delete-profile-button" class="btn_unregister" onclick="delPopup()">
+			        <span class="text">회원 탈퇴</span>
+			    </button>
 		      </div>
 		    </div>
 		  </div>
@@ -53,7 +53,7 @@
 		                <button type="button" class="btn_edit" onclick="editEmail()">
 		                    <span class="text">수정</span>
 		                </button>
-		                <form action="/updateEmail" method="POST"> <!-- 이 부분을 form 태그로 감싸줍니다 -->
+		                <form action="/updateEmail" method="POST">
 		                    <button type="button" class="btn_save" onclick="saveEmail('${sessionScope.userid}', '${userId}')" style="display: none;">
 		                        <span class="text">저장</span>
 		                    </button>
@@ -97,6 +97,20 @@
 		    <span class="text">취소</span>
 		  </button>
 		</div>
+		
+	<!-- 회원탈퇴 팝업 창 -->
+	<div id="delete-popup" class="popup" style="display: none; position: absolute;">
+		  <label for="password-check">비밀번호 확인</label>
+		  <input type="password" id="password-check" name="password-check">
+		  
+		  <button class="btn_popup-button" onclick="deleteProfile('${sessionScope.userid}')">
+		    <span class="text">회원 탈퇴</span>
+		  </button>
+		  <button class="btn_popup-button" onclick="closePopup()">
+		    <span class="text">취소</span>
+		  </button>
+	</div>
+	
 
 <%@ include file="include/footer.jsp" %>
 

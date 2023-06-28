@@ -14,4 +14,5 @@ public interface RegisterMapper {
     public int updatePassword(MemberDTO dto); // 비밀번호 변경
     public int updateEmail(MemberDTO dto); // 이메일 변경
     public int updateMobile(MemberDTO dto); // 전화번호 변경
+    public int deleteProfile(MemberDTO dto); // 회원 탈퇴
 }

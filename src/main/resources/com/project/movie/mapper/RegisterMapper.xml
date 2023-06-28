@@ -44,5 +44,15 @@
 	  SET password = #{password}
 	  WHERE userid = #{userid}
 	</update>
-		
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteProfile" parameterType="com.project.movie.domain.MemberDTO">
+	  DELETE FROM moviemember_tbl
+	  WHERE userid = #{userid} AND password = #{password}
+	</delete>
+
+	
+	
+	
+	
 </mapper>

@@ -52,7 +52,7 @@ public class LoginController {
 	        }
 	    } catch (Exception e) {
 	    	e.printStackTrace();
-	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
+	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"사용할 수 없는 아이디입니다. 다른 아이디를 입력해 주세요.\"}");
 	    }
 	}
 	
@@ -139,18 +139,40 @@ public class LoginController {
             if (success) {
                 // 비밀번호 업데이트 성공
                 model.addAttribute("userId", userId);
-                return "mypage";
+                return "redirect:/mypage";
             } else {
                 // 비밀번호 업데이트 실패
                 return "error";
             }
         } else {
             // 기존 비밀번호가 일치하지 않는 경우
-            return "unauthorized";
+            return "error";
         }
     }
+    
+    @PostMapping("/deleteProfile")
+    public String deleteProfile(@RequestParam("userId") String userId,
+                                @RequestParam("password") String password,
+                                Model model) {
+        MemberDTO member = service.getMemberByUserId(userId);
 
-
+        if (member != null && passwordEncoder.matches(password, member.getPassword())) {
+            // 비밀번호가 일치하면 회원 탈퇴 수행
+            boolean success = service.deleteProfile(member);
+            		
+            if (success) {
+                // 회원 탈퇴 성공
+                return "redirect:/login";
+            } else {
+                // 회원 탈퇴 실패
+                return "error";
+            }
+        } else {
+            // 기존 비밀번호가 일치하지 않는 경우
+            return "error";
+        }
+    }
+    
     
     @PostMapping("/updateEmail")
     public String updateEmail(@RequestParam("userId") String userId, @RequestParam("email") String email, Model model) {
@@ -165,7 +187,7 @@ public class LoginController {
                     // 이메일 업데이트 성공
                     // mypage를 보여주기 위해 model에 필요한 데이터를 추가하고 mypage로 이동
                     model.addAttribute("email", email);
-                    return "mypage";
+                    return "redirect:/mypage";
                 } else {
                     // 이메일 업데이트 실패
                     // 실패에 대한 처리를 진행하거나 에러 페이지로 이동
@@ -196,7 +218,7 @@ public class LoginController {
                     // 이메일 업데이트 성공
                     // mypage를 보여주기 위해 model에 필요한 데이터를 추가하고 mypage로 이동
                     model.addAttribute("mobile", mobile);
-                    return "mypage";
+                    return "redirect:/mypage";
                 } else {
                     // 이메일 업데이트 실패
                     // 실패에 대한 처리를 진행하거나 에러 페이지로 이동

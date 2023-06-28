@@ -19,4 +19,6 @@ public interface RegisterService {
     public boolean updateEmail(MemberDTO dto);
     public boolean updateMobile(MemberDTO dto);
     
+    //회원탈퇴
+    public boolean deleteProfile(MemberDTO dto);
 }

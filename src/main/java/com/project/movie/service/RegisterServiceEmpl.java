@@ -116,4 +116,10 @@ public class RegisterServiceEmpl implements RegisterService {
             return false;
         }
     }
+    
+    @Override
+    public boolean deleteProfile(MemberDTO dto){
+        int result = mapper.deleteProfile(dto);
+        return result > 0; // 삭제된 레코드가 있으면 true, 없으면 false 반환
+    }
 }
