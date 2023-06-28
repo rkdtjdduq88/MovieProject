@@ -135,6 +135,8 @@ public class KmdbAndKobisClient {
 		JSONObject plotOb = (JSONObject) plotArr.get(0);
 		String plot = (String) plotOb.get("plotText");
 		
+		//prodYear
+		String prodYear = (String) item.get("prodYear");
 		
 		KmdbRes dto = new KmdbRes();
 		dto.setRuntime(item.get("runtime").toString());
@@ -150,6 +152,7 @@ public class KmdbAndKobisClient {
 		dto.setCompany(company);
 		dto.setRating(item.get("rating").toString());
 		dto.setType(type);
+		dto.setProdYear(prodYear);
 		
 		String posterUrl = item.get("posters").toString();	
 		if(!posterUrl.isBlank()) {

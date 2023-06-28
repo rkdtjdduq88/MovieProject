@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class KmdbRes {
 		
-	private String movieId;
+//	private String movieId;
 	private String title;	//영화명
 	private String directorNm;	//감독명
 	private List<String> actors=new ArrayList<String>();	//배우명 actors
@@ -28,4 +28,5 @@ public class KmdbRes {
 	private String company;	// 제작사,배급사
 	private String type;	// 타입
 	private List<String> stills=new ArrayList<String>();	// 스틸 이미지
+	private String prodYear;	//제작년도
 }

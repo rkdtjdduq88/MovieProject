@@ -41,8 +41,9 @@ public class HomeController {
 		TotalRes kres = movieService.movie();
 //		System.out.println("상세 폼 "+kres);
 		 String rOpenDt = movieDt.replaceAll("-", "");
-		  System.out.println(rOpenDt);
+		  System.out.println("개봉일 확인 "+rOpenDt);
 		KmdbRes res = movieDetailService.getDetails(movieNm, rOpenDt);
+		System.out.println("확인 "+res);
 		
 		model.addAttribute("detail", res);
 		model.addAttribute("list",kres.getList());

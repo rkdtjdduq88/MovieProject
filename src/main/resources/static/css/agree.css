@@ -1,0 +1,156 @@
+@charset "utf-8";
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.terms_item {
+  margin-top: 30px;
+}
+
+.terms_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.terms_box {
+  overflow: auto;
+  box-sizing: border-box;
+  max-height: 300px;
+  max-width: 1000px;
+  border: 1px solid #d6d6d6;
+}
+
+.terms_box::-webkit-scrollbar {
+  width: 20px;
+}
+
+.terms_box::-webkit-scrollbar-thumb {
+  height: 42px;
+  background: #999;
+  border-radius: 10px;
+  border: 6px solid #fff;
+}
+
+.terms_box::-webkit-scrollbar-track {
+  border-radius: 0 6px 6px 0;
+  background-color: transparent;
+}
+
+.check_terms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 32px;
+  margin: 0 auto;
+}
+
+.check_terms input:checked+label::before {
+  background-position: -192px -264px;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+.check_terms label {
+  display: inline-block;
+  position: relative;
+  margin-left: -32px;
+  padding: 4px 0 4px 32px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.check_terms label::before {
+  background-position: -310px 0;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+
+.check_terms .option {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.6px;
+  color: #9f9fcb;
+  vertical-align: middle;
+}
+
+.check_terms .option.point {
+  color: #346a50;
+}
+
+.check_terms .text_wrap {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.check_terms .text {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.8px;
+  color: #ffffff;
+  vertical-align: middle;
+}
+
+.terms_box h2,
+.terms_box ol li,
+.terms_box p {
+  color: #ffffff;
+}
+
+#agree {
+  counter-reset: num;
+}
+
+#agree > ol {
+  counter-reset: ol;
+}
+
+#agree > ol > li {
+  counter-reset: li;
+}
+
+#agree > h2:before {
+  content: "제" counter(num) "조 ";
+  counter-increment: num 1;
+}
+
+#agree > ol > li:before {
+  content: counter(ol);
+  counter-increment: ol 1;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  width: 15px;
+  height: 15px;
+  border:1px solid #fff;
+  font-size:13px;
+  border-radius:15px;
+  text-align: center;
+  line-height:13px;
+}
+
+#agree > ol > li > ol li:before {
+  content: counter(li) ". ";
+  counter-increment: li 1;
+}
+
+.btn_submit {
+    margin-bottom: 100px;
+    background-color: #ffffff;
+    width: 200px;
+    height: 50px;
+    font-size : 20px;
+    color: black;
+}
