@@ -12,4 +12,11 @@ public interface RegisterService {
 	//회원 정보 가져오기
     MemberDTO getMemberByEmail(String email);
     MemberDTO getMemberByMobile(String mobile);
+    MemberDTO getMemberByName(String name);
+    
+    //회원 정보 변경
+    public boolean updatePassword(MemberDTO dto);
+    public boolean updateEmail(MemberDTO dto);
+    public boolean updateMobile(MemberDTO dto);
+    
 }

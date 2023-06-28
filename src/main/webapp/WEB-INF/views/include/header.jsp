@@ -54,20 +54,6 @@ document.addEventListener("click", function(event) {
         dropdownMenu.classList.remove("show");
     }
 });
-
-function logout() {
-    fetch('/logout', { method: 'POST' })
-        .then(response => {
-            if (response.ok) {
-                // 로그아웃 성공 시 처리할 내용 작성
-                window.location.href = '/'; // 로그아웃 후 리다이렉트할 페이지
-            }
-        })
-        .catch(error => {
-            console.error('로그아웃 실패:', error);
-        });
-}
-
 </script>
 
 </head>
@@ -118,8 +104,8 @@ function logout() {
 					        <a href="#" class="profile-switch" onclick="toggleDropdown()">
 					            <span class="icon_profile"></span>
 					            <ul id="dropdownMenu" class="dropdown2">
-					                <li><a href="/myPage">My Page</a></li>
-					                <li><a href="#" onclick="logout()">Logout</a></li>
+					                <li><a href="/mypage">My Page</a></li>
+					                <li><a href="/logout">Logout</a></li>
 					            </ul>
 					        </a>
 					    <% } else { %>

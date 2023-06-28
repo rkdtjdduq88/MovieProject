@@ -74,4 +74,46 @@ public class RegisterServiceEmpl implements RegisterService {
         // RegisterMapper를 이용하여 mobile을 기반으로 회원 정보를 조회하는 로직을 구현합니다.
         return mapper.getMemberByMobile(mobile);
     }
+    
+    @Override
+    public MemberDTO getMemberByName(String name) {
+        // RegisterMapper를 이용하여 name을 기반으로 회원 정보를 조회하는 로직을 구현합니다.
+        return mapper.getMemberByMobile(name);
+    }
+    
+    @Override
+    public boolean updatePassword(MemberDTO dto) {
+        // 비밀번호 변경
+        try {
+            mapper.updatePassword(dto);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean updateEmail(MemberDTO dto) {
+        // 비밀번호 변경
+        try {
+            mapper.updateEmail(dto);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean updateMobile(MemberDTO dto) {
+        // 비밀번호 변경
+        try {
+            mapper.updateMobile(dto);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

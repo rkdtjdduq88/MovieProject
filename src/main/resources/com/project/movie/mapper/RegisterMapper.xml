@@ -13,6 +13,7 @@
         SELECT * FROM moviemember_tbl WHERE userid = #{userid}
     </select>
     
+    <!-- 유저정보 가져오기 -->
 	<select id="getMemberByEmail" resultType="com.project.movie.domain.MemberDTO">
 	    SELECT * FROM moviemember_tbl WHERE email = #{email}
 	</select>
@@ -20,5 +21,28 @@
 	<select id="getMemberByMobile" resultType="com.project.movie.domain.MemberDTO">
 	    SELECT * FROM moviemember_tbl WHERE mobile = #{mobile}
 	</select>
+	
+	<select id="getMemberByName" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE mobile = #{name}
+	</select>
+	
+	<!-- 유저정보 변경 -->
+	<update id="updateEmail" parameterType="com.project.movie.domain.MemberDTO">
+	    UPDATE moviemember_tbl
+	    SET email = #{email}
+	    WHERE userid = #{userid}
+	</update>
+
+	<update id="updateMobile" parameterType="com.project.movie.domain.MemberDTO">
+	    UPDATE moviemember_tbl
+	    SET mobile = #{mobile}
+	    WHERE userid = #{userid}
+	</update>
+
+	<update id="updatePassword" parameterType="com.project.movie.domain.MemberDTO">
+	  UPDATE moviemember_tbl
+	  SET password = #{password}
+	  WHERE userid = #{userid}
+	</update>
 		
 </mapper>

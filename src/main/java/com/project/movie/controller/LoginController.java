@@ -1,6 +1,7 @@
 package com.project.movie.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.project.movie.domain.MemberDTO;
-import com.project.movie.mapper.RegisterMapper;
 import com.project.movie.service.RegisterService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -104,8 +103,8 @@ public class LoginController {
     }
     
 
-    @GetMapping("/myPage")
-    public String myPage(Model model, HttpSession session) {
+    @GetMapping("/mypage")
+    public String mypage(Model model, HttpSession session) {
         // 세션에서 userid 값을 가져옴
         String userid = (String) session.getAttribute("userid");
 
@@ -113,12 +112,106 @@ public class LoginController {
         MemberDTO member = service.getMemberByUserId(userid);
         String email = member.getEmail();
         String mobile = member.getMobile();
+        String name = member.getName();
 
         // 가져온 email과 mobile 값을 모델에 저장
         model.addAttribute("userid", userid);
         model.addAttribute("email", email);
         model.addAttribute("mobile", mobile);
+        model.addAttribute("name", name);
 
-        return "myPage";
+        return "mypage";
     }
+    
+    @PostMapping("/changePassword")
+    public String changePassword(@RequestParam("userId") String userId,
+                                 @RequestParam("oldPassword") String oldPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 Model model) {
+        MemberDTO member = service.getMemberByUserId(userId);
+
+        if (member != null && passwordEncoder.matches(oldPassword, member.getPassword())) {
+            // 비밀번호가 일치하면 새로운 비밀번호를 암호화하여 업데이트
+            String encryptedPassword = passwordEncoder.encode(newPassword);
+            member.setPassword(encryptedPassword);
+            boolean success = service.updatePassword(member);
+
+            if (success) {
+                // 비밀번호 업데이트 성공
+                model.addAttribute("userId", userId);
+                return "mypage";
+            } else {
+                // 비밀번호 업데이트 실패
+                return "error";
+            }
+        } else {
+            // 기존 비밀번호가 일치하지 않는 경우
+            return "unauthorized";
+        }
+    }
+
+
+    
+    @PostMapping("/updateEmail")
+    public String updateEmail(@RequestParam("userId") String userId, @RequestParam("email") String email, Model model) {
+        if (userId != null) {
+            MemberDTO member = service.getMemberByUserId(userId);
+
+            if (member != null) {
+                member.setEmail(email);
+                boolean success = service.updateEmail(member);
+
+                if (success) {
+                    // 이메일 업데이트 성공
+                    // mypage를 보여주기 위해 model에 필요한 데이터를 추가하고 mypage로 이동
+                    model.addAttribute("email", email);
+                    return "mypage";
+                } else {
+                    // 이메일 업데이트 실패
+                    // 실패에 대한 처리를 진행하거나 에러 페이지로 이동
+                    return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+                }
+            } else {
+                // 로그인 사용자 정보를 찾을 수 없는 경우
+                // 처리를 진행하거나 에러 페이지로 이동
+                return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+            }
+        } else {
+            // userId가 없는 경우
+            // 처리를 진행하거나 에러 페이지로 이동
+            return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+        }
+    }
+    
+    @PostMapping("/updateMobile")
+    public String updateMobile(@RequestParam("userId") String userId, @RequestParam("mobile") String mobile, Model model) {
+        if (userId != null) {
+            MemberDTO member = service.getMemberByUserId(userId);
+
+            if (member != null) {
+                member.setMobile(mobile);
+                boolean success = service.updateMobile(member);
+
+                if (success) {
+                    // 이메일 업데이트 성공
+                    // mypage를 보여주기 위해 model에 필요한 데이터를 추가하고 mypage로 이동
+                    model.addAttribute("mobile", mobile);
+                    return "mypage";
+                } else {
+                    // 이메일 업데이트 실패
+                    // 실패에 대한 처리를 진행하거나 에러 페이지로 이동
+                    return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+                }
+            } else {
+                // 로그인 사용자 정보를 찾을 수 없는 경우
+                // 처리를 진행하거나 에러 페이지로 이동
+                return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+            }
+        } else {
+            // userId가 없는 경우
+            // 처리를 진행하거나 에러 페이지로 이동
+            return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+        }
+    }
+    
 }
