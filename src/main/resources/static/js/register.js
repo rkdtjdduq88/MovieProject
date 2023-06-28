@@ -29,6 +29,7 @@ document.getElementById("register-form").addEventListener("submit", function(eve
                     notification.classList.add("success");
                     notification.textContent = response.message;
                     window.location.href = "/login";
+                    alert("회원가입되었습니다.");
                 } else {
                     // 회원가입 실패 시
                     notification.classList.add("error");

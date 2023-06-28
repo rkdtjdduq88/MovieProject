@@ -9,12 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.project.movie.domain.MemberDTO;
+import com.project.movie.domain.PasswordCheck;
 import com.project.movie.service.RegisterService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 @Controller
 public class LoginController {
@@ -153,16 +156,17 @@ public class LoginController {
     @PostMapping("/deleteProfile")
     public String deleteProfile(@RequestParam("userId") String userId,
                                 @RequestParam("password") String password,
-                                Model model) {
+                                HttpSession session) {
         MemberDTO member = service.getMemberByUserId(userId);
 
         if (member != null && passwordEncoder.matches(password, member.getPassword())) {
             // 비밀번호가 일치하면 회원 탈퇴 수행
             boolean success = service.deleteProfile(member);
-            		
+
             if (success) {
                 // 회원 탈퇴 성공
-                return "redirect:/login";
+                session.removeAttribute("userid"); // 세션에서 userid 제거
+                return "success";
             } else {
                 // 회원 탈퇴 실패
                 return "error";

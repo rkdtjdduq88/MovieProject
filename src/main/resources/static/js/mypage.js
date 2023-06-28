@@ -46,67 +46,99 @@ function closePopup() {
 
 
 
-function changePassword(userId) {
-  var oldPassword = document.getElementById("old-password").value;
-  var newPassword = document.getElementById("new-password").value;
+function validatePasswordChange(userId) {
+        var oldPassword = document.getElementById("old-password").value;
+        var newPassword = document.getElementById("new-password").value;
 
-  var form = document.createElement("form");
-  form.setAttribute("method", "post");
-  form.setAttribute("action", "/changePassword");
+        if (oldPassword === "") {
+            alert("기존 비밀번호를 입력해주세요.");
+            return;
+        }
 
-  var userIdInput = document.createElement("input");
-  userIdInput.setAttribute("type", "hidden");
-  userIdInput.setAttribute("name", "userId");
-  userIdInput.setAttribute("value", userId);
-  form.appendChild(userIdInput);
+        if (newPassword === "") {
+            alert("새 비밀번호를 입력해주세요.");
+            return;
+        }
 
-  var oldPasswordInput = document.createElement("input");
-  oldPasswordInput.setAttribute("type", "hidden");
-  oldPasswordInput.setAttribute("name", "oldPassword");
-  oldPasswordInput.setAttribute("value", oldPassword);
-  form.appendChild(oldPasswordInput);
+        if (oldPassword === newPassword) {
+            alert("기존 비밀번호와 새 비밀번호가 동일합니다. 다른 비밀번호를 입력해주세요.");
+            return;
+        }
 
-  var newPasswordInput = document.createElement("input");
-  newPasswordInput.setAttribute("type", "hidden");
-  newPasswordInput.setAttribute("name", "newPassword");
-  newPasswordInput.setAttribute("value", newPassword);
-  form.appendChild(newPasswordInput);
+        var confirmChange = confirm("비밀번호를 변경하시겠습니까?");
+        if (confirmChange) {
+            changePassword(userId, oldPassword, newPassword);
+        }
+    }
 
-  document.body.appendChild(form);
-  form.submit();
+    function changePassword(userId, oldPassword, newPassword) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/changePassword");
 
+        var userIdInput = document.createElement("input");
+        userIdInput.setAttribute("type", "hidden");
+        userIdInput.setAttribute("name", "userId");
+        userIdInput.setAttribute("value", userId);
+        form.appendChild(userIdInput);
+
+        var oldPasswordInput = document.createElement("input");
+        oldPasswordInput.setAttribute("type", "hidden");
+        oldPasswordInput.setAttribute("name", "oldPassword");
+        oldPasswordInput.setAttribute("value", oldPassword);
+        form.appendChild(oldPasswordInput);
+
+        var newPasswordInput = document.createElement("input");
+        newPasswordInput.setAttribute("type", "hidden");
+        newPasswordInput.setAttribute("name", "newPassword");
+        newPasswordInput.setAttribute("value", newPassword);
+        form.appendChild(newPasswordInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+
+    
+    
+    
+
+function validateProfileDeletion(userId) {
+    var password = document.getElementById("password-check").value;
+
+    if (password === "") {
+        alert("비밀번호를 입력해주세요.");
+        return;
+    }
+
+    var confirmDeletion = confirm("회원탈퇴를 진행 하시겠습니까?");
+    if (confirmDeletion) {
+        deleteProfile(userId, password);
+    }
 }
 
-
-function deleteProfile(userId) {
-  var password = document.getElementById("password-check").value;
-
-  var form = document.createElement("form");
-  form.setAttribute("method", "post");
-  form.setAttribute("action", "/deleteProfile");
-
-  var userIdInput = document.createElement("input");
-  userIdInput.setAttribute("type", "hidden");
-  userIdInput.setAttribute("name", "userId");
-  userIdInput.setAttribute("value", userId);
-  form.appendChild(userIdInput);
-
-  var passwordInput = document.createElement("input");
-  passwordInput.setAttribute("type", "hidden");
-  passwordInput.setAttribute("name", "password");
-  passwordInput.setAttribute("value", password);
-  form.appendChild(passwordInput);
-
-  document.body.appendChild(form);
-  
-  // 폼 제출
-  form.submit();
-  
-  // 문서에서 폼 제거
-  document.body.removeChild(form);
+function deleteProfile(userId, password) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/deleteProfile", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var response = xhr.responseText;
+                if (response === "success") {
+                    // 회원 탈퇴 성공
+                    window.location.href = "/login";
+                } else {
+                    // 비밀번호가 일치하지 않는 경우
+                    alert("비밀번호를 확인해주세요.");
+                }
+            } else {
+                window.location.href = "/login";
+            }
+        }
+    };
+    xhr.send("userId=" + encodeURIComponent(userId) + "&password=" + encodeURIComponent(password));
 }
-
-
 
 
 

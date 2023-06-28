@@ -84,33 +84,33 @@
     
      <!-- 비밀번호 변경 팝업 창 -->
 	  <div id="password-popup" class="popup" style="display: none; position: absolute;">
-		  <label for="old-password">기존 비밀번호</label>
-		  <input type="password" id="old-password" name="old-password">
-		  
-		  <label for="new-password">새 비밀번호</label>
-		  <input type="password" id="new-password" name="new-password">
-		  
-		  <button class="btn_popup-button" onclick="changePassword('${sessionScope.userid}')">
-		    <span class="text">변경</span>
-		  </button>
-		  <button class="btn_popup-button" onclick="closePopup()">
-		    <span class="text">취소</span>
-		  </button>
+		    <label for="old-password">기존 비밀번호</label>
+		    <input type="password" id="old-password" name="old-password">
+		
+		    <label for="new-password">새 비밀번호</label>
+		    <input type="password" id="new-password" name="new-password">
+		
+		    <button class="btn_popup-button" onclick="validatePasswordChange('${sessionScope.userid}')">
+		        <span class="text">변경</span>
+		    </button>
+		    <button class="btn_popup-button" onclick="closePopup()">
+		        <span class="text">취소</span>
+		    </button>
 		</div>
 		
 	<!-- 회원탈퇴 팝업 창 -->
 	<div id="delete-popup" class="popup" style="display: none; position: absolute;">
-		  <label for="password-check">비밀번호 확인</label>
-		  <input type="password" id="password-check" name="password-check">
-		  
-		  <button class="btn_popup-button" onclick="deleteProfile('${sessionScope.userid}')">
-		    <span class="text">회원 탈퇴</span>
-		  </button>
-		  <button class="btn_popup-button" onclick="closePopup()">
-		    <span class="text">취소</span>
-		  </button>
-	</div>
+	    <label for="password-check">비밀번호 확인</label>
+	    <input type="password" id="password-check" name="password-check">
 	
+	    <button class="btn_popup-button" onclick="validateProfileDeletion('${sessionScope.userid}')">
+	        <span class="text">회원 탈퇴</span>
+	    </button>
+	    <button class="btn_popup-button" onclick="closePopup()">
+	        <span class="text">취소</span>
+	    </button>
+	</div>
+		
 
 <%@ include file="include/footer.jsp" %>
 
