@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   registerBtn.addEventListener("click", redirectToRegister);
 });
 
-function redirectToRegister() {
+function redirectToRegister(event) {
+  event.preventDefault();
   window.location.href = "agree";
 }
