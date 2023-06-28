@@ -1,4 +1,4 @@
-// 상세페이지 리뷰 전체 리스트
+// 상세페이지 리뷰 전체 리스트(listAll)
 function movieDetailReplyList() {
   var reviewGetList = document.querySelector(".anime__details__review .section-title");
   if (!reviewGetList) {
@@ -14,7 +14,7 @@ function movieDetailReplyList() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       var reviewList = "";
       data.forEach((list) => {
         var isCurrentUser = list.userid === userid; // 현재 사용자와 댓글 작성자를 비교
@@ -31,13 +31,19 @@ function movieDetailReplyList() {
             <div class="anime__review__item__pic">
                 <img src="/img/anime/review-1.jpg" alt="">
             </div>
-            <div class="anime__review__item__text">                
-                    <h6>${list.userid}&nbsp;&nbsp;&nbsp;<span>${displayTime(list.replydate)}</span>                        
-                        ${buttons}
-                    </h6>                    
-                <p>${list.replyContent}</p>
-            </div>
-        </div>`;
+                <div class="anime__review__item__text" data-rno="${list.rno}">      
+                  <div class="row">  
+                    <div class="col">
+                      <h6>${list.userid}</h6>
+                    </div>
+                    <div class="col">
+                      <h6><span>${displayTime(list.replydate)}</span></h6>
+                    </div>
+                  </div>                         
+                        <h6>${buttons}</h6>                                        
+                    <p>${list.replyContent}</p>
+                </div>
+            </div>`;
         reviewList += review;
       });
       reviewGetList.innerHTML = reviewList;
@@ -46,13 +52,15 @@ function movieDetailReplyList() {
 }
 movieDetailReplyList();
 
-// 상세페이지 댓글 작성 기능넣기
+/////////////////////////////////////////////////////////////////////////////////////////////
+// 상세페이지 댓글 작성 기능넣기(insert)
 
 document.querySelector("#insertForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const replyContent = document.querySelector("#replyContent").value;
-  const userid = document.querySelector("#userid").value;
+  const replyContent = document.querySelector("#insertForm #replyContent").value;
+  const userid = document.querySelector("#insertForm #userid").value;
+  // const rno = document.querySelector("#rno").value;
 
   const data = {
     replyContent: replyContent,
@@ -80,8 +88,127 @@ document.querySelector("#insertForm").addEventListener("submit", (e) => {
     })
     .catch((error) => console.log(error));
 });
+////////////////////////////////////////////////////////////////////////////////////////////////
+// 댓글 수정하기전 댓글 정보 가져오는 작업(read)
+document.querySelector(".section-title").addEventListener("click", (e) => {
+  // e.target : 이벤트 발생 대상
+  // 이벤트 발생 대상을 감싸고 있는 부모 div 찾기
+  let div = e.target.closest("div");
+  console.log("이벤트 발생 ", div);
 
-// 리뷰에 몇시간전에 달았는지 보는 기능 넣기
+  // rno 가져오기 (data-* 속성값 가져오기 : dataset)
+  let rno = div.dataset.rno;
+  //console.log("rno ", rno);
+
+  // 댓글 작성자 정보 가져오기
+  let userid = div.firstElementChild.innerHTML;
+  //console.log("댓글 작성자 ", userid);
+
+  // 로그인 사용자 정보 가져오기
+  let form_replyer = document.querySelector("#insertForm #userid");
+  let login_user = "";
+  if (form_replyer) {
+    login_user = form_replyer.value;
+  }
+
+  if (!login_user) {
+    alert("로그인 한 후 수정 및 삭제가 가능합니다.");
+    return;
+  }
+
+  // 이벤트를 부모가 감지를 하기 때문에
+  if (e.target.classList.contains("btn-warning")) {
+    // 댓글 하나 가져오기
+    // 로그인 사용자와 댓글 작성자가 같은지 확인
+    if (userid != login_user) {
+      alert("자신의 댓글만 수정이 가능합니다.");
+      return;
+    }
+    fetch("/replies/" + rno)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("가져올 댓글 없음");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        //console.log(data);
+        document.querySelector(".modal-body #rno").value = data.rno;
+        document.querySelector(".modal-body #replyContent").value = data.replyContent;
+        document.querySelector(".modal-body #userid").value = data.userid;
+        $("#replyModal").modal("show");
+      })
+      .catch((error) => console.log(error));
+    // 댓글 하나 불러오기 종료
+
+    // 모달 창 안에 가져온 내용 보여주기
+  } else if (e.target.classList.contains("btn-danger")) {
+    // 로그인 사용자와 댓글 작성자가 같은지 확인
+    if (userid != login_user) {
+      alert("자신의 댓글만 수정이 가능합니다.");
+      return;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 삭제버튼 클릭 시(delete)
+    fetch("/replies/" + rno, {
+      method: "delete",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("삭제 불가");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        if (data === "success") {
+          alert("삭제 성공");
+          movieDetailReplyList();
+        }
+      })
+      .catch((error) => console.log(error));
+  }
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// 댓글 수정 작업 (update)
+document.querySelector(".modal-footer .btn-primary").addEventListener("click", () => {
+  // 모달 창안에 있는 rno, reply 가져온 후 자바스크립트 객체 생성
+  rno = document.querySelector(".modal-body #rno").value;
+  const updateReply = {
+    rno: rno,
+    replyContent: document.querySelector(".form-group #replyContent").value,
+    userid: document.querySelector(".form-group #userid").value,
+  };
+
+  // fetch update 호출
+  fetch("/replies/" + rno, {
+    method: "put",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(updateReply),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("수정 실패");
+      }
+      return response.text();
+    })
+    .then((data) => {
+      //console.log("수정내용", data);
+      if (data === "success") {
+        $("#replyModal").modal("hide");
+        movieDetailReplyList();
+      }
+    })
+    .catch((error) => console.log(error));
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// 리뷰에 몇시간전에 달았는지 보는 기능을 가진 함수 작성
 function displayTime(timeVal) {
   const today = new Date(); // 오늘날짜
 

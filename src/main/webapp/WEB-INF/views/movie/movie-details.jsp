@@ -103,6 +103,34 @@
                             </div>
                           <!-- 댓글 스크립트 -->  
                         </div>
+                        <!-- 댓글 수정 폼(모달) -->
+						<div class="modal" tabindex="-1" id="replyModal">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title">댓글 수정</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <input type="hidden" name="rno" id="rno" />
+						        <div class="form-group">
+						        	<textarea name="replyContent" id="replyContent" rows="4" class="form-control"></textarea>
+						        </div>
+						        <div class="form-group">
+						        	<input type="text" name="userid" id="userid" class="form-control" value="${userid}" readonly/>
+						        </div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+						        <button type="button" class="btn btn-primary">수정</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						
+						<!-- 댓글 수정 폼 종료(모달) -->
                         <div class="anime__details__form">
                             <form action="" id="insertForm">
 	                            <div class="section-title">
@@ -111,6 +139,7 @@
 	                            </div>
 	                                <textarea placeholder="Your Comment" id="replyContent"></textarea>
 	                                <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+	                                <!-- <input type="hidden" name="rno" id="rno" value="${dto.rno}"/> -->
                             </form>
                         </div>
                     </div>
@@ -164,11 +193,12 @@
     
       
     
-	<script>			
+	<script>	
 	const title = '${detail.title}';
 	const userid = '${userid}';
 	</script>
-
+	<!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
       <!-- Js Plugins -->
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>

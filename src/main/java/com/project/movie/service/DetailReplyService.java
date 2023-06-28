@@ -8,4 +8,6 @@ public interface DetailReplyService {
 	public List<MovieDetailReplyDTO> getList(String title);
 	public boolean insert(MovieDetailReplyDTO dto);
 	public boolean update(MovieDetailReplyDTO dto);
+	public MovieDetailReplyDTO read(int rno);
+	public boolean delete(int rno);
 }

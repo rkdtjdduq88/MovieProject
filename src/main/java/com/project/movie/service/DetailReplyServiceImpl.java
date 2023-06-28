@@ -31,4 +31,14 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 		return movieDetailReplyMapper.update(dto)==1?true:false;
 	}
 
+	@Override
+	public MovieDetailReplyDTO read(int rno) {		
+		return movieDetailReplyMapper.read(rno);
+	}
+
+	@Override
+	public boolean delete(int rno) {		
+		return movieDetailReplyMapper.delete(rno)==1?true:false;
+	}
+
 }

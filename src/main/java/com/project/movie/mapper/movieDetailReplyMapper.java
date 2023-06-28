@@ -11,4 +11,6 @@ public interface movieDetailReplyMapper {
 	public List<MovieDetailReplyDTO> detailReplyList(String title);
 	public int insert(MovieDetailReplyDTO dto);
 	public int update(MovieDetailReplyDTO dto);
+	public MovieDetailReplyDTO read(int rno);
+	public int delete(int rno);
 }

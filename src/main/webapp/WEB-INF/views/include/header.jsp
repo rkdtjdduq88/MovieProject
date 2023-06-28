@@ -19,6 +19,9 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
 	rel="stylesheet">
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Css Styles -->
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
