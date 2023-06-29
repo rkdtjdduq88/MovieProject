@@ -16,7 +16,7 @@ public interface RegisterService {
     
     //회원 정보 변경
     public boolean updatePassword(MemberDTO dto);
-    public boolean updateEmail(MemberDTO dto);
+    public boolean updateAddress(MemberDTO dto);
     public boolean updateMobile(MemberDTO dto);
     
     //회원탈퇴

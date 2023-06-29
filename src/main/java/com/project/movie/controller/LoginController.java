@@ -7,12 +7,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.project.movie.domain.MemberDTO;
 import com.project.movie.domain.PasswordCheck;
+import com.project.movie.service.MailSendService;
 import com.project.movie.service.RegisterService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +31,8 @@ public class LoginController {
 	@Autowired
 	private RegisterService service;
 
+	@Autowired
+	private MailSendService mailService;
 	
 	@GetMapping("/login")
 	public String LoginPage() {
@@ -57,6 +62,14 @@ public class LoginController {
 	    	e.printStackTrace();
 	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"사용할 수 없는 아이디입니다. 다른 아이디를 입력해 주세요.\"}");
 	    }
+	}
+	
+	@GetMapping("/mailCheck/{email:.+}")
+	@ResponseBody
+	public String mailCheck(@PathVariable  String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		return mailService.joinEmail(email);
 	}
 	
 //	@PostMapping("/login")
@@ -116,13 +129,14 @@ public class LoginController {
         String email = member.getEmail();
         String mobile = member.getMobile();
         String name = member.getName();
+        String address = member.getAddress();
 
         // 가져온 email과 mobile 값을 모델에 저장
         model.addAttribute("userid", userid);
         model.addAttribute("email", email);
         model.addAttribute("mobile", mobile);
         model.addAttribute("name", name);
-
+        model.addAttribute("address", address);
         return "mypage";
     }
     
@@ -178,19 +192,19 @@ public class LoginController {
     }
     
     
-    @PostMapping("/updateEmail")
-    public String updateEmail(@RequestParam("userId") String userId, @RequestParam("email") String email, Model model) {
+    @PostMapping("/updateAddress")
+    public String updateEmail(@RequestParam("userid") String userId, @RequestParam("address") String address, Model model) {
         if (userId != null) {
             MemberDTO member = service.getMemberByUserId(userId);
 
             if (member != null) {
-                member.setEmail(email);
-                boolean success = service.updateEmail(member);
+                member.setAddress(address);
+                boolean success = service.updateAddress(member);
 
                 if (success) {
                     // 이메일 업데이트 성공
                     // mypage를 보여주기 위해 model에 필요한 데이터를 추가하고 mypage로 이동
-                    model.addAttribute("email", email);
+                    model.addAttribute("address", address);
                     return "redirect:/mypage";
                 } else {
                     // 이메일 업데이트 실패
@@ -210,7 +224,7 @@ public class LoginController {
     }
     
     @PostMapping("/updateMobile")
-    public String updateMobile(@RequestParam("userId") String userId, @RequestParam("mobile") String mobile, Model model) {
+    public String updateMobile(@RequestParam("userid") String userId, @RequestParam("mobile") String mobile, Model model) {
         if (userId != null) {
             MemberDTO member = service.getMemberByUserId(userId);
 
@@ -226,17 +240,17 @@ public class LoginController {
                 } else {
                     // 이메일 업데이트 실패
                     // 실패에 대한 처리를 진행하거나 에러 페이지로 이동
-                    return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+                    return "error";
                 }
             } else {
                 // 로그인 사용자 정보를 찾을 수 없는 경우
                 // 처리를 진행하거나 에러 페이지로 이동
-                return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+                return "error"; 
             }
         } else {
             // userId가 없는 경우
             // 처리를 진행하거나 에러 페이지로 이동
-            return "error"; // 예시로 "error"라는 뷰 이름을 사용했습니다.
+            return "error";
         }
     }
     

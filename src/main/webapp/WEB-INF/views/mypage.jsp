@@ -45,41 +45,52 @@
 		        </div>
 		      </div>
 		      
-		      <!-- 이메일 수정 부분 -->
-		      <div class="form-group">
-		            <label for="email">이메일</label>
-		            <div class="row_item">
-		                <input type="email" id="email" name="email" value="${email}" readonly>
-		                <button type="button" class="btn_edit" onclick="editEmail()">
-		                    <span class="text">수정</span>
-		                </button>
-		                <form action="/updateEmail" method="POST">
-		                    <button type="button" class="btn_save" onclick="saveEmail('${sessionScope.userid}', '${userId}')" style="display: none;">
-		                        <span class="text">저장</span>
-		                    </button>
-		                </form>
-		            </div>
-		        </div>
-						
+			      <div class="form-group">
+			            <label for="email">email</label>
+			            <div class="row_item">
+			                <input type="email" id="email" name="email" value="${email}" readonly>
+			            </div>
+			        </div>
+
+		    
+		      
+		      <!-- 주소 수정 부분 -->
+		      <form action="/updateAddress" method="POST" id="updateAddressForm">
+			      <div class="form-group">
+			            <label for="address">주소</label>
+			            <div class="row_item">
+			                <input type="text" id="address" name="address" value="${address}" required readonly>
+			                <button type="button" class="btn_edit" onclick="editAddress()">
+			                    <span class="text">수정</span>
+			                </button>
+			                    <button type="submit" class="btn_save" style="display: none;">
+			                        <span class="text">저장</span>
+			                    </button>
+			            </div>
+			        </div>
+			        <input type="hidden" name="userid" value="${userid}" />
+		        </form>
+			
 			  <!-- 전화번호 수정 부분 -->
-		      <div class="form-group">
-		            <label for="mobile">전화번호</label>
-		            <div class="row_item">
-		                <input type="tel" id="mobile" name="mobile" value="${mobile}" readonly>
-		                <button type="button" class="btn_edit2" onclick="editMobile()">
-		                    <span class="text">수정</span>
-		                </button>
-		                <form action="/updateMobile" method="POST">
-		                    <button type="button" class="btn_save2" onclick="saveMobile('${sessionScope.userid}', '${userId}')" style="display: none;">
-		                        <span class="text">저장</span>
-		                    </button>
-		                </form>
-		            </div>
-		        </div>
+		      <form action="/updateMobile" method="POST" id="updateTelForm">
+			      <div class="form-group">
+			            <label for="mobile">전화번호</label>
+			            <div class="row_item">
+			                <input type="tel" id="mobile" name="mobile" value="${mobile}"  maxlength="13" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="000-0000-0000 형식으로 입력해야 합니다." required readonly>
+			                <button type="button" class="btn_edit2" onclick="editMobile()">
+			                    <span class="text">수정</span>
+			                </button>
+			                    <button type="submit" class="btn_save2"  style="display: none;">
+			                        <span class="text">저장</span>
+			                    </button>
+			            </div>
+			        </div>
+			        <input type="hidden" name="userid" value="${userid}" />
+		        </form>
 		      
 		    </div>
 		  </div>
-		</section>
+		</section> 
     <!-- myPage Section End -->
     
      <!-- 비밀번호 변경 팝업 창 -->
@@ -88,7 +99,7 @@
 		    <input type="password" id="old-password" name="old-password">
 		
 		    <label for="new-password">새 비밀번호</label>
-		    <input type="password" id="new-password" name="new-password">
+		    <input type="password" id="new-password" name="new-password" maxlength="20">
 		
 		    <button class="btn_popup-button" onclick="validatePasswordChange('${sessionScope.userid}')">
 		        <span class="text">변경</span>

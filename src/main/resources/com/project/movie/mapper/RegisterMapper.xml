@@ -27,9 +27,9 @@
 	</select>
 	
 	<!-- 유저정보 변경 -->
-	<update id="updateEmail" parameterType="com.project.movie.domain.MemberDTO">
+	<update id="updateAddress" parameterType="com.project.movie.domain.MemberDTO">
 	    UPDATE moviemember_tbl
-	    SET email = #{email}
+	    SET address = #{address}
 	    WHERE userid = #{userid}
 	</update>
 

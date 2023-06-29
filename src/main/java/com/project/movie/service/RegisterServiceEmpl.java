@@ -94,10 +94,10 @@ public class RegisterServiceEmpl implements RegisterService {
     }
     
     @Override
-    public boolean updateEmail(MemberDTO dto) {
+    public boolean updateAddress(MemberDTO dto) {
         // 비밀번호 변경
         try {
-            mapper.updateEmail(dto);
+            mapper.updateAddress(dto);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

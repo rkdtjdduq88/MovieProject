@@ -34,7 +34,7 @@
 						  </div>
 						  <button type="submit" class="site-btn">로그인</button>
 						</form>
-                        <a href="#" class="forget_pass">비밀번호 찾기</a>
+                        <a href="#" class="forget_pass" id="findPassword">비밀번호 찾기</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
