@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>회원가입</h2>
+                        <h2>비밀번호 찾기</h2>
                         <p></p>
                     </div>
                 </div>
@@ -16,38 +16,32 @@
     </section>
     <!-- Normal Breadcrumb End -->
     
-    <!-- Register Section Begin -->
-    <section class="register spad">
+    <!-- FindPassword Section Begin -->
+    <section class="findPassword spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
-                    <div class="register__form">
-                        <h3>회원가입</h3> 
+                    <div class="findPassword__form">
+                        <h3>비밀번호 찾기</h3> 
                         <div id="notification" class="notification"></div>
-                        <form id="register-form" method="post">
+                        <form id="findPassword-form" method="post">
                             <div class="input__item">
                             	<input type="text" placeholder="아이디" id="userid" name="userid" maxlength="20" pattern="[a-zA-Z0-9]{8,20}" title="알파벳 대소문자와 숫자만 입력할 수 있고 8자이상 입력해야합니다." required>
                             	<span class="icon_profile"></span>
                        		</div>
-                        	<div class="input__item">
-                            	<input type="password" placeholder="비밀번호" id="password" name="password" maxlength="20" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$" 
-                            	title="대문자 또는 소문자와 숫자를 반드시 포함한 8자 이상 20자 이하의 비밀번호를 입력해야 합니다.">
-                            	<span class="icon_lock"></span>
-                        	</div>
-                        	<div class="input__item">
-                            	<input type="password" placeholder="비밀번호 확인" id="password2" name="password2" maxlength="20" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$" 
-                            	title="대문자 또는 소문자와 숫자를 반드시 포함한 8자 이상 20자 이하의 비밀번호를 입력해야 합니다.">
-                            	<span class="icon_lock"></span>
-                        	</div>
+	                        <div class="input__item">
+	                            <input type="text" placeholder="이름" id="name" name="name" maxlength="10" pattern="[가-힣]{2,10}" title="한글 2글자 이상 10글자 이하로 입력해야 합니다." required>
+	                            <span class="icon_profile"></span>
+	                        </div>
 	                        <div class="form-group email-form">
 								 <label for="email">이메일</label>
 								 <div class="input-group">
-								<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" >
-								<select class="form-control" name="userEmail2" id="userEmail2" >
-								<option>@naver.com</option>
-								<option>@daum.net</option>
-								<option>@gmail.com</option>
-								</select>
+									<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" >
+									<select class="form-control" name="userEmail2" id="userEmail2" >
+									<option>@naver.com</option>
+									<option>@daum.net</option>
+									<option>@gmail.com</option>
+									</select>
 								</div> 
 							<div class="input-group-addon">
 								<button type="button" class="btn btn-primary" id="mail-Check-Btn">본인인증</button>
@@ -57,26 +51,14 @@
 							</div>
 								<span id="mail-check-warn"></span>
 							</div>
-	                        <div class="input__item">
-	                            <input type="text" placeholder="이름" id="name" name="name" maxlength="10" pattern="[가-힣]{2,10}" title="한글 2글자 이상 10글자 이하로 입력해야 합니다." required>
-	                            <span class="icon_profile"></span>
-	                        </div>
-	                        <div class="input__item">
-	                            <input type="text" placeholder="주소" id="address" name="address" pattern="[가-힣0-9]+" title="한글과 숫자만 입력할 수 있습니다." required>
-	                            <span class="icon_profile"></span>
-	                        </div>
-	                        <div class="input__item">
-	                            <input type="tel" placeholder="전화번호" id="mobile" name="mobile" maxlength="13" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="000-0000-0000 형식으로 입력해야 합니다." required>
-	                            <span class="icon_phone"></span>
-	                        </div>
-                            <button type="submit" class="site-btn">회원가입</button>
+                            <button type="submit" class="site-btn">비밀번호 찾기</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Register Section End -->
+    <!-- FindPassword Section End -->
 
  <%@ include file="include/footer.jsp" %>
 
@@ -101,6 +83,7 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/register.js"></script>
+    <script src="/js/findPassword.js"></script>
 
 
 </body>

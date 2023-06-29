@@ -9,30 +9,36 @@ document
     // 입력값 가져오기
     var userid = document.getElementById("userid").value;
     var password = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
     var email = $("#userEmail1").val() + $("#userEmail2").val();
     var name = document.getElementById("name").value;
     var address = document.getElementById("address").value;
     var mobile = document.getElementById("mobile").value;
 
-    // AJAX 요청 생성
-    var xhr = new XMLHttpRequest();
-    var url = "/register";
-    var params =
-      "userid=" +
-      encodeURIComponent(userid) +
-      "&password=" +
-      encodeURIComponent(password) +
-      "&email=" +
-      encodeURIComponent(email) +
-      "&name=" +
-      encodeURIComponent(name) +
-      "&address=" +
-      encodeURIComponent(address) +
-      "&mobile=" +
-      encodeURIComponent(mobile);
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    if (password !== password2) {
+      alert("비밀번호를 확인해주세요.");
+      return;
+    } else {
+      // AJAX 요청 생성
 
+      var xhr = new XMLHttpRequest();
+      var url = "/register";
+      var params =
+        "userid=" +
+        encodeURIComponent(userid) +
+        "&password=" +
+        encodeURIComponent(password) +
+        "&email=" +
+        encodeURIComponent(email) +
+        "&name=" +
+        encodeURIComponent(name) +
+        "&address=" +
+        encodeURIComponent(address) +
+        "&mobile=" +
+        encodeURIComponent(mobile);
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    }
     // AJAX 요청 후 응답 처리
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {

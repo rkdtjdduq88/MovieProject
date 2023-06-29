@@ -51,7 +51,10 @@
 	  WHERE userid = #{userid} AND password = #{password}
 	</delete>
 
-	
+	<!-- 비밀번호 찾기를 위한 회원 정보 조회 -->
+	<select id="checkUser" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE userid = #{userid} and name = #{name} and email = #{email} 
+	</select>
 	
 	
 	

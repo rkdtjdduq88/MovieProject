@@ -82,6 +82,11 @@ public class RegisterServiceEmpl implements RegisterService {
     }
     
     @Override
+    public MemberDTO checkUser(String userid, String name, String email) {
+    	return mapper.checkUser(userid, name, email);
+    }
+    
+    @Override
     public boolean updatePassword(MemberDTO dto) {
         // 비밀번호 변경
         try {

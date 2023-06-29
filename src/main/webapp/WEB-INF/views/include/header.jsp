@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css">
 <link rel="stylesheet" href="/css/agree.css" type="text/css">
 <link rel="stylesheet" href="/css/myPage.css" type="text/css">
+<link rel="stylesheet" href="/css/findPassword.css" type="text/css">
 
 <style>
 .dropdown2 {

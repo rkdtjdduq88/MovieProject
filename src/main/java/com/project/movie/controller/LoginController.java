@@ -49,6 +49,30 @@ public class LoginController {
 		return "register";
 	}
 	
+	@GetMapping("/findPassword")
+	public String findPasswordPage() {
+		return "findPassword";
+	}
+	
+	@PostMapping("/findPassword")
+	public String findPasswordPost(@RequestParam("userid") String userId,
+			                         @RequestParam("name") String name,
+			                         @RequestParam("userEmail1") String userEmail1,
+			                         @RequestParam("userEmail2") String userEmail2,
+			                         Model model) {
+	    // 입력한 정보와 일치하는 사용자를 조회합니다.
+	    MemberDTO user = service.checkUser(userId, name, userEmail1 + userEmail2);
+
+	    if (user != null) {
+	        // 정보가 일치하면 변경 폼으로 이동합니다.
+	        return "redirect:/changePass"; // "changePass"는 실제 경로로 변경해주세요.
+	    } else {
+	        model.addAttribute("errorMessage", "입력한 정보가 일치하지 않습니다.");
+	        return "/findPassword";
+	    }
+	}
+	
+	
 	@PostMapping("/register")
 	public ResponseEntity<Object> insertPost(MemberDTO dto) {
 	    try {

@@ -13,6 +13,7 @@ public interface RegisterService {
     MemberDTO getMemberByEmail(String email);
     MemberDTO getMemberByMobile(String mobile);
     MemberDTO getMemberByName(String name);
+    MemberDTO checkUser(String userId, String name, String email);
     
     //회원 정보 변경
     public boolean updatePassword(MemberDTO dto);

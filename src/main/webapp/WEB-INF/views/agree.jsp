@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>로그인</h2>
+                        <h2>약관 동의</h2>
                         <p></p>
                     </div>
                 </div>
