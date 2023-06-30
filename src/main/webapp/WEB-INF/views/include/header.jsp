@@ -37,7 +37,8 @@
 	<!-- Page Preloder -->
 <!-- 	<div id="preloder">
 		<div class="loader"></div>
-	</div> -->
+	</div>
+ -->
 
 	<!-- Header Section Begin -->
 	<header class="header">
@@ -69,20 +70,22 @@
 
 										<security:authorize access="isAuthenticated()">
 											<li>
-												<form action="/logout" method="post">
+												<form action="/logout" method="get" id="testid">
 													<button class="dropdown-item" href="#" data-toggle="modal"
 														data-target="#logoutModal" type="submit">
-														<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 														<input type="hidden" name="${_csrf.parameterName}"
-															value="${_csrf.token}" /> Logout
+															value="${_csrf.token}" />Logout
 													</button>
 												</form>
 											</li>
 										</security:authorize>
-										
 									</ul></li>
 								<li><a href="/blog">Our Blog</a></li>
-								<li><a href="main-board">Admin Board</a></li>
+
+								<security:authorize access="hasRole('ROLE_ADMIN')">
+									<li><a href="main-board">Admin Board</a></li>
+								</security:authorize>
+								
 							</ul>
 						</nav>
 					</div>

@@ -158,13 +158,6 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-					<!-- Topbar Search -->
-					<form class="d-flex">
-						<input class="form-control me-sm-2" type="search"
-							placeholder="Search">
-						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-					</form>
-
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 						<!-- Nav Item - User Information -->

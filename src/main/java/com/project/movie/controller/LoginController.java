@@ -61,9 +61,9 @@ public class LoginController {
 	     
 	     @GetMapping("/logout")
 	     public String logout(HttpServletRequest request, HttpSession session) {
-	    	session.removeAttribute("authDTO");
-	 		// session 해제 index 이동
-	 		return "redirect:/";
+	    	session.removeAttribute("userid");
+	 		// session 해제 로그인 페이지로 이동
+	 		return "redirect:/login";
 	     }
 
 	@GetMapping("/agree")

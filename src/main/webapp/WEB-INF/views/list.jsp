@@ -32,7 +32,8 @@
                      </select>
                  </div>
                  <div class="form-group col-5">
-                     <input type="text" name="keyword" id="keyword" class="form-control" value="${cri.keyword}"/>
+                     <input type="text" name="keyword" id="keyword" class="form-control" value="${cri.keyword}" 
+                     placeholder="검색어를 입력해주세요."/>
                  </div>
                  <div class="form-group col-3">
                      <button type="submit" class="btn btn-info">검색</button>

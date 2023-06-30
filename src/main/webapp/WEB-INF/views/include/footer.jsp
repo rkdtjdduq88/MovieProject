@@ -17,7 +17,9 @@
 							<li class="active"><a href="/">Homepage</a></li>
 							<li><a href="./categories.html">Categories</a></li>
 							<li><a href="blog">Our Blog</a></li>
+						<security:authorize access="hasRole('ROLE_ADMIN')">
 							<li><a href="main-board">Admin Board</a></li>
+						</security:authorize>
 					</ul>
 				</div>
 				</div>

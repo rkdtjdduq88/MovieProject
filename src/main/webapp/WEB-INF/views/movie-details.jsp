@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -56,11 +60,31 @@
                                         <li><a href="/details">Movie Details</a></li>
                                         <li><a href="/">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./login">Login</a></li>
+                                        
+                                        <security:authorize access="!isAuthenticated()">
+										<li><a href="/login">Login</a></li>
+										<li><a href="/login-register">Register</a></li>
+										</security:authorize>
+
+										<security:authorize access="isAuthenticated()">
+											<li>
+												<form action="/logout" method="get" id="testid">
+													<button class="dropdown-item" href="#" data-toggle="modal"
+														data-target="#logoutModal" type="submit">
+														<input type="hidden" name="${_csrf.parameterName}"
+															value="${_csrf.token}" />Logout
+													</button>
+												</form>
+											</li>
+										</security:authorize>
+                                        
                                     </ul>
                                 </li>
                                 <li><a href="blog">Our Blog</a></li>
-								<li><a href="main-board">Admin Board</a></li>
+								
+								<security:authorize access="hasRole('ROLE_ADMIN')">
+									<li><a href="main-board">Admin Board</a></li>
+								</security:authorize>
                             </ul>
                         </nav>
                     </div>
@@ -109,7 +133,7 @@
                     <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
-                                <h3>${detail.title}</h3>
+                                <h3><div id="mtitle">${detail.title}</div></h3>
                                 <span>${detail.directorNm}</span>
                             </div>
                             <div class="anime__details__rating">
@@ -139,6 +163,7 @@
 										  </c:forEach>
 										</li>
                                        
+                                     
 
                                           
                                         </ul>
@@ -162,13 +187,17 @@
                             </div>
                             <div class="anime__details__btn">
                                 <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
-                                    class="fa fa-angle-right"></i></a>
+                                <i class="mwatch">
+                                <a href="#" class="watch-btn">
+                                	<span>Watch Now</span> 
+                                	<i class="fa fa-angle-right"></i>
+                                </a>
+                                </i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+                  
 <%--                  </c:if>
                </c:forEach> --%>
                     
@@ -333,6 +362,7 @@
         <script src="/js/owl.carousel.min.js"></script>
         <script src="/js/main.js"></script>
         <script src="/js/moviedetail.js"></script>
+        <script src="/js/youtube.js"></script>
 
     </body>
 
