@@ -15,5 +15,5 @@ public interface RegisterMapper {
     public int updateAddress(MemberDTO dto); // 이메일 변경
     public int updateMobile(MemberDTO dto); // 전화번호 변경
     public int deleteProfile(MemberDTO dto); // 회원 탈퇴
-    public MemberDTO checkUser(String userId, String name, String email);
+    public MemberDTO checkUser(String userid, String name, String email);
 }

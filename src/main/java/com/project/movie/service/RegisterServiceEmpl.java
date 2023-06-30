@@ -83,7 +83,8 @@ public class RegisterServiceEmpl implements RegisterService {
     
     @Override
     public MemberDTO checkUser(String userid, String name, String email) {
-    	return mapper.checkUser(userid, name, email);
+        MemberDTO user = mapper.checkUser(userid, name, email);
+        return user;
     }
     
     @Override

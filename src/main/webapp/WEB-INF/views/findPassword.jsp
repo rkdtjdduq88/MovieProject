@@ -28,15 +28,15 @@
                             <div class="input__item">
                             	<input type="text" placeholder="아이디" id="userid" name="userid" maxlength="20" pattern="[a-zA-Z0-9]{8,20}" title="알파벳 대소문자와 숫자만 입력할 수 있고 8자이상 입력해야합니다." required>
                             	<span class="icon_profile"></span>
-                       		</div>
+                       		</div>     
 	                        <div class="input__item">
 	                            <input type="text" placeholder="이름" id="name" name="name" maxlength="10" pattern="[가-힣]{2,10}" title="한글 2글자 이상 10글자 이하로 입력해야 합니다." required>
 	                            <span class="icon_profile"></span>
-	                        </div>
+	                        </div> 
 	                        <div class="form-group email-form">
 								 <label for="email">이메일</label>
 								 <div class="input-group">
-									<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" >
+									<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" required>
 									<select class="form-control" name="userEmail2" id="userEmail2" >
 									<option>@naver.com</option>
 									<option>@daum.net</option>

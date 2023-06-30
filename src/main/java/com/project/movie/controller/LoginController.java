@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,11 @@ import com.project.movie.domain.PasswordCheck;
 import com.project.movie.service.MailSendService;
 import com.project.movie.service.RegisterService;
 
+import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
@@ -54,23 +59,37 @@ public class LoginController {
 		return "findPassword";
 	}
 	
+	@GetMapping("/changePass")
+	public String ChangePassPage(@RequestParam("userid") String userId,
+						            @RequestParam("name") String name,
+						            @RequestParam("email") String email,
+						            Model model) {
+		return "changePass";
+	}
+	
+	
 	@PostMapping("/findPassword")
-	public String findPasswordPost(@RequestParam("userid") String userId,
-			                         @RequestParam("name") String name,
-			                         @RequestParam("userEmail1") String userEmail1,
-			                         @RequestParam("userEmail2") String userEmail2,
-			                         Model model) {
+	public String findPasswordPost(@ModelAttribute MemberDTO member, Model model) {
+	    String userid = member.getUserid();
+	    String name = member.getName();
+	    String email = member.getEmail();
+
 	    // 입력한 정보와 일치하는 사용자를 조회합니다.
-	    MemberDTO user = service.checkUser(userId, name, userEmail1 + userEmail2);
+	    MemberDTO user = service.checkUser(userid, name, email);
 
 	    if (user != null) {
 	        // 정보가 일치하면 변경 폼으로 이동합니다.
-	        return "redirect:/changePass"; // "changePass"는 실제 경로로 변경해주세요.
+	        model.addAttribute("userid", userid);
+	        model.addAttribute("name", name);
+	        model.addAttribute("email", email);
+	        return "changePass";
 	    } else {
-	        model.addAttribute("errorMessage", "입력한 정보가 일치하지 않습니다.");
-	        return "/findPassword";
+	        // 사용자가 없는 경우 알림을 출력하고 findPassword 페이지를 다시 보여줍니다.
+	        model.addAttribute("error", "회원 정보를 확인해주세요.");
+	        return "findPassword";
 	    }
 	}
+
 	
 	
 	@PostMapping("/register")

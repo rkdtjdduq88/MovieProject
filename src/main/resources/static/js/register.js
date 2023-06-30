@@ -14,9 +14,17 @@ document
     var name = document.getElementById("name").value;
     var address = document.getElementById("address").value;
     var mobile = document.getElementById("mobile").value;
+    const inputCode = $(this).val();
+    const code = data;
 
     if (password !== password2) {
       alert("비밀번호를 확인해주세요.");
+      return;
+    } else if (
+      $("#mail-Check-Input").val().trim() === "" ||
+      inputCode !== code
+    ) {
+      alert("본인인증을 해주세요.");
       return;
     } else {
       // AJAX 요청 생성
