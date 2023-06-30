@@ -12,4 +12,5 @@ public interface DetailReplyService {
 	public boolean update(MovieDetailReplyDTO dto);
 	public MovieDetailReplyDTO read(int rno);
 	public boolean delete(int rno);
+	public int avgGrade(String title);
 }

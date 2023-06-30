@@ -1,3 +1,4 @@
+<%@page import="com.project.movie.response.KmdbRes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
@@ -38,11 +39,19 @@
                             </div>
                             <div class="anime__details__rating">
                                 <div class="rating">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
+                                	<h6>${detail.grade}</h6>
+                                    <%       
+								        KmdbRes res = (KmdbRes) request.getAttribute("detail");
+								        int rating = res.getGrade();
+								        
+								        for (int i = 1; i <= 5; i++) {
+								            if (i <= rating) {                
+								                %><i class="fa fa-star"></i><%
+								            } else {               
+								                %><i class="fa fa-star-o"></i><%
+								            }
+								        } 
+								    %>
                                 </div>
                                 <span>평점 수정하기</span>
                             </div>
@@ -201,11 +210,11 @@
     
 	<script>
 	const title = '${detail.title}';
-	const userid = '${userid}';
+	const userid = '${userid}';	
 	</script>
 	<!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-      <!-- Js Plugins -->
+    <!-- Js Plugins -->
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/player.js"></script>

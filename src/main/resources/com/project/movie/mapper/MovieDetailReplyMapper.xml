@@ -31,4 +31,9 @@
 	<select id="getCountByTitle" resultType="int">
 		select count(*) from detailreply_tbl where title=#{title}
 	</select>	
+	
+	<!-- 평점(grade) 평균 조회하기 -->
+	<select id="avgGrade" resultType="int">
+		select coalesce(round(avg(grade)), 0) from detailreply_tbl where title=#{title}
+	</select>
 </mapper>

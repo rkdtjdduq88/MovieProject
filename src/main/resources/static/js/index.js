@@ -67,7 +67,7 @@ function fetchAndCarouselMovies() {
       return response.json();
     })
     .then((data) => {
-      console.log("캐러셀 데이타 요청", data);
+      //console.log("캐러셀 데이타 요청", data);
       var carouselMovielItems = "";
       data.forEach((movie) => {
         var carouselMovielItem = `

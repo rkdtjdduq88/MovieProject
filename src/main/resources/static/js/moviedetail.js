@@ -125,6 +125,7 @@ document.querySelector("#insertForm").addEventListener("submit", (e) => {
     })
     .catch((error) => console.log(error));
 });
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // 댓글 수정하기전 댓글 정보 가져오는 작업(read)
 document.querySelector(".section-title").addEventListener("click", (e) => {

@@ -66,4 +66,9 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 		return movieDetailReplyMapper.delete(rno)==1?true:false;
 	}
 
+	@Override
+	public int avgGrade(String title) {		
+		return movieDetailReplyMapper.avgGrade(title);
+	}
+
 }

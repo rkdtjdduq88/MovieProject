@@ -13,4 +13,5 @@ public interface MovieDetailReplyMapper {
 	public MovieDetailReplyDTO read(int rno);
 	public int delete(int rno);
 	public int getCountByTitle(String title);
+	public int avgGrade(String title);
 }

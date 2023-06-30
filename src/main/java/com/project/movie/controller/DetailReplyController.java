@@ -55,7 +55,7 @@ public class DetailReplyController {
 		log.info("댓글 조회 "+rno);
 		return new ResponseEntity<MovieDetailReplyDTO>(detailReplyService.read(rno), HttpStatus.OK);
 	}
-	
+		
 	// insert 작업
 	@PostMapping("/new")
 	public ResponseEntity<String> create(@RequestBody MovieDetailReplyDTO movieDetailReplyDTO,Model model){
