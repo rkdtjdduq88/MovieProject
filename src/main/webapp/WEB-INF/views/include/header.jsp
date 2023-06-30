@@ -56,6 +56,13 @@ document.addEventListener("click", function(event) {
         dropdownMenu.classList.remove("show");
     }
 });
+
+
+function preventLogout(event) {
+    event.preventDefault(); // 기본 동작 중지
+    event.stopPropagation(); // 이벤트 전파 중지
+    // 추가로 수행해야 할 로직 작성
+}
 </script>
 
 </head>
@@ -93,15 +100,12 @@ document.addEventListener("click", function(event) {
 										</security:authorize>
 
 										<security:authorize access="isAuthenticated()">
-											<li>
-												<form action="/logout" method="get" id="testid">
-													<button class="dropdown-item" href="#" data-toggle="modal"
-														data-target="#logoutModal" type="submit">
-														<input type="hidden" name="${_csrf.parameterName}"
-															value="${_csrf.token}" />Logout
-													</button>
+										    <li>
+										        <form action="/logout" method="post" id="logoutForm1">
+													<button type="submit" onclick="logout(event)">Logout</button>
+													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 												</form>
-											</li>
+										    </li>
 										</security:authorize>
 										
 									</ul></li>
@@ -109,6 +113,8 @@ document.addEventListener("click", function(event) {
 								<security:authorize access="hasRole('ROLE_ADMIN')">
 									<li><a href="main-board">Admin Board</a></li>
 								</security:authorize>
+								
+								
 							</ul>
 						</nav>
 					</div>
@@ -117,18 +123,26 @@ document.addEventListener("click", function(event) {
 					<div class="header__right">
 					    <a href="#" class="search-switch"><span class="icon_search"></span></a>
 					    
-					    <% if (session.getAttribute("userid") != null) { %>
-					        <a href="#" class="profile-switch" onclick="toggleDropdown()">
-					            <span class="icon_profile"></span>
-					            <ul id="dropdownMenu" class="dropdown2">
-					                <li><a href="/mypage">My Page</a></li>
-					                <li><a href="/logout">Logout</a></li>
-					            </ul>
-					        </a>
-					    <% } else { %>
-					        <a href="/login"><span class="icon_profile"></span></a>
-					    <% } %>
-					    
+					   <security:authorize access="isAuthenticated()">
+						    <a href="#" class="profile-switch" onclick="toggleDropdown()">
+						        <span class="icon_profile"></span>
+						        <ul id="dropdownMenu" class="dropdown2">
+						            <li><a href="/mypage">My Page</a></li>
+						            <li>
+						               <form action="/logout" method="post" id="logoutForm2">
+										<button type="submit" onclick="logout(event)">Logout</button>
+										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						            </li>
+						        </ul>
+						    </a>
+						</security:authorize>
+						
+						
+						
+						<security:authorize access="!isAuthenticated()">
+						    <a href="/login"><span class="icon_profile"></span></a>
+						</security:authorize>
+											    
 					    
 					</div>
 				</div>

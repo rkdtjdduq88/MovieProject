@@ -27,17 +27,32 @@
                     <div class="login__form">
                         <h3>로그인</h3>
                         <form method="post" action='<c:url value="/login"/>' id="login-form">
-						  <div class="input__item">
-						    <input type="text" id="userid" name="username" placeholder="아이디 입력" required>
-						    <span class="icon_profile"></span>
-						  </div>
-						  <div class="input__item">
-						    <input type="password" id="password" name="password" placeholder="비밀번호 입력" required>
-						    <span class="icon_lock"></span>
-						  </div>
-						  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						  <button type="submit" class="site-btn">로그인</button>
+						    <div class="input__item">
+						        <input type="text" id="userid" name="username" placeholder="아이디 입력" required>
+						        <span class="icon_profile"></span>
+						    </div>
+						    <div class="input__item">
+						        <input type="password" id="password" name="password" placeholder="비밀번호 입력" required>
+						        <span class="icon_lock"></span>
+						    </div>
+						    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						    <button type="submit" class="site-btn">로그인</button>
 						</form>
+						
+						<security:authorize access="isAuthenticated()">
+						    <!-- 로그인 성공한 경우에만 실행됩니다 -->
+						    <%-- 세션에 저장된 userid 값을 가져옵니다 --%>
+						    <c:set var="userid" value="${sessionScope.userid}" />
+						
+						    <%-- userid가 존재하는 경우에만 실행됩니다 --%>
+						    <c:if test="${not empty userid}">
+						        <h3>로그인 성공!</h3>
+						        <p>안녕하세요, ${userid}님!</p>
+						    </c:if>
+						</security:authorize>
+					    
+					    
+					    
                         <a href="#" class="forget_pass" id="findPassword">비밀번호 찾기</a>
                     </div>
                 </div>

@@ -13,12 +13,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+import com.project.movie.handler.CustomAuthenticationFailureHandler;
 import com.project.movie.handler.CustomLoginSuccessHandler;
 import com.project.movie.service.CustomUserDetailService;
 
@@ -28,12 +30,21 @@ import com.project.movie.service.CustomUserDetailService;
 public class SecurityConfig {
 	
 	@Autowired
+    private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+
+	
+	@Autowired
 	private DataSource dataSource;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	@Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return customAuthenticationFailureHandler;
+    }
 	
 	@Bean
 	public AuthenticationSuccessHandler loginSuccessHandler() {
@@ -61,17 +72,20 @@ public class SecurityConfig {
 			.loginPage("/login")
 			.loginProcessingUrl("/login")
 			.failureUrl("/login-error")
-			.successHandler(loginSuccessHandler());
+			.failureHandler(authenticationFailureHandler());
 		
 		http.logout()
-			.logoutSuccessUrl("/");
-		
-//		http.rememberMe()
-//			.tokenRepository(perTokenRepository())
-//			.tokenValiditySeconds(604800);
+			.logoutUrl("/logout")
+			.logoutSuccessUrl("/")
+			.deleteCookies("JSESSIONID")
+			.invalidateHttpSession(true);
 		
 		return http.getOrBuild();
 	}
+//		http.rememberMe()
+//			.tokenRepository(perTokenRepository())
+//			.tokenValiditySeconds(604800);
+	
 	
 //	@Bean
 //	public PersistentTokenRepository perTokenRepository() {

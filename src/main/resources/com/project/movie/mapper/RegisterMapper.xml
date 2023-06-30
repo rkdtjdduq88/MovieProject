@@ -33,6 +33,10 @@
 	
     
     <!-- 유저정보 가져오기 -->
+    <select id="getMemberByUserId" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE userid = #{userid}
+	</select>
+    
 	<select id="getMemberByEmail" resultType="com.project.movie.domain.MemberDTO">
 	    SELECT * FROM moviemember_tbl WHERE email = #{email}
 	</select>
