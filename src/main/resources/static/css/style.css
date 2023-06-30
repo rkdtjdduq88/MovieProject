@@ -111,6 +111,16 @@ ol {
 /*---------------------
   Helper CSS
 -----------------------*/
+/* 구글 폰트 */
+.material-symbols-outlined {
+  color: #ff0000;  
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48  
+}
+
 .userid {
 	float: right;
 	margin-bottom: 10px;
@@ -1018,6 +1028,28 @@ ol {
 	position: absolute;
 	right: 0;
 	top: 0;
+}
+.rating {
+  color: #ccc;
+  font-size: 18px;
+}
+
+.rating i {
+  float: left;
+}
+
+.rating i.fa-star,
+.rating i.fa-star-half {
+  color: #ffd700; /* 별점 색상 */
+}
+
+.rating i.fa-star-half::before {
+  content: "\f089"; /* 반 별 아이콘 코드 */  
+  color: #ffd700;
+}
+
+.rating i.fa-star::before {
+  content: "\f005"; /* 전체 별 아이콘 코드 */  
 }
 
 .anime__details__rating .rating i {

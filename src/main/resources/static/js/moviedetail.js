@@ -14,9 +14,9 @@ function movieDetailReplyList() {
       return response.json();
     })
     .then((data) => {
-      //console.log(data);
+      console.log(data);
       var reviewList = "";
-      data.forEach((list) => {
+      data.list.forEach((list) => {
         var isCurrentUser = list.userid === userid; // 현재 사용자와 댓글 작성자를 비교
 
         var buttons = "";
@@ -26,20 +26,27 @@ function movieDetailReplyList() {
             <button class="btn btn-warning" type="button">수정</button>
           `;
         }
+        var ratingStars = getRatingStars(list.grade);
 
         var review = `<div class="anime__review__item">
             <div class="anime__review__item__pic">
-                <img src="/img/anime/review-1.jpg" alt="">
+            <img src="https://avatars.dicebear.com/api/bottts/${list.userid}.jpg" alt="img" style="width: 80px; height: 80px; border-radius: 50%;">
             </div>
                 <div class="anime__review__item__text" data-rno="${list.rno}">      
                   <div class="row">  
                     <div class="col">
-                      <h6>${list.userid}</h6>
+                      <h6>${list.userid}</h6>                      
                     </div>
+                    <span class="material-symbols-outlined">
+                      favorite
+                      </span>
                     <div class="col">
                       <h6><span>${displayTime(list.replydate)}</span></h6>
                     </div>
-                  </div>                         
+                        <div class="rating">
+                            ${ratingStars}
+                          </div>
+                      </div>                         
                         <h6>${buttons}</h6>                                        
                     <p>${list.replyContent}</p>
                 </div>
@@ -55,17 +62,47 @@ movieDetailReplyList();
 /////////////////////////////////////////////////////////////////////////////////////////////
 // 상세페이지 댓글 작성 기능넣기(insert)
 
+// 리뷰 별점 기능 넣기(grade)
+let grade = 0;
+const rating = document.querySelector("#insertForm .rating");
+const stars = rating.querySelectorAll(".fa-star-o");
+
+rating.addEventListener("click", (e) => {
+  // 클릭된 별 요소 가져오기
+  const starRating = e.target;
+
+  // 클릭된 별의 인덱스를 가져오기
+  const starIndex = Array.from(stars).indexOf(starRating);
+
+  starRating.classList.remove("star-o");
+  starRating.classList.add("fa-star");
+
+  // 클릭한 별까지 별을 채우기
+  for (let i = 0; i < stars.length; i++) {
+    if (i <= starIndex) {
+      stars[i].classList.remove("fa-star-o");
+      stars[i].classList.add("fa-star");
+    } else {
+      stars[i].classList.remove("fa-star");
+      stars[i].classList.add("fa-star-o");
+    }
+  }
+
+  //console.log(starRating.dataset.value);
+  grade = starRating.dataset.value;
+});
+
 document.querySelector("#insertForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
   const replyContent = document.querySelector("#insertForm #replyContent").value;
   const userid = document.querySelector("#insertForm #userid").value;
-  // const rno = document.querySelector("#rno").value;
 
   const data = {
     replyContent: replyContent,
     userid: userid,
     title: title,
+    grade: grade,
   };
 
   fetch("/replies/new", {
@@ -82,7 +119,7 @@ document.querySelector("#insertForm").addEventListener("submit", (e) => {
       return response.text();
     })
     .then((data) => {
-      console.log(data);
+      //console.log(data);
 
       movieDetailReplyList();
     })
@@ -94,14 +131,14 @@ document.querySelector(".section-title").addEventListener("click", (e) => {
   // e.target : 이벤트 발생 대상
   // 이벤트 발생 대상을 감싸고 있는 부모 div 찾기
   let div = e.target.closest("div");
-  console.log("이벤트 발생 ", div);
+  //console.log("이벤트 발생 ", div);
 
   // rno 가져오기 (data-* 속성값 가져오기 : dataset)
   let rno = div.dataset.rno;
   //console.log("rno ", rno);
 
   // 댓글 작성자 정보 가져오기
-  let userid = div.firstElementChild.innerHTML;
+  let userid = div.querySelector("div.col > h6").innerHTML;
   //console.log("댓글 작성자 ", userid);
 
   // 로그인 사용자 정보 가져오기
@@ -247,3 +284,24 @@ function displayTime(timeVal) {
     ].join("");
   }
 } // 댓글 시간넣기 종료
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// 별점 넣기 함수
+// 별점에 따라 별 아이콘 생성 및 색깔 채우기
+function getRatingStars(grade) {
+  var filledStars = Math.floor(grade); // 채워진 별의 개수 (정수 부분)
+  var halfStar = grade - filledStars === 0.5; // 반 별이 채워져야 하는지 여부
+
+  var starIcons = "";
+  for (var i = 0; i < filledStars; i++) {
+    starIcons += `<i class="fa fa-star"></i>`;
+  }
+  if (halfStar) {
+    starIcons += `<i class="fa fa-star-half-o"></i>`;
+  }
+  for (var j = filledStars + (halfStar ? 1 : 0); j < 5; j++) {
+    starIcons += `<i class="fa fa-star-o"></i>`;
+  }
+
+  return starIcons;
+}

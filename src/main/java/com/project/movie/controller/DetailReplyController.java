@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.movie.domain.MovieDetailReplyDTO;
+import com.project.movie.domain.MovieDetailReplyCntFavDTO;
 import com.project.movie.service.DetailReplyService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,13 +33,22 @@ public class DetailReplyController {
 	private DetailReplyService detailReplyService;
 	
 	// 전체 리스트 조회
+//	@GetMapping("/list/{title}")
+//	public List<MovieDetailReplyDTO> detailReplyList(@PathVariable("title") String title) {
+//		log.info("리뷰 리스트 요청"+title);	
+//		
+//		
+//		return detailReplyService.getList(title);
+//	}
 	@GetMapping("/list/{title}")
-	public List<MovieDetailReplyDTO> detailReplyList(@PathVariable("title") String title) {
-		log.info("리뷰 리스트 요청"+title);	
+	public ResponseEntity<MovieDetailReplyCntFavDTO> detailReplyList(@PathVariable("title") String title) {
+		log.info("리뷰 리스트 요청"+title);
+//		MovieDetailReplyCntDTO movieDetailReplyPageDTO = detailReplyService.getList(title);
+//		model.addAttribute("cntDto",movieDetailReplyPageDTO);		
 		
-		
-		return detailReplyService.getList(title);
-	}
+		return new ResponseEntity<MovieDetailReplyCntFavDTO>(detailReplyService.getList(title),HttpStatus.OK);
+	}	
+	
 	// 특정 조회
 	@GetMapping(value="/{rno}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<MovieDetailReplyDTO> get(@PathVariable int rno){

@@ -23,4 +23,7 @@ public class KmdbAndKobisDTO {
 	private String rank;
 	private String openDt;
 	private String audiAcc;
+	
+	// 특정 영화의 댓글 개수
+	private int replyCnt;
 }

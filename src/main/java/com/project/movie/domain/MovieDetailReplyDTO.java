@@ -15,9 +15,8 @@ public class MovieDetailReplyDTO {
 	private int rno;
 	private String replyContent;
 	private String userid;	
+	private float grade;
 	private Date replydate;	
 	private Date replyUpdatedate;
-	
-	
 	
 }

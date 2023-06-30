@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.movie.mapper.movieDetailReplyMapper">
+<mapper namespace="com.project.movie.mapper.MovieDetailReplyMapper">
 	<!-- 전체 상세페이지 댓글 조회 -->
 	<select id="detailReplyList" resultType="com.project.movie.domain.MovieDetailReplyDTO">
 		select * from detailreply_tbl where title=#{title}
@@ -8,8 +8,8 @@
 	
 	<!-- 상세페이지 댓글 추가 -->		
 	<insert id="insert">
-		insert into detailreply_tbl(title,rno,replycontent,userid) 
-		values(#{title},detailreply_seq.nextval,#{replyContent},#{userid})
+		insert into detailreply_tbl(title,rno,replycontent,userid,grade) 
+		values(#{title},detailreply_seq.nextval,#{replyContent},#{userid},#{grade})
 	</insert>
 	
 	<!-- 상세페이지 댓글 수정 -->
@@ -27,4 +27,8 @@
 		delete from detailreply_tbl where rno=#{rno}
 	</delete>
 	
+	<!-- 특정 영화에 대한 총 댓글 수 조회 -->
+	<select id="getCountByTitle" resultType="int">
+		select count(*) from detailreply_tbl where title=#{title}
+	</select>	
 </mapper>

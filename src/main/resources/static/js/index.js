@@ -24,7 +24,7 @@ function fetchAndDisplayMovies() {
               <div class="product__item">
                   <div class="product__item__pic set-bg" data-setbg="${movie.posterUrl}" style="background-image: url('${movie.posterUrl}')">
                       <div class="ep">${movie.rank}위</div>
-                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="comment"><i class="fa fa-comments"></i>${movie.replyCnt}</div>
                       <div class="view"><i class="fa fa-eye"></i> 9141</div>
                   </div>
                   <div class="product__item__text">
@@ -67,16 +67,16 @@ function fetchAndCarouselMovies() {
       return response.json();
     })
     .then((data) => {
-      //console.log("캐러셀 데이타 요청", data);
+      console.log("캐러셀 데이타 요청", data);
       var carouselMovielItems = "";
-      data.list.forEach((movie) => {
+      data.forEach((movie) => {
         var carouselMovielItem = `
         <div class="hero__items set-bg" data-setbg="${movie.posterUrl}" style="background-image: url('${movie.posterUrl}')">
           <div class="row">        
             <div class="col-lg-6">
               <div class="hero__text">
                 <div class="label">${movie.releaseDate}</div>
-                <h2>${movie.movieNm}</h2>
+                <h2>${movie.title}</h2>
                 <p>${movie.genre}</p>
                 <a href="#"><span>Watch Now</span> <i
                   class="fa fa-angle-right"></i></a>

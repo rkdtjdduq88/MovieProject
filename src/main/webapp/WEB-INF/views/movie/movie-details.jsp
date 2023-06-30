@@ -129,6 +129,7 @@
 						    </div>
 						  </div>
 						</div>
+												
 						
 						<!-- 댓글 수정 폼 종료(모달) -->
                         <div class="anime__details__form">
@@ -138,13 +139,18 @@
 	                            	<input type="text" class="userid" id="userid" value="${userid}" readonly />
 	                            </div>
 	                                <textarea placeholder="Your Comment" id="replyContent"></textarea>
-	                                <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-	                                <!-- <input type="hidden" name="rno" id="rno" value="${dto.rno}"/> -->
+		                                <div class="rating">
+		                                    <i class="fa fa-star-o" data-value="1"></i>
+		                                    <i class="fa fa-star-o" data-value="2"></i>
+		                                	<i class="fa fa-star-o" data-value="3"></i>
+		                                    <i class="fa fa-star-o" data-value="4"></i>
+		                                    <i class="fa fa-star-o" data-value="5"></i>	                                    
+		                                </div>
+		                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>	                                                              
                             </form>
                         </div>
                     </div>
-                    
-                    
+                                                
                     <!-- 댓글 작업 종료 -->
                     <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
@@ -193,7 +199,7 @@
     
       
     
-	<script>	
+	<script>
 	const title = '${detail.title}';
 	const userid = '${userid}';
 	</script>

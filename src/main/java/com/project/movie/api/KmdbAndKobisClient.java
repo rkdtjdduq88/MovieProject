@@ -23,6 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.project.movie.response.KmdbReq;
 import com.project.movie.response.KmdbRes;
+import com.project.movie.response.KmdbCarouselReq;
 import com.project.movie.response.KmdbItem;
 import com.project.movie.response.KobisReq;
 import com.project.movie.response.KobisRes;
@@ -163,5 +164,68 @@ public class KmdbAndKobisClient {
 			}			
 		}		
 		return dto;
+	}
+	// 캐러셀(title,poster,releaseDate,genre)
+	public List<KmdbRes> searchKmdbCarousel(KmdbCarouselReq kmdbCarouselReq) {
+		URI uri = UriComponentsBuilder.fromUriString(kmdbSearchUrl)									  
+				.queryParams(kmdbCarouselReq.toMultiValueMap())									  
+				.encode()
+				.build()
+				.toUri();
+		
+		
+		//System.out.println("uri "+uri);
+		
+		
+		// 헤더 추가
+		HttpHeaders headers = new HttpHeaders();
+		//headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		HttpEntity<HttpHeaders> httpEntity = new HttpEntity<>(headers);
+		
+        ResponseEntity<String> resEntity = new RestTemplate().exchange(uri, HttpMethod.GET, httpEntity, String.class);
+		
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = null;
+		
+		try {
+			jsonObject = (JSONObject) jsonParser.parse(resEntity.getBody());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		// 가장 큰 JSON 객체 response 가져오기
+		//String movieName = (String) jsonObject.get("Query");		
+		
+		JSONArray jsonArray = (JSONArray) jsonObject.get("Data");	
+		//System.out.println("jsonArray "+jsonArray);
+		JSONObject jsonItems=(JSONObject) jsonArray.get(0);
+		//System.out.println("jsonItems "+jsonItems);
+				
+		JSONArray jsonArr= (JSONArray) jsonItems.get("Result");
+		//System.out.println("jsonArr "+jsonArr);		
+			
+		
+		List<KmdbRes> resultList = new ArrayList<KmdbRes>();
+		
+		for (Object object : jsonArr) {
+			JSONObject item = (JSONObject) object;			
+			
+			KmdbRes dto = new KmdbRes();
+			dto.setTitle(item.get("title").toString());
+			dto.setReleaseDate(item.get("repRlsDate").toString());
+			dto.setGenre(item.get("genre").toString());
+			
+			String posterUrl = item.get("posters").toString();	
+			if(!posterUrl.isBlank()) {
+				StringTokenizer st = new StringTokenizer(posterUrl,"|");
+				if(st.hasMoreTokens()) {
+					dto.setPosterUrl(st.nextToken());			
+				}			
+			}
+			resultList.add(dto);
+		}
+		return resultList;
+		
 	}	
 }	

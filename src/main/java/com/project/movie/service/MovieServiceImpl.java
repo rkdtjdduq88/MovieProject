@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.movie.api.KmdbAndKobisClient;
 import com.project.movie.response.KmdbAndKobisDTO;
+import com.project.movie.response.KmdbCarouselReq;
 import com.project.movie.response.KmdbItem;
 import com.project.movie.response.KmdbReq;
 import com.project.movie.response.KmdbRes;
@@ -47,11 +48,12 @@ public class MovieServiceImpl implements MovieService{
 				//영화이름 가져오기
 				String movieName = item.getMovieNm();			
 				// 개봉일 가져오기
-				String openDt = item.getOpenDt();
+				String openDt = item.getOpenDt();				
 				
 				// KMDB request 작업(1~10위까지의 박스오피스영화의 영화이름을 요청)
 				KmdbReq kmdbReq = new KmdbReq(movieName,openDt);
-				
+				String movieNm = kmdbReq.getQuery().replaceAll("[\"\\s\\p{Punct}]", "");
+				kmdbReq.setQuery(movieNm);
 				// KMDB response 받았음
 				KmdbRes kmdbRes = kmdbAndKobisClient.searchKmdb(kmdbReq);
 				
@@ -69,5 +71,12 @@ public class MovieServiceImpl implements MovieService{
 			}	
 		}		
 		return totalRes;	
+	}
+
+	@Override
+	public List<KmdbRes> carouselMovie() {
+		KmdbCarouselReq carouselreq = new KmdbCarouselReq();
+		List<KmdbRes> carouselRes = kmdbAndKobisClient.searchKmdbCarousel(carouselreq);
+		return carouselRes;
 	}	
 }
