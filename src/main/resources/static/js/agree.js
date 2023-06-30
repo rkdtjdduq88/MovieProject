@@ -1,12 +1,7 @@
 /**
  *
  */
-<<<<<<< HEAD
-=======
-/**
- *
- */
->>>>>>> refs/remotes/origin/young
+
 document.addEventListener("DOMContentLoaded", function () {
   var termsServiceCheckbox = document.getElementById("termsService");
   var btnSubmit = document.getElementById("btnAgree");

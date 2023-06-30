@@ -100,33 +100,3 @@ document.addEventListener("mouseout", function (event) {
     overElement.style.display = "none";
   }
 });
-
-// // 위시리스트에서 영화 삭제
-// document.querySelector(".btn-success").addEventListener("click", (e) => {
-//   //WNO
-//   let wno = e.target.dataset.wno;
-
-//   fetch(
-//     "/wish/remove/" +
-//       wno +
-//       {
-//         method: "delete",
-//       }
-//   )
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error("삭제 실패");
-//       }
-//       return response.text();
-//     })
-//     .then((message) => {
-//       // alert(message); // 서버로부터 받은 메시지를 알림창으로 표시
-//       Swal.fire({
-//         icon: "success",
-//         title: "삭제 완료",
-//         text: message,
-//       });
-//       showWishList(); // 화면 데이터 다시 가져오기
-//     })
-//     .catch((error) => console.log(error));
-// });

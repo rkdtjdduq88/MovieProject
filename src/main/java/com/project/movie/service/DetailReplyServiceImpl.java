@@ -61,3 +61,5 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 	public int avgGrade(String title) {		
 		return movieDetailReplyMapper.avgGrade(title);
 	}
+
+}
