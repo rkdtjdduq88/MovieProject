@@ -12,8 +12,12 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Anime | Template</title>
 
+
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />   
+
+<!-- Google Font -->   
+
 <link
 	href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap"
 	rel="stylesheet">
@@ -34,6 +38,9 @@
 <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
 <link rel="stylesheet" href="/css/agree.css" type="text/css">
+<link rel="stylesheet" href="/css/moviedetail.css" type="text/css">
+<!-- sweet alert -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
 
 </head>
 
@@ -55,22 +62,46 @@
 				<div class="col-lg-8">
 					<div class="header__nav">
 						<nav class="header__menu mobile-menu">
-							<ul>
-								<li class="/"><a href="/">Homepage</a></li>
-								<li><a href="/categories">Categories <span
-										class="arrow_carrot-down"></span></a>
-									<ul class="dropdown">
-										<li><a href="/categories">Categories</a></li>
-										<li><a href="/movie/details/">Anime Details</a></li>
-										<li><a href="/anime-watching">Anime Watching</a></li>
-										<li><a href="/blog-details">Blog Details</a></li>
-										<li><a href="/register">Sign Up</a></li>
-										<li><a href="/login">Login</a></li>
-									</ul></li>
-								<li><a href="/blog">Our Blog</a></li>
-								<li><a href="#">Contacts</a></li>
-							</ul>
+
+							<c:if test="${userid == null}">
+								<ul>
+									<li class="/"><a href="/">Homepage</a></li>
+									<li><a href="/categories">Categories <span
+											class="arrow_carrot-down"></span></a>
+										<ul class="dropdown">
+											<li><a href="/categories">Categories</a></li>
+											<li><a href="/movie/details/">Anime Details</a></li>
+											<li><a href="/anime-watching">Anime Watching</a></li>
+											<li><a href="/blog-details">Blog Details</a></li>
+											<li><a href="/register">Sign Up</a></li>
+											<li><a href="/login">Login</a></li>
+										</ul></li>
+									<li><a href="/blog">Our Blog</a></li>
+									<li><a href="#">Contacts</a></li>
+								</ul>
+							</c:if>
+							
+							<c:if test="${userid != null}">
+								<ul>
+									<li class="/"><a href="/">Homepage</a></li>
+									<li><a href="/categories">Categories <span
+											class="arrow_carrot-down"></span></a>
+										<ul class="dropdown">
+											<li><a href="/categories">Categories</a></li>
+											<li><a href="/movie/details/">Anime Details</a></li>
+											<li><a href="/anime-watching">Anime Watching</a></li>
+											<li><a href="/blog-details">Blog Details</a></li>
+											<li><a href="/register">Sign Up</a></li>
+											<li><a href="/login">Login</a></li>
+										</ul></li>
+									<li><a href="/blog">Our Blog</a></li>
+									<li><a href="#">Contacts</a></li>
+									<li><a href="/showWish">Wish</a></li>
+								</ul>
+							</c:if>
+							
 						</nav>
+						
 					</div>
 				</div>
 				<div class="col-lg-2">

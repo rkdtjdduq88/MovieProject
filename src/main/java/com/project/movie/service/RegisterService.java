@@ -10,4 +10,7 @@ public interface RegisterService {
 	
 	//로그인
 	public MemberDTO login(String userid);
+
+
 }
+

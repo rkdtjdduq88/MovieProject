@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.movie.mapper.WishlistMapper">
+
+	<select id="readAll" resultType="com.project.movie.domain.WishlistDTO">
+		select * from movie_wishList where userid=#{userid}
+	</select>
+
+	<insert id="insert">
+		insert into movie_wishlist(wno,title,directornm,releasedate,posterurl,userid)
+		values(wishlist_seq.nextval,#{title},#{directorNm},#{releaseDate},#{posterUrl},#{userid})
+	</insert>
+	
+	<select id="checkWish" resultType="int">
+		select count(*) from movie_wishList where userid=#{userid} and title=#{title}
+	</select>
+	
+	<delete id="delete">
+		delete from movie_wishList where wno=#{wno}
+	</delete>
+
+</mapper>

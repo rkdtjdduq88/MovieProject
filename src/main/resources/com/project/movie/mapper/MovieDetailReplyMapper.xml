@@ -6,10 +6,11 @@
 		select * from detailreply_tbl where title=#{title}
 	</select>
 	
+	
 	<!-- 상세페이지 댓글 추가 -->		
 	<insert id="insert">
-		insert into detailreply_tbl(title,rno,replycontent,userid,grade) 
-		values(#{title},detailreply_seq.nextval,#{replyContent},#{userid},#{grade})
+		insert into detailreply_tbl(title,rno,replycontent,userid) 
+		values(#{title},detailreply_seq.nextval,#{replyContent},#{userid})
 	</insert>
 	
 	<!-- 상세페이지 댓글 수정 -->
@@ -27,13 +28,4 @@
 		delete from detailreply_tbl where rno=#{rno}
 	</delete>
 	
-	<!-- 특정 영화에 대한 총 댓글 수 조회 -->
-	<select id="getCountByTitle" resultType="int">
-		select count(*) from detailreply_tbl where title=#{title}
-	</select>	
-	
-	<!-- 평점(grade) 평균 조회하기 -->
-	<select id="avgGrade" resultType="int">
-		select coalesce(round(avg(grade)), 0) from detailreply_tbl where title=#{title}
-	</select>
 </mapper>

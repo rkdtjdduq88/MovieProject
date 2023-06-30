@@ -111,6 +111,7 @@ ol {
 /*---------------------
   Helper CSS
 -----------------------*/
+<<<<<<< HEAD
 /* 구글 폰트 */
 .material-symbols-outlined {
   color: #ff0000;  
@@ -121,6 +122,8 @@ ol {
   'opsz' 48  
 }
 
+=======
+>>>>>>> refs/remotes/origin/young
 .userid {
 	float: right;
 	margin-bottom: 10px;
@@ -1030,6 +1033,7 @@ ol {
 	top: 0;
 }
 .rating {
+<<<<<<< HEAD
   color: #ccc;
   font-size: 18px;
 }
@@ -1050,6 +1054,9 @@ ol {
 
 .rating i.fa-star::before {
   content: "\f005"; /* 전체 별 아이콘 코드 */  
+=======
+	color: #ffce00;
+>>>>>>> refs/remotes/origin/young
 }
 
 .anime__details__rating .rating i {

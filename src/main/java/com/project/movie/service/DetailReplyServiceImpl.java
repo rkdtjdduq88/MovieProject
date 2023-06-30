@@ -18,16 +18,7 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 	@Autowired
 	private FavoriteMapper favoriteMapper;
 	
-//	// 리뷰댓글 전체 조회
-//	@Override
-//	public MovieDetailReplyCntDTO getList(String title) {
-//		// 기존 리뷰댓글 전체 목록 조회
-//		List<MovieDetailReplyDTO> list = movieDetailReplyMapper.detailReplyList(title);
-//		// 특정 영화에 대한 리뷰댓글 총 개수 조회 기능 추가
-//		int replyCnt = movieDetailReplyMapper.getCountByTitle(title);
-//		
-//		return new MovieDetailReplyCntDTO(replyCnt, list);
-//	}
+
 	// 리뷰댓글 전체 조회
 	@Override
 	public MovieDetailReplyCntFavDTO getList(String title) {
@@ -70,5 +61,3 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 	public int avgGrade(String title) {		
 		return movieDetailReplyMapper.avgGrade(title);
 	}
-
-}

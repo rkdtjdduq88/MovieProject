@@ -1,8 +1,5 @@
 package com.project.movie.response;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 
 import org.springframework.stereotype.Component;
 
@@ -19,11 +16,9 @@ import lombok.NoArgsConstructor;
 public class KmdbReq {
 	
 	private String ServiceKey = "8HPI107SND9Z42R0OM7H";	
-//	private String collection= "kmdb_new";
 	private String query= "";		
-	LocalDate today = LocalDate.now();
-	String year = today.format(DateTimeFormatter.ofPattern("YYYY"));
-	private String releaseDts=year;	
+	private String releaseDts = "";	
+
 	
 		public KmdbReq(String query) {
 			super();
@@ -43,11 +38,11 @@ public class KmdbReq {
 		LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		
 		map.add("ServiceKey", ServiceKey);		
-//		map.add("collection", collection);
 		map.add("query", query);		
 		map.add("releaseDts", releaseDts);		
 		
 		return map;		
 	}
+	
 
 }

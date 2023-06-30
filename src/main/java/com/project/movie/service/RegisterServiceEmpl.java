@@ -34,4 +34,7 @@ public class RegisterServiceEmpl implements RegisterService {
 	public MemberDTO login(String userid) {
 	    return mapper.login(userid);
 	}
+
 }
+
+

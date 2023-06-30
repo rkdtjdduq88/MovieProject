@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+/**
+ *
+ */
+>>>>>>> refs/remotes/origin/young
 document.addEventListener("DOMContentLoaded", function () {
   var registerBtn = document.querySelector("#registerBtn");
   registerBtn.addEventListener("click", redirectToRegister);

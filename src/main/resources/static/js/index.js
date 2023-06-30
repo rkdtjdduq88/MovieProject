@@ -20,7 +20,7 @@ function fetchAndDisplayMovies() {
       data.list.forEach(function (movie) {
         // 영화 랭킹 아이템을 생성하여 문자열에 추가
         var movieItem = `
-          <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="product__item">
                   <div class="product__item__pic set-bg" data-setbg="${movie.posterUrl}" style="background-image: url('${movie.posterUrl}')">
                       <div class="ep">${movie.rank}위</div>
@@ -32,7 +32,7 @@ function fetchAndDisplayMovies() {
                           <li>활동중</li>
                           <li>영화</li>
                       </ul>
-                      <h5><a href="/movie/details?movieNm=${movie.movieNm}&movieDt=${movie.releaseDate}">${movie.movieNm}</a></h5>
+                      <h5><a href="/movie/details?movieNm=${movie.movieNm}&movieDt=${movie.openDt}">${movie.movieNm}</a></h5>
                   </div>
               </div>
           </div>

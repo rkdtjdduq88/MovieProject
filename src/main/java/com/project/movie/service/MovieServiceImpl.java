@@ -48,18 +48,20 @@ public class MovieServiceImpl implements MovieService{
 				//영화이름 가져오기
 				String movieName = item.getMovieNm();			
 				// 개봉일 가져오기
+
 				String openDt = item.getOpenDt();				
 				
 				// KMDB request 작업(1~10위까지의 박스오피스영화의 영화이름을 요청)
 				KmdbReq kmdbReq = new KmdbReq(movieName,openDt);
 				String movieNm = kmdbReq.getQuery().replaceAll("[\"\\s\\p{Punct}]", "");
 				kmdbReq.setQuery(movieNm);
+
 				// KMDB response 받았음
 				KmdbRes kmdbRes = kmdbAndKobisClient.searchKmdb(kmdbReq);
 				
 				//kmdbResList.add(kmdbRes);
 				//최종 응답 객체 데이터 담기
-				dto.setMovieNm(movieName);
+				dto.setMovieNm(movieNm);
 				dto.setRank(item.getRank());
 				dto.setPosterUrl(kmdbRes.getPosterUrl());
 				dto.setGenre(kmdbRes.getGenre());
@@ -73,10 +75,26 @@ public class MovieServiceImpl implements MovieService{
 		return totalRes;	
 	}
 
+	
 	@Override
 	public List<KmdbRes> carouselMovie() {
 		KmdbCarouselReq carouselreq = new KmdbCarouselReq();
 		List<KmdbRes> carouselRes = kmdbAndKobisClient.searchKmdbCarousel(carouselreq);
 		return carouselRes;
+	}
+		
+	public List<KmdbRes> search(String query) {
+		// 요청
+		
+		KmdbReq kmdbReq = new KmdbReq(query);
+//		KmdbReq kmdbReq = new KmdbReq(query.replaceAll("\\s", ""));
+		List<KmdbRes> kmdbRes = kmdbAndKobisClient.searchMovies(kmdbReq);
+		
+		System.out.println("영화 여러개 넘어오는지 확인"+kmdbRes);
+		return kmdbRes;
 	}	
+	
+	
+	
+	
 }

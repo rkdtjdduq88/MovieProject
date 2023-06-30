@@ -40,17 +40,41 @@ public class HomeController {
 	}	
 	
 	@GetMapping("/movie/details")
-	  public String movieDetails(Model model, String movieNm, String movieDt,String title) {
-		log.info("상세페이지 폼 요청");
+	  public String movieDetails(Model model, String movieNm, String movieDt) {
+		log.info("박스오피스 상세페이지 폼 요청");
+
 
 		TotalRes kres = movieService.movie();
-		KmdbRes res = movieDetailService.getDetails(movieNm, movieDt);	
-				
+		System.out.println("상세 폼 "+kres);
+		String rOpenDt = movieDt.replaceAll("-", "");
+		System.out.println("개봉일 확인 "+rOpenDt);
+		KmdbRes res = movieDetailService.getDetails(movieNm, rOpenDt);	
+
+		System.out.println("확인 "+res);
+		
 		res.setGrade(detailReplyService.avgGrade(movieNm));		
 		
 		model.addAttribute("detail", res);
 		model.addAttribute("list",kres.getList());
-										
+				
+
 		return "/movie/movie-details";
-	  }
+	}
+		
+										
+	@GetMapping("/search")
+	public String searchList(String query, Model model){
+		log.info("영화 검색 ");
+		model.addAttribute("list",movieService.search(query));
+		model.addAttribute("query",query);
+		return "/movie/search";
+	}
+
+	@GetMapping("/showWish")
+	public String getWish() {
+		log.info("위시리스트 조회");
+		
+		return "/movie/wishList";
+	}
+	
 }

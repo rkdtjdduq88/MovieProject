@@ -11,7 +11,8 @@
 </section>
 <!-- Hero Section End -->
 
-<!-- Movie Rank List Begin -->
+<!-- Movie Rank List Begin -->  
+
 <section class="product spad">
 	<div class="container">
 		<div class="row">
@@ -34,7 +35,7 @@
 						<!-- Add more movie ranking items here -->
 						
 					</div>
-				</div>
+				</div>  
 			</div>
 			<!-- product__sidebar Start -->
 			<div class="col-lg-4 col-md-6 col-sm-4">
@@ -133,11 +134,11 @@
 			<div class="search-close-switch">
 				<i class="icon_close"></i>
 			</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
+			<form class="search-model-form" action="/search">
+				<input type="text" id="search-input" placeholder="Search here....." name="query">
 			</form>
 		</div>
-	</div>
+	</div>        
 	
 	
 	<!-- Search model end -->	

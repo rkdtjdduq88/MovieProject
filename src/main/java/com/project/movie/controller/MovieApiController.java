@@ -44,12 +44,7 @@ public class MovieApiController {
 		return res;
 	}
 	
-//	@GetMapping("/carousel")
-//	public TotalRes mainCarousel() {		
-//		log.info("검색 요청 ");
-//		
-//		return movieService.movie();
-//	}	
+
 	@GetMapping("/carousel")
 	public List<KmdbRes> mainCarousel() {		
 		log.info("검색 요청 ");

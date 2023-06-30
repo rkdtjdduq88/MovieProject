@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>    
     </div>
     <!-- Breadcrumb End -->
 
@@ -23,20 +23,22 @@
         <div class="container">
             <div class="anime__details__content">
            
-           
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="${detail.posterUrl} "> <!-- /img/anime/details-pic.jpg -->
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
+                   
+		            <div class="col-lg-3">
+					  <div class="anime__details__pic set-bg" data-setbg="${empty detail.posterUrl ? 'https://www28.cs.kobe-u.ac.jp/wp-content/uploads/2021/04/noimage.png' : detail.posterUrl}">
+					    <div class="comment"><i class="fa fa-comments"></i> 11</div>
+					    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+					  </div>
+					</div>
+	
+					 <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
                                 <h3>${detail.title}</h3>
                                 <span>${detail.directorNm}</span>
                             </div>
+                            <!-- 평점수정 -->
                             <div class="anime__details__rating">
                                 <div class="rating">
                                 	<h6>${detail.grade}</h6>
@@ -54,6 +56,8 @@
 								    %>
                                 </div>
                                 <span>평점 수정하기</span>
+                                
+                                 
                             </div>
                             <p>${detail.plot }</p>
                             <div class="anime__details__widget">
@@ -72,7 +76,6 @@
 										  </c:forEach>
 										</li>
                                        
-
                                           
                                         </ul>
                                     </div>
@@ -88,17 +91,43 @@
 									    <li><span>Views:</span> ${list.audiAcc} 명</li>
 									  </c:if>
 									</c:forEach>
+										 <li><span>ReleaseDate:</span> ${detail.releaseDate}</li>
        
  										</ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
+                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Add wishlist</a>
                                 <a href="#" class="watch-btn"><span>Watch Now</span> <i
                                     class="fa fa-angle-right"></i></a>
                                 </div>
+                      
                             </div>
+                                    
+                       <c:if test="${not empty detail.stills}">
+			                    <div class="description-wrapper">
+							        <div>still cut</div>
+							    </div>
+						<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+							  <div class="carousel-inner">
+							    <c:forEach items="${detail.stills}" var="still" varStatus="status">
+							      <div class="carousel-item ${status.first ? 'active' : ''}">
+							        <img src="${still}" class="d-block w-100" alt="Still Image">
+							      </div>
+							    </c:forEach>
+							  </div>
+							  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="visually-hidden"></span>
+							  </button>
+							  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="visually-hidden"></span>
+							  </button>
+							</div>
+						</c:if>                    
+							
                         </div>
                     </div>
                     
@@ -138,9 +167,9 @@
 						    </div>
 						  </div>
 						</div>
-												
-						
-						<!-- 댓글 수정 폼 종료(모달) -->
+		 						 
+	                  <!-- 댓글 수정 폼 종료(모달) -->
+
                         <div class="anime__details__form">
                             <form action="" id="insertForm">
 	                            <div class="section-title">
@@ -148,6 +177,7 @@
 	                            	<input type="text" class="userid" id="userid" value="${userid}" readonly />
 	                            </div>
 	                                <textarea placeholder="Your Comment" id="replyContent"></textarea>
+
 		                                <div class="rating">
 		                                    <i class="fa fa-star-o" data-value="1"></i>
 		                                    <i class="fa fa-star-o" data-value="2"></i>
@@ -156,9 +186,11 @@
 		                                    <i class="fa fa-star-o" data-value="5"></i>	                                    
 		                                </div>
 		                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>	                                                              
+
                             </form>
                         </div>
                     </div>
+
                                                 
                     <!-- 댓글 작업 종료 -->
                     <div class="col-lg-4 col-md-4">
@@ -195,25 +227,34 @@
 
 <%@ include file="../include/footer.jsp" %>
 
-      <!-- Search model Begin -->
-      <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search model end --> 
-    
+          <!-- Search model Begin -->
+          <div class="search-model">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-switch"><i class="icon_close"></i></div>
+                <form class="search-model-form" action="/search">
+                    <input type="text" id="search-input" placeholder="Search here....." name="query">
+                </form>
+            </div>
+        </div>  
+        <!-- Search model end -->
       
+  <form action="/wish/new" id="wishForm" method="post">
+ 	<input type="hidden" name="title" value="${detail.title}" />
+ 	<input type="hidden" name="directorNm" value="${detail.directorNm}" />
+ 	<input type="hidden" name="releaseDate" value="${detail.releaseDate}" />
+ 	<input type="hidden" name="posterUrl" value="${detail.posterUrl}" />
+ 	<input type="hidden" name="userid" value="${userid}" />
+ </form> 
     
 	<script>
-	const title = '${detail.title}';
-	const userid = '${userid}';	
+		const title = '${detail.title}';
+		const userid = '${userid}';	
 	</script>
+	            
 	<!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- sweet alert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
     <!-- Js Plugins -->
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -223,7 +264,13 @@
     <script src="/js/jquery.slicknav.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/moviedetail.js"></script>
 </body>
 
 </html>
+
+
+  
+
+
