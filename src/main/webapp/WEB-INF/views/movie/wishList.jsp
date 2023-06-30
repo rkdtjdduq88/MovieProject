@@ -173,7 +173,7 @@
             <input type="text" id="search-input" placeholder="Search here....." name="query">
         </form>
     </div>
-</div>
+</div> 
 <!-- Search model end -->
          
 <!-- Js Plugins -->
