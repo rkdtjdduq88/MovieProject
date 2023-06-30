@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,12 +102,15 @@
                     <div class="register__form">
                         <h3>회원가입</h3>
                         <div id="notification" class="notification"></div>
-                        <form id="register-form" method="post">
-                            <div class="input__item">
-                            	<input type="text" placeholder="아이디" id="userid" name="userid">
-                            	<span class="icon_profile"></span>
-                       		</div>
-                        	<div class="input__item">
+                        <form action='<c:url value="/login-register" />' method="post" novalidate id="register-form">
+							<div class="input__item">
+								<input type="text" class="form-control" id="userid"
+									name="userid" placeholder="아이디" required
+									pattern="^(?=[A-Za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{5,12}$">
+									<button type="button" class="w-100 btn btn-danger">중복아이디</button>
+								<span class="icon_profile"></span>
+							</div>
+							<div class="input__item">
                             	<input type="password" placeholder="비밀번호" id="password" name="password">
                             	<span class="icon_lock"></span>
                         	</div>
@@ -125,6 +130,8 @@
 	                            <input type="tel" placeholder="전화번호" id="mobile" name="mobile">
 	                            <span class="icon_phone"></span>
 	                        </div>
+	                        
+	                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <button type="submit" class="site-btn">회원가입</button>
                         </form>
                     </div>

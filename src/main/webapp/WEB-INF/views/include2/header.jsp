@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -175,7 +175,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"> <security:authorize
 										access="isAuthenticated()">
 										<security:authentication
-											property="principal.memberDTO.username" />
+											property="principal.memberDTO.userid" />
 									</security:authorize>
 							</span> <img class="img-profile rounded-circle"
 								src="/img/undraw_profile.svg">
@@ -191,24 +191,25 @@
 								</a>
 								<div class="dropdown-divider"></div>
 								
-								<div id="page-inner">
-
 									<!-- 인증 정보 여부에 따라 Login / Logout 메뉴 설정 -->
-								<%-- <security:authorize access="!isAuthenticated()"> --%>
 								<security:authorize access="isAnonymous()">
-									<a class="dropdown-item" href="/member/login"> <i
+									<a class="dropdown-item" href="/login"> <i
 										class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 										Login
 									</a>
 								</security:authorize>
 
 								<security:authorize access="isAuthenticated()">
-									<a class="dropdown-item" href="#" data-toggle="modal"
-										data-target="#logoutModal"> <i
+								<form action="/logout" method="post">
+									<button class="dropdown-item" href="#" data-toggle="modal"
+										data-target="#logoutModal" type="submit"> <i
 										class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 										Logout
-									</a>
+									</button>
+								</form>
 								</security:authorize>
+								
 							</div>
 						</li>
 					</ul>

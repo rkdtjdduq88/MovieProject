@@ -1,6 +1,8 @@
 package com.project.movie.domain;
 
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +19,7 @@ public class MemberDTO {
 	private String address;
 	private String name;
 	private String mobile;
+	
+	private List<MemberAuthDTO> authorities;
 
 }

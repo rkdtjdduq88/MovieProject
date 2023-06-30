@@ -5,9 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 import com.project.movie.domain.MemberDTO;
 
 @Mapper
-public interface RegisterMapper {
+public interface MemberMapper {
 	public MemberDTO read(String userid);
 
-	public int insert(MemberDTO dto);
+	public int dupId(String userid);
 
 }

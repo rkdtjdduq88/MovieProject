@@ -85,4 +85,20 @@ public class BoardServiceImpl implements BoardService {
 	public MemberDTO getMemberByUserId(String userId) {
 		return boardMapper.getMemberByUserId(userId);
 	}
+
+	@Override
+	public List<BlogCommentDTO> getRepliesByComment(int rno) {
+		return boardMapper.getRepliesByComment(rno);
+	}
+
+	@Override
+	public void insertReply(BlogCommentDTO reply) {
+		boardMapper.insertReply(reply);
+		
+	}
+
+	@Override
+	public BlogCommentDTO getParentCommentByRno(int rno) {
+		return boardMapper.getParentCommentByRno(rno);
+	}
 }

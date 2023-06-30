@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>'
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -35,9 +35,9 @@
 
 <body>
 	<!-- Page Preloder -->
-	<div id="preloder">
+<!-- 	<div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 
 	<!-- Header Section Begin -->
 	<header class="header">
@@ -60,8 +60,26 @@
 										<li><a href="./categories.html">Categories</a></li>
 										<li><a href="./anime-details.html">Anime Details</a></li>
 										<li><a href="./anime-watching.html">Anime Watching</a></li>
-										<li><a href="./blog-details.html">Blog Details</a></li>
-										<li><a href="./login">Login</a></li>
+										<li><a href="/movie/movie-details">Blog Details</a></li>
+										
+										<security:authorize access="!isAuthenticated()">
+										<li><a href="/login">Login</a></li>
+										<li><a href="/login-register">Register</a></li>
+										</security:authorize>
+
+										<security:authorize access="isAuthenticated()">
+											<li>
+												<form action="/logout" method="post">
+													<button class="dropdown-item" href="#" data-toggle="modal"
+														data-target="#logoutModal" type="submit">
+														<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+														<input type="hidden" name="${_csrf.parameterName}"
+															value="${_csrf.token}" /> Logout
+													</button>
+												</form>
+											</li>
+										</security:authorize>
+										
 									</ul></li>
 								<li><a href="/blog">Our Blog</a></li>
 								<li><a href="main-board">Admin Board</a></li>

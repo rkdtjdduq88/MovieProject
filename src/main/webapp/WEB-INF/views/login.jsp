@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,8 +59,23 @@
                                         <li><a href="/details">Movie Details</a></li>
                                         <li><a href="./anime-watching.html">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./login">Login</a></li>
-                                    </ul>
+                                        
+                                        <security:authorize access="!isAuthenticated()">
+										<li><a href="/login">Login</a></li>
+										<li><a href="/login-register">Register</a></li>
+										</security:authorize>
+
+										<security:authorize access="isAuthenticated()">
+											<li><a href="/logout">
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" />Logout
+												</a>
+											</li>
+											<li><a href="/changePwd">Change Information</a></li>
+											<li><a href="/leave">Withdrawal</a></li>
+											</li>
+										</security:authorize>
+									</ul>
                                 </li>
                                 <li><a href="blog">Our Blog</a></li>
 								<li><a href="main-board">Admin Board</a></li>
@@ -99,15 +117,21 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>로그인</h3>
-                        <form action="#">
+                        <form method="post" action='<c:url value="/login"/>'>
                             <div class="input__item">
-                                <input type="text" placeholder="Userid">
+                                <input type="text" name="username" placeholder="Userid">
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="password" placeholder="Password">
+                                <input type="password" placeholder="Password" name="password">
                                 <span class="icon_lock"></span>
                             </div>
+							<div class="checkbox mb-3">
+								<label> <input type="checkbox" value="remember-me">
+									Remember me
+								</label>
+							</div>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <button type="submit" class="site-btn">로그인</button>
                         </form>
                         <a href="#" class="forget_pass">비밀번호 찾기</a>
@@ -186,7 +210,6 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/login.js"></script>
-
 
 </body>
 

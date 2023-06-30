@@ -39,7 +39,8 @@
 			</div>
 			<div class="form-group">
 				<label for="userid">User</label>
-				<input type="text" class="form-control" id="userid" name="userid">
+				<input type="text" class="form-control" id="userid" name="userid" readonly 
+						value='<security:authentication property="principal.username"/>'>
 				<div class="invalid-feedback">
 					작성자를 확인해주세요.
 				</div>

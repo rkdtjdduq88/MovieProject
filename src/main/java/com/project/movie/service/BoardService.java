@@ -9,7 +9,7 @@ import com.project.movie.domain.BoardDTO;
 import com.project.movie.domain.MemberDTO;
 
 public interface BoardService {
-	public List<BoardDTO> getBoardList(int page, int recordSize);
+	List<BoardDTO> getBoardList(int page, int recordSize);
 
 	int getBlogCount(); // 게시글 수 카운팅
 
@@ -22,12 +22,18 @@ public interface BoardService {
 	BlogCommentDTO getComment(int rno);
 
 	List<BlogCommentDTO> getCommentsByBoard(int bno);
+	
+	List<BlogCommentDTO> getRepliesByComment(int rno); // 대댓글 조회 메서드 추가
+
+	void insertReply(BlogCommentDTO reply); // 대댓글 추가 메서드 추가
 
 	void updateComment(BlogCommentDTO comment);
 
 	void deleteComment(int rno);
 	
-	public boolean insert(MemberDTO dto);
+	boolean insert(MemberDTO dto);
 	
 	MemberDTO getMemberByUserId(String userId);
+
+	BlogCommentDTO getParentCommentByRno(int rno);
 }

@@ -1,8 +1,13 @@
 /**
  *
  */
-document.getElementById("register-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // 기본 동작 중단
+const form=document.getElementById("register-form");
+form.addEventListener("submit", function(event) {
+    if(!form.checkValidity()){
+		e.preventDefault();
+		e.stopPropagation();
+	}
+	form.classList.add("was-validated");
 
     // 입력값 가져오기
     var userid = document.getElementById("userid").value;
@@ -44,4 +49,21 @@ document.getElementById("register-form").addEventListener("submit", function(eve
 
     // AJAX 요청 전송
     xhr.send(params);
+});
+
+document.querySelector(".btn-danger").addEventListener("click", () => {
+    // 사용자가 입력한 userid 가져오기
+    const userid = document.querySelector("#userid").value;
+    fetch(`/dupId?userid=${userid}`, {
+        method: "get"
+    })
+        .then((response) => response.text())
+        .then((result) => {
+            console.log(result);
+            if (result.trim() === "true") {
+                alert("아이디를 사용할 수 있습니다.");
+            } else {
+                alert("아이디를 사용할 수 없습니다.");
+            }
+        });
 });

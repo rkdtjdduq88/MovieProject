@@ -58,7 +58,7 @@ public class MovieBoardController {
 	}
 	
 	// register.jsp 보여주기
-//	@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
 	public void registerForm() {
 		log.info("register form request");
@@ -117,7 +117,7 @@ public class MovieBoardController {
 	}
 	
 	@GetMapping("/remove")
-//	@PreAuthorize("principal.username == #userid") // 로그인 사용자 == 작성자
+	@PreAuthorize("principal.username == #userid") // 로그인 사용자 == 작성자
 	public String removeGet(int bno, String userid, RedirectAttributes rttr, Criteria cri) {
 
 		// 폴더에서 첨부파일 제거

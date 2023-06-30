@@ -1,5 +1,4 @@
 
-
 	<!-- Footer Section Begin -->
 	<footer class="footer">
 		<div class="page-up">
@@ -19,8 +18,8 @@
 							<li><a href="./categories.html">Categories</a></li>
 							<li><a href="blog">Our Blog</a></li>
 							<li><a href="main-board">Admin Board</a></li>
-						</ul>
-					</div>
+					</ul>
+				</div>
 				</div>
 				<div class="col-lg-3">
 					<p>
