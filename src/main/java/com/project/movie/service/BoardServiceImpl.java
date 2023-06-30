@@ -1,7 +1,8 @@
 package com.project.movie.service;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -53,8 +54,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void updateComment(BlogCommentDTO comment) {
-		boardMapper.updateComment(comment);
+	public void updateComment(BlogCommentDTO dto) {
+		boardMapper.updateComment(dto);
 	}
 
 	@Override
@@ -84,10 +85,13 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.getMemberByUserId(userId);
 	}
 
-	@Override
-	public List<BlogCommentDTO> getCommentsByBoard(int bno) {
-		return boardMapper.getCommentsByBoard(bno);
-	}
+	  @Override
+	    public List<BlogCommentDTO> getCommentsByBoard (int bno) {
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("bno", bno);
+	        return boardMapper.getCommentsByBoard(map);
+	    }
+
 
 	@Override
 	public BlogCommentDTO getParentCommentByRno(int rno) {

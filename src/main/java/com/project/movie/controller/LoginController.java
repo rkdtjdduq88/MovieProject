@@ -10,12 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.movie.dto.MemberDTO;
 import com.project.movie.service.BoardService;
 
 @Controller
+
 public class LoginController {
 	@Autowired
 	public BCryptPasswordEncoder passwordEncoder;
@@ -55,12 +57,12 @@ public class LoginController {
 		return "agree";
 	}
 
-	@GetMapping("/register")
+	@GetMapping("/login-register")
 	public String RegisterPage() {
-		return "register";
+		return "login-register";
 	}
 
-	@PostMapping("/register")
+	@PostMapping("/login-register")
 	public ResponseEntity<Object> insertPost(MemberDTO dto) {
 		try {
 			boolean insertFlag = service.insert(dto);

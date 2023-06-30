@@ -51,7 +51,8 @@ public class MovieServiceImpl implements MovieService{
 				
 				// KMDB request 작업(1~10위까지의 박스오피스영화의 영화이름을 요청)
 				KmdbReq kmdbReq = new KmdbReq(movieName,openDt);
-				
+				String movieNm = kmdbReq.getQuery().replaceAll("[\"\\s\\p{Punct}]", "");
+	            kmdbReq.setQuery(movieNm);
 				// KMDB response 받았음
 				KmdbRes kmdbRes = kmdbAndKobisClient.searchKmdb(kmdbReq);
 				

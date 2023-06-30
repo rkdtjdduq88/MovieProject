@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
@@ -58,14 +59,13 @@
 										class="arrow_carrot-down"></span></a>
 									<ul class="dropdown">
 										<li><a href="./categories.html">Categories</a></li>
-										<li><a href="/movie/movie-details/">Anime Details</a></li>
+										<li><a href="./anime-details.html">Anime Details</a></li>
 										<li><a href="./anime-watching.html">Anime Watching</a></li>
 										<li><a href="./blog-details.html">Blog Details</a></li>
-										<li><a href="./signup.html">Sign Up</a></li>
-										<li><a href="./login.html">Login</a></li>
+										<li><a href="./login">Login</a></li>
 									</ul></li>
 								<li><a href="/blog">Our Blog</a></li>
-								<li><a href="#">Contacts</a></li>
+								<li><a href="main-board">Admin Board</a></li>
 							</ul>
 						</nav>
 					</div>

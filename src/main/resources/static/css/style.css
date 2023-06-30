@@ -1457,6 +1457,55 @@ pagination
   Blog Details
 -----------------------*/
 
+
+/* 버튼꾸미기 */
+.btn-primary,
+.btn-danger,
+.btn-confirm {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover,
+.btn-danger:hover,
+.btn-confirm:hover {
+  background-color: #555;
+}
+
+.btn-primary:focus,
+.btn-danger:focus,
+.btn-confirm:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn-confirm {
+  background-color: #800000;
+}
+
+.btn-confirm:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.btn-confirm:disabled:hover {
+  background-color: #555;
+}
+
+.btn-confirm.success {
+  background-color: #a60000;
+}
+
+.btn-confirm.error {
+  background-color: #FF0000;
+}
+
+/*  버튼꾸미기 끝*/
 .blog-details {
 	padding-top: 70px;
 }
@@ -2397,7 +2446,8 @@ pagination
 		display: none;
 	}
 	.hero__items {
-		padding: 250px 0 42px 15px;
+	border-radius: 5px;
+   background-size: contain; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%;
 	}
 	.hero__text h2 {
 		font-size: 32px;

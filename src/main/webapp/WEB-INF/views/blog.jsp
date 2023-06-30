@@ -15,54 +15,68 @@
 	</div>
 </section>
 <!-- Normal Breadcrumb End -->
-<!-- Blog Section Begin -->
-<section class="blog spad">
-	<div class="container">
-		<div class="row">
-			<c:forEach var="board" items="${boardList}">
-				<div class="col-lg-6">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="blog__item set-bg"
-								data-setbg="/img/${board.attach}.jpg">
-								<div class="blog__item__text">
-									<p>
-										<span class="icon_calendar"></span>
-										<fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd" />
-									</p>
-
-									<h4>
-										<a href="/blog-details/${board.bno}">${board.title}</a>
-									</h4>
-
-								</div>
-							</div>
-						</div>
-						<!-- Repeat the above structure for other blog items -->
-					</div>
+				<!-- Blog Section Begin -->
+				<section class="blog spad">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="board" items="${boardList}">
+				    <div class="col-lg-6">
+				        <div class="row">
+				          <div class="col-lg-12">
+				    <div class="blog__item set-bg" data-setbg="/img/${board.attach}">
+				        <div class="blog__item__text">
+				            <p>
+				                <span class="icon_calendar"></span>
+				                <fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd" />
+				            </p>
+				            <h4>
+				                <a href="/blog-details/${board.bno}">${board.title}</a>
+				            </h4>
+				        </div>
+				    </div>
 				</div>
-			</c:forEach>
+            <!-- Repeat the above structure for other blog items -->
+        </div>
+    </div>
+</c:forEach>
 		</div>
 	</div>
 <!--Pagenation begin  -->
 <div class="pagination">
-	<c:if test="${currentPage > 1}">
-		<a href="/blog?page=${currentPage - 1}">Previous</a>
-	</c:if>
-	<c:forEach var="pageNumber" begin="1" end="${totalPages}">
-		<c:choose>
-			<c:when test="${pageNumber == currentPage}">
-				<a class="active" href="/blog?page=${pageNumber}">${pageNumber}</a>
-			</c:when>
-			<c:otherwise>
-				<a href="/blog?page=${pageNumber}">${pageNumber}</a>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-	<c:if test="${currentPage < totalPages}">
-		<a href="/blog?page=${currentPage + 1}">Next</a>
-	</c:if>
+  <c:if test="${currentPage > 1}">
+    <a href="/blog?page=${currentPage - 1}">Previous</a>
+  </c:if>
+  
+  <c:set var="startPage" value="${currentPage - 2}" />
+  <c:choose>
+    <c:when test="${startPage < 1}">
+      <c:set var="startPage" value="1" />
+    </c:when>
+  </c:choose>
+  
+  <c:set var="endPage" value="${currentPage + 2}" />
+  <c:choose>
+    <c:when test="${endPage > totalPages}">
+      <c:set var="endPage" value="${totalPages}" />
+    </c:when>
+  </c:choose>
+  
+  <c:forEach var="pageNumber" begin="${startPage}" end="${endPage}">
+    <c:choose>
+      <c:when test="${pageNumber == currentPage}">
+        <a class="active" href="/blog?page=${pageNumber}">${pageNumber}</a>
+      </c:when>
+      <c:otherwise>
+        <a href="/blog?page=${pageNumber}">${pageNumber}</a>
+      </c:otherwise>
+    </c:choose>
+  </c:forEach>
+  
+  <c:if test="${currentPage < totalPages}">
+    <a href="/blog?page=${currentPage + 1}">Next</a>
+  </c:if>
 </div>
+
 <!--Pagenation end-->
 </section>
 <!-- Blog Section End -->

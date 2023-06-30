@@ -6,7 +6,7 @@
 	<select id="getBoardList"
 		parameterType="com.project.movie.dto.BoardDTO"
 		resultType="com.project.movie.dto.BoardDTO">
-		SELECT bno, title, content, attach, regdate, updateddate,
+		SELECT bno, title, content, attach, regdate, updatedate,
 		re_ref, re_lev, re_seq, cnt, userid FROM movieboard_tbl ORDER BY
 		bno
 		DESC
@@ -31,18 +31,10 @@
 	</resultMap>
 
 	<!-- 댓글 삽입 -->
-	<insert id="insertComment"
-		parameterType="com.project.movie.dto.BlogCommentDTO">
-		<selectKey keyProperty="rno" resultType="int" order="BEFORE">
-			SELECT
-			rno_seq.nextval FROM dual
-		</selectKey>
-		INSERT INTO movieboardreply_tbl (bno, rno, replycontent, userid,
-		replydate, replyupdatedate)
-		VALUES (#{bno}, #{rno}, #{replyContent},
-		#{userid}, sysdate, sysdate)
-	</insert>
-
+<insert id="insertComment" >
+  INSERT INTO movieboardreply_tbl (bno, rno, replyContent, userid, replydate, replyupdatedate, re_ref, re_lev, re_seq)
+  VALUES (#{bno}, rno_seq.NEXTVAL, #{replyContent}, #{userid}, SYSDATE, SYSDATE, #{bno}, 0, 0)
+</insert>
 	<select id="getComment" parameterType="int"
 		resultMap="commentResultMap">
 		SELECT bno, rno, replycontent, userid, replydate,
@@ -51,37 +43,31 @@
 		WHERE rno = #{rno}
 	</select>
 
-	<!-- 대댓글 가져오기 -->
-	<select id="getRepliesByComment" parameterType="int"
-		resultMap="commentResultMap">
-		SELECT bno, rno, replycontent, userid, replydate, replyupdatedate
-		FROM movieboardreply_tbl
-		WHERE bno = #{bno}
-		AND rno = #{rno}
-		ORDER BY replydate
-	</select>
-	<!-- 대댓글 작성 -->
-	<insert id="insertReply"
-		parameterType="com.project.movie.dto.BlogCommentDTO">
-		<selectKey keyProperty="rno" resultType="int" order="BEFORE">
-			SELECT rno_seq.nextval FROM dual
-		</selectKey>
-		INSERT INTO movieboardreply_tbl (bno, rno, replycontent, userid,
-		replydate, replyupdatedate)
-		VALUES (#{bno}, #{rno}, #{replyContent}, #{userid}, sysdate, sysdate)
-	</insert>
+
+	<!-- 대댓글 삽입 -->
+<insert id="insertReply">
+  INSERT INTO movieboardreply_tbl (bno, rno, replyContent, userid, replydate, replyupdatedate, re_ref, re_lev, re_seq)
+  VALUES (#{bno}, rno_seq.NEXTVAL, #{replyContent}, #{userid}, SYSDATE, SYSDATE, #{re_ref}, #{re_lev}, #{re_seq})
+</insert>
+
+    <select id="getRepliesByComment" parameterType="int" resultType="com.project.movie.dto.BlogCommentDTO">
+        SELECT *
+        FROM movieboardreply_tbl
+        WHERE re_ref = #{commentId}
+        ORDER BY re_seq ASC
+    </select>
+
+<!-- 댓글과 대댓글 조회 -->
+<select id="getCommentsByBoard" parameterType="map" resultType="com.project.movie.dto.BlogCommentDTO">
+ SELECT
+  *
+  FROM movieboardreply_tbl r
+  WHERE r.bno = #{bno}
+  ORDER BY replydate
+</select>
 
 
-	<!-- 부모 댓글과 대댓글 모두 가져오기 -->
-	<select id="getCommentsByBoard" parameterType="int"
-		resultMap="commentResultMap">
-		SELECT bno, rno, replycontent, userid, replydate,
-		replyupdatedate
-		FROM movieboardreply_tbl
-		WHERE bno = #{bno}
-		ORDER BY
-		replydate
-	</select>
+
 
 	<!-- 부모 댓글 가져오기 -->
 	<select id="getParentCommentByRno" parameterType="int"
@@ -91,14 +77,12 @@
 		WHERE rno = #{rno}
 	</select>
 
-	<update id="updateComment"
-		parameterType="com.project.movie.dto.BoardDTO">
-		UPDATE movieboardreply_tbl
-		SET replycontent =
-		#{replyContent}, replyupdatedate = #{replyUpdateDate}
-		WHERE rno =
-		#{rno}
-	</update>
+	   <update id="updateComment" parameterType="com.project.movie.dto.BoardDTO">
+        UPDATE movieboardreply_tbl
+        SET replycontent = #{replyContent},
+            replyupdatedate = #{replyUpdateDate}
+        WHERE rno = #{rno}
+    </update>
 
 	<delete id="deleteComment" parameterType="int">
 		DELETE FROM

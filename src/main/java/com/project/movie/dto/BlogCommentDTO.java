@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BlogCommentDTO {
+	  private int re_ref;
+	    private int re_lev;
+	    private int re_seq;
     private int bno;
     private int rno;
     private String replyContent;

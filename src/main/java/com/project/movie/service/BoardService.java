@@ -23,7 +23,7 @@ public interface BoardService {
 
 	void insertReply(BlogCommentDTO reply); // 대댓글 추가 메서드 추가
 
-	void updateComment(BlogCommentDTO comment);
+	void updateComment(BlogCommentDTO dto);
 
 	void deleteComment(int rno);
 

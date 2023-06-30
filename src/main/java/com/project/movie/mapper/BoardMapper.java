@@ -1,6 +1,7 @@
 package com.project.movie.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -29,7 +30,7 @@ public interface BoardMapper {
 	
 	 void insertReply(BlogCommentDTO reply); //대댓글 입력
 
-	void updateComment(BlogCommentDTO comment);
+	void updateComment(BlogCommentDTO dto);
 
 	void deleteComment(int rno);
 	
@@ -38,6 +39,6 @@ public interface BoardMapper {
      MemberDTO getMemberByUserId(String userId);  //로그인 정보 가져오기
     List<BlogCommentDTO> getParentCommentsByBoard(int bno);
     List<BlogCommentDTO> getRepliesByParentComment(int bno);
-    List<BlogCommentDTO> getCommentsByBoard(int bno);
+    List<BlogCommentDTO> getCommentsByBoard(Map<String, Object> map);
     BlogCommentDTO getParentCommentByRno(int rno);
 }

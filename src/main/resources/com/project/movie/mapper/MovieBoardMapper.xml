@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.movie.mapper.MovieBoardMapper">
+
+<!-- 전체 조회(페이지 나눈 후) -->
+<select id="list" resultType="com.project.movie.dto.MovieBoardDTO">
+<![CDATA[
+SELECT BNO, TITLE, USERID, REGDATE, UPDATEDATE, CNT
+FROM (SELECT /*+INDEX_DESC(movieboard_tbl PK_movieboard)*/ ROWNUM RN, BNO, TITLE, USERID, REGDATE, UPDATEDATE, CNT
+      FROM movieboard_tbl
+      WHERE 
+]]>      
+   <include refid="criteria"></include>   
+<![CDATA[   
+      ROWNUM<=#{page}*#{amount})
+WHERE RN>(#{page}-1)*#{amount}
+]]> <!-- 이 안에 넣어주면 <,> 기호가 크다, 작다를 의미하는 기호야~라고 인식시켜 주는 것이다. -->
+</select>
+
+<!-- 전체 게시물 개수: totalCnt -->
+<select id="totalCnt" resultType="java.lang.Integer">
+    select count(*) from movieboard_tbl
+    where
+    <include refid="criteria"></include>
+    bno > 0
+</select>
+
+<!-- 댓글 수 추가 -->
+<!-- <update id="updateReplyCnt" >
+   update movieboard_tbl set replycnt=replycnt+#{amount}
+   where bno=#{bno}
+</update> -->
+
+<!-- 동적 쿼리 
+    board/list?page=1&amount=10&type=C&keyword=스프링 요청
+     collection="typeArr" => Criteria 객체의 getTypeArr() 메서드 실행됨 => [C] 출력
+     item="type" => 배열 요소를 접근하기 위한 변수
+-->
+<sql id="criteria">
+   <trim prefix="(" suffix=") AND" prefixOverrides="OR"> <!-- 출력되는 코드 맨 앞에 OR가 들어가면 OR는 무시해주세요. -->
+      <foreach collection="typeArr" item="type">
+         <trim prefix="OR">
+            <choose>
+               <when test="type == 'T'.toString()">
+                  title like '%'||#{keyword}||'%'
+               </when>
+               <when test="type == 'C'.toString()">
+                  content like '%'||#{keyword}||'%'
+               </when>
+               <when test="type == 'W'.toString()">
+                  userid like '%'||#{keyword}||'%'
+               </when>
+            </choose>
+         </trim>
+      </foreach>
+   </trim>
+</sql>
+<!-- 게시물 등록 -->
+<insert id="insertBoard" parameterType="com.project.movie.dto.MovieBoardDTO">
+  INSERT INTO movieboard_tbl (bno, title, regdate, updateddate, re_ref, re_lev, re_seq, cnt, userid, content)
+  VALUES (#{bno}, #{title}, #{regDate}, #{updateDate}, #{reRef}, #{reLev}, #{reSeq}, #{cnt}, #{userid}, #{content})
+</insert>
+
+
+<!-- 특정 번호의 게시물 조회 -->
+<select id="read" resultType="com.project.movie.dto.MovieBoardDTO">
+    select bno, title, content, userid from movieboard_tbl where bno=#{bno}
+</select>
+
+<!-- 특정 번호 조회 + 파일 정보 
+     property: dto 변수명과 일치
+-->
+<resultMap type="com.project.movie.dto.MovieBoardDTO" id="boardMap">
+   <id property="bno" column="bno"/>
+   <result property="title" column="title"/>
+   <result property="content" column="content"/>
+   <result property="userid" column="userid"/>
+   <collection property="attachList" resultMap="attachMap"/>
+</resultMap>
+
+<resultMap type="com.project.movie.dto.AttachFileDTO" id="attachMap">
+   <result property="uuid" column="uuid"/>
+   <result property="uploadPath" column="uploadPath"/>
+   <result property="fileName" column="fileName"/>
+   <result property="fileType" column="fileType"/>
+   <result property="bno" column="bno"/>
+</resultMap>
+
+<select id="readAttach" resultMap="boardMap">
+select title, content, userid, b.bno, uuid, uploadpath, filetype, filename
+from movieboard_tbl b join movieboardattach a on b.bno=a.bno
+where b.bno=#{bno}
+</select>
+
+<!-- 게시물 수정 -->
+<update id="updateBoard" parameterType="com.project.movie.dto.MovieBoardDTO">
+  UPDATE movieboard_tbl
+  SET title = #{title}, content = #{content}, updateddate = #{updateDate}
+  WHERE bno = #{bno}
+</update>
+
+<!-- 게시물 삭제 -->
+<delete id="deleteBoard" parameterType="int">
+  DELETE FROM movieboard_tbl
+  WHERE bno = #{bno}
+</delete>
+
+
+</mapper>
