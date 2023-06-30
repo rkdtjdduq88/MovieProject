@@ -16,6 +16,7 @@
     </section>
     <!-- Normal Breadcrumb End -->
     
+    
     <!-- FindPassword Section Begin -->
     <section class="findPassword spad">
         <div class="container">
@@ -37,17 +38,19 @@
 								 <label for="email">이메일</label>
 								 <div class="input-group">
 									<input type="text" class="form-control" name="userEmail1" id="userEmail1" placeholder="이메일" required>
-									<select class="form-control" name="userEmail2" id="userEmail2" >
-									<option>@naver.com</option>
-									<option>@daum.net</option>
-									<option>@gmail.com</option>
-									</select>
+									
+									<select class="form-control" name="selectEmail" id="selectEmail" >
+										<option value="@naver.com" selected>@naver.com</option>
+										<option value="@daum.net">@daum.net</option>
+										<option value="@gmail.com">@gmail.com</option>
+									</select>									
+									<input type="hidden" name="userEmail2" value="@naver.com" id="userEmail2"/>	
 								</div> 
 							<div class="input-group-addon">
 								<button type="button" class="btn btn-primary" id="mail-Check-Btn">본인인증</button>
-							</div>
+							</div> 
 								<div class="mail-check-box">
-							<input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+							<input class="form-control mail-check-input" id="mail-Check-Input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
 							</div>
 								<span id="mail-check-warn"></span>
 							</div>
@@ -59,6 +62,8 @@
         </div>
     </section>
     <!-- FindPassword Section End -->
+    
+    
 
  <%@ include file="include/footer.jsp" %>
 
@@ -77,12 +82,11 @@
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/player.js"></script>
-    <script src="/js/jquery.nice-select.min.js"></script>
+   <!--  <script src="/js/jquery.nice-select.min.js"></script> -->
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/jquery.slicknav.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/register.js"></script>
     <script src="/js/findPassword.js"></script>
 
 

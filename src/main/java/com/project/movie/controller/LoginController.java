@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -49,9 +51,9 @@ public class LoginController {
 		return "agree";
 	}
 	
-	@GetMapping("/register")
+	@GetMapping("/loginRegister")
 	public String RegisterPage() {
-		return "register";
+		return "loginRegister";
 	}
 	
 	@GetMapping("/findPassword")
@@ -60,28 +62,35 @@ public class LoginController {
 	}
 	
 	@GetMapping("/changePass")
-	public String ChangePassPage(@RequestParam("userid") String userId,
-						            @RequestParam("name") String name,
-						            @RequestParam("email") String email,
-						            Model model) {
-		return "changePass";
-	}
+	public String changePassGet(@RequestParam("userid") String userid, 
+	                            @RequestParam("name") String name,
+	                            @RequestParam("email") String email,
+	                            Model model) {
+	    // changePass GET 매핑에서 필요한 로직을 작성하세요
+	    // 필요한 데이터를 모델에 추가하세요
+	    model.addAttribute("userid", userid);
+	    
+	    return "changePass";
+	}	
+	
+
+	
+	
 	
 	
 	@PostMapping("/findPassword")
-	public String findPasswordPost(@ModelAttribute MemberDTO member, Model model) {
+	public String findPasswordPost(MemberDTO member, Model model) {
 	    String userid = member.getUserid();
 	    String name = member.getName();
-	    String email = member.getEmail();
+	    String email = member.emailMerge();
 
 	    // 입력한 정보와 일치하는 사용자를 조회합니다.
 	    MemberDTO user = service.checkUser(userid, name, email);
 
 	    if (user != null) {
 	        // 정보가 일치하면 변경 폼으로 이동합니다.
-	        model.addAttribute("userid", userid);
-	        model.addAttribute("name", name);
-	        model.addAttribute("email", email);
+	        model.addAttribute("member", member);
+	       
 	        return "changePass";
 	    } else {
 	        // 사용자가 없는 경우 알림을 출력하고 findPassword 페이지를 다시 보여줍니다.
@@ -92,7 +101,7 @@ public class LoginController {
 
 	
 	
-	@PostMapping("/register")
+	@PostMapping("/loginRegister")
 	public ResponseEntity<Object> insertPost(MemberDTO dto) {
 	    try {
 	        boolean insertFlag = service.insert(dto);
@@ -105,6 +114,20 @@ public class LoginController {
 	    	e.printStackTrace();
 	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"사용할 수 없는 아이디입니다. 다른 아이디를 입력해 주세요.\"}");
 	    }
+	}
+	
+	@RequestMapping(value = "/dupId", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody // 컨트롤러 작업이 완료될 때 결과값으로 리턴(View Resolver를 동작시키지 않는다.)
+	public String dupIdCheck(String userid) {
+
+
+		boolean idCheck = service.dupId(userid);
+
+		if (idCheck) {
+			return "true"; // /WEB-INF/views/test.jsp
+		} else {
+			return "false"; // /WEB-INF/views/false.jsp
+		}
 	}
 	
 	@GetMapping("/mailCheck/{email:.+}")
@@ -135,22 +158,22 @@ public class LoginController {
 //	    }
 //	}
 	
-    @PostMapping("/login")
-    public String login(@RequestParam("userid") String userId, @RequestParam("password") String password, HttpSession session, Model model) {
-        MemberDTO member = service.getMemberByUserId(userId);
-
-        if (member != null && passwordEncoder.matches(password, member.getPassword())) {
-            // 로그인 성공
-            session.setAttribute("userid", userId); // 세션에 userid 저장
-            model.addAttribute("loggedIn", true); // 로그인 상태를 true로 설정
-            return "redirect:/";
-        } else {
-            // 로그인 실패
-            model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
-            model.addAttribute("loggedIn", false); // 로그인 상태를 false로 설정
-            return "login";
-        }
-    }
+//    @PostMapping("/login")
+//    public String login(@RequestParam("userid") String userId, @RequestParam("password") String password, HttpSession session, Model model) {
+//        MemberDTO member = service.getMemberByUserId(userId);
+//
+//        if (member != null && passwordEncoder.matches(password, member.getPassword())) {
+//            // 로그인 성공
+//            session.setAttribute("userid", userId); // 세션에 userid 저장
+//            model.addAttribute("loggedIn", true); // 로그인 상태를 true로 설정
+//            return "redirect:/";
+//        } else {
+//            // 로그인 실패
+//            model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
+//            model.addAttribute("loggedIn", false); // 로그인 상태를 false로 설정
+//            return "login";
+//        }
+//    }
     
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpSession session) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -86,13 +87,28 @@ document.addEventListener("click", function(event) {
 										<li><a href="/movie/details/">Anime Details</a></li>
 										<li><a href="/anime-watching">Anime Watching</a></li>
 										<li><a href="/blog-details">Blog Details</a></li>
-										<c:if test="${empty sessionScope.userid}">
-										    <li><a href="/register">Sign Up</a></li>
-										    <li><a href="/login">Login</a></li>
-										</c:if>
+										<security:authorize access="!isAuthenticated()">
+										<li><a href="/login">Login</a></li>
+										<li><a href="/login-register">Register</a></li>
+										</security:authorize>
+
+										<security:authorize access="isAuthenticated()">
+											<li>
+												<form action="/logout" method="get" id="testid">
+													<button class="dropdown-item" href="#" data-toggle="modal"
+														data-target="#logoutModal" type="submit">
+														<input type="hidden" name="${_csrf.parameterName}"
+															value="${_csrf.token}" />Logout
+													</button>
+												</form>
+											</li>
+										</security:authorize>
+										
 									</ul></li>
 								<li><a href="/blog">Our Blog</a></li>
-								<li><a href="#">Contacts</a></li>
+								<security:authorize access="hasRole('ROLE_ADMIN')">
+									<li><a href="main-board">Admin Board</a></li>
+								</security:authorize>
 							</ul>
 						</nav>
 					</div>
@@ -112,6 +128,8 @@ document.addEventListener("click", function(event) {
 					    <% } else { %>
 					        <a href="/login"><span class="icon_profile"></span></a>
 					    <% } %>
+					    
+					    
 					</div>
 				</div>
 			</div>

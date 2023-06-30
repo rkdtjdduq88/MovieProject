@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
         <div class="container">
@@ -23,15 +26,16 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>로그인</h3>
-                        <form action="/login" method="post" id="login-form">
+                        <form method="post" action='<c:url value="/login"/>' id="login-form">
 						  <div class="input__item">
-						    <input type="text" id="userid" name="userid" placeholder="아이디 입력" required>
+						    <input type="text" id="userid" name="username" placeholder="아이디 입력" required>
 						    <span class="icon_profile"></span>
 						  </div>
 						  <div class="input__item">
 						    <input type="password" id="password" name="password" placeholder="비밀번호 입력" required>
 						    <span class="icon_lock"></span>
 						  </div>
+						  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						  <button type="submit" class="site-btn">로그인</button>
 						</form>
                         <a href="#" class="forget_pass" id="findPassword">비밀번호 찾기</a>

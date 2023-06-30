@@ -17,16 +17,16 @@
     <!-- Normal Breadcrumb End -->
     
     <!-- FindPassword Section Begin -->
-    <section class="findPassword spad">
+    <section class="ChangePass spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
-                    <div class="findPassword__form">
-                        <h3>비밀번호 찾기</h3> 
+                    <div class="ChangePass__form">
+                        <h3>비밀번호 변경</h3> 
                         <div id="notification" class="notification"></div>
-                        <form id="findPassword-form" method="post">
+                        <form id="ChangePass-form" method="post">
                             <div class="input__item">
-                            	<input type="password" placeholder="변경할 비밀번호" id="password" name="password" maxlength="20" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$" 
+                            	<input type="password" placeholder="변경할 비밀번호" id="password1" name="password1" maxlength="20" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$" 
                             	title="대문자 또는 소문자와 숫자를 반드시 포함한 8자 이상 20자 이하의 비밀번호를 입력해야 합니다.">
                             	<span class="icon_lock"></span>
                         	</div>
@@ -66,7 +66,8 @@
     <script src="/js/jquery.slicknav.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/register.js"></script>
+    <script src="/js/changePass.js"></script>
+
 
 
 </body>

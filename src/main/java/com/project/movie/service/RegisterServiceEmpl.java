@@ -30,6 +30,11 @@ public class RegisterServiceEmpl implements RegisterService {
 		return mapper.insert(dto)==1?true:false;
 	}
 	
+	@Override
+	public boolean dupId(String userid) {
+		return mapper.dupId(userid)==0 ? true:false;
+	}
+	
 //	@Override
 //	public AuthDTO login(LoginDTO dto) {
 //	    try {

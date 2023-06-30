@@ -1,29 +1,83 @@
 package com.project.movie.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
+
+import com.project.movie.handler.CustomLoginSuccessHandler;
+import com.project.movie.service.CustomUserDetailService;
 
 @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+	
+	@Autowired
+	private DataSource dataSource;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
-	/*
-	 * spring-boot-starter-security : 시큐리티 라이브러리 모음  
-	 * 프로젝트에 시큐리티가 적용이 되어 버림 => 비밀번호 암호화만 필요함
-	 * http.authorizeHttpRequests().anyRequest().permitAll().and().httpBasic().and().csrf().disable();
-	 * form login 동작이 되어버림
-	 */
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests().anyRequest().permitAll().and().httpBasic().and().csrf().disable();
+	public AuthenticationSuccessHandler loginSuccessHandler() {
+		return new CustomLoginSuccessHandler();
+	}
+	
+	@Bean // CustomUserDetailService의 @Service("detail") 대신에 이 코드를 사용한다.
+	public UserDetailsService customUserService() {
+		return new CustomUserDetailService();
+	}
+	
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(customUserService())
+			.passwordEncoder(passwordEncoder());
+	}
+	
+	@Bean
+	protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
+		CharacterEncodingFilter filter=new CharacterEncodingFilter();
+		filter.setEncoding("utf-8");
+		filter.setForceEncoding(true);
+		http.addFilterBefore(filter, CsrfFilter.class);
+		
+		http.formLogin()
+			.loginPage("/login")
+			.loginProcessingUrl("/login")
+			.failureUrl("/login-error")
+			.successHandler(loginSuccessHandler());
+		
+		http.logout()
+			.logoutSuccessUrl("/");
+		
+//		http.rememberMe()
+//			.tokenRepository(perTokenRepository())
+//			.tokenValiditySeconds(604800);
 		
 		return http.getOrBuild();
 	}
+	
+//	@Bean
+//	public PersistentTokenRepository perTokenRepository() {
+//		JdbcTokenRepositoryImpl repo=new JdbcTokenRepositoryImpl();
+//		repo.setDataSource(dataSource);
+//		return repo;
+//	}
+
 }

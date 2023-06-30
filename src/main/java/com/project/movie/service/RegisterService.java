@@ -5,6 +5,7 @@ import com.project.movie.domain.MemberDTO;
 public interface RegisterService {
 	//회원가입
 	public boolean insert(MemberDTO dto);
+	public boolean dupId(String userid);
 	
 	//로그인
 	MemberDTO getMemberByUserId(String userId);

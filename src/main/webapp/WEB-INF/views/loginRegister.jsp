@@ -14,8 +14,8 @@
             </div>
         </div>
     </section>
-    <!-- Normal Breadcrumb End -->
-    
+    <!-- Normal Breadcrumb End --> 
+         
     <!-- Register Section Begin -->
     <section class="register spad">
         <div class="container">
@@ -27,6 +27,7 @@
                         <form id="register-form" method="post">
                             <div class="input__item">
                             	<input type="text" placeholder="아이디" id="userid" name="userid" maxlength="20" pattern="[a-zA-Z0-9]{8,20}" title="알파벳 대소문자와 숫자만 입력할 수 있고 8자이상 입력해야합니다." required>
+                            	<button type="button" class="w-100 btn btn-danger">중복아이디</button>
                             	<span class="icon_profile"></span>
                        		</div>
                         	<div class="input__item">
@@ -69,6 +70,7 @@
 	                            <input type="tel" placeholder="전화번호" id="mobile" name="mobile" maxlength="13" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="000-0000-0000 형식으로 입력해야 합니다." required>
 	                            <span class="icon_phone"></span>
 	                        </div>
+	                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <button type="submit" class="site-btn">회원가입</button>
                         </form>
                     </div>
@@ -100,7 +102,7 @@
     <script src="/js/jquery.slicknav.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/register.js"></script>
+    <script src="/js/loginRegister.js"></script>
 
 
 </body>

@@ -1,6 +1,9 @@
 /**
  *
  */
+
+let code = 0;
+
 document
   .getElementById("register-form")
   .addEventListener("submit", function (event) {
@@ -14,16 +17,12 @@ document
     var name = document.getElementById("name").value;
     var address = document.getElementById("address").value;
     var mobile = document.getElementById("mobile").value;
-    const inputCode = $(this).val();
-    const code = data;
+    var Input = document.getElementById("mail-Check-Input").value;
 
     if (password !== password2) {
       alert("비밀번호를 확인해주세요.");
       return;
-    } else if (
-      $("#mail-Check-Input").val().trim() === "" ||
-      inputCode !== code
-    ) {
+    } else if ($("#mail-Check-Input").val().trim() === "" || Input !== code) {
       alert("본인인증을 해주세요.");
       return;
     } else {
@@ -113,4 +112,22 @@ $(".mail-check-input").blur(function () {
     $resultMsg.html("인증번호가 불일치 합니다. 다시 확인해주세요!.");
     $resultMsg.css("color", "red");
   }
+});
+
+
+document.querySelector(".btn-danger").addEventListener("click", () => {
+    // 사용자가 입력한 userid 가져오기
+    const userid = document.querySelector("#userid").value;
+    fetch(`/dupId?userid=${userid}`, {
+        method: "get"
+    })
+        .then((response) => response.text())
+        .then((result) => {
+            console.log(result);
+            if (result.trim() === "true") {
+                alert("아이디를 사용할 수 있습니다.");
+            } else {
+                alert("아이디를 사용할 수 없습니다.");
+            }
+        });
 });
