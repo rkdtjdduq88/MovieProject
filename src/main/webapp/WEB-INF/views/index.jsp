@@ -11,7 +11,7 @@
 </section>
 <!-- Hero Section End -->
 
-<!-- Movie Rank List Begin -->
+<!-- Movie Rank List Begin -->  
 <section class="product spad">
 	<div class="container">
 		<div class="row">
@@ -137,7 +137,7 @@
 				<input type="text" id="search-input" placeholder="Search here....." name="query">
 			</form>
 		</div>
-	</div>
+	</div>        
 	
 	
 	<!-- Search model end -->	

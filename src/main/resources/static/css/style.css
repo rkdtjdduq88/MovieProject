@@ -1019,6 +1019,9 @@ ol {
 	right: 0;
 	top: 0;
 }
+.rating {
+	color: #ffce00;
+}
 
 .anime__details__rating .rating i {
 	font-size: 24px;

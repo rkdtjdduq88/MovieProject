@@ -33,7 +33,7 @@
 					</div>
 	
 	
-
+  
 
 					 <div class="col-lg-9">
                         <div class="anime__details__text">
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
+                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Add wishlist</a>
                                 <a href="#" class="watch-btn"><span>Watch Now</span> <i
                                     class="fa fa-angle-right"></i></a>
                                 </div>
@@ -225,18 +225,33 @@
                     <input type="text" id="search-input" placeholder="Search here....." name="query">
                 </form>
             </div>
-        </div>
+        </div>  
         <!-- Search model end -->
-        
-        
+            
+  <form action="/wish/new" id="wishForm" method="post">
+ 	<input type="hidden" name="title" value="${detail.title}" />
+ 	<input type="hidden" name="directorNm" value="${detail.directorNm}" />
+ 	<input type="hidden" name="releaseDate" value="${detail.releaseDate}" />
+ 	<input type="hidden" name="posterUrl" value="${detail.posterUrl}" />
+ 	<input type="hidden" name="userid" value="${userid}" />
+ </form>   
         <script>	
 			const title = '${detail.title}';
 			const userid = '${userid}';
 		</script>
+		    
+<!-- 		<script>
+		document.querySelector(".folow").addEventListener("click",(e)=>{
+			e.preventDetfa();
+			document.qud(#wishForm).submit();
+		})
+		</script> -->
 		
 	<!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
+	<!-- sweet alert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
+         
         <!-- Js Plugins -->
         <script src="/js/jquery-3.3.1.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
@@ -249,6 +264,6 @@
  		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/js/moviedetail.js"></script>
   
-    </body>
+    </body>          
 
     </html>

@@ -20,10 +20,13 @@ public class MovieDetailService {
 	public KmdbRes getDetails(String movieNm, String movieDt) {
 		
 		
-		KmdbReq req = new KmdbReq(movieNm.replaceAll("[\\s!]", ""), movieDt);
+//		KmdbReq req = new KmdbReq(movieNm.replaceAll("[\\s!]", ""), movieDt);
+		KmdbReq req = new KmdbReq(movieNm, movieDt);
+		String movieName = req.getQuery().replaceAll("[\"\\s\\p{Punct}]", "");
+		req.setQuery(movieName);
 		log.info("req 영화제목 확인 "+req);
 		KmdbRes res = kmdbAndKobisClient.searchKmdb(req);
-		log.info("스틸컷 넘어오는지"+res.getStills());
+//		log.info("스틸컷 넘어오는지"+res.getStills());
 		return res;
 	}
 }

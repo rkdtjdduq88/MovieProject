@@ -39,10 +39,11 @@ public class HomeController {
 		log.info("박스오피스 상세페이지 폼 요청");
 
 		TotalRes kres = movieService.movie();
-//		System.out.println("상세 폼 "+kres);
-		 String rOpenDt = movieDt.replaceAll("-", "");
+		System.out.println("상세 폼 "+kres);
+		 String rOpenDt = movieDt.replaceAll("-", "");	// 문제있음 - null..?
 		  System.out.println("개봉일 확인 "+rOpenDt);
 		KmdbRes res = movieDetailService.getDetails(movieNm, rOpenDt);
+		
 		System.out.println("확인 "+res);
 		
 		model.addAttribute("detail", res);
@@ -59,5 +60,11 @@ public class HomeController {
 		return "/movie/search";
 	}
 
+	@GetMapping("/showWish")
+	public String getWish() {
+		log.info("위시리스트 조회");
+		
+		return "/movie/wishList";
+	}
 	
 }
