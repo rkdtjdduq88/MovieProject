@@ -77,7 +77,7 @@
 											<li><a href="/login">Login</a></li>
 										</ul></li>
 									<li><a href="/blog">Our Blog</a></li>
-									<li><a href="#">Contacts</a></li>
+									<li><a href="/main-board">Admin Board</a></li>
 								</ul>
 							</c:if>
 							
@@ -95,7 +95,7 @@
 											<li><a href="/login">Login</a></li>
 										</ul></li>
 									<li><a href="/blog">Our Blog</a></li>
-									<li><a href="#">Contacts</a></li>
+									<li><a href="/main-board">Admin Board</a></li>
 									<li><a href="/showWish">Wish</a></li>
 								</ul>
 							</c:if>
