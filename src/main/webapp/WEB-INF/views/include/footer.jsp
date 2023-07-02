@@ -18,7 +18,7 @@
                                 <li class="active"><a href="/">Homepage</a></li>
                                 <li><a href="/categories">Categories</a></li>
                                 <li><a href="/blog">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                <li><a href="/main-board">Admin Board</a></li>
                             </ul>
                         </div>
                     </div>

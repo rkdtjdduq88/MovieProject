@@ -1413,11 +1413,13 @@ ol {
 }
 
 .blog__item {
-	height: 580px;
+	border-radius: 20px; /* 모서리를 둥글게 조정 */
+    overflow: hidden; /* 내용이 모서리를 벗어나지 않도록 숨김 처리 */
+	height: 500px;
 	position: relative;
-	margin-left: -10px;
-	margin-right: -10px;
-	margin-bottom: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 90px;
 }
 
 .blog__item.small__item {
@@ -1459,6 +1461,32 @@ ol {
 .blog__item__text h4 a {
 	color: #ffffff;
 	line-height: 34px;
+}
+
+/*---------------------
+pagination
+-----------------------*/
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: #fff;
+  background-color: #000;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 4px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #555;
+}
+
+.pagination a:hover {
+  background-color: #333;
 }
 
 /*---------------------
@@ -1760,6 +1788,28 @@ ol {
 .blog__details__form form textarea::placeholder {
 	color: #a6a6a6;
 }
+
+.site-btn {
+
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 4px;
+}
+
+.site-btn:hover {
+        background-color: #45a049;
+}
+
+.blog__details__comment__item__text {
+    max-width: 80%; /* 원하는 가로 길이로 조정 */
+ }
 
 /*---------------------
   Login
