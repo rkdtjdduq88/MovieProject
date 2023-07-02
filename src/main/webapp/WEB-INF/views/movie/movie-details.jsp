@@ -99,10 +99,13 @@
                             </div>
                             <div class="anime__details__btn">
                                 <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Add wishlist</a>
-                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
-                                    class="fa fa-angle-right"></i></a>
+                                <i class="mwatch">
+                                <a href="#" class="watch-btn">
+                                	<span>Watch Now</span> 
+                                	<i class="fa fa-angle-right"></i>
+                                </a>
+                                </i>
                                 </div>
-                      
                             </div>
                                     
                        <c:if test="${not empty detail.stills}">
@@ -266,6 +269,7 @@
     <script src="/js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/moviedetail.js"></script>
+    <script src="/js/youtube.js"></script>
 </body>
 
 </html>

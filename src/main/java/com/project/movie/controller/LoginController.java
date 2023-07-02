@@ -41,25 +41,25 @@ public class LoginController {
 		return "agree";
 	}
 	
-	@GetMapping("/register")
-	public String RegisterPage() {
-		return "register";
-	}
-	
-	@PostMapping("/register")
-	public ResponseEntity<Object> insertPost(MemberDTO dto) {
-	    try {
-	        boolean insertFlag = service.insert(dto);
-	        if (insertFlag) {
-	            return ResponseEntity.ok().body("{\"success\": true, \"message\": \"회원가입이 성공적으로 완료되었습니다.\"}");
-	        } else {
-	            return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
-	        }
-	    } catch (Exception e) {
-	    	e.printStackTrace();
-	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
-	    }
-	}
+//	@GetMapping("/register")
+//	public String RegisterPage() {
+//		return "register";
+//	}
+//	
+//	@PostMapping("/register")
+//	public ResponseEntity<Object> insertPost(MemberDTO dto) {
+//	    try {
+//	        boolean insertFlag = service.insert(dto);
+//	        if (insertFlag) {
+//	            return ResponseEntity.ok().body("{\"success\": true, \"message\": \"회원가입이 성공적으로 완료되었습니다.\"}");
+//	        } else {
+//	            return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
+//	        }
+//	    } catch (Exception e) {
+//	    	e.printStackTrace();
+//	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
+//	    }
+//	}
 	
 	@PostMapping("/login")
 	public String login(@RequestParam("userid") String userId, @RequestParam("password") String password, HttpSession session, Model model) {
