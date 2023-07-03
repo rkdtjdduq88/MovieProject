@@ -24,17 +24,19 @@
                     <div class="ChangePass__form">
                         <h3>비밀번호 변경</h3> 
                         <div id="notification" class="notification"></div>
-                        <form id="ChangePass-form" method="post">
+                        <form id="ChangePass-form" method="post" action="/changePass">
+                        	<input type="hidden" name="userid" value="${member.userid}" />
                             <div class="input__item">
-                            	<input type="password" placeholder="변경할 비밀번호" id="password1" name="password1" maxlength="20" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$" 
+                            	<input type="password" placeholder="변경할 비밀번호" id="newPassword" name="newPassword" maxlength="20" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$" 
                             	title="대문자 또는 소문자와 숫자를 반드시 포함한 8자 이상 20자 이하의 비밀번호를 입력해야 합니다.">
                             	<span class="icon_lock"></span>
                         	</div>
                         	<div class="input__item">
-                            	<input type="password" placeholder="변경할 비밀번호 확인" id="password2" name="password2" maxlength="20" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$" 
+                            	<input type="password" placeholder="변경할 비밀번호 확인" id="newPassword2" name="newPassword2" maxlength="20" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,20}$" 
                             	title="대문자 또는 소문자와 숫자를 반드시 포함한 8자 이상 20자 이하의 비밀번호를 입력해야 합니다.">
                             	<span class="icon_lock"></span>
                         	</div>
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <button type="submit" class="site-btn">비밀번호 변경</button>
                         </form>
                     </div>

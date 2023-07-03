@@ -1,5 +1,7 @@
 package com.project.movie.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,19 +23,29 @@ public class RegisterServiceEmpl implements RegisterService {
         this.passwordEncoder = passwordEncoder;
     }
 	
+	@Transactional
 	@Override
 	public boolean insert(MemberDTO dto) {		
 		// 비밀번호 암호화
 		String encryptedPassword = passwordEncoder.encode(dto.getPassword());
 		dto.setPassword(encryptedPassword);
 		
-		return mapper.insert(dto)==1?true:false;
+		boolean flag = mapper.insert(dto)==1;
+		mapper.insertAuth(dto.getUserid());
+		
+		return flag;
 	}
 	
+
+	
+
 	@Override
 	public boolean dupId(String userid) {
 		return mapper.dupId(userid)==0 ? true:false;
 	}
+	
+
+	
 	
 //	@Override
 //	public AuthDTO login(LoginDTO dto) {
@@ -64,8 +76,8 @@ public class RegisterServiceEmpl implements RegisterService {
 //	}
 	
 	@Override //로그인 
-	public MemberDTO getMemberByUserId(String userId) {
-		return mapper.getMemberByUserId(userId);
+	public MemberDTO getMemberByUserId(String userid) {
+		return mapper.getMemberByUserId(userid);
 	}
 	
     @Override
@@ -73,6 +85,7 @@ public class RegisterServiceEmpl implements RegisterService {
         // RegisterMapper를 이용하여 email을 기반으로 회원 정보를 조회하는 로직을 구현합니다.
         return mapper.getMemberByEmail(email);
     }
+    
 
     @Override
     public MemberDTO getMemberByMobile(String mobile) {
@@ -103,6 +116,7 @@ public class RegisterServiceEmpl implements RegisterService {
             return false;
         }
     }
+    
     
     @Override
     public boolean updateAddress(MemberDTO dto) {

@@ -1,26 +1,53 @@
 /**
  *
  */
-function openPopup(userid) {
-    // 비밀번호 변경 팝업 열기 로직
-    var passwordPopup = document.getElementById("password-popup");
-    passwordPopup.style.display = "block";
-
-    // 팝업 관련 로직 처리
-    // ...
+function openPopup() {
+  event.preventDefault();
+  var button = document.getElementById("change-password-button");
+  var popup = document.getElementById("password-popup");
+  // 버튼의 위치와 크기를 가져와서 팝업 창의 위치를 설정합니다.
+  var buttonRect = button.getBoundingClientRect();
+  var buttonTop = buttonRect.top + buttonRect.height;
+  var buttonLeft = buttonRect.left;
+  var buttonWidth = buttonRect.width;
+  // 팝업 창의 위치를 설정합니다.
+  popup.style.top = buttonTop + "px";
+  popup.style.left = buttonLeft + "px";
+  popup.style.width = buttonWidth + "px";
+  // 팝업 창을 보여줍니다.
+  popup.style.display = "block";
+  form.submit();
 }
 
-function delPopup(userid) {
-    // 회원탈퇴 팝업 열기 로직
-    var deletePopup = document.getElementById("delete-popup");
-    deletePopup.style.display = "block";
-
-    // 팝업 관련 로직 처리
-    // ...
+ function delPopup() {
+    event.preventDefault();
+    var button = document.getElementById("change-password-button");
+    var popup = document.getElementById("delete-popup");
+    // 버튼의 위치와 크기를 가져와서 팝업 창의 위치를 설정합니다.
+    var buttonRect = button.getBoundingClientRect();
+    var buttonTop = buttonRect.top + buttonRect.height;
+    var buttonLeft = buttonRect.left;
+    var buttonWidth = buttonRect.width;
+    // 팝업 창의 위치를 설정합니다.
+    popup.style.top = buttonTop + "px";
+    popup.style.left = buttonLeft + "px";
+    popup.style.width = buttonWidth + "px";
+    // 팝업 창을 보여줍니다.
+    popup.style.display = "block";
+    form.submit();
+  }
+  
+function closePopup() {
+  document.getElementById("password-popup").style.display = "none";
+  document.getElementById("delete-popup").style.display = "none";
 }
 
-function closePopup(event) {
-    // 팝업 닫기 로직
-    var popup = event.target.closest(".popup");
-    popup.style.display = "none";
-}
+
+
+
+
+
+
+
+
+

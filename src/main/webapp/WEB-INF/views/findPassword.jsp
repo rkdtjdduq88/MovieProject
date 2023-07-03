@@ -54,6 +54,7 @@
 							</div>
 								<span id="mail-check-warn"></span>
 							</div>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <button type="submit" class="site-btn">비밀번호 찾기</button>
                         </form>
                     </div>
@@ -79,6 +80,9 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
+
+    
+    
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/player.js"></script>

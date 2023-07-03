@@ -7,7 +7,8 @@ import com.project.movie.domain.MemberDTO;
 @Mapper
 public interface RegisterMapper {
     public int insert(MemberDTO dto);
-    public MemberDTO getMemberByUserId(String userId);  // 로그인 정보 가져오기
+    public int insertAuth(String userid);
+    public MemberDTO getMemberByUserId(String userid);  // 로그인 정보 가져오기
     public MemberDTO getMemberByEmail(String email); // email로 멤버 정보 가져오기
     public MemberDTO getMemberByMobile(String mobile); // mobile로 멤버 정보 가져오기
     public MemberDTO getMemberByName(String name); // mobile로 멤버 정보 가져오기

@@ -3,6 +3,7 @@
  */
 let code = 0;
 
+
 document
   .getElementById("findPassword-form")
   .addEventListener("submit", function (event) {
@@ -58,3 +59,4 @@ $(".mail-check-input").blur(function () {
     $resultMsg.css("color", "red");
   }
 });
+

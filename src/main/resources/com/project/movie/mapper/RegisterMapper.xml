@@ -8,6 +8,10 @@
 		values(#{userid},#{password},#{email},#{address},#{name},#{mobile})
 	</insert>
 	
+	<insert id="insertAuth">
+		insert into MOVIEMEMBERAUTH_TBL (userid) values(#{userid})
+	</insert>
+	
 	<!-- 로그인  -->
     <resultMap type="com.project.movie.domain.MemberDTO" id="memberDTO">
 		<!-- property는 DTO 변수명이랑 맞추고, column은 db 변수명이랑 맞추면 된다. -->
@@ -67,6 +71,7 @@
 	  SET password = #{password}
 	  WHERE userid = #{userid}
 	</update>
+	
 	
 	<!-- 회원탈퇴 -->
 	<delete id="deleteProfile" parameterType="com.project.movie.domain.MemberDTO">

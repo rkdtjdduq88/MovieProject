@@ -62,17 +62,39 @@ public class LoginController {
 		return "findPassword";
 	}
 	
-	@GetMapping("/changePass")
-	public String changePassGet(@RequestParam("userid") String userid, 
-	                            @RequestParam("name") String name,
-	                            @RequestParam("email") String email,
-	                            Model model) {
-	    // changePass GET 매핑에서 필요한 로직을 작성하세요
-	    // 필요한 데이터를 모델에 추가하세요
-	    model.addAttribute("userid", userid);
-	    
-	    return "changePass";
-	}	
+	@PostMapping("/changePass")
+	public String changePassPost(MemberDTO member, Model model) {
+	    String newPassword = member.getPassword();
+	    String userid = member.getUserid();
+
+	    if (newPassword == null || newPassword.isEmpty()) {
+	        // 새 비밀번호가 비어있을 경우
+	        model.addAttribute("errorMessage", "변경할 비밀번호를 입력해주세요.");
+	        return "error";
+	    }
+
+	    // 데이터베이스에서 비밀번호 업데이트
+	    try {
+	        String encryptedPassword = passwordEncoder.encode(newPassword);
+	        member.setPassword(encryptedPassword);
+	        boolean success = service.updatePassword(member);
+
+	        if (success) {
+	            // 비밀번호 업데이트 성공
+	            model.addAttribute("userid", userid);
+	            return "redirect:/login";
+	        } else {
+	            // 비밀번호 업데이트 실패
+	            model.addAttribute("errorMessage", "비밀번호 변경에 실패했습니다.");
+	            return "error";
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        model.addAttribute("errorMessage", "오류가 발생했습니다. 다시 시도해주세요.");
+	        return "error";
+	    }
+	}
+	  
 	
 
 	
@@ -102,20 +124,47 @@ public class LoginController {
 
 	
 	
+	/**
+	 * @param dto
+	 * @return
+	 */
+//	@PostMapping("/loginRegister")
+//	public ResponseEntity<Object> insertPost(MemberDTO dto) {
+//	    try {
+//	        boolean insertFlag = service.insert(dto);
+//	        if (insertFlag) {
+//	            return ResponseEntity.ok().body("{\"success\": true, \"message\": \"회원가입이 성공적으로 완료되었습니다.\"}");
+//	        } else {
+//	            return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
+//	        }
+//	    } catch (Exception e) {
+//	    	e.printStackTrace();
+//	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"사용할 수 없는 아이디입니다. 다른 아이디를 입력해 주세요.\"}");
+//	    }
+//	}
+	
+	
+	
+	
 	@PostMapping("/loginRegister")
-	public ResponseEntity<Object> insertPost(MemberDTO dto) {
+	public String insertPost(MemberDTO dto) {
+		String email = dto.emailMerge();
+
 	    try {
 	        boolean insertFlag = service.insert(dto);
 	        if (insertFlag) {
-	            return ResponseEntity.ok().body("{\"success\": true, \"message\": \"회원가입이 성공적으로 완료되었습니다.\"}");
-	        } else {
-	            return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
-	        }
+	        	
+	        	
+	            return "redirect:/login";
+	        } 
 	    } catch (Exception e) {
-	    	e.printStackTrace();
-	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"사용할 수 없는 아이디입니다. 다른 아이디를 입력해 주세요.\"}");
+	    	e.printStackTrace();	        
 	    }
+	    return "loginRegister";
 	}
+	
+	
+	
 	
 	@RequestMapping(value = "/dupId", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody // 컨트롤러 작업이 완료될 때 결과값으로 리턴(View Resolver를 동작시키지 않는다.)
@@ -208,11 +257,12 @@ public class LoginController {
 	}
     
 	@PostMapping("/changePassword")
-	public String changePassword(@RequestParam("userId") String userId,
-	                             @RequestParam("oldPassword") String oldPassword,
+	public String changePassword(@RequestParam("oldPassword") String oldPassword,
 	                             @RequestParam("newPassword") String newPassword,
-	                             Model model) {
-	    MemberDTO member = service.getMemberByUserId(userId);
+	                             Model model, Principal principal) {
+		
+		String userid = principal.getName();
+	    MemberDTO member = service.getMemberByUserId(userid);
 
 	    if (member != null && passwordEncoder.matches(oldPassword, member.getPassword())) {
 	        // 비밀번호가 일치하면 새로운 비밀번호를 암호화하여 업데이트
@@ -222,7 +272,7 @@ public class LoginController {
 
 	        if (success) {
 	            // 비밀번호 업데이트 성공
-	            model.addAttribute("userId", userId);
+	            model.addAttribute("userId", userid);
 	            return "redirect:/mypage";
 	        } else {
 	            // 비밀번호 업데이트 실패

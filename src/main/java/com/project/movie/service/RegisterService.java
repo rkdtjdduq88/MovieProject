@@ -5,10 +5,11 @@ import com.project.movie.domain.MemberDTO;
 public interface RegisterService {
 	//회원가입
 	public boolean insert(MemberDTO dto);
+
 	public boolean dupId(String userid);
-	
+
 	//로그인
-	MemberDTO getMemberByUserId(String userId);
+	MemberDTO getMemberByUserId(String userid);
 	
 	//회원 정보 가져오기
     MemberDTO getMemberByEmail(String email);

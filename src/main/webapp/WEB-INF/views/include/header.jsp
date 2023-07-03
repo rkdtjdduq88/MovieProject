@@ -58,11 +58,6 @@ document.addEventListener("click", function(event) {
 });
 
 
-function preventLogout(event) {
-    event.preventDefault(); // 기본 동작 중지
-    event.stopPropagation(); // 이벤트 전파 중지
-    // 추가로 수행해야 할 로직 작성
-}
 </script>
 
 </head>
@@ -96,13 +91,13 @@ function preventLogout(event) {
 										<li><a href="/blog-details">Blog Details</a></li>
 										<security:authorize access="!isAuthenticated()">
 										<li><a href="/login">Login</a></li>
-										<li><a href="/login-register">Register</a></li>
+										<li><a href="/agree">Register</a></li>
 										</security:authorize>
 
 										<security:authorize access="isAuthenticated()">
 										    <li>
 										        <form action="/logout" method="post" id="logoutForm1">
-													<button type="submit" onclick="logout(event)">Logout</button>
+													<button type="submit" >Logout</button>
 													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 												</form>
 										    </li>
@@ -130,8 +125,9 @@ function preventLogout(event) {
 						            <li><a href="/mypage">My Page</a></li>
 						            <li>
 						               <form action="/logout" method="post" id="logoutForm2">
-										<button type="submit" onclick="logout(event)">Logout</button>
+										<button type="submit">Logout</button>
 										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+										</form>
 						            </li>
 						        </ul>
 						    </a>
