@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="include2/header.jsp" %>
+<%@ include file="./include2/header.jsp" %>
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Board Read</h1>
 </div>
 <div class="header">
 		<ol class="breadcrumb">
-			<li><a href="/main-board">DashBoard</a></li>
-			<li><a href="/list?page=1&amount=10&type=&keyword=">Board List</a></li>
-			<li><a href="/blog">Our Blog</a></li>
+			<li><a href="/main-board">Main</a></li>
+			<li><a href="/list?page=1&amount=10&type=&keyword=">Dashboard</a></li>
+			<li><a href="/blog">Blog</a></li>
 		</ol>
 </div>
 <div class="row">
@@ -100,10 +100,15 @@
 					<button class="btn btn-danger" type="button">삭제</button>
 				</div>
 			</li>
+			<!-- 이후 다른 댓글이 추가될 수 있음 -->
 		</ul>
 	</div>
 	<div class="card-footer">
 		<!-- 댓글 페이지 나누기 -->
+		<ul class='pagination justify-content-center'>
+			<li class='page-item'><a class='page-link' href='1'>1</a></li>
+			<!-- 다른 페이지 번호 추가될 수 있음 -->
+		</ul>
 	</div>
 </div>
 
@@ -149,6 +154,6 @@
 	// CSRF 토큰 값 생성
 	const csrfToken='${_csrf.token}';
 </script>
-<script src="/js/reply.js"></script> <!-- 2번째 실행 -->
+<script src="/js/reply-mainboard.js"></script> <!-- 2번째 실행 -->
 <script src="/js/read.js"></script> <!-- 3번째 실행 -->
-<%@ include file="include2/footer.jsp" %>
+<%@ include file="./include2/footer.jsp" %>
