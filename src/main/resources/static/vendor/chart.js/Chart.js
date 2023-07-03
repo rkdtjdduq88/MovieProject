@@ -32317,4 +32317,8 @@ core_controller.helpers.each(
 
 return src;
 
+<<<<<<< HEAD
 })));
+=======
+})));
+>>>>>>> branch 'master' of https://github.com/rkdtjdduq88/MovieProject.git
