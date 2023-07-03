@@ -19,6 +19,6 @@ public class BoardDTO {
     private Long re_seq;
     private Long cnt;
     private String userid;
-     private List<AttachFileDTO> attachList;
+    private List<AttachFileDTO> attachList;
 
 }

@@ -26,4 +26,7 @@ public class KmdbAndKobisDTO {
 	
 	// 특정 영화의 댓글 개수
 	private int replyCnt;
+	
+	// 특정 영화의 평균 평점
+	private int avgGrade;
 }

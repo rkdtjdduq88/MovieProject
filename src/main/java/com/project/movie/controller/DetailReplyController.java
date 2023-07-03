@@ -41,10 +41,10 @@ public class DetailReplyController {
 //		return detailReplyService.getList(title);
 //	}
 	@GetMapping("/list/{title}")
-	public ResponseEntity<MovieDetailReplyCntFavDTO> detailReplyList(@PathVariable("title") String title) {
+	public ResponseEntity<MovieDetailReplyCntFavDTO> detailReplyList(@PathVariable("title") String title, Model model) {
 		log.info("리뷰 리스트 요청"+title);
-//		MovieDetailReplyCntDTO movieDetailReplyPageDTO = detailReplyService.getList(title);
-//		model.addAttribute("cntDto",movieDetailReplyPageDTO);		
+//		MovieDetailReplyCntFavDTO dto = detailReplyService.getList(title);
+//		model.addAttribute("cntDto",dto);
 		
 		return new ResponseEntity<MovieDetailReplyCntFavDTO>(detailReplyService.getList(title),HttpStatus.OK);
 	}	

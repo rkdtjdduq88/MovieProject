@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.project.movie.api.KmdbAndKobisClient;
+import com.project.movie.domain.MovieDetailReplyCntFavDTO;
 import com.project.movie.domain.MovieDetailReplyDTO;
 import com.project.movie.domain.WishlistDTO;
 import com.project.movie.mapper.MovieDetailReplyMapper;
@@ -45,6 +46,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String main() {
 		log.info("index 폼 요청");
+		
 		return "index";
 	}	
 	
@@ -66,7 +68,13 @@ public class HomeController {
 		
 		model.addAttribute("detail", res);
 		model.addAttribute("list",kres.getList());
-				
+		
+		// 상세페이지 포스터 댓글 수 불러오기
+		MovieDetailReplyCntFavDTO dto=detailReplyService.getList(movieNm);
+		model.addAttribute("count", dto.getReplyCnt());
+		
+		// 상세페이지 포스터 평점 불러오기
+		model.addAttribute("avg", detailReplyService.avgGrade(movieNm));
 
 		return "/movie/movie-details";
 

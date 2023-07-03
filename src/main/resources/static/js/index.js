@@ -14,10 +14,11 @@ function fetchAndDisplayMovies() {
     })
     .then(function (data) {
       // 데이터를 표시할 HTML 문자열
-      //console.log("박스오피스 리스트 요청", data);
+        console.log("박스오피스 리스트 요청", data);
       var movieItems = "";
       // 데이터를 테이블에 표시
       data.list.forEach(function (movie) {
+        console.log(movie);
         // 영화 랭킹 아이템을 생성하여 문자열에 추가
         var movieItem = `
         <div class="col-lg-4 col-md-6 col-sm-6">
@@ -25,7 +26,7 @@ function fetchAndDisplayMovies() {
                   <div class="product__item__pic set-bg" data-setbg="${movie.posterUrl}" style="background-image: url('${movie.posterUrl}')">
                       <div class="ep">${movie.rank}위</div>
                       <div class="comment"><i class="fa fa-comments"></i>${movie.replyCnt}</div>
-                      <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                      <div class="view"><i class="fa">평점:</i>${movie.avgGrade}</div>
                   </div>
                   <div class="product__item__text">
                       <ul>

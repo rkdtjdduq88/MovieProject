@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="row" id="boxOfficeList">
-						
+					   
 						<!-- Add more movie ranking items here -->
 						
 					</div>
