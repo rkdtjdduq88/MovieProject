@@ -29,7 +29,7 @@ function fetchAndDisplayMovies() {
                   </div>
                   <div class="product__item__text">
                       <ul>
-                          <li>활동중</li>
+                          <li>상영중</li>
                           <li>영화</li>
                       </ul>
                       <h5><a href="/movie/details?movieNm=${movie.movieNm}&movieDt=${movie.openDt}">${movie.movieNm}</a></h5>
@@ -78,7 +78,7 @@ function fetchAndCarouselMovies() {
                 <div class="label">${movie.releaseDate}</div>
                 <h2>${movie.title}</h2>
                 <p>${movie.genre}</p>
-                <a href="#"><span>Watch Now</span> <i
+                <a href="http://localhost:8080/movie/details?movieNm=${movie.title}&movieDt=${movie.releaseDate}"><span>상세보기</span> <i
                   class="fa fa-angle-right"></i></a>
               </div>
             </div>  
