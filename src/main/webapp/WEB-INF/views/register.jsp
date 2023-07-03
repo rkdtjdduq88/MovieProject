@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="include2/header.jsp" %>
 <html lang="en">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -6,9 +7,9 @@
 </div>
 <div class="header">
 		<ol class="breadcrumb">
-			<li><a href="/main-board">DashBoard</a></li>
-			<li><a href="/list?page=1&amount=10&type=&keyword=">Board List</a></li>
-			<li><a href="/blog">Our Blog</a></li>
+			<li class="breadcrumb-item"><a href="/main-board">Main</a></li>
+			<li class="breadcrumb-item"><a href="/list?page=1&amount=10&type=&keyword=">Dashboard</a></li>
+			<li class="breadcrumb-item"><a href="/blog">Blog</a></li>
 		</ol>
 </div>
   <head>
@@ -37,14 +38,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="userid">User</label>
-				<input type="text" class="form-control" id="userid" name="userid" <%-- readonly 
-						value='<security:authentication property="principal.username"/>' --%>>
-				<div class="invalid-feedback">
-					작성자를 확인해주세요.
-				</div>
-			</div>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    <label for="userid">User</label>
+    <input type="text" class="form-control" id="userid" name="userid" >
+    <div class="invalid-feedback">
+        작성자를 확인해주세요.
+    </div>
+</div>
+
 			<button type="submit" class="btn btn-primary">등록</button>
 			<button type="button" class="btn btn-secondary">
 			<a href="/list?page=1&amount=10&type=&keyword=">
@@ -99,4 +99,4 @@ $(document).ready(function() {
 </html>
 <script src="/js/register.js"></script>
 <script src="/js/upload.js"></script>
-<%@ include file="include2/footer.jsp" %>
+<%@ include file="include2/footer.jsp" %>    
