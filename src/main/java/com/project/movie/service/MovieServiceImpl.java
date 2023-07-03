@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.movie.api.KmdbAndKobisClient;
 import com.project.movie.response.KmdbAndKobisDTO;
+
 import com.project.movie.response.KmdbCarouselReq;
 import com.project.movie.response.KmdbItem;
 import com.project.movie.response.KmdbReq;
@@ -17,6 +18,7 @@ import com.project.movie.response.KobisItem;
 import com.project.movie.response.KobisReq;
 import com.project.movie.response.KobisRes;
 import com.project.movie.response.TotalRes;
+
 
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -97,4 +99,5 @@ public class MovieServiceImpl implements MovieService{
 	
 	
 	
+
 }

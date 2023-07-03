@@ -1,6 +1,7 @@
 package com.project.movie.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +12,8 @@ public class BoardDTO {
     private String title;
     private String content;
     private String attach;
-    private Date regdate;
-    private Date updateddate;
+    private Date regDate;
+    private Date updateDate;
     private Long re_ref;
     private Long re_lev;
     private Long re_seq;

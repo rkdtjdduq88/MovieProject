@@ -10,16 +10,16 @@
 	<%-- get 방식으로 주소줄에 총 4개의 변수를 보낸다. page=1, amount=10, type=, keyword= --%>
 	<div class="header">
 		<ol class="breadcrumb">
-			<li><a href="/main-board">DashBoard</a></li>
-			<li><a href="/list?page=1&amount=10&type=&keyword=">Board List</a></li>
-			<li><a href="/blog">Our Blog</a></li>
+			<li><a href="/main-board">Main</a></li>
+			<li><a href="/list?page=1&amount=10&type=&keyword=">Dashboard</a></li>
+			<li><a href="/blog">Blog</a></li>
 		</ol>
 	</div>
 
 	<%-- 메인 방문자수 --%>
 	<div class="dashboard-cards">
 		<div class="row">
-			<!-- <div class="col-xs-12 col-sm-6 col-md-3">
+			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="card horizontal cardIcon waves-effect waves-dark">
 					<div class="card-stacked blue">
 						<div class="card-content">
@@ -30,7 +30,7 @@
 						</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="card horizontal cardIcon waves-effect waves-dark">
 					<div class="card-stacked green">

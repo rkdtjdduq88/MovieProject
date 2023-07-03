@@ -1,5 +1,6 @@
 package com.project.movie.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class MovieApiController {
 		log.info("검색 요청 ");
 		
 		return movieService.carouselMovie();
+
 	}	
 	
 }

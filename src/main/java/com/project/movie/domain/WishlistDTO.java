@@ -15,4 +15,5 @@ public class WishlistDTO {
 	private String releaseDate;
 	private String posterUrl;
 	private String userid;
+
 }

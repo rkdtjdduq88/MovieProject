@@ -2,12 +2,15 @@ package com.project.movie.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.movie.domain.WishlistDTO;
 import com.project.movie.mapper.WishlistMapper;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class WishlistServiceImpl implements WishlistService {
 
@@ -36,6 +39,17 @@ public class WishlistServiceImpl implements WishlistService {
 	public boolean dupCheck(String userid, String title) {	// 중복된 정보가 있다면 1이 오니까 true 반환 없다면 0이어서 false 반환
 		int count = wishlistMapper.checkWish(userid, title);
 		return count > 0;
+	}
+
+	@Override
+	public int getCountByUserid(String userid) {
+	    return wishlistMapper.getCountByUserid(userid);
+	}
+	@Override
+	public List<WishlistDTO> getListByPage(String userid, int offset, int recordSize) {
+	    List<WishlistDTO> wishlist = wishlistMapper.getListByPage(userid, offset, recordSize);
+	    System.out.println("위시리스트 가져오기: " + wishlist); // 출력문 추가
+	    return wishlist;
 	}
 
 }

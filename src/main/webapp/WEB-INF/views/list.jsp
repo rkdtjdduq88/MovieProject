@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="include2/header.jsp" %>
+<%@ include file="./include2/header.jsp"%>
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Board List</h1>
 </div>
 <div class="header">
 		<ol class="breadcrumb">
-			<li><a href="/main-board">DashBoard</a></li>
-			<li><a href="/list?page=1&amount=10&type=&keyword=">Board List</a></li>
-			<li><a href="/blog">Our Blog</a></li>
+			<li><a href="/main-board">Main</a></li>
+			<li><a href="/list?page=1&amount=10&type=&keyword=">Dashboard</a></li>
+			<li><a href="/blog">Blog</a></li>
 		</ol>
 </div>
 <div class="d-flex">
@@ -32,8 +32,7 @@
                      </select>
                  </div>
                  <div class="form-group col-5">
-                     <input type="text" name="keyword" id="keyword" class="form-control" value="${cri.keyword}" 
-                     placeholder="검색어를 입력해주세요."/>
+                     <input type="text" name="keyword" id="keyword" class="form-control" value="${cri.keyword}"/>
                  </div>
                  <div class="form-group col-3">
                      <button type="submit" class="btn btn-info">검색</button>
@@ -129,4 +128,4 @@
     const result='${result}'; // 컨트롤러에 정의한 것에 따라 1. result='success'; => 수정 및 삭제 시 result에 넘어오는 값, 2. result='글 번호'; => 등록 시 result에 넘어오는 값
 </script>
 <script src="/js/list.js"></script>
-<%@ include file="include2/footer.jsp" %>
+<%@ include file="./include2/footer.jsp"%>

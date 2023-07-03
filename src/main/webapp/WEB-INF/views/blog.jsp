@@ -1,5 +1,5 @@
 <%@include file="./include/header.jsp"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- Normal Breadcrumb Begin -->
 <section class="normal-breadcrumb set-bg"
 	data-setbg="img/normal-breadcrumb.jpg">
@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <c:set var="thumbnail" value="${board.attachList[0].uuid}_${board.attach}" />
-                <div class="blog__item set-bg" data-setbg="/img/${thumbnail}">
+                <div class="blog__item set-bg" data-setbg="/img/blog/${thumbnail}">
                 
                     <div class="blog__item__text">
                         <p>

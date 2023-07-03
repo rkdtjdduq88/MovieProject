@@ -41,7 +41,7 @@
                             <!-- 평점수정 -->
                             <div class="anime__details__rating">
                                 <div class="rating">
-                                	<h6>${detail.grade}</h6>
+                                	<h6></h6>
                                     <%       
 								        KmdbRes res = (KmdbRes) request.getAttribute("detail");
 								        int rating = res.getGrade();
@@ -55,16 +55,14 @@
 								        } 
 								    %>
                                 </div>
-                                <span>평점 수정하기</span>
-                                
                                  
                             </div>
-                            <p>${detail.plot }</p>
+                            <p>${detail.plot}</p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Type:</span> ${detail.type }</li>
+                                            <li><span>Type:</span> ${detail.type}</li>
                                             <li><span>Studios:</span> ${detail.company}</li>
                                             <li><span>Genre:</span> ${detail.genre}</li>
                                           <%--   <li><span>Actors:</span> ${detail.actors}</li> --%>
@@ -268,13 +266,15 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/moviedetail.js"></script>
+    <script src="../js/moviedetail.js"></script>
     <script src="/js/youtube.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/moviedetail.css">
+
+
 </body>
+
 
 </html>
 
-
   
-
 

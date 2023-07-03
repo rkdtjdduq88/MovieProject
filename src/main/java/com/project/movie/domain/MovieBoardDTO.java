@@ -17,6 +17,7 @@ public class MovieBoardDTO {
 	private String attach;
 	private Date regDate;
 	private Date updateDate;
+	private Date updatedate;
 	private int reRef;
 	private int reLev;
 	private int reSeq;

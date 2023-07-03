@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.movie.mapper.BoardMapper">
+
+	<!-- 블로그 리스트 출력 -->
+	<select id="getBoardList"
+		parameterType="com.project.movie.domain.BoardDTO"
+		resultType="com.project.movie.domain.BoardDTO">
+		SELECT bno, title, content, attach, regDate, updateDate,
+		re_ref, re_lev, re_seq, cnt, userid FROM movieboard_tbl ORDER BY
+		bno
+		DESC
+	</select>
+
+	<!-- 블로그 상세 정보 -->
+	<select id="getBlogDetails"
+		resultType="com.project.movie.domain.BoardDTO">
+		SELECT * FROM movieboard_tbl WHERE bno = #{bno}
+	</select>
+	
+	<!-- 이전 게시물 정보 조회 -->
+<select id="getPreviousPost" parameterType="int"  resultType="com.project.movie.domain.BoardDTO">
+ <![CDATA[  SELECT bno, title
+FROM movieboard_tbl
+WHERE bno < #{bno}
+ORDER BY bno DESC
+FETCH FIRST 1 ROWS ONLY
+
+
+]]>
+</select>
+
+<!-- 다음 게시물 정보 조회 -->
+<select id="getNextPost" parameterType="int" resultType="com.project.movie.domain.BoardDTO">
+  <![CDATA[SELECT bno, title
+FROM movieboard_tbl
+WHERE bno > #{bno}
+ORDER BY bno ASC
+FETCH FIRST 1 ROWS ONLY
+
+]]>
+</select>
+	
+	<resultMap id="commentResultMap"
+		type="com.project.movie.domain.BlogCommentDTO">
+		<id property="bno" column="bno" />
+		<id property="rno" column="rno" />
+		<result property="replyContent" column="replycontent" />
+		<result property="userid" column="userid" />
+		<result property="replyDate" column="replydate" />
+		<result property="replyUpdateDate" column="replyupdatedate" />
+
+		<!-- 대댓글 -->
+
+	</resultMap>
+
+	<!-- 댓글 삽입 -->
+<insert id="insertComment" >
+  INSERT INTO movieboardreply_tbl (bno, rno, replyContent, userid, replydate, replyupdatedate, re_ref, re_lev, re_seq)
+  VALUES (#{bno}, rno_seq.NEXTVAL, #{replyContent}, #{userid}, SYSDATE, SYSDATE, #{bno}, 0, 0)
+</insert>
+	<select id="getComment" parameterType="int"
+		resultMap="commentResultMap">
+		SELECT bno, rno, replycontent, userid, replydate,
+		replyupdatedate
+		FROM movieboardreply_tbl
+		WHERE rno = #{rno}
+	</select>
+
+
+	<!-- 대댓글 삽입 -->
+<insert id="insertReply">
+  INSERT INTO movieboardreply_tbl (bno, rno, replyContent, userid, replydate, replyupdatedate, re_ref, re_lev, re_seq)
+  VALUES (#{bno}, rno_seq.NEXTVAL, #{replyContent}, #{userid}, SYSDATE, SYSDATE, #{re_ref}, #{re_lev}, #{re_seq})
+</insert>
+
+    <select id="getRepliesByComment" parameterType="int" resultType="com.project.movie.domain.BlogCommentDTO">
+        SELECT *
+        FROM movieboardreply_tbl
+        WHERE re_ref = #{commentId}
+        ORDER BY re_seq ASC
+    </select>
+
+<!-- 댓글과 대댓글 조회 -->
+<select id="getCommentsByBoard" parameterType="map" resultType="com.project.movie.domain.BlogCommentDTO">
+ SELECT
+  *
+  FROM movieboardreply_tbl r
+  WHERE r.bno = #{bno}
+  ORDER BY replydate
+</select>
+
+
+
+
+	<!-- 부모 댓글 가져오기 -->
+	<select id="getParentCommentByRno" parameterType="int"
+		resultMap="commentResultMap">
+		SELECT bno, rno, replycontent, userid, replydate, replyupdatedate
+		FROM movieboardreply_tbl
+		WHERE rno = #{rno}
+	</select>
+
+	   <update id="updateComment" parameterType="com.project.movie.domain.BoardDTO">
+        UPDATE movieboardreply_tbl
+        SET replycontent = #{replyContent},
+            replyupdatedate = #{replyUpdateDate}
+        WHERE rno = #{rno}
+    </update>
+
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM
+		movieboardreply_tbl
+		WHERE rno = #{rno}
+	</delete>
+	<!-- 댓글 끝 -->
+
+	<!-- 페이지나누기 시작 -->
+
+	<!-- 게시글 수 카운팅 -->
+	<select id="getBlogCount"
+		parameterType="com.project.movie.domain.PageDTO" resultType="int">
+		SELECT
+		COUNT(*) FROM movieboard_tbl
+	</select>
+
+	<!-- 페이지당 게시글 수 -->
+	<select id="getBoardListByPage"
+		resultType="com.project.movie.domain.BoardDTO">
+		SELECT *
+		FROM movieboard_tbl
+		ORDER BY bno DESC
+		OFFSET
+		#{offset} ROWS FETCH NEXT #{recordSize} ROWS ONLY
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="insert">
+		INSERT INTO moviemember_tbl(userid, password, email,
+		address, name, mobile)
+		VALUES (#{userid}, #{password}, #{email},
+		#{address}, #{name}, #{mobile})
+	</insert>
+
+
+	<!-- 로그인 -->
+	<select id="getMemberByUserId"
+		resultType="com.project.movie.domain.MemberDTO">
+		SELECT * FROM moviemember_tbl WHERE userid = #{userid}
+	</select>
+</mapper>

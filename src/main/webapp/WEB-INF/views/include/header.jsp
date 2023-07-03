@@ -55,7 +55,7 @@
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="header__logo">
-						<a href="/"> <img src="/img/logo.png" alt="">
+						<a href="/login"> <img src="/img/logo.png" alt="">
 						</a>
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 							<c:if test="${userid != null}">
 								<ul>
 									<li class="/"><a href="/">Homepage</a></li>
-									<li><a href="/categories">Categories <span
+									<!-- <li><a href="/categories">Categories <span
 											class="arrow_carrot-down"></span></a>
 										<ul class="dropdown">
 											<li><a href="/categories">Categories</a></li>
@@ -93,7 +93,7 @@
 											<li><a href="/blog-details">Blog Details</a></li>
 											<li><a href="/register">Sign Up</a></li>
 											<li><a href="/login">Login</a></li>
-										</ul></li>
+										</ul></li> -->
 									<li><a href="/blog">Our Blog</a></li>
 									<li><a href="/main-board">Admin Board</a></li>
 									<li><a href="/showWish">Wish</a></li>
