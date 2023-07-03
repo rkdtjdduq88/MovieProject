@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.project.movie.dto.AttachFileDTO;
 import com.project.movie.dto.BlogCommentDTO;
 import com.project.movie.dto.BoardDTO;
+import com.project.movie.dto.MovieBoardDTO;
 import com.project.movie.service.BoardService;
 import com.project.movie.service.MovieBoardService;
 
@@ -49,9 +50,15 @@ public class BlogController {
         int offset = (page - 1) * recordSize; // 데이터 조회 시작 위치
         
         
-
+        
         List<BoardDTO> boardList = boardService.getBoardListByPage(offset, recordSize); // 페이징된 게시물 목록 가져오기
-
+        
+        // Retrieve the attach file list for each board
+        for (BoardDTO board : boardList) {
+            int bno = board.getBno();
+            List<AttachFileDTO> attachList = movieBoardService.getAttachList(bno);
+            board.setAttachList(attachList);
+        }
         model.addAttribute("boardList", boardList);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
@@ -63,24 +70,37 @@ public class BlogController {
 
     @GetMapping("/blog-details/{bno}")
     public String getBlogDetails(@PathVariable int bno, Model model, HttpSession session) {
-        // Retrieve the details of the blog post with the specified bno
+        // 지정된 bno를 가진 블로그 포스트의 세부 정보를 가져옵니다
         BoardDTO boardDetail = boardService.getBlogDetails(bno);
-        // Add the boardDetail to the model with the attribute name "boardDto"
+        // boardDetail을 "boardDto"라는 속성 이름으로 모델에 추가합니다
         model.addAttribute("boardDto", boardDetail);
 
-        // Retrieve the comments associated with the blog post
+        // 블로그 포스트와 관련된 댓글을 가져옵니다
         List<BlogCommentDTO> comments = boardService.getCommentsByBoard(bno);
-        // Add the comments to the model with the attribute name "comments"
+        // comments를 "comments"라는 속성 이름으로 모델에 추가합니다
         model.addAttribute("comments", comments);
 
-        // Retrieve the logged-in user from the session
+        // 세션에서 로그인된 사용자를 가져옵니다
         String loggedInUser = (String) session.getAttribute("userid");
-        // Add the logged-in user to the model with the attribute name "loggedInUser"
+        // 로그인된 사용자를 "loggedInUser"라는 속성 이름으로 모델에 추가합니다
         model.addAttribute("loggedInUser", loggedInUser);
 
-        // Return the view name "blog-details"
+        // 이전 게시물 정보를 가져옵니다
+        BoardDTO previousPost = boardService.getPreviousPost(bno);
+        // 이전 게시물 정보를 모델에 추가합니다
+        model.addAttribute("previousPost", previousPost);
+
+        // 다음 게시물 정보를 가져옵니다
+        BoardDTO nextPost = boardService.getNextPost(bno);
+        // 다음 게시물 정보를 모델에 추가합니다
+        model.addAttribute("nextPost", nextPost);
+      
+        // 뷰 이름 "blog-details"를 반환합니다
         return "blog-details";
     }
+
+
+
 
 
     @PostMapping("/blog-details/{bno}/comment")

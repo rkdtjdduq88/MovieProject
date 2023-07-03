@@ -6,7 +6,7 @@
 	<select id="getBoardList"
 		parameterType="com.project.movie.dto.BoardDTO"
 		resultType="com.project.movie.dto.BoardDTO">
-		SELECT bno, title, content, attach, regdate, updatedate,
+		SELECT bno, title, content, attach, regDate, updateDate,
 		re_ref, re_lev, re_seq, cnt, userid FROM movieboard_tbl ORDER BY
 		bno
 		DESC
@@ -17,6 +17,30 @@
 		resultType="com.project.movie.dto.BoardDTO">
 		SELECT * FROM movieboard_tbl WHERE bno = #{bno}
 	</select>
+	
+	<!-- 이전 게시물 정보 조회 -->
+<select id="getPreviousPost" parameterType="int"  resultType="com.project.movie.dto.BoardDTO">
+ <![CDATA[  SELECT bno, title
+FROM movieboard_tbl
+WHERE bno < #{bno}
+ORDER BY bno DESC
+FETCH FIRST 1 ROWS ONLY
+
+
+]]>
+</select>
+
+<!-- 다음 게시물 정보 조회 -->
+<select id="getNextPost" parameterType="int" resultType="com.project.movie.dto.BoardDTO">
+  <![CDATA[SELECT bno, title
+FROM movieboard_tbl
+WHERE bno > #{bno}
+ORDER BY bno ASC
+FETCH FIRST 1 ROWS ONLY
+
+]]>
+</select>
+	
 	<resultMap id="commentResultMap"
 		type="com.project.movie.dto.BlogCommentDTO">
 		<id property="bno" column="bno" />

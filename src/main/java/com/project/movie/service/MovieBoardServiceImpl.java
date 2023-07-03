@@ -28,13 +28,13 @@ public class MovieBoardServiceImpl implements MovieBoardService {
 
     @Override
     public List<MovieBoardDTO> getList(Criteria criteria) {
-        return mapper.getList(criteria);
+        return mapper.list(criteria);
     }
 
     @Transactional
     @Override
     public boolean register(MovieBoardDTO boardDTO) {
-        boolean insertFlag = mapper.register(boardDTO) == 1 ? true : false;
+        boolean insertFlag = mapper.insert(boardDTO) == 1 ? true : false;
         if (boardDTO.getAttachList() == null || boardDTO.getAttachList().size() == 0) {
             return insertFlag;
         }

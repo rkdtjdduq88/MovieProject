@@ -65,7 +65,7 @@
 										<li><a href="./login">Login</a></li>
 									</ul></li>
 								<li><a href="/blog">Our Blog</a></li>
-								<li><a href="main-board">Admin Board</a></li>
+								<li><a href="/main-board">Admin Board</a></li>
 							</ul>
 						</nav>
 					</div>

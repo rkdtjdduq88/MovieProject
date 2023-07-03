@@ -8,7 +8,7 @@ import com.project.movie.dto.AttachFileDTO;
 
 @Mapper
 public interface AttachMapper {
-    public int insert(AttachFileDTO dto);
+    public int insert(AttachFileDTO attach);
     public List<AttachFileDTO> select(int bno);
     public int deleteAll(int bno);
     public List<AttachFileDTO> oldFiles();

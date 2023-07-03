@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.domain.AttachFileDTO;
+import com.project.movie.dto.AttachFileDTO;
 
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
@@ -44,46 +44,19 @@ import net.coobird.thumbnailator.Thumbnails;
 public class UploadAjaxController {
 	@GetMapping("/uploadAjax")
 	public void uploadAjaxPage() {
-		// ���ε� Ajax �������� �����ֱ� ���� �޼���
+	
 	}
 
-//	@PostMapping("/uploadAjax")
-//	public ResponseEntity<String> uploadAjaxPost(MultipartFile uploadFile) {
-//		log.info("upload ��û");
-//
-//		log.info("file name" + uploadFile.getOriginalFilename());
-//		log.info("file size" + uploadFile.getSize());
-//
-//		String uploadPath = "c:\\uploads";
-//		UUID uuid = UUID.randomUUID();
-//		String fileName = uuid.toString() + "_" + uploadFile.getOriginalFilename();
-//
-//		try {
-//			uploadFile.transferTo(new File(uploadPath, fileName));
-//
-//		} catch (IllegalStateException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-////		�����ڵ� + �޼��� ������
-//		return new ResponseEntity<>(fileName, HttpStatus.OK);
-//	}
 	@PostMapping("/uploadAjax")
 	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile,HttpServletRequest request) {
 		log.info("upload ��û");
-		   CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-		    String token = csrfToken.getToken();
+		  
+		
 		List<AttachFileDTO> fileList = new ArrayList<AttachFileDTO>();
-		// ���� ����
-		String uploadPath = "c:\\uploads";
-		String uploadFolderPath = getFolder();
-		log.info("uploadFolderPath ", uploadFolderPath);
-		File uploadFullPath = new File(uploadPath, uploadFolderPath);
-		if (!uploadFullPath.exists()) {
-			uploadFullPath.mkdirs();
-		}
+		
+		String uploadPath = "C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog";
+
 		for (MultipartFile multipartFile : uploadFile) {
 
 			log.info("file name" + multipartFile.getOriginalFilename());
@@ -91,26 +64,25 @@ public class UploadAjaxController {
 
 			UUID uuid = UUID.randomUUID();
 			String fileName = uuid.toString() + "_" + multipartFile.getOriginalFilename();
-//			fileList.add(multipartFile.getOriginalFilename());
 
-			File saveFile = new File(uploadFullPath, fileName);
-			// ���� �� ���� AttachFileDTO ����
+
+			File saveFile = new File(uploadPath, fileName);
+		
 			AttachFileDTO attach = new AttachFileDTO();
 			attach.setFileName(multipartFile.getOriginalFilename());
-			attach.setUploadPath(uploadFolderPath);
+			attach.setUploadPath(uploadPath);
 			attach.setUuid(uuid.toString());
 			try {
-				// ���� ���� ����
+				
 				multipartFile.transferTo(saveFile);
 
-				// ���ε�� ���� Ÿ�� üũ
+			
 				if (checkImageType(saveFile)) {
 					attach.setFileType(true);
-					// �̹��� �����̶�� ����� �̹����� ����
-					// ���� �̹��� �о����
+				
 					BufferedImage origin = ImageIO.read(saveFile);
-					// ����� ���ϸ�
-					File thumbnail = new File(uploadFullPath, "s_" + fileName);
+				
+					File thumbnail = new File(uploadPath, "s_" + fileName);
 
 					double ratio = 10; // ��Һ���
 					int width = (int) (origin.getWidth() / ratio);
@@ -124,15 +96,15 @@ public class UploadAjaxController {
 			}
 			fileList.add(attach);
 		}
-//		�����ڵ� + �޼��� ������
+
 		return new ResponseEntity<>(fileList, HttpStatus.OK);
 	}
 
-	// ���� ��û�� ���� ���� �����ֱ�
+
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(String fileName) {
 		log.info("���� ��û" + fileName);
-		File file = new File("c:\\uploads\\" + fileName);
+		File file = new File("C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog" + fileName);
 		// speingframework Headers
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<byte[]> result = null;
@@ -149,7 +121,7 @@ public class UploadAjaxController {
 	public ResponseEntity<Resource> downloadFile(String fileName, @RequestHeader("User-Agent") String userAgent) {
 		log.info("���� �ٿ�ε� ��û " + fileName);
 		
-		Resource resource = new FileSystemResource("c:\\uploads\\" + fileName);
+		Resource resource = new FileSystemResource("C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog" + fileName);
 		String oriFileName = fileName.substring(fileName.indexOf("_")+1);
 
 		if (!resource.exists()) {
@@ -180,7 +152,7 @@ public class UploadAjaxController {
 	public ResponseEntity<String> deleteFile(String fileName, String type){
 	    log.info("���� ���� ��û: " + fileName + ", type: " + type);
 	    try {
-	        File file = new File("c:\\uploads\\", URLDecoder.decode(fileName, "utf-8"));
+	        File file = new File("C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog", URLDecoder.decode(fileName, "utf-8"));
 	        file.delete(); // ���� ���� txt, ����� ����
 
 	        if (type.equals("image")) {
@@ -216,11 +188,5 @@ public class UploadAjaxController {
 		return false;
 	}
 
-	// �Ϲ� �޼ҵ� (���� ����)
-	private String getFolder() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();// ��¥ ������ ���
-		String folder = sdf.format(date);// 2023-05-26
-		return folder.replace("-", File.separator);// c:/1.jsp
-	}
+
 }

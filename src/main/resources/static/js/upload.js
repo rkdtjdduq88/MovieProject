@@ -4,7 +4,7 @@
 document.querySelector("#uploadFile").addEventListener("change", () => {
   // formData 객체 생성
   const formData = new FormData();
-  const csrfToken = document.querySelector("input[name=_csrf]").value;
+
   // file 요소 가져오기
   let inputFiles = document.querySelector("#uploadFile").files;
   console.log(inputFiles);

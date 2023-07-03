@@ -35,6 +35,10 @@ public interface BoardMapper {
 	void deleteComment(int rno);
 	
      int insert(MemberDTO dto); // 회원가입
+     
+     BoardDTO getPreviousPost(@Param("bno") int bno);
+
+     BoardDTO getNextPost(@Param("bno") int bno);//다음페이지
     
      MemberDTO getMemberByUserId(String userId);  //로그인 정보 가져오기
     List<BlogCommentDTO> getParentCommentsByBoard(int bno);

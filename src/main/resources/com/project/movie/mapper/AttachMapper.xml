@@ -4,7 +4,7 @@
 
 	<!-- 파일 입려 -->
 	<insert id="insert">
-		INSERT INTO spring_attach (uuid, uploadPath,
+		INSERT INTO movieboardattach (uuid, uploadPath,
 		fileName, fileType, bno)
 		VALUES (#{uuid},
 		#{uploadPath},#{fileName},#{fileType},#{bno})
@@ -12,11 +12,11 @@
 	</insert>
 	<!-- BNO 와 일치하는 첨부파일 목록 가지고 오기 -->
 	<select id="select" resultType="com.project.movie.dto.AttachFileDTO">
-		select * from spring_attach where bno = #{bno}
+		select * from movieboardattach where bno = #{bno}
 	</select>
 <!--  bno 와 일치하는 첨부파일 제거-->
 	<delete id="deleteAll">
-		delete from spring_attach where bno = #{bno}
+		delete from movieboardattach where bno = #{bno}
 	</delete>
 	<!-- 어제날짜 첨부파일 목록 -->
 <select id="oldFiles" resultType="com.project.movie.dto.AttachFileDTO">

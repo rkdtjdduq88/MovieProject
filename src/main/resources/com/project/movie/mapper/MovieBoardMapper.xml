@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.movie.mapper.MovieBoardMapper">
-
-<!-- 전체 조회(페이지 나눈 후) -->
 <select id="list" resultType="com.project.movie.dto.MovieBoardDTO">
 <![CDATA[
 SELECT BNO, TITLE, USERID, REGDATE, UPDATEDATE, CNT
-FROM (SELECT /*+INDEX_DESC(movieboard_tbl PK_movieboard)*/ ROWNUM RN, BNO, TITLE, USERID, REGDATE, UPDATEDATE, CNT
-      FROM movieboard_tbl
-      WHERE 
+FROM (
+  SELECT /*+INDEX_DESC(movieboard_tbl PK_movieboard)*/ ROWNUM RN, BNO, TITLE, USERID, REGDATE, UPDATEDATE, CNT
+  FROM (
+    SELECT BNO, TITLE, USERID, REGDATE, UPDATEDATE, CNT
+    FROM movieboard_tbl
+    WHERE 1=1
 ]]>      
    <include refid="criteria"></include>   
 <![CDATA[   
-      ROWNUM<=#{page}*#{amount})
-WHERE RN>(#{page}-1)*#{amount}
-]]> <!-- 이 안에 넣어주면 <,> 기호가 크다, 작다를 의미하는 기호야~라고 인식시켜 주는 것이다. -->
+    ORDER BY BNO DESC
+  )
+  WHERE ROWNUM <= #{page} * #{amount}
+)
+WHERE RN > (#{page} - 1) * #{amount}
+]]>
 </select>
 
 <!-- 전체 게시물 개수: totalCnt -->
@@ -56,10 +60,13 @@ WHERE RN>(#{page}-1)*#{amount}
    </trim>
 </sql>
 <!-- 게시물 등록 -->
-<insert id="insertBoard" parameterType="com.project.movie.dto.MovieBoardDTO">
-  INSERT INTO movieboard_tbl (bno, title, regdate, updateddate, re_ref, re_lev, re_seq, cnt, userid, content)
-  VALUES (#{bno}, #{title}, #{regDate}, #{updateDate}, #{reRef}, #{reLev}, #{reSeq}, #{cnt}, #{userid}, #{content})
+<insert id="insert" parameterType="com.project.movie.dto.MovieBoardDTO">
+ <selectKey keyProperty="bno" order="BEFORE" resultType="int">
+        select bno_sequence.nextval from dual
+</selectKey>
+    insert into MOVIEBOARD_TBL(bno, title, content, userid, attach) values(#{bno}, #{title}, #{content}, #{userid}, #{attachList[0].fileName})
 </insert>
+
 
 
 <!-- 특정 번호의 게시물 조회 -->
@@ -93,9 +100,9 @@ where b.bno=#{bno}
 </select>
 
 <!-- 게시물 수정 -->
-<update id="updateBoard" parameterType="com.project.movie.dto.MovieBoardDTO">
+<update id="modify" parameterType="com.project.movie.dto.MovieBoardDTO">
   UPDATE movieboard_tbl
-  SET title = #{title}, content = #{content}, updateddate = #{updateDate}
+  SET title = #{title}, content = #{content}, updatedate = #{updateDate}
   WHERE bno = #{bno}
 </update>
 

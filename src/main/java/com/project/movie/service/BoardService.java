@@ -22,7 +22,8 @@ public interface BoardService {
 	List<BlogCommentDTO> getRepliesByComment(int rno); // 대댓글 조회 메서드 추가
 
 	void insertReply(BlogCommentDTO reply); // 대댓글 추가 메서드 추가
-
+	BoardDTO getPreviousPost(int bno);
+    BoardDTO getNextPost(int bno);
 	void updateComment(BlogCommentDTO dto);
 
 	void deleteComment(int rno);

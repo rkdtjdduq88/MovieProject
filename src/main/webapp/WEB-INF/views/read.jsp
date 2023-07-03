@@ -100,10 +100,15 @@
 					<button class="btn btn-danger" type="button">삭제</button>
 				</div>
 			</li>
+			<!-- 이후 다른 댓글이 추가될 수 있음 -->
 		</ul>
 	</div>
 	<div class="card-footer">
 		<!-- 댓글 페이지 나누기 -->
+		<ul class='pagination justify-content-center'>
+			<li class='page-item'><a class='page-link' href='1'>1</a></li>
+			<!-- 다른 페이지 번호 추가될 수 있음 -->
+		</ul>
 	</div>
 </div>
 

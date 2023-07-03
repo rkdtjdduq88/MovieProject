@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.net.HttpURLConnection, java.net.URL, java.io.BufferedReader, java.io.InputStreamReader" %>
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -21,19 +21,23 @@
 						Action, Magic <span>- March 08, 2020</span>
 					</h6>
 					<h2>${boardDto.title}</h2>
+					
 					<div class="blog__details__social">
-						<a href="#" class="facebook"><i class="fa fa-facebook-square"></i>
-							Facebook</a> <a href="#" class="pinterest"><i
-							class="fa fa-pinterest"></i> Pinterest</a> <a href="#"
-							class="linkedin"><i class="fa fa-linkedin-square"></i>
-							Linkedin</a> <a href="#" class="twitter"><i
-							class="fa fa-twitter-square"></i> Twitter</a>
+					<a id="clip-btn" href="javascript:clipboardShare()">
+      <img src="https://cdn.icon-icons.com/icons2/2551/PNG/512/clipboard_check_icon_152889.png" width="85" height="85" />
+</a>
+							  <a id="kakao-link-btn" href="javascript:kakaoShare()">
+    	<img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
+    </a><a href="#" class="facebook-share" onclick="shareFacebook()">
+    <img src="https://cdn-icons-png.flaticon.com/512/3536/3536394.png" width="73" height="73" >
+</a>
+
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-12">
 				<div class="blog__details__pic">
-					<img src="https://api.dicebear.com/6.x/bottts-neutral/svg" alt="">
+					<img src="" alt="">
 				</div>
 			</div>
 			<div class="col-lg-8">
@@ -42,8 +46,8 @@
 						<p>${boardDto.content}</p>
 					</div>
 					<div class="blog__details__item__text">
-						<h4>Tobio-Nishinoya showdown:</h4>
-						<img src="/img/blog/details/bd-item-1.jpg" alt="">
+						<h4></h4>
+						<img src="" alt="">
 						<p></p>
 					</div>
 
@@ -53,21 +57,34 @@
 					<div class="blog__details__btns">
 						<div class="row">
 							<div class="col-lg-6">
-								<div class="blog__details__btns__item">
-									<h5>
-										<a href="#"><span class="arrow_left"></span> Building a
-											Better LiA...</a>
-									</h5>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="blog__details__btns__item next__btn">
-									<h5>
-										<a href="#">Mugen no Juunin: Immortal â 21 <span
-											class="arrow_right"></span></a>
-									</h5>
-								</div>
-							</div>
+    <div class="blog__details__btns__item">
+        <h5>
+            <c:if test="${previousPost ne null}">
+                <a href="/blog-details/${previousPost.bno}">
+                    <span class="arrow_left"></span> ${previousPost.title}
+                </a>
+            </c:if>
+            <c:if test="${previousPost eq null}">
+                <span class="disabled">이전 포스트가 없습니다</span>
+            </c:if>
+        </h5>
+    </div>
+</div>
+<div class="col-lg-6">
+    <div class="blog__details__btns__item next__btn">
+        <h5>
+            <c:if test="${nextPost ne null}">
+                <a href="/blog-details/${nextPost.bno}">
+                    ${nextPost.title} <span class="arrow_right"></span>
+                </a>
+            </c:if>
+            <c:if test="${nextPost eq null}">
+                <span class="disabled">마지막 포스트입니다</span>
+            </c:if>
+        </h5>
+    </div>
+</div>
+
 						</div>
 					</div>
 				</div>
@@ -156,6 +173,8 @@
 <form action="" id="operForm">
 	<input type="hidden" name="bno" value="${read.bno}" />
 </form>
+<!-- kakao sdk 호출 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 const loggedInUser = "${loggedInUser}";
 	//게시물 글번호 가져오
@@ -175,6 +194,74 @@ const loggedInUser = "${loggedInUser}";
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/reply.js"></script>
 <script src="/js/main.js"></script>
+<script type="text/javascript">
+  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+  Kakao.init('890eeace03d702aa8dab7f47b73c5c42');
 
+  // SDK 초기화 여부를 판단합니다.
+  console.log(Kakao.isInitialized());
+
+  function kakaoShare() {
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '카카오공유하기 시 타이틀',
+        description: '카카오공유하기 시 설명',
+        imageUrl: '카카오공유하기 시 썸네일 이미지 경로',
+        link: {
+          mobileWebUrl: '카카오공유하기 시 클릭 후 이동 경로',
+          webUrl: '카카오공유하기 시 클릭 후 이동 경로',
+        },
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            mobileWebUrl: '카카오공유하기 시 클릭 후 이동 경로',
+            webUrl: '카카오공유하기 시 클릭 후 이동 경로',
+          },
+        },
+      ],
+      // 카카오톡 미설치 시 카카오톡 설치 경로이동
+      installTalk: true,
+    })
+  }
+  
+  function shareFacebook() {
+      var url = encodeURIComponent(window.location.href);
+      var facebookShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+
+      window.open(facebookShareUrl, '_blank');
+  }
+//클립보드 복사하기
+	function clipboardShare() {
+  	    // 1. 새로운 element 생성
+  	    var tmpTextarea = document.createElement('textarea');
+          
+          // 2. 해당 element에 복사하고자 하는 value 저장
+          tmpTextarea.value = "복사하고픈 value";
+          
+          // 3. 해당 element를 화면에 안보이는 곳에 위치
+          tmpTextarea.setAttribute('readonly', '');
+          tmpTextarea.style.position = 'absolute';
+          tmpTextarea.style.left = '-9999px';
+          document.body.appendChild(tmpTextarea);
+          
+          // 4. 해당 element의 value를 시스템 함수를 호출하여 복사
+          tmpTextarea.select();
+          tmpTextarea.setSelectionRange(0, 9999);  // 셀렉트 범위 설정
+          var successChk = document.execCommand('copy');
+          
+          // 5. 해당 element 삭제
+          document.body.removeChild(tmpTextarea);
+          
+          // 클립보드 성공여부 확인
+          if(!successChk){
+          	alert("클립보드 복사에 실패하였습니다.");
+          } else {
+          	alert("클립보드에 복사가 완료되었습니다.");
+          }
+     }
+</script>
 </body>
 </html>

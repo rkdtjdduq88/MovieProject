@@ -97,5 +97,17 @@ public class BoardServiceImpl implements BoardService {
 	public BlogCommentDTO getParentCommentByRno(int rno) {
 		return boardMapper.getParentCommentByRno(rno);
 	}
+	
+	
+
+    @Override
+    public BoardDTO getPreviousPost(int bno) {
+        return boardMapper.getPreviousPost(bno);
+    }
+
+    @Override
+    public BoardDTO getNextPost(int bno) {
+        return boardMapper.getNextPost(bno);
+    }
 
 }
