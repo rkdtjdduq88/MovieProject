@@ -13,4 +13,6 @@ public class MovieDetailReplyCntFavDTO {
 	private int replyCnt;
 	//private int rno;
 	private List<MovieDetailReplyDTO> list;
+	
+	private int avgGrade;
 }

@@ -29,7 +29,9 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 		// 기존 댓글번호에 좋아요 테이블의 댓글번호 매핑		
 		//favoriteMapper.getFavoriteCountOne(rno);
 		
-		return new MovieDetailReplyCntFavDTO(replyCnt, list);
+		int avgGrade=movieDetailReplyMapper.avgGrade(title);
+
+		return new MovieDetailReplyCntFavDTO(replyCnt, list, avgGrade);
 	}
 	
 	// 리뷰댓글 작성

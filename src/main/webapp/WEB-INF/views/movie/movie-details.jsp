@@ -1,3 +1,4 @@
+<%@page import="com.project.movie.domain.MovieDetailReplyCntFavDTO"%>
 <%@page import="com.project.movie.response.KmdbRes"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -27,8 +28,8 @@
                    
 		            <div class="col-lg-3">
 					  <div class="anime__details__pic set-bg" data-setbg="${empty detail.posterUrl ? 'https://www28.cs.kobe-u.ac.jp/wp-content/uploads/2021/04/noimage.png' : detail.posterUrl}">
-					    <div class="comment"><i class="fa fa-comments"></i> 11</div>
-					    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+					    <div class="comment"><i class="fa fa-comments"></i>${count}</div>
+					    <div class="view"><i class="fa">평점:</i>${avg}</div>
 					  </div>
 					</div>
 	
@@ -178,7 +179,6 @@
 	                            	<input type="text" class="userid" id="userid" value="${userid}" readonly />
 	                            </div>
 	                                <textarea placeholder="Your Comment" id="replyContent"></textarea>
-
 		                                <div class="rating">
 		                                    <i class="fa fa-star-o" data-value="1"></i>
 		                                    <i class="fa fa-star-o" data-value="2"></i>
@@ -186,8 +186,7 @@
 		                                    <i class="fa fa-star-o" data-value="4"></i>
 		                                    <i class="fa fa-star-o" data-value="5"></i>	                                    
 		                                </div>
-		                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>	                                                              
-
+		                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
                             </form>
                         </div>
                     </div>
@@ -208,16 +207,6 @@
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="/img/sidebar/tv-3.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="/img/sidebar/tv-4.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
                             </div>
                         </div>
                     </div>
