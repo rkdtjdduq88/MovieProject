@@ -55,16 +55,14 @@
 								        } 
 								    %>
                                 </div>
-                                <span>평점 수정하기</span>
-                                
                                  
                             </div>
-                            <p>${detail.plot }</p>
+                            <p>${detail.plot}</p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Type:</span> ${detail.type }</li>
+                                            <li><span>Type:</span> ${detail.type}</li>
                                             <li><span>Studios:</span> ${detail.company}</li>
                                             <li><span>Genre:</span> ${detail.genre}</li>
                                           <%--   <li><span>Actors:</span> ${detail.actors}</li> --%>
@@ -272,8 +270,8 @@
     <script src="/js/youtube.js"></script>
 </body>
 
-</html>
 
+</html>
 
   
 

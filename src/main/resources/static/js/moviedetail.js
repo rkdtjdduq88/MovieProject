@@ -30,7 +30,9 @@ function movieDetailReplyList() {
 
         var review = `<div class="anime__review__item">
             <div class="anime__review__item__pic">
-            <img src="https://avatars.dicebear.com/api/bottts/${list.userid}.jpg" alt="img" style="width: 80px; height: 80px; border-radius: 50%;">
+            <img src="https://avatars.dicebear.com/api/bottts/${
+              list.userid
+            }.jpg" alt="img" style="width: 80px; height: 80px; border-radius: 50%;">
             </div>
                 <div class="anime__review__item__text" data-rno="${list.rno}">      
                   <div class="row">  
@@ -359,4 +361,9 @@ document.querySelector(".follow-btn").addEventListener("click", (e) => {
         text: "위시리스트 삭제는 wish페이지에서 확인해주세요.",
       });
     });
+});
+
+document.querySelector(".btn-secondary").addEventListener("click", (e) => {
+  $("#replyModal").modal("hide");
+  movieDetailReplyList();
 });
