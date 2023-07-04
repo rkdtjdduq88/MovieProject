@@ -64,7 +64,7 @@ public class LoginController {
 	
 	@PostMapping("/changePass")
 	public String changePassPost(MemberDTO member, Model model) {
-	    String newPassword = member.getPassword();
+	    String newPassword = member.getNewPassword();
 	    String userid = member.getUserid();
 
 	    if (newPassword == null || newPassword.isEmpty()) {

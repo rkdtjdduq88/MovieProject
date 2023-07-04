@@ -14,23 +14,23 @@ function fetchAndDisplayMovies() {
     })
     .then(function (data) {
       // 데이터를 표시할 HTML 문자열
-        console.log("박스오피스 리스트 요청", data);
+      //console.log("박스오피스 리스트 요청", data);
       var movieItems = "";
       // 데이터를 테이블에 표시
       data.list.forEach(function (movie) {
-        console.log(movie);
         // 영화 랭킹 아이템을 생성하여 문자열에 추가
+        var ratingHTML = displayRating(movie.avgGrade);
         var movieItem = `
         <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="product__item">
                   <div class="product__item__pic set-bg" data-setbg="${movie.posterUrl}" style="background-image: url('${movie.posterUrl}')">
                       <div class="ep">${movie.rank}위</div>
                       <div class="comment"><i class="fa fa-comments"></i>${movie.replyCnt}</div>
-                      <div class="view"><i class="fa">평점:</i>${movie.avgGrade}</div>
+                      <div class="view">${ratingHTML}</div>
                   </div>
                   <div class="product__item__text">
                       <ul>
-                          <li>상영중</li>
+                          <li>활동중</li>
                           <li>영화</li>
                       </ul>
                       <h5><a href="/movie/details?movieNm=${movie.movieNm}&movieDt=${movie.openDt}">${movie.movieNm}</a></h5>
@@ -120,3 +120,17 @@ function fetchAndCarouselMovies() {
 fetchAndCarouselMovies();
 
 //document.addEventListener("DOMContentLoaded", fetchAndCarouselMovies);
+
+// 평점을 별로 표시하는 함수
+function displayRating(avgGrade) {
+  var ratingHTML = "";
+  for (var i = 1; i <= 5; i++) {
+    if (i <= avgGrade) {
+      ratingHTML += '<i class="fa fa-star"></i>';
+    } else {
+      ratingHTML += '<i class="fa fa-star-o"></i>';
+    }
+  }
+
+  return ratingHTML;
+}
