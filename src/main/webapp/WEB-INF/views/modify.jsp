@@ -38,6 +38,7 @@
 			</div>
 			<input type="hidden" name="bno" value="${dto.bno}" />
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			
 			<security:authorize access="isAuthenticated()">
 				<security:authentication property="principal.username" var="username"/>
 				<c:if test="${username==dto.userid}">

@@ -102,7 +102,7 @@ where b.bno=#{bno}
 </update>
 
 <!-- 게시물 삭제 -->
-<delete id="remove" parameterType="int">
+<delete id="remove">
   DELETE FROM movieboard_tbl
   WHERE bno = #{bno}
 </delete>
