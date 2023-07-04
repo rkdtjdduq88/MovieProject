@@ -72,7 +72,7 @@
  */
 		const csrfToken='${_csrf.token}';
 	</script>
-         
+	
 <!-- Js Plugins -->
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
@@ -82,9 +82,9 @@
 <script src="/js/jquery.slicknav.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/wishList.js"></script>          
 <!-- <script src="/js/search.js"></script> -->     
 
-<script src="/js/wishList.js"></script>          
 <!-- sweet alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
 </body>
