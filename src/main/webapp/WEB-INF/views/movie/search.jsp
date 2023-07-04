@@ -49,7 +49,7 @@
                        
                         <!-- 영화 여러개 보여줄 곳 -->
                         
-                        <div class="row center-content">
+                      <%--   <div class="row center-content">
 						  <c:forEach var="movie" items="${list}">
 						    <div class="col-lg-3 col-md-4 col-sm-6">
 						      <div class="product__item">
@@ -68,8 +68,28 @@
 						      </div>
 						    </div>
 						  </c:forEach>
-						</div>
+						</div> --%>
                         
+                         <div class="row center-content">
+						  <c:forEach var="movie" items="${list}">
+						    <div class="col-lg-3 col-md-4 col-sm-6">
+						      <div class="product__item">
+						        <div class="product__item__pic set-bg" data-setbg="${empty movie.posterUrl ? 'https://www28.cs.kobe-u.ac.jp/wp-content/uploads/2021/04/noimage.png' : movie.posterUrl}">
+						          <!-- <div class="ep"> 18 / 18 </div> -->
+						          <div class="comment"><i class="fa fa-comments"></i> <!-- 11 --></div>
+						          <div class="view"><i class="fa fa-eye"></i> <!-- 9141 --></div>
+						        </div>
+						        <div class="product__item__text">
+						          <ul>
+						            <li>Active</li>
+						            <li>Movie</li>
+						          </ul>
+						          <h5><a href="/movie/details?movieNm=${movie.title}&movieDt=${movie.releaseDate}">${movie.title}</a></h5>
+						        </div>
+						      </div>
+						    </div>
+						  </c:forEach>
+						</div> 
                         
                         
                         

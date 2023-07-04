@@ -32,7 +32,7 @@
                                         <h4>MY WISHLIST</h4>
                                     </div>  
                                 </div>           
-                            <div class="row wishList center-content">
+                           		<div class="row wishList center-content">
 
                                 </div>     
                        
