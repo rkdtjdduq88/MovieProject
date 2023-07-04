@@ -7,12 +7,14 @@ document.querySelector("#uploadFile").addEventListener("change", () => {
 
   // file 요소 가져오기
   let inputFiles = document.querySelector("#uploadFile").files;
-  console.log(inputFiles);
+  console.log("인풋파일", inputFiles);
 
   // 가져온 file 요소를 formData에 추가
   for (let i = 0; i < inputFiles.length; i++) {
+    console.log("i: ", i);
     formData.append("uploadFile", inputFiles[i]);
   }
+  console.log("인풋파일2", formData);
   // 비동기 formData 전송
   fetch("/uploadAjax", {
     method: "post",
@@ -43,29 +45,13 @@ function showUploadFile(uploadResultArr) {
     // fileType이 true인 경우 이미지 파일이므로 thumbnail 이미지를 보여준다
     if (item.fileType) {
       // 썸네일 이미지 경로 생성
-      let fileCallPath = encodeURIComponent(
-        item.uploadPath + "/s_" + item.uuid + "_" + item.fileName
-      );
+      let fileCallPath = encodeURIComponent(item.uploadPath + "/s_" + item.uuid + "_" + item.fileName);
       // 썸네일 이미지 클릭 ==> 원본 이미지 보여주기
-      let oriFileCallPath = encodeURIComponent(
-        item.uploadPath + "/" + item.uuid + "_" + item.fileName
-      );
-      str +=
-        "<li data-path='" + item.uploadPath + "'data-uuid='" + item.uuid + "'";
-      str +=
-        "data-filename='" +
-        item.fileName +
-        "'data-type='" +
-        item.fileType +
-        "'>";
-      str +=
-        "<a href='/display?fileName=" +
-        oriFileCallPath +
-        "' data-lightbox='image'>";
-      str +=
-        "<div class='text-center'><img src='/display?fileName=" +
-        fileCallPath +
-        "'></div></a>";
+      let oriFileCallPath = encodeURIComponent(item.uploadPath + "/" + item.uuid + "_" + item.fileName);
+      str += "<li data-path='" + item.uploadPath + "'data-uuid='" + item.uuid + "'";
+      str += "data-filename='" + item.fileName + "'data-type='" + item.fileType + "'>";
+      str += "<a href='/display?fileName=" + oriFileCallPath + "' data-lightbox='image'>";
+      str += "<div class='text-center'><img src='/display?fileName=" + fileCallPath + "'></div></a>";
       str += "<small>" + item.fileName + "</small> ";
       str +=
         "<button type ='button' class='btn btn-sm btn-circle btn-warning' data-file='" +
@@ -74,20 +60,11 @@ function showUploadFile(uploadResultArr) {
       str += "</li>";
     } else {
       // txt 파일
-      let fileCallPath = encodeURIComponent(
-        item.uploadPath + "/" + item.uuid + "_" + item.fileName
-      );
-      str +=
-        "<li data-path='" + item.uploadPath + "'data-uuid='" + item.uuid + "'";
-      str +=
-        "data-filename='" +
-        item.fileName +
-        "'data-type='" +
-        item.fileType +
-        "'>";
+      let fileCallPath = encodeURIComponent(item.uploadPath + "/" + item.uuid + "_" + item.fileName);
+      str += "<li data-path='" + item.uploadPath + "'data-uuid='" + item.uuid + "'";
+      str += "data-filename='" + item.fileName + "'data-type='" + item.fileType + "'>";
       str += "<a href='/download?fileName=" + fileCallPath + "'>";
-      str +=
-        "<div class='text-center'><img src='/resources/img/txt-file.png'></div>";
+      str += "<div class='text-center'><img src='/resources/img/txt-file.png'></div>";
       str += "<small>" + item.fileName + "</small></a>";
       str +=
         "<button type ='button' class='btn btn-sm btn-circle btn-warning' data-file='" +

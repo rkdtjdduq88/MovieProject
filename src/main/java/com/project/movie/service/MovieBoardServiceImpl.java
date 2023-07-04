@@ -34,7 +34,9 @@ public class MovieBoardServiceImpl implements MovieBoardService {
     @Transactional
     @Override
     public boolean register(MovieBoardDTO boardDTO) {
+    	log.info("실행 전");
         boolean insertFlag = mapper.insert(boardDTO) == 1 ? true : false;
+        log.info("실행 후"+insertFlag);
         if (boardDTO.getAttachList() == null || boardDTO.getAttachList().size() == 0) {
             return insertFlag;
         }

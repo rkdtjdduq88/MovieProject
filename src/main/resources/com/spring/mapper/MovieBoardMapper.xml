@@ -60,7 +60,7 @@ WHERE RN > (#{page} - 1) * #{amount}
  <selectKey keyProperty="bno" order="BEFORE" resultType="int">
         select bno_sequence.nextval from dual
 </selectKey>
-    insert into MOVIEBOARD_TBL(bno, title, content, userid, attach) values(#{bno}, #{title}, #{content}, #{userid}, #{attachList[0].fileName})
+    insert into MOVIEBOARD_TBL(bno, title, content, userid, attach) values(#{bno}, #{title}, #{content}, #{userid}, #{attachList.fileName})
 </insert>
 
 

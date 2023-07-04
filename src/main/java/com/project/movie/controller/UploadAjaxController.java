@@ -55,7 +55,7 @@ public class UploadAjaxController {
 		
 		List<AttachFileDTO> fileList = new ArrayList<AttachFileDTO>();
 		
-		String uploadPath = "C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog";
+		String uploadPath = "C:\\upload";
 
 		for (MultipartFile multipartFile : uploadFile) {
 
@@ -104,7 +104,7 @@ public class UploadAjaxController {
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(String fileName) {
 		log.info("���� ��û" + fileName);
-		File file = new File("C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog" + fileName);
+		File file = new File("C:\\upload" + fileName);
 		// speingframework Headers
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<byte[]> result = null;
@@ -121,7 +121,7 @@ public class UploadAjaxController {
 	public ResponseEntity<Resource> downloadFile(String fileName, @RequestHeader("User-Agent") String userAgent) {
 		log.info("���� �ٿ�ε� ��û " + fileName);
 		
-		Resource resource = new FileSystemResource("C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog" + fileName);
+		Resource resource = new FileSystemResource("C:\\upload" + fileName);
 		String oriFileName = fileName.substring(fileName.indexOf("_")+1);
 
 		if (!resource.exists()) {
@@ -152,7 +152,7 @@ public class UploadAjaxController {
 	public ResponseEntity<String> deleteFile(String fileName, String type){
 	    log.info("���� ���� ��û: " + fileName + ", type: " + type);
 	    try {
-	        File file = new File("C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog", URLDecoder.decode(fileName, "utf-8"));
+	        File file = new File("C:\\upload", URLDecoder.decode(fileName, "utf-8"));
 	        file.delete(); // ���� ���� txt, ����� ����
 
 	        if (type.equals("image")) {
