@@ -39,6 +39,7 @@ public class LoginController {
 	@Autowired
 	private RegisterService service;
 
+	
 	@Autowired
 	private MailSendService mailService;
 	
@@ -64,7 +65,7 @@ public class LoginController {
 	
 	@PostMapping("/changePass")
 	public String changePassPost(MemberDTO member, Model model) {
-	    String newPassword = member.getPassword();
+	    String newPassword = member.getNewPassword();
 	    String userid = member.getUserid();
 
 	    if (newPassword == null || newPassword.isEmpty()) {
@@ -122,28 +123,6 @@ public class LoginController {
 	    }
 	}
 
-	
-	
-	/**
-	 * @param dto
-	 * @return
-	 */
-//	@PostMapping("/loginRegister")
-//	public ResponseEntity<Object> insertPost(MemberDTO dto) {
-//	    try {
-//	        boolean insertFlag = service.insert(dto);
-//	        if (insertFlag) {
-//	            return ResponseEntity.ok().body("{\"success\": true, \"message\": \"회원가입이 성공적으로 완료되었습니다.\"}");
-//	        } else {
-//	            return ResponseEntity.ok().body("{\"success\": false, \"message\": \"회원가입에 실패했습니다. 다시 시도해주세요.\"}");
-//	        }
-//	    } catch (Exception e) {
-//	    	e.printStackTrace();
-//	        return ResponseEntity.ok().body("{\"success\": false, \"message\": \"사용할 수 없는 아이디입니다. 다른 아이디를 입력해 주세요.\"}");
-//	    }
-//	}
-	
-	
 	
 	
 	@PostMapping("/loginRegister")
@@ -235,6 +214,7 @@ public class LoginController {
 //    }
 //    
 
+	
 	@GetMapping("/mypage")
 	public String mypage(Model model, Principal principal) {
 	    // Principal 객체를 사용하여 현재 인증된 사용자의 정보를 가져옴
@@ -242,17 +222,8 @@ public class LoginController {
 
 	    // userid 값을 사용하여 회원 정보를 조회
 	    MemberDTO member = service.getMemberByUserId(userid);
-	    String email = member.getEmail();
-	    String mobile = member.getMobile();
-	    String name = member.getName();
-	    String address = member.getAddress();
-
-	    // 가져온 email과 mobile 값을 모델에 저장
-	    model.addAttribute("userid", userid);
-	    model.addAttribute("email", email);
-	    model.addAttribute("mobile", mobile);
-	    model.addAttribute("name", name);
-	    model.addAttribute("address", address);
+	    model.addAttribute("member", member);
+	  
 	    return "mypage";
 	}
     

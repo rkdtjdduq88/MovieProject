@@ -27,7 +27,7 @@
 		        </div>
 		        <div class="profile-info">
 		        	<h3 class="userid">사용자 ID</h3>
-		            <p class="userid">${userid}</p>
+		            <p class="userid">${member.userid}</p>
 		            <div class="buttons">
 		                <button id="change-password-button" class="btn_change" onclick="openPopup('${sessionScope.userid}')">
 		                    <span class="text">비밀번호 변경</span>
@@ -44,14 +44,14 @@
 		            <div class="form-group">
 		                <label for="name">이름</label>
 		                <div class="row_item">
-		                    <input type="text" id="name" name="name" value="${name}" readonly>
+		                    <input type="text" id="name" name="name" value="${member.name}" readonly>
 		                </div>
 		            </div>
 		
 		            <div class="form-group">
 		                <label for="email">email</label>
 		                <div class="row_item">
-		                    <input type="email" id="email" name="email" value="${email}" readonly>
+		                    <input type="email" id="email" name="email" value="${member.email}" readonly>
 		                </div>
 		            </div>
 		
@@ -59,7 +59,7 @@
 		                <div class="form-group">
 		                    <label for="address">주소</label>
 		                    <div class="row_item">
-		                        <input type="text" id="address" name="address" value="${address}" required readonly>
+		                        <input type="text" id="address" name="address" value="${member.address}" required readonly>
 		                        <button type="button" class="btn_edit" onclick="">
 								    <span class="text">수정</span>
 								</button>
@@ -70,14 +70,14 @@
 								</button>
 		                    </div>
 		                </div>
-		                <input type="hidden" name="userid" value="${userid}" />
+		                <input type="hidden" name="userid" value="${member.userid}" />
 		            </form>
 		
 		            <form action="/updateMobile" method="POST" id="updateTelForm">
 		                <div class="form-group">
 		                    <label for="mobile">전화번호</label>
 		                    <div class="row_item">
-		                        <input type="tel" id="mobile" name="mobile" value="${mobile}" maxlength="13" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="000-0000-0000 형식으로 입력해야 합니다." required readonly>
+		                        <input type="tel" id="mobile" name="mobile" value="${member.mobile}" maxlength="13" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="000-0000-0000 형식으로 입력해야 합니다." required readonly>
 		                        <button type="button" class="btn_edit2" onclick="">
 								    <span class="text">수정</span>
 								</button>
@@ -88,7 +88,7 @@
 								</button>
 		                    </div>
 		                </div>
-		                <input type="hidden" name="userid" value="${userid}" />
+		                <input type="hidden" name="userid" value="${member.userid}" />
 		            </form>
 		
 		        </div>

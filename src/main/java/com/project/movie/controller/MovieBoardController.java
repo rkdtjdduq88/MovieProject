@@ -42,6 +42,7 @@ public class MovieBoardController {
 	private MovieBoardService service;
 	@Autowired
 	private BoardService boardservice;
+	
 	@GetMapping("/main-board")
     public void MainBoard(Model model, @ModelAttribute("cri") Criteria cri, HttpSession session) {
     	log.info("게시판 폼 요청");
@@ -158,6 +159,8 @@ public class MovieBoardController {
 		// 폴더에서 첨부파일 제거
 		List<AttachFileDTO> attachList = service.getAttachList(bno);
 		deleteAttachFiles(attachList);
+		
+		log.info("bno"+bno);
 		
 		// 삭제 성공 시 리스트로 가기
 		service.remove(bno);

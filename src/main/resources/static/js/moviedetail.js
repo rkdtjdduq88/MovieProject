@@ -92,9 +92,11 @@ rating.addEventListener("click", (e) => {
   grade = starRating.dataset.value;
 });
 
+// 리뷰 댓글 작성
 document.querySelector("#insertForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
+  // 댓글 작성자와 작성내용 가져오기
   const replyContent = document.querySelector("#insertForm #replyContent").value;
   const userid = document.querySelector("#insertForm #userid").value;
 
@@ -109,6 +111,7 @@ document.querySelector("#insertForm").addEventListener("submit", (e) => {
     method: "post",
     headers: {
       "content-type": "application/json",
+      "X-CSRF-TOKEN": csrfToken,
     },
     body: JSON.stringify(data),
   })
@@ -192,6 +195,7 @@ document.querySelector(".section-title").addEventListener("click", (e) => {
       method: "delete",
       headers: {
         "content-type": "application/json",
+        "X-CSRF-TOKEN": csrfToken,
       },
     })
       .then((response) => {
@@ -226,6 +230,7 @@ document.querySelector(".modal-footer .btn-primary").addEventListener("click", (
     method: "put",
     headers: {
       "content-type": "application/json",
+      "X-CSRF-TOKEN": csrfToken,
     },
     body: JSON.stringify(updateReply),
   })
@@ -334,6 +339,7 @@ document.querySelector(".follow-btn").addEventListener("click", (e) => {
     method: "post",
     headers: {
       "content-type": "application/json",
+      "X-CSRF-TOKEN": csrfToken,
     },
     body: JSON.stringify(wishInfo),
   })

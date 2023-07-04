@@ -21,18 +21,6 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-md-3">
 				<div class="card horizontal cardIcon waves-effect waves-dark">
-					<div class="card-stacked blue">
-						<div class="card-content">
-							<h3>24,225</h3>
-						</div>
-						<div class="card-action">
-							<strong>총 댓글 수</strong>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-3">
-				<div class="card horizontal cardIcon waves-effect waves-dark">
 					<div class="card-stacked green">
 						<div class="card-content">
 							<h3>${totalPosts}</h3>

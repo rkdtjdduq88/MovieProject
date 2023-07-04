@@ -27,6 +27,8 @@ public class MemberDTO {
 	private String name;
 	private String mobile;
 	
+	private String newPassword;
+	
 	private List<MemberAuthDTO> authorities;
 
 	

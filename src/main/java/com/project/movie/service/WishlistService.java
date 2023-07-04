@@ -12,6 +12,5 @@ public interface WishlistService {
 	public boolean dupCheck(String userid, String title);
 
 	int getCountByUserid(String userid);
-//	public List<WishlistDTO> getListByPage(String userid, int offset, int recordSize);
 	
 }

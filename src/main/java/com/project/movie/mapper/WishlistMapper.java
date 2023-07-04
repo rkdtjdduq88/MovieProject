@@ -15,5 +15,4 @@ public interface WishlistMapper {
 	public int delete(int wno);
 	public int checkWish(String userid, String title);
 	public int getCountByUserid(String userid);
-// public List<WishlistDTO> getListByPage(@Param("userid") String userid, @Param("offset") int offset, @Param("recordSize") int recordSize);
 }
