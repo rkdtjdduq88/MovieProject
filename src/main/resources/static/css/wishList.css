@@ -2,17 +2,19 @@
 
 .wishTitle {
   margin-bottom: 30px;
+  margin-bottom: 20;
+  margin-top: 15;
 }
 
-.product__item {
+.wishItem {
   padding: 10px;
 }
 
-.product__item__pic {
+.wishItem__pic {
   position: relative; /* 상대 위치 설정 */
 }
 
-.product__item__pic::before {
+.wishItem__pic::before {
   content: ""; /* 가상 요소 생성 */
   position: absolute; /* 절대 위치 설정 */
   top: 0;
@@ -24,7 +26,7 @@
   transition: opacity 0.3s ease; /* 페이드 효과를 위한 트랜지션 설정 */
 }
 
-.product__item__pic:hover::before {
+.wishItem__pic:hover::before {
   opacity: 1; /* 마우스 오버 시 투명도를 1로 설정하여 나타나도록 함 */
 }
 
@@ -39,7 +41,7 @@
   z-index: 1;
 }
 
-.product__item__pic:hover .over {
+.wishItem__pic:hover .over {
   display: block; /* 마우스 오버 시 보임 */
 }
 
@@ -62,14 +64,9 @@
   text-align: center;
 }
 
-.product__item__text {
+.wishItem__text {
   margin: 20;
   padding: 20;
-}
-
-.col-lg-3.col-md-4.col-sm-6 {
-  margin-bottom: 20;
-  margin-top: 15;
 }
 
 .over a .view {
@@ -79,16 +76,16 @@
   vertical-align: bottom;
 }
 
-.center-content {
+.wish_content {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.product__page__content {
+/* .product__page__content {
   display: flex;
   justify-content: center;
-}
+} */
 
 /* 버튼!!  */
 /* * {

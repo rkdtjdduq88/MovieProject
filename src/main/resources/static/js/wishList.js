@@ -22,10 +22,10 @@ function showWishList(page) {
         // 위시리스트 태그 생성 //my-5 // mx-auto
         let wishlistTag = `
           <div class="col-lg-3 col-md-4 col-sm-6 wishTitle"> 
-            <div class="product__item">
-              <div class="product__item__pic set-bg" data-setbg="${posterUrl}" style="background-image: url('${posterUrl}')">
+            <div class="product__item wishItem">
+              <div class="product__item__pic wishItem__pic set-bg" data-setbg="${posterUrl}" style="background-image: url('${posterUrl}')">
               </div>
-              <div class="product__item__text" style="float: right; text-align: left;">
+              <div class="product__item__text wishItem__text" style="float: right; text-align: left;">
                 <div class="over">
                   <div class="tit">${title}</div>
                   <div class="rdt">${releaseDate}</div>
@@ -135,16 +135,16 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("mouseover", function (event) {
-  if (event.target.matches(".product__item__pic")) {
-    const productItem = event.target.closest(".product__item");
+  if (event.target.matches(".wishItem__pic")) {
+    const productItem = event.target.closest(".wishItem");
     const overElement = productItem.querySelector(".over");
     overElement.style.display = "block";
   }
 });
 
 document.addEventListener("mouseout", function (event) {
-  if (event.target.matches(".product__item__pic")) {
-    const productItem = event.target.closest(".product__item");
+  if (event.target.matches(".wishItem__pic")) {
+    const productItem = event.target.closest(".wishItem");
     const overElement = productItem.querySelector(".over");
     overElement.style.display = "none";
   }
