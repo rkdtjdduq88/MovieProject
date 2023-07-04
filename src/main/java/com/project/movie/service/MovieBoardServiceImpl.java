@@ -82,7 +82,9 @@ public class MovieBoardServiceImpl implements MovieBoardService {
 
 	@Override
 	public boolean remove(int bno) {
-		// TODO Auto-generated method stub
-		return false;
+		// 첨부파일 삭제
+		attachMapper.deleteAll(bno);
+		
+		return mapper.remove(bno)==1?true:false;
 	}
 }

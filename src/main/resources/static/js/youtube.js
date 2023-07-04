@@ -12,7 +12,10 @@ locData();
 const mwatch = document.querySelector(".mwatch");
 
 function locData() {
-  url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + movie + "teaser&type=video&key=AIzaSyBMh5jfdhATVG6lN_4ZoKULT42PWK_I9Lg";
+  url =
+    "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" +
+    movie +
+    "teaser&type=video&key=AIzaSyBm4V2dTS9XQbxXFC_RYuobPVODV2D1RUs";
 
   fetch(url)
     .then((response) => {

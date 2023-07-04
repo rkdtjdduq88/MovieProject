@@ -101,6 +101,5 @@ $(document).ready(function() {
 <script src="/js/register.js"></script>
 <script src="/js/upload.js"></script>
 
-<%@ include file="include2/footer.jsp" %>    
-<%@ include file="include2/footer.jsp" %>    
+<%@ include file="include2/footer.jsp" %>
 
