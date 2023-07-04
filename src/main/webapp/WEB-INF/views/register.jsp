@@ -99,8 +99,7 @@ $(document).ready(function() {
 </html>
 <script src="/js/register.js"></script>
 <script src="/js/upload.js"></script>
-<<<<<<< HEAD
+
 <%@ include file="include2/footer.jsp" %>    
-=======
 <%@ include file="include2/footer.jsp" %>    
->>>>>>> refs/heads/seungoh
+
