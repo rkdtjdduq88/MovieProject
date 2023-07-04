@@ -1,5 +1,6 @@
 package com.project.movie.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,16 @@ public class HomeController {
 	private DetailReplyService detailReplyService;
 	
 	@GetMapping("/")
-	public String main() {
+	public String main(Model model) {
 		log.info("index 폼 요청");
+		List<MovieDetailReplyDTO> rankGradeDtoList = movieService.rankGrade();		
+				
+		//for문 title 추출한 후 
+		for (MovieDetailReplyDTO movieDetailReplyDTO : rankGradeDtoList) {			
+			movieDetailReplyDTO.setPosterUrl(movieService.rankGrade(movieDetailReplyDTO.getTitle()));			
+		}
+		System.out.println("rankGradeDtoList"+rankGradeDtoList);
+		model.addAttribute("rankGradeDtoList", rankGradeDtoList);				
 		return "index";
 	}	
 	
@@ -45,12 +54,12 @@ public class HomeController {
 
 
 		TotalRes kres = movieService.movie();
-		System.out.println("상세 폼 "+kres);
+		//System.out.println("상세 폼 "+kres);
 		String rOpenDt = movieDt.replaceAll("-", "");
-		System.out.println("개봉일 확인 "+rOpenDt);
+		//System.out.println("개봉일 확인 "+rOpenDt);
 		KmdbRes res = movieDetailService.getDetails(movieNm, rOpenDt);	
 
-		System.out.println("확인 "+res);
+		//System.out.println("확인 "+res);
 		
 		res.setGrade(detailReplyService.avgGrade(movieNm));		
 		

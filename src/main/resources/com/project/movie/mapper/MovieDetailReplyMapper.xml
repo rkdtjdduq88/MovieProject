@@ -36,4 +36,10 @@
 	<select id="avgGrade" resultType="int">
 		select coalesce(round(avg(grade)), 0) from detailreply_tbl where title=#{title}
 	</select>
+	
+	<!-- 영화별 리뷰 평균 별점 내림차순으로 조회하기 -->
+	<select id="rankGrade" resultType="com.project.movie.domain.MovieDetailReplyDTO">
+		SELECT title, grade FROM (select title, avg(grade) as grade from detailreply_tbl GROUP BY title)
+		WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
 </mapper>

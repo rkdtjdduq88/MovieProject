@@ -40,8 +40,7 @@
                             </div>
                             <!-- 평점수정 -->
                             <div class="anime__details__rating">
-                                <div class="rating">
-                                	<h6>${detail.grade}</h6>
+                                <div class="rating">                                	
                                     <%       
 								        KmdbRes res = (KmdbRes) request.getAttribute("detail");
 								        int rating = res.getGrade();
@@ -54,10 +53,7 @@
 								            }
 								        } 
 								    %>
-                                </div>
-                                <span>평점 수정하기</span>
-                                
-                                 
+                                </div>                                                                    
                             </div>
                             <p>${detail.plot }</p>
                             <div class="anime__details__widget">

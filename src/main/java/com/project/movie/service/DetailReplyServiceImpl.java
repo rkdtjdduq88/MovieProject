@@ -56,7 +56,8 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 	public boolean delete(int rno) {		
 		return movieDetailReplyMapper.delete(rno)==1?true:false;
 	}
-
+	
+	// 특정 영화마다 별점 평균 조회하기
 	@Override
 	public int avgGrade(String title) {		
 		return movieDetailReplyMapper.avgGrade(title);

@@ -13,6 +13,7 @@ import com.project.movie.mapper.MovieDetailReplyMapper;
 import com.project.movie.response.KmdbAndKobisDTO;
 import com.project.movie.response.KmdbRes;
 import com.project.movie.response.TotalRes;
+import com.project.movie.service.DetailReplyService;
 import com.project.movie.service.MovieService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,10 +37,11 @@ public class MovieApiController {
 		TotalRes res = movieService.movie();		
 		//영화별 reply 구하기
 		for(KmdbAndKobisDTO dto:res.getList()) {
-			// 구해온 영화이름들을 다시 replyCnt 에 개수 담기
-			
+			// 구해온 영화이름들을 다시 replyCnt 에 개수 담기			
 			int replyCnt = movieDetailReplyMapper.getCountByTitle(dto.getMovieNm());
-			dto.setReplyCnt(replyCnt);			     
+			int avgGrade = movieDetailReplyMapper.avgGrade(dto.getMovieNm());
+			dto.setReplyCnt(replyCnt);
+			dto.setAvgGrade(avgGrade);
 		}		
 		return res;
 	}
