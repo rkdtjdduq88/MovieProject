@@ -64,7 +64,6 @@ WHERE RN > (#{page} - 1) * #{amount}
 </insert>
 
 
-
 <!-- 특정 번호의 게시물 조회 -->
 <select id="read" resultType="com.project.movie.domain.MovieBoardDTO">
     select bno, title, content, userid from movieboard_tbl where bno=#{bno}

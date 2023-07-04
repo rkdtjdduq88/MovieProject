@@ -83,7 +83,7 @@ document.addEventListener("click", function(event) {
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="header__logo">
-						<a href="/login"> <img src="/img/logo.png" alt="">
+						<a href="/"> <img src="/img/logo.png" alt="">
 						</a>
 					</div>
 				</div>
@@ -99,7 +99,6 @@ document.addEventListener("click", function(event) {
 										</security:authorize>
 										<li><a href="/showWish">Wish</a></li>
 								</security:authorize>
-								
 									</ul>
 															
 						</nav>
@@ -117,15 +116,13 @@ document.addEventListener("click", function(event) {
 						            <li><a href="/mypage">My Page</a></li>
 						            <li>
 						               <form action="/logout" method="post" id="logoutForm2">
-										<button type="submit">Logout</button>
 										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+										<button type="submit">Logout</button>
 										</form>
 						            </li>
 						        </ul>
 						    </a>
 						</security:authorize>
-						
-						
 						
 						<security:authorize access="!isAuthenticated()">
 						    <a href="/login"><span class="icon_profile"></span></a>

@@ -39,12 +39,13 @@
 			</div>
 			<div class="form-group">
     <label for="userid">User</label>
-    <input type="text" class="form-control" id="userid" name="userid" >
+    <input type="text" class="form-control" id="userid" name="userid" readonly 
+			value='<security:authentication property="principal.username"/>'>
     <div class="invalid-feedback">
         작성자를 확인해주세요.
     </div>
 </div>
-
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button type="submit" class="btn btn-primary">등록</button>
 			<button type="button" class="btn btn-secondary">
 			<a href="/list?page=1&amount=10&type=&keyword=">

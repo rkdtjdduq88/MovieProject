@@ -29,13 +29,12 @@
 			</div>
 			
 			<!-- 로그인 상황에서 해당 게시물 작성자와 동일할 때만 보여주기 -->
-			<%-- <security:authorize access="isAuthenticated()">
+			<security:authorize access="isAuthenticated()">
 				<security:authentication property="principal.username" var="username"/>
 				<c:if test="${username==dto.userid}">
 					<button type="button" class="btn btn-info">수정</button>			
 				</c:if>
-			</security:authorize> --%>
-			<button type="button" class="btn btn-info">수정</button>
+			</security:authorize>
 			<button type="button" class="btn btn-secondary">
 			<a href="/list?page=1&amount=10&type=&keyword=">
 			<div style="color: #ffffff">목록</div>

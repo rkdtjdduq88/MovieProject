@@ -38,16 +38,13 @@
 			</div>
 			<input type="hidden" name="bno" value="${dto.bno}" />
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			
-			<%-- <security:authorize access="isAuthenticated()">
+			<security:authorize access="isAuthenticated()">
 				<security:authentication property="principal.username" var="username"/>
 				<c:if test="${username==dto.userid}">
 					<button type="submit" class="btn btn-info">수정</button>
 					<button type="button" class="btn btn-danger">삭제</button>
 				</c:if>
-			</security:authorize> --%>
-			<button type="submit" class="btn btn-info">수정</button>
-			<button type="button" class="btn btn-danger">삭제</button>
+			</security:authorize>
 			<button type="button" class="btn btn-secondary">목록</button>
 		</form>
 	</div>
