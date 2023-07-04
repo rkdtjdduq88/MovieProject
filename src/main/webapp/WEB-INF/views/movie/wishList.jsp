@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -52,22 +52,45 @@
                 <div class="col-lg-8">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
+                        
+                        <c:if test="${userid == null}">
                             <ul>
-                                <li class="active"><a href="/">Homepage</a></li>
+                                <li class=""><a href="/">Homepage</a></li>
                                 <li><a href="/">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="./categories.html">Categories</a></li>
                                         <li><a href="./anime-details.html">Anime Details</a></li>
                                         <li><a href="./anime-watching.html">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
-                                        <li><a href="./login.html">Login</a></li>
+                                        <li><a href="/register">Sign Up</a></li>
+                                        <li><a href="/login">Login</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
-                                        <li><a href="/showWish">Wish</a></li>
+                                <li><a href="/blog">Our Blog</a></li>
+								<li><a href="/main-board">Admin Board</a></li>
+                                 <li><a href="/showWish">Wish</a></li>
                             </ul>
+                            </c:if>
+                            
+                             <c:if test="${userid != null}">
+                            <ul>
+                                <li class=""><a href="/">Homepage</a></li>
+                                <li><a href="/">Categories <span class="arrow_carrot-down"></span></a>
+                                    <ul class="dropdown">
+                                        <li><a href="./categories.html">Categories</a></li>
+                                        <li><a href="./anime-details.html">Anime Details</a></li>
+                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
+                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                        <li><a href="/register">Sign Up</a></li>
+                                        <li><a href="/login">Login</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/blog">Our Blog</a></li>
+								<li><a href="/main-board">Admin Board</a></li>
+                                 <li><a href="/showWish">Wish</a></li>
+                            </ul>
+                            </c:if>
+                            
                         </nav>
                     </div>
                 </div>
@@ -82,17 +105,17 @@
         </div>
     </header>      
     <!-- Header End -->
-
-    <!-- Breadcrumb Begin -->
+    
+ <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="breadcrumb__links">
+                    <!-- <div class="breadcrumb__links">
                         <a href="/"><i class="fa fa-home"></i> Home</a>
                         <span>MyWish</span>
-                       <!--  <span>Romance</span> -->
-                    </div>
+                        <span>Romance</span>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -101,35 +124,36 @@
 
     <!-- Product Section Begin -->   
     <section class="product-page spad">
-        <div class="container">
-           <!--  <div class="row"> -->
+        <div class="container-fluid">
+          <div class="row justify-content-md-center">
+         
                 <div class="col-lg-8">
-                    <div class="product__page__content">
+                    <div class="product__page__content center-content" style="display: flex; justify-content: center; align-items: center;">
                         <div class="product__page__title">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8 col-sm-6 wishTitle">
+                           
+                                <div class="col-lg-8 col-md-8 col-sm-6">
                                     <div class="section-title">
                                         <h4>MY WISHLIST</h4>
                                     </div>  
                                 </div>           
-                                <div class="row wishList">
-                                     
+                            <div class="row wishList center-content">
+
                                 </div>     
-                            </div>
+                       
                         </div>                       
-                    </div>                                  
-<!--                     <div class="product__pagination"> 페이지 나눠야함
-                        <a href="#" class="current-page">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                    </div>    
+                                                  
+                     <div class="product__pagination">
+						<div class="pagination-container"></div>
+			         
+			         
                     </div> 
- -->                </div>  
-		<!-- </div> -->
-	</div>
-</section>
+	                    
+	               </div> 
+ 				</div>
+			
+		</div>
+</section>    
 <!-- Product Section End -->
 
 <!-- Footer Section Begin -->

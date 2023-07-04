@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.movie.mapper.WishlistMapper"
->
-<select id="getListByPage" resultType="com.project.movie.domain.WishlistDTO">
-  SELECT *
-  FROM (
-    SELECT ROW_NUMBER() OVER (ORDER BY wno DESC) AS rnum, wno, title, directorNm, releaseDate, posterUrl
-    FROM movie_wishlist
-    WHERE userid = #{userid}
-  ) tbl
-  WHERE rnum BETWEEN #{offset} AND ${offset + recordSize - 1}
-</select>
+<mapper namespace="com.project.movie.mapper.WishlistMapper">
 
-
-<!-- 위시리스트 개수 조회  -->
-	<select id="getCountByUserid" resultType="int">
-  SELECT COUNT(*)
-  FROM movie_wishlist
-  WHERE userid = #{userid}
-</select>
-	<select id="readAll" resultType="com.project.movie.domain.WishlistDTO">
-		select * from movie_wishList where userid=#{userid}
+	<!-- 위시리스트 페이징 처리  -->
+	 <select id="readAll" resultType="com.project.movie.domain.WishlistDTO">
+		<![CDATA[ 
+		select *
+			from(select rownum rnum, wno, title, directornm, releasedate, posterurl
+			    from (select wno, title, directornm, releasedate, posterurl 
+			         from movie_wishlist where userid=#{userid} order by wno desc)
+			    where rownum <= #{cri.page}*#{cri.amount})
+			where rnum > (#{cri.page}-1) * #{cri.amount}
+		]]>
 	</select> 
-
+	
+	<select id="getCountByUserid" resultType="int">
+		select count(*) from movie_wishlist where userid=#{userid}
+	</select>
+	
+	
 	<insert id="insert">
 		insert into movie_wishlist(wno,title,directornm,releasedate,posterurl,userid)
 		values(wishlist_seq.nextval,#{title},#{directorNm},#{releaseDate},#{posterUrl},#{userid})

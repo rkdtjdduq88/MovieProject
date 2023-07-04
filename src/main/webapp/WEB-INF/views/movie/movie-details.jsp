@@ -135,7 +135,7 @@
                     
                 </div>
                 <!-- 댓글 작업 시작 -->
-                <div class="row">
+                <div class="row justify-content-md-center"> <!-- 댓글 가운데 정렬함 -->
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
                             <div class="section-title">
@@ -193,7 +193,7 @@
 
                                                 
                     <!-- 댓글 작업 종료 -->
-                    <div class="col-lg-4 col-md-4">
+                  <!--   <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
                             <div class="section-title">
                                 <h5>you might like...</h5>
@@ -209,7 +209,7 @@
                                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>

@@ -40,8 +40,6 @@ public class HomeController {
 	@Autowired
 	private DetailReplyService detailReplyService;
 	
-	@Autowired
-	private WishlistService wishlistService;
 	
 	@GetMapping("/")
 	public String main() {
@@ -90,26 +88,10 @@ public String searchList(String query, Model model){
 }
 
 @GetMapping("/showWish")
-public String getWish(Model model) {
-    log.info("위시리스트 조회");
-
-    String userid = "사용자 아이디"; // 사용자 아이디를 적절한 값으로 설정해주세요
-
-    int page = 1; // 페이지 번호
-    int recordSize = 12; // 페이지당 출력할 데이터 개수
-
-    int totalCount = wishlistService.getCountByUserid(userid); // 전체 위시리스트 수 가져오기
-    int totalPages = (int) Math.ceil((double) totalCount / recordSize); // 전체 페이지 수 계산
-
-    int offset = (page - 1) * recordSize; // 데이터 조회 시작 위치
-
-    List<WishlistDTO> wishlist = wishlistService.getListByPage(userid, offset, recordSize); // 페이징된 위시리스트 목록 가져오기
-
-    model.addAttribute("wishlist", wishlist);
-    model.addAttribute("currentPage", page);
-    model.addAttribute("totalPages", totalPages);
-
-    return "/movie/wishList";
+public String getWish() {
+	log.info("위시리스트 조회");
+	
+	return "/movie/wishList";
 }
 
 }							
