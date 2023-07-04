@@ -1,8 +1,6 @@
 // 상세페이지 리뷰 전체 리스트(listAll)
 function movieDetailReplyList() {
-  var reviewGetList = document.querySelector(
-    ".anime__details__review .section-title"
-  );
+  var reviewGetList = document.querySelector(".anime__details__review .section-title");
   if (!reviewGetList) {
     console.log("리뷰 리스트를 가져올 수 없습니다.");
     return;
@@ -32,13 +30,9 @@ function movieDetailReplyList() {
 
         var review = `<div class="anime__review__item">
             <div class="anime__review__item__pic">
-            <img src="https://avatars.dicebear.com/api/bottts/${
-              list.userid
-            }.jpg" alt="img" style="width: 80px; height: 80px; border-radius: 50%;">
+            <img src="https://avatars.dicebear.com/api/bottts/${list.userid}.jpg" alt="img" style="width: 80px; height: 80px; border-radius: 50%;">
             </div>
-                <div class="anime__review__item__text" data-rno="${
-                  list.rno
-                }">      
+                <div class="anime__review__item__text" data-rno="${list.rno}">      
                   <div class="row">  
                     <div class="col">
                       <h6>${list.userid}</h6>                      
@@ -101,9 +95,7 @@ rating.addEventListener("click", (e) => {
 document.querySelector("#insertForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const replyContent = document.querySelector(
-    "#insertForm #replyContent"
-  ).value;
+  const replyContent = document.querySelector("#insertForm #replyContent").value;
   const userid = document.querySelector("#insertForm #userid").value;
 
   const data = {
@@ -180,8 +172,7 @@ document.querySelector(".section-title").addEventListener("click", (e) => {
       .then((data) => {
         //console.log(data);
         document.querySelector(".modal-body #rno").value = data.rno;
-        document.querySelector(".modal-body #replyContent").value =
-          data.replyContent;
+        document.querySelector(".modal-body #replyContent").value = data.replyContent;
         document.querySelector(".modal-body #userid").value = data.userid;
         $("#replyModal").modal("show");
       })
@@ -221,40 +212,38 @@ document.querySelector(".section-title").addEventListener("click", (e) => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // 댓글 수정 작업 (update)
-document
-  .querySelector(".modal-footer .btn-primary")
-  .addEventListener("click", () => {
-    // 모달 창안에 있는 rno, reply 가져온 후 자바스크립트 객체 생성
-    rno = document.querySelector(".modal-body #rno").value;
-    const updateReply = {
-      rno: rno,
-      replyContent: document.querySelector(".form-group #replyContent").value,
-      userid: document.querySelector(".form-group #userid").value,
-    };
+document.querySelector(".modal-footer .btn-primary").addEventListener("click", () => {
+  // 모달 창안에 있는 rno, reply 가져온 후 자바스크립트 객체 생성
+  rno = document.querySelector(".modal-body #rno").value;
+  const updateReply = {
+    rno: rno,
+    replyContent: document.querySelector(".form-group #replyContent").value,
+    userid: document.querySelector(".form-group #userid").value,
+  };
 
-    // fetch update 호출
-    fetch("/replies/" + rno, {
-      method: "put",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateReply),
+  // fetch update 호출
+  fetch("/replies/" + rno, {
+    method: "put",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(updateReply),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("수정 실패");
+      }
+      return response.text();
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("수정 실패");
-        }
-        return response.text();
-      })
-      .then((data) => {
-        //console.log("수정내용", data);
-        if (data === "success") {
-          $("#replyModal").modal("hide");
-          movieDetailReplyList();
-        }
-      })
-      .catch((error) => console.log(error));
-  });
+    .then((data) => {
+      //console.log("수정내용", data);
+      if (data === "success") {
+        $("#replyModal").modal("hide");
+        movieDetailReplyList();
+      }
+    })
+    .catch((error) => console.log(error));
+});
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // 리뷰에 몇시간전에 달았는지 보는 기능을 가진 함수 작성

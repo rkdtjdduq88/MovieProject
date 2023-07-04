@@ -1,5 +1,6 @@
 package com.project.movie.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -52,8 +53,6 @@ public class HomeController {
 	  public String movieDetails(Model model, String movieNm, String movieDt) {
 		log.info("박스오피스 상세페이지 폼 요청");
 
-
-
 		TotalRes kres = movieService.movie();
 		System.out.println("상세 폼 "+kres);
 		String rOpenDt = movieDt.replaceAll("-", "");
@@ -66,7 +65,6 @@ public class HomeController {
 		
 		model.addAttribute("detail", res);
 		model.addAttribute("list",kres.getList());
-		
 		// 상세페이지 포스터 댓글 수 불러오기
 		MovieDetailReplyCntFavDTO dto=detailReplyService.getList(movieNm);
 		model.addAttribute("count", dto.getReplyCnt());
@@ -79,19 +77,19 @@ public class HomeController {
 	}
 
 
-@GetMapping("/search")
-public String searchList(String query, Model model){
-	log.info("영화 검색 ");
-	model.addAttribute("list",movieService.search(query));
-	model.addAttribute("query",query);
-	return "/movie/search";
-}
-
-@GetMapping("/showWish")
-public String getWish() {
-	log.info("위시리스트 조회");
+	@GetMapping("/search")
+	public String searchList(String query, Model model){
+		log.info("영화 검색 ");
+		model.addAttribute("list",movieService.search(query));
+		model.addAttribute("query",query);
+		return "/movie/search";
+	}
 	
-	return "/movie/wishList";
-}
+	@GetMapping("/showWish")
+	public String getWish() {
+		log.info("위시리스트 조회");
+		
+		return "/movie/wishList";
+	}
 
 }						

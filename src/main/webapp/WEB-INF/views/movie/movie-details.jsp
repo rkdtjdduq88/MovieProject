@@ -234,11 +234,12 @@
  	<input type="hidden" name="releaseDate" value="${detail.releaseDate}" />
  	<input type="hidden" name="posterUrl" value="${detail.posterUrl}" />
  	<input type="hidden" name="userid" value="${userid}" />
- </form> 
+ </form>
     
 	<script>
 		const title = '${detail.title}';
 		const userid = '${userid}';	
+		
 	</script>
 	            
 	<!-- Core plugin JavaScript-->
