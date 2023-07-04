@@ -49,9 +49,9 @@
                        
                         <!-- 영화 여러개 보여줄 곳 -->
                         
-                        <div class="row">
+                        <div class="row center-content">
 						  <c:forEach var="movie" items="${list}">
-						    <div class="col-lg-4 col-md-6 col-sm-6">
+						    <div class="col-lg-3 col-md-4 col-sm-6">
 						      <div class="product__item">
 						        <div class="product__item__pic set-bg" data-setbg="${empty movie.posterUrl ? 'https://www28.cs.kobe-u.ac.jp/wp-content/uploads/2021/04/noimage.png' : movie.posterUrl}">
 						          <!-- <div class="ep"> 18 / 18 </div> -->
@@ -103,7 +103,7 @@
                         <a href="#"><i class="fa fa-angle-double-right"></i></a>
                     </div> -->
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-8">
+                <!-- <di --><!-- v class="col-lg-4 col-md-6 col-sm-8">
                     <div class="product__sidebar">
                         <div class="product__sidebar__view">
                             <div class="section-title">
@@ -206,7 +206,7 @@
         </div>
     </div>
 </div>
-</div>
+</div> -->
 </div>
 </div>
 </section>

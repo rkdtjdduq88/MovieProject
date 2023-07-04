@@ -34,7 +34,6 @@ public class HomeController {
 	@Autowired
 	private DetailReplyService detailReplyService;
 	
-	
 	@Autowired
 	private WishlistService wishlistService;
 	
@@ -57,6 +56,7 @@ public class HomeController {
 		log.info("박스오피스 상세페이지 폼 요청");
 		//String userid = principal.getName();
 
+
 		TotalRes kres = movieService.movie();
 		//System.out.println("상세 폼 "+kres);
 		String rOpenDt = movieDt.replaceAll("-", "");
@@ -69,6 +69,7 @@ public class HomeController {
 		
 		model.addAttribute("detail", res);
 		model.addAttribute("list",kres.getList());
+
 		//model.addAttribute("userid", userid);
 		// 상세페이지 포스터 댓글 수 불러오기
 		MovieDetailReplyCntFavDTO dto=detailReplyService.getList(movieNm);
@@ -82,36 +83,20 @@ public class HomeController {
 	}
 
 
-@GetMapping("/search")
-public String searchList(String query, Model model){
-	log.info("영화 검색 ");
-	model.addAttribute("list",movieService.search(query));
-	model.addAttribute("query",query);
-	return "/movie/search";
-}
-
-@GetMapping("/showWish")
-public String getWish(Model model) {
-    log.info("위시리스트 조회");
-
-    String userid = "사용자 아이디"; // 사용자 아이디를 적절한 값으로 설정해주세요
-
-    int page = 1; // 페이지 번호
-    int recordSize = 12; // 페이지당 출력할 데이터 개수
-
-    int totalCount = wishlistService.getCountByUserid(userid); // 전체 위시리스트 수 가져오기
-    int totalPages = (int) Math.ceil((double) totalCount / recordSize); // 전체 페이지 수 계산
-
-    int offset = (page - 1) * recordSize; // 데이터 조회 시작 위치
-
-    List<WishlistDTO> wishlist = wishlistService.getListByPage(userid, offset, recordSize); // 페이징된 위시리스트 목록 가져오기
-
-    model.addAttribute("wishlist", wishlist);
-    model.addAttribute("currentPage", page);
-    model.addAttribute("totalPages", totalPages);
-
-    return "/movie/wishList";
-}
+	@GetMapping("/search")
+	public String searchList(String query, Model model){
+		log.info("영화 검색 ");
+		model.addAttribute("list",movieService.search(query));
+		model.addAttribute("query",query);
+		return "/movie/search";
+	}
+	
+	@GetMapping("/showWish")
+	public String getWish() {
+		log.info("위시리스트 조회");
+		
+		return "/movie/wishList";
+	}
 
 
 	@GetMapping("/auth")
@@ -119,4 +104,5 @@ public String getWish(Model model) {
 	public Authentication auth() {		
 		return SecurityContextHolder.getContext().getAuthentication(); 
 	}
+	
 }						

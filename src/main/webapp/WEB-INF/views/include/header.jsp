@@ -42,6 +42,8 @@
 <link rel="stylesheet" href="/css/moviedetail.css" type="text/css">
 <link rel="stylesheet" href="/css/myPage.css" type="text/css">
 <link rel="stylesheet" href="/css/findPassword.css" type="text/css">
+<link rel="stylesheet" href="/css/wishList.css" type="text/css">
+
 <!-- sweet alert -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
 

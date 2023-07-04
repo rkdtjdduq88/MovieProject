@@ -135,7 +135,7 @@
                     
                 </div>
                 <!-- 댓글 작업 시작 -->
-                <div class="row">
+                <div class="row justify-content-md-center"> <!-- 댓글 가운데 정렬함 -->
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
                             <div class="section-title">
@@ -205,7 +205,7 @@
 
                                                 
                     <!-- 댓글 작업 종료 -->
-                    <div class="col-lg-4 col-md-4">
+                  <!--   <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
                             <div class="section-title">
                                 <h5>you might like...</h5>
@@ -221,7 +221,7 @@
                                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -246,12 +246,19 @@
  	<input type="hidden" name="releaseDate" value="${detail.releaseDate}" />
  	<input type="hidden" name="posterUrl" value="${detail.posterUrl}" />
  	<input type="hidden" name="userid" value="${userid}" />
- </form> 
+ </form>
     
 	<script>
 		const title = '${detail.title}';
+<<<<<<< HEAD
 		const userid = document.querySelector("#userid2").value;
+=======
+		const userid = '${userid}';	
+
+
+>>>>>>> branch 'master' of https://github.com/rkdtjdduq88/MovieProject.git
 		const csrfToken='${_csrf.token}';
+
 	</script>
 	            
 	<!-- Core plugin JavaScript-->

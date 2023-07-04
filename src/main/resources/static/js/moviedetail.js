@@ -339,6 +339,7 @@ document.querySelector(".follow-btn").addEventListener("click", (e) => {
     method: "post",
     headers: {
       "content-type": "application/json",
+      "X-CSRF-TOKEN": csrfToken,
     },
     body: JSON.stringify(wishInfo),
   })

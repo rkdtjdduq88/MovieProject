@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.movie.domain.MovieDetailReplyDTO;
+import com.project.movie.domain.WishCriteria;
+import com.project.movie.domain.WishListPageDTO;
 import com.project.movie.domain.WishlistDTO;
 import com.project.movie.service.WishlistService;
 
@@ -44,18 +46,20 @@ public class WishlistController {
 	    wishlistService.insert(wishlistDTO);
 	    
 	    return new ResponseEntity<String>("위시리스트에 추가되었습니다.", HttpStatus.OK);
-		
 
 	}
 	    
 	
-	// 위시리스트 전체 조회
-	@GetMapping("/wishList/{userid}")
-	public List<WishlistDTO> wishAll(@PathVariable("userid") String userid){
+	@GetMapping("/wishList/{userid}/{page}")
+	public WishListPageDTO wishAll(@PathVariable("userid") String userid, @PathVariable("page") int page){
 		log.info("사용자의 위시리스트 조회 ");
 		
-		return wishlistService.getList(userid);
+		WishCriteria cri = new WishCriteria(page,12);
+		WishListPageDTO pto = new WishListPageDTO(wishlistService.getList(userid,cri), wishlistService.getCountByUserid(userid));
+		
+		return pto;
 	}
+
 	
 	// 위시리스트 제거
 	@DeleteMapping("/remove/{wno}")
