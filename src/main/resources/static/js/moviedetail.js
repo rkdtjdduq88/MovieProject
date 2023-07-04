@@ -92,11 +92,13 @@ rating.addEventListener("click", (e) => {
   grade = starRating.dataset.value;
 });
 
+// 리뷰 댓글 작성
 document.querySelector("#insertForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
+  // 댓글 작성자와 작성내용 가져오기
   const replyContent = document.querySelector("#insertForm #replyContent").value;
-  const userid = document.querySelector("#insertForm #userid").value;
+  const userid = document.querySelector("#insertForm #userid2").value;
 
   const data = {
     replyContent: replyContent,
@@ -144,7 +146,7 @@ document.querySelector(".section-title").addEventListener("click", (e) => {
   //console.log("댓글 작성자 ", userid);
 
   // 로그인 사용자 정보 가져오기
-  let form_replyer = document.querySelector("#insertForm #userid");
+  let form_replyer = document.querySelector("#insertForm #userid2");
   let login_user = "";
   if (form_replyer) {
     login_user = form_replyer.value;
@@ -337,6 +339,7 @@ document.querySelector(".follow-btn").addEventListener("click", (e) => {
     method: "post",
     headers: {
       "content-type": "application/json",
+      "X-CSRF-TOKEN": csrfToken,
     },
     body: JSON.stringify(wishInfo),
   })

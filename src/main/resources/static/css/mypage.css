@@ -27,19 +27,17 @@
 
 .user-id {
   font-weight: bold;
-  color: #ffffff;
 }
-
+/* 
 .userid {
   font-weight: bold;
   color: #ffffff;
   margin: 0px 0px 20px 20px;
 }
-
+ */
 .userinfo {
   font-weight: bold;
   color: #ffffff;
-  
 }
 
 .edit-info {
@@ -110,7 +108,6 @@ input[type="text"] {
   cursor: pointer;
   margin-left: 10px;
 }
-
 
 .btn_change {
   padding: 8px 16px;

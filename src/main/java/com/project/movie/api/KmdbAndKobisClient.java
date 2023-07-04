@@ -131,13 +131,19 @@ public class KmdbAndKobisClient {
 				JSONObject actors = (JSONObject) rawItem.get("actors");
 				JSONArray actorArr = (JSONArray) actors.get("actor");		
 				
+				
+				// 배우이름 !HS !HE 문자 제거
 				List<String> actorsList = new ArrayList<String>();
-				
+
 				for (Object object : actorArr) {
-				
-					JSONObject jsonObj = (JSONObject) object;			
-					actorsList.add((String) jsonObj.get("actorNm"));
-				}	
+				    JSONObject jsonObj = (JSONObject) object;
+				    String actorNm = (String) jsonObj.get("actorNm");
+
+				    // 문자열에서 "!HE"와 "!HS"를 제거
+				    actorNm = actorNm.replace("!HE", "").replace("!HS", "");
+				    
+				    actorsList.add(actorNm);
+				}
 				
 				//company
 				String company = (String) rawItem.get("company");
@@ -152,9 +158,14 @@ public class KmdbAndKobisClient {
 				//prodYear
 				String prodYear = (String) rawItem.get("prodYear");
 				
+				// 제목
+				String mTitle = (String) rawItem.get("title");	//*
+				String mpattern = "\\s*(!HS|!HE)\\s*";	//*
+				String rTitle = mTitle.replaceAll(mpattern, "").trim();	//*
 				
 				dto.setRuntime(rawItem.get("runtime").toString());
-				dto.setTitle(movieName);
+//				dto.setTitle(movieName);
+				dto.setTitle(rTitle);
 				dto.setDirectorNm(directorNm);
 				dto.setActors(actorsList);
 				dto.setKeywords(rawItem.get("keywords").toString());
@@ -306,12 +317,18 @@ public class KmdbAndKobisClient {
 	            JSONObject actors = (JSONObject) item.get("actors");
 	            JSONArray actorArr = (JSONArray) actors.get("actor");
 
-	            List<String> actorsList = new ArrayList<>();
+				// 배우이름 !HS !HE 문자 제거
+				List<String> actorsList = new ArrayList<String>();
 
-	            for (Object object : actorArr) {
-	                JSONObject jsonObj = (JSONObject) object;
-	                actorsList.add((String) jsonObj.get("actorNm"));
-	            }
+				for (Object object : actorArr) {
+				    JSONObject jsonObj = (JSONObject) object;
+				    String actorNm = (String) jsonObj.get("actorNm");
+
+				    // 문자열에서 "!HE"와 "!HS"를 제거
+				    actorNm = actorNm.replace("!HE", "").replace("!HS", "");
+				    
+				    actorsList.add(actorNm);
+				}
 
 	            //title
 	            String title = (String) item.get("title");

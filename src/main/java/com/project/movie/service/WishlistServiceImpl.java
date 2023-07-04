@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.movie.domain.WishCriteria;
 import com.project.movie.domain.WishlistDTO;
 import com.project.movie.mapper.WishlistMapper;
 
@@ -24,9 +25,9 @@ public class WishlistServiceImpl implements WishlistService {
 	}
 
 	@Override
-	public List<WishlistDTO> getList(String userid) {
+	public List<WishlistDTO> getList(String userid, WishCriteria cri) {
 
-		return wishlistMapper.readAll(userid);
+		return wishlistMapper.readAll(userid,cri);
 	}
 
 	@Override
@@ -45,11 +46,6 @@ public class WishlistServiceImpl implements WishlistService {
 	public int getCountByUserid(String userid) {
 	    return wishlistMapper.getCountByUserid(userid);
 	}
-	@Override
-	public List<WishlistDTO> getListByPage(String userid, int offset, int recordSize) {
-	    List<WishlistDTO> wishlist = wishlistMapper.getListByPage(userid, offset, recordSize);
-	    System.out.println("위시리스트 가져오기: " + wishlist); // 출력문 추가
-	    return wishlist;
-	}
+
 
 }

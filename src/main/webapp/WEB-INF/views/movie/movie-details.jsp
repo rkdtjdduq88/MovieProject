@@ -135,7 +135,7 @@
                     
                 </div>
                 <!-- 댓글 작업 시작 -->
-                <div class="row">
+                <div class="row justify-content-md-center"> <!-- 댓글 가운데 정렬함 -->
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
                             <div class="section-title">
@@ -143,6 +143,9 @@
                             </div>
                           <!-- 댓글 스크립트 -->  
                         </div>
+                       
+                       
+                    <security:authorize access="isAuthenticated()">                  
                         <!-- 댓글 수정 폼(모달) -->
 						<div class="modal" tabindex="-1" id="replyModal">
 						  <div class="modal-dialog">
@@ -159,42 +162,50 @@
 						        	<textarea name="replyContent" id="replyContent" rows="4" class="form-control"></textarea>
 						        </div>
 						        <div class="form-group">
-						        	<input type="text" name="userid" id="userid" class="form-control" value="${userid}" readonly/>
+						        	<input type="text" name="userid" id="userid" class="form-control" value="<security:authentication property="principal.username"/>" readonly/>
 						        </div>
-						      </div>
+						      </div> 
+							   		
 						      <div class="modal-footer">
-						        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-						        <button type="button" class="btn btn-primary">수정</button>
+								  <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+							       <security:authorize access="isAuthenticated()">
+								  		<security:authentication property="principal.username" var="username"/>
+								  		<c:if test="${username == cntDto.userid}">		   
+									        <button type="button" class="btn btn-primary">수정</button>
+							        	</c:if>
+								  </security:authorize>
 						      </div>
 						    </div>
 						  </div>
 						</div>
-		 						 
+		 				</security:authorize>		 
 	                  <!-- 댓글 수정 폼 종료(모달) -->
-
+	                  
+					<security:authorize access="isAuthenticated()">
                         <div class="anime__details__form">
-                            <form action="" id="insertForm">
-	                            <div class="section-title">
-	                                <h5>Your Comment</h5>	                                
-	                            	<input type="text" class="userid" id="userid" value="${userid}" readonly />
-	                            </div>
-	                                <textarea placeholder="Your Comment" id="replyContent"></textarea>
-		                                <div class="rating">
-		                                    <i class="fa fa-star-o" data-value="1"></i>
-		                                    <i class="fa fa-star-o" data-value="2"></i>
-		                                	<i class="fa fa-star-o" data-value="3"></i>
-		                                    <i class="fa fa-star-o" data-value="4"></i>
-		                                    <i class="fa fa-star-o" data-value="5"></i>	                                    
-		                                </div>
-		                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />    
-		                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-                            </form>
+		                  <form action="" id="insertForm">
+	                          <div class="section-title">
+	                              <h5>Your Comment</h5>	                                
+	                          	<input type="text" class="userid" id="userid2" value="<security:authentication property="principal.username"/>" readonly />
+	                          </div>
+	                             <textarea placeholder="Your Comment" id="replyContent"></textarea>
+	                              <div class="rating">
+	                                  <i class="fa fa-star-o" data-value="1"></i>
+	                                  <i class="fa fa-star-o" data-value="2"></i>
+	                              	<i class="fa fa-star-o" data-value="3"></i>
+	                                  <i class="fa fa-star-o" data-value="4"></i>
+	                                  <i class="fa fa-star-o" data-value="5"></i>	                                    
+	                              </div>
+	                          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />    
+	                          <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+	                     </form>                            
                         </div>
+                     </security:authorize>
                     </div>
 
                                                 
                     <!-- 댓글 작업 종료 -->
-                    <div class="col-lg-4 col-md-4">
+                  <!--   <div class="col-lg-4 col-md-4">
                         <div class="anime__details__sidebar">
                             <div class="section-title">
                                 <h5>you might like...</h5>
@@ -210,7 +221,7 @@
                                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -235,13 +246,17 @@
  	<input type="hidden" name="releaseDate" value="${detail.releaseDate}" />
  	<input type="hidden" name="posterUrl" value="${detail.posterUrl}" />
  	<input type="hidden" name="userid" value="${userid}" />
- </form> 
+ </form>
     
 	<script>
 		const title = '${detail.title}';
+
+		const userid = document.querySelector("#userid2").value;
+
 		const userid = '${userid}';	
 
 		const csrfToken='${_csrf.token}';
+
 	</script>
 	            
 	<!-- Core plugin JavaScript-->
@@ -258,6 +273,7 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/addWish.js"></script>
     <script src="../js/moviedetail.js"></script>
     <script src="/js/youtube.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/moviedetail.css">
