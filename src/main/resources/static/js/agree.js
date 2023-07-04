@@ -1,7 +1,6 @@
 /**
  *
  */
-
 document.addEventListener("DOMContentLoaded", function () {
   var termsServiceCheckbox = document.getElementById("termsService");
   var btnSubmit = document.getElementById("btnAgree");
@@ -17,6 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   btnSubmit.addEventListener("click", function () {
-    window.location.href = "register";
+    window.location.href = "loginRegister";
   });
 });

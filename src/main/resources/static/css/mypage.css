@@ -1,0 +1,155 @@
+@charset "utf-8";
+
+.my-page {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile {
+  width: 50%;
+  padding: 20px;
+  background-color: #0b0c2a;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  /* 프로필 사진 스타일링 */
+}
+
+.profile-info {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.user-id {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.userid {
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0px 0px 20px 20px;
+}
+
+.userinfo {
+  font-weight: bold;
+  color: #ffffff;
+  
+}
+
+.edit-info {
+  width: 50%;
+  padding: 20px;
+  background-color: #0b0c2a;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.row_item {
+  display: flex;
+  align-items: center;
+}
+
+input[type="email"],
+input[type="tel"],
+input[type="text"] {
+  width: 30%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn_edit {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn_save {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn_edit2 {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn_save2 {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+
+.btn_change {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn_unregister {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.text {
+  color: #fff;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+.buttons .btn_edit {
+  margin-right: 10px;
+}
+
+.btn_popup-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  display: inline-block; /* 수정된 부분 */
+  margin-right: 10px; /* 버튼 사이 간격을 위해 추가 */
+  margin-top: 10px;
+}
