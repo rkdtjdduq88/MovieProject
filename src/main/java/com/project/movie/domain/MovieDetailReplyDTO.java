@@ -19,4 +19,6 @@ public class MovieDetailReplyDTO {
 	private Date replydate;	
 	private Date replyUpdatedate;
 	
+	private String posterUrl;
+	
 }

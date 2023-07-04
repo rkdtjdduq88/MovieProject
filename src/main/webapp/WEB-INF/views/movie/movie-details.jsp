@@ -175,7 +175,7 @@
                         <div class="anime__details__form">
                             <form action="" id="insertForm">
 	                            <div class="section-title">
-	                                <h5>Your Comment</h5>
+	                                <h5>Your Comment</h5>	                                
 	                            	<input type="text" class="userid" id="userid" value="${userid}" readonly />
 	                            </div>
 	                                <textarea placeholder="Your Comment" id="replyContent"></textarea>
@@ -186,6 +186,7 @@
 		                                    <i class="fa fa-star-o" data-value="4"></i>
 		                                    <i class="fa fa-star-o" data-value="5"></i>	                                    
 		                                </div>
+		                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />    
 		                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
                             </form>
                         </div>
@@ -239,6 +240,8 @@
 	<script>
 		const title = '${detail.title}';
 		const userid = '${userid}';	
+
+		const csrfToken='${_csrf.token}';
 	</script>
 	            
 	<!-- Core plugin JavaScript-->

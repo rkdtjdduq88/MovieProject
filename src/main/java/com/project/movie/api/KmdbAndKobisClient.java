@@ -26,6 +26,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.project.movie.response.KmdbReq;
 import com.project.movie.response.KmdbRes;
 import com.project.movie.response.KmdbCarouselReq;
+import com.project.movie.response.KmdbGradeRankReq;
 import com.project.movie.response.KmdbItem;
 import com.project.movie.response.KobisReq;
 import com.project.movie.response.KobisRes;
@@ -48,6 +49,7 @@ public class KmdbAndKobisClient {
 	@Value("${kmdb.client.id}")
 	private String kmdbClientId;
 	
+	// 한국진흥위원회(Kobis) api 검색요청
 	public KobisRes searchKobis(KobisReq kobisReq) {
 		URI uri = UriComponentsBuilder.fromUriString(kobisSearchUrl)									  
 									  .queryParams(kobisReq.toMultiValueMap())									  
@@ -69,6 +71,7 @@ public class KmdbAndKobisClient {
 		
 	}
 	
+	// KMDB api 검색요청
 	public KmdbRes searchKmdb(KmdbReq kmdbReq) {
 		URI uri = UriComponentsBuilder.fromUriString(kmdbSearchUrl)									  
 				.queryParams(kmdbReq.toMultiValueMap())									  
@@ -192,7 +195,7 @@ public class KmdbAndKobisClient {
 	}
 	
 	
-	// 캐러셀(title,poster,releaseDate,genre)
+	// 캐러셀(title,poster,releaseDate,genre) 검색요청
 	public List<KmdbRes> searchKmdbCarousel(KmdbCarouselReq kmdbCarouselReq) {
 		URI uri = UriComponentsBuilder.fromUriString(kmdbSearchUrl)									  
 				.queryParams(kmdbCarouselReq.toMultiValueMap())									  
@@ -252,14 +255,10 @@ public class KmdbAndKobisClient {
 			}
 			resultList.add(dto);
 		}
-		return resultList;
-
-
-		
+		return resultList;		
 	}	
 
-
-	
+	// KMDB api 검색요청(index 검색기능)
 	public List<KmdbRes> searchMovies(KmdbReq kmdbReq) {
 	    URI uri = UriComponentsBuilder.fromUriString(kmdbSearchUrl)
 	            .queryParams(kmdbReq.toMultiValueMap())
@@ -375,6 +374,58 @@ public class KmdbAndKobisClient {
 
 	    return movieList;
 	}
-
-
+	
+	// KMDB api 기본 검색요청(영화 평균 평점별 순위에 따른 포스터 가져오기)
+	public String searchKmdbRankGradePoster(KmdbGradeRankReq kmdbGradeRankReq) {
+		URI uri = UriComponentsBuilder.fromUriString(kmdbSearchUrl)									  
+				.queryParams(kmdbGradeRankReq.toMultiValueMap())									  
+				.encode()
+				.build()
+				.toUri();
+		
+		
+		String posterUrl = "";
+		
+		
+		// 헤더 추가
+		HttpHeaders headers = new HttpHeaders();		
+		HttpEntity<HttpHeaders> httpEntity = new HttpEntity<>(headers);
+		
+        ResponseEntity<String> resEntity = new RestTemplate().exchange(uri, HttpMethod.GET, httpEntity, String.class);
+		
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = null;
+		
+		try {
+			jsonObject = (JSONObject) jsonParser.parse(resEntity.getBody());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		// 가장 큰 JSON 객체 response 가져오기
+		//String movieName = (String) jsonObject.get("Query");		
+		
+		JSONArray jsonArray = (JSONArray) jsonObject.get("Data");	
+		//System.out.println("jsonArray "+jsonArray);
+		JSONObject jsonItems=(JSONObject) jsonArray.get(0);
+	
+				
+		JSONArray jsonArr= (JSONArray) jsonItems.get("Result");
+	
+		JSONObject item = (JSONObject) jsonArr.get(0);		
+		posterUrl = item.get("posters").toString();	
+		
+		if(!posterUrl.isBlank()) {
+			StringTokenizer st = new StringTokenizer(posterUrl,"|");
+			if(st.hasMoreTokens()) {
+				posterUrl = st.nextToken();			
+			}			
+		}			
+	
+		return posterUrl;			
+	}	
+	
+	
+	
+	
 }	

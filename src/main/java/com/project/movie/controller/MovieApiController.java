@@ -40,7 +40,9 @@ public class MovieApiController {
 			// 구해온 영화이름들을 다시 replyCnt 에 개수 담기
 			
 			int replyCnt = movieDetailReplyMapper.getCountByTitle(dto.getMovieNm());
-			dto.setReplyCnt(replyCnt);			     
+			int avgGrade = movieDetailReplyMapper.avgGrade(dto.getMovieNm());
+			dto.setReplyCnt(replyCnt);
+			dto.setAvgGrade(avgGrade);   
 		}		
 		return res;
 	}

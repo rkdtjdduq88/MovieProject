@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.movie.api.KmdbAndKobisClient;
+import com.project.movie.domain.MovieDetailReplyDTO;
+import com.project.movie.mapper.MovieDetailReplyMapper;
 import com.project.movie.response.KmdbAndKobisDTO;
 
 import com.project.movie.response.KmdbCarouselReq;
+import com.project.movie.response.KmdbGradeRankReq;
 import com.project.movie.response.KmdbItem;
 import com.project.movie.response.KmdbReq;
 import com.project.movie.response.KmdbRes;
@@ -25,6 +28,8 @@ public class MovieServiceImpl implements MovieService{
 	
 	@Autowired
 	private KmdbAndKobisClient kmdbAndKobisClient;
+	@Autowired
+	private MovieDetailReplyMapper movieDetailReplyMapper;
 	
 	@Override
 	public TotalRes movie() {
@@ -94,6 +99,19 @@ public class MovieServiceImpl implements MovieService{
 		
 		System.out.println("영화 여러개 넘어오는지 확인"+kmdbRes);
 		return kmdbRes;
+	}
+
+
+	@Override
+	public List<MovieDetailReplyDTO> rankGrade() {		
+		return movieDetailReplyMapper.rankGrade();
+	}
+
+
+	@Override
+	public String rankGrade(String query) {
+		KmdbGradeRankReq kmdbGradeRankReq = new KmdbGradeRankReq(query);	
+		return kmdbAndKobisClient.searchKmdbRankGradePoster(kmdbGradeRankReq);
 	}	
 	
 	
