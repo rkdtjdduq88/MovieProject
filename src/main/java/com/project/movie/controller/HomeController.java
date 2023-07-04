@@ -112,4 +112,4 @@ public String getWish(Model model) {
     return "/movie/wishList";
 }
 
-}							
+}						

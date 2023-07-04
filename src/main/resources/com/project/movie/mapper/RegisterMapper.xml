@@ -8,6 +8,7 @@
 		values(#{userid},#{password},#{email},#{address},#{name},#{mobile})
 	</insert>
 	
+
 	<!-- 암호화된 비번 가져오기 -->
 	<select id="getPass" resultType="java.lang.String">
 		select password from moviemember_tbl 
@@ -18,5 +19,86 @@
         select * from moviemember_tbl
         where userid = #{userid}
     </select>
+
+	<insert id="insertAuth">
+		insert into MOVIEMEMBERAUTH_TBL (userid) values(#{userid})
+	</insert>
+	
+	<!-- 로그인  -->
+    <resultMap type="com.project.movie.domain.MemberDTO" id="memberDTO">
+		<!-- property는 DTO 변수명이랑 맞추고, column은 db 변수명이랑 맞추면 된다. -->
+		<id property="userid" column="userid"/> 
+		<result property="password" column="password"/>
+		<result property="email" column="email"/>
+		<result property="address" column="address"/>
+		<result property="name" column="name"/>
+		<result property="mobile" column="mobile"/>
+		<collection property="authorities" resultMap="authList"/>
+	</resultMap> 
+	
+	<resultMap type="com.project.movie.domain.MemberAuthDTO" id="authList">
+		<result property="userid" column="userid"/>
+		<result property="authority" column="authority"/>
+	</resultMap>	
+	
+	<select id="read" resultMap="memberDTO">
+		select m.userid, m.password, m.email, m.address, m.name, m.mobile, a.authority 
+		from moviemember_tbl m left outer join moviememberauth_tbl a on m.userid=a.userid
+		where m.userid=#{userid}
+	</select>		
+	
+    
+    <!-- 유저정보 가져오기 -->
+    <select id="getMemberByUserId" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE userid = #{userid}
+	</select>
+    
+	<select id="getMemberByEmail" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE email = #{email}
+	</select>
+	
+	<select id="getMemberByMobile" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE mobile = #{mobile}
+	</select>
+	
+	<select id="getMemberByName" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE mobile = #{name}
+	</select>
+	
+	<!-- 유저정보 변경 -->
+	<update id="updateAddress" parameterType="com.project.movie.domain.MemberDTO">
+	    UPDATE moviemember_tbl
+	    SET address = #{address}
+	    WHERE userid = #{userid}
+	</update>
+
+	<update id="updateMobile" parameterType="com.project.movie.domain.MemberDTO">
+	    UPDATE moviemember_tbl
+	    SET mobile = #{mobile}
+	    WHERE userid = #{userid}
+	</update>
+
+	<update id="updatePassword" parameterType="com.project.movie.domain.MemberDTO">
+	  UPDATE moviemember_tbl
+	  SET password = #{password}
+	  WHERE userid = #{userid}
+	</update>
+	
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteProfile" parameterType="com.project.movie.domain.MemberDTO">
+	  DELETE FROM moviemember_tbl
+	  WHERE userid = #{userid} AND password = #{password}
+	</delete>
+
+	<!-- 비밀번호 찾기를 위한 회원 정보 조회 -->
+	<select id="checkUser" resultType="com.project.movie.domain.MemberDTO">
+	    SELECT * FROM moviemember_tbl WHERE userid = #{userid} and name = #{name} and email = #{email}
+	</select>
+	
+	<select id="dupId" resultType="java.lang.Integer"> 
+	select count(*) from moviemember_tbl where userid=#{userid} 
+	</select>
+
 	
 </mapper>
