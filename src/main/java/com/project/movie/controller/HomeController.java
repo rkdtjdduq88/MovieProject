@@ -53,9 +53,9 @@ public class HomeController {
 	}
 	
 	@GetMapping("/movie/details")
-	  public String movieDetails(Model model, String movieNm, String movieDt,Principal principal) {
+	  public String movieDetails(Model model, String movieNm, String movieDt) {
 		log.info("박스오피스 상세페이지 폼 요청");
-		String userid = principal.getName();
+		//String userid = principal.getName();
 
 		TotalRes kres = movieService.movie();
 		System.out.println("상세 폼 "+kres);
@@ -69,7 +69,7 @@ public class HomeController {
 		
 		model.addAttribute("detail", res);
 		model.addAttribute("list",kres.getList());
-		model.addAttribute("userid", userid);
+		//model.addAttribute("userid", userid);
 		// 상세페이지 포스터 댓글 수 불러오기
 		MovieDetailReplyCntFavDTO dto=detailReplyService.getList(movieNm);
 		model.addAttribute("count", dto.getReplyCnt());
@@ -119,5 +119,4 @@ public String getWish(Model model) {
 	public Authentication auth() {		
 		return SecurityContextHolder.getContext().getAuthentication(); 
 	}
-
 }						

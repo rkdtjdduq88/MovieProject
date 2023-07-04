@@ -72,7 +72,7 @@ public class SecurityConfig {
 			.loginPage("/login")
 			.loginProcessingUrl("/login")
 			.failureUrl("/login-error")
-			.failureHandler(authenticationFailureHandler());
+			.successHandler(loginSuccessHandler());
 		
 		http.logout()
 			.logoutUrl("/logout")
