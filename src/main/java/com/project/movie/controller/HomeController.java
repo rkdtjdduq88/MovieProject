@@ -94,4 +94,4 @@ public String getWish() {
 	return "/movie/wishList";
 }
 
-}							
+}						
