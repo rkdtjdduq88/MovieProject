@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import com.project.movie.domain.Criteria;
 import com.project.movie.domain.MovieBoardDTO;
 
@@ -16,7 +18,6 @@ public interface MovieBoardMapper {
 	public int modify(MovieBoardDTO boardDTO);
 	public int remove(int bno);
 	public int totalCnt(Criteria cri);
-//	public int updateReplyCnt(@Param("bno") int bno, @Param("amount") int amount);
 	
 	// 상세조회 + 파일정보
 	public MovieBoardDTO readAttach(int bno);

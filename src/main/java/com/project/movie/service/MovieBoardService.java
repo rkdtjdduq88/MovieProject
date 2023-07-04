@@ -15,17 +15,13 @@ public interface MovieBoardService {
 	
 		public boolean register(MovieBoardDTO boardDTO);
 
-		
 		public MovieBoardDTO read(int bno);
 
-	
 		public boolean modify(MovieBoardDTO boardDTO);
 		
-	
 		public boolean remove (int bno);
 	
 		public int getTotalCnt(Criteria criteria);
-		
 		
 		public List<AttachFileDTO> getAttachList(int bno);
 		

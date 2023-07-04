@@ -54,19 +54,13 @@
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="/">Homepage</a></li>
-                                <li><a href="/">Categories <span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="./categories.html">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
-                                        <li><a href="./login.html">Login</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
-                                        <li><a href="/showWish">Wish</a></li>
+                                <li><a href="/blog">Our Blog</a></li>
+                                <security:authorize access="isAuthenticated()">
+										<security:authorize access="hasRole('ROLE_ADMIN')">
+											<li><a href="/main-board">Admin Board</a></li>
+										</security:authorize>
+										<li><a href="/showWish">Wish</a></li>
+								</security:authorize>
                             </ul>
                         </nav>
                     </div>
