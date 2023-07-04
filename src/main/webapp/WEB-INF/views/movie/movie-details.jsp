@@ -170,7 +170,7 @@
 								  <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 							       <security:authorize access="isAuthenticated()">
 								  		<security:authentication property="principal.username" var="username"/>
-								  		<c:if test="${username == dto.writer}">		   
+								  		<c:if test="${username == cntDto.userid}">		   
 									        <button type="button" class="btn btn-primary">수정</button>
 							        	</c:if>
 								  </security:authorize>
@@ -186,7 +186,7 @@
 		                  <form action="" id="insertForm">
 	                          <div class="section-title">
 	                              <h5>Your Comment</h5>	                                
-	                          	<input type="text" class="userid" id="userid" value="<security:authentication property="principal.username"/>" readonly />
+	                          	<input type="text" class="userid" id="userid2" value="<security:authentication property="principal.username"/>" readonly />
 	                          </div>
 	                             <textarea placeholder="Your Comment" id="replyContent"></textarea>
 	                              <div class="rating">
@@ -250,8 +250,7 @@
     
 	<script>
 		const title = '${detail.title}';
-		const userid = '${userid}';	
-
+		const userid = document.querySelector("#userid2").value;
 		const csrfToken='${_csrf.token}';
 	</script>
 	            

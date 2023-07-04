@@ -47,7 +47,7 @@ public class HomeController {
 		for (MovieDetailReplyDTO movieDetailReplyDTO : rankGradeDtoList) {			
 			movieDetailReplyDTO.setPosterUrl(movieService.rankGrade(movieDetailReplyDTO.getTitle()));			
 		}
-		System.out.println("rankGradeDtoList"+rankGradeDtoList);
+		//System.out.println("rankGradeDtoList"+rankGradeDtoList);
 		model.addAttribute("rankGradeDtoList", rankGradeDtoList);				
 		return "index";
 	}
@@ -58,12 +58,12 @@ public class HomeController {
 		//String userid = principal.getName();
 
 		TotalRes kres = movieService.movie();
-		System.out.println("상세 폼 "+kres);
+		//System.out.println("상세 폼 "+kres);
 		String rOpenDt = movieDt.replaceAll("-", "");
-		System.out.println("개봉일 확인 "+rOpenDt);
+		//System.out.println("개봉일 확인 "+rOpenDt);
 		KmdbRes res = movieDetailService.getDetails(movieNm, rOpenDt);	
 
-		System.out.println("확인 "+res);
+		//System.out.println("확인 "+res);
 		
 		res.setGrade(detailReplyService.avgGrade(movieNm));		
 		
