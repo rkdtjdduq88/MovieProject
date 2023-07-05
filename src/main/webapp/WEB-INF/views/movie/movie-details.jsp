@@ -275,7 +275,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/addWish.js"></script>
     <script src="../js/moviedetail.js"></script>
-    <script src="/js/youtube.js"></script>
+   <!-- <script src="/js/youtube.js"></script> -->
   <link rel="stylesheet" type="text/css" href="/css/moviedetail.css">
 
 

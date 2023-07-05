@@ -7,14 +7,13 @@ document.querySelector("#uploadFile").addEventListener("change", () => {
 
   // file 요소 가져오기
   let inputFiles = document.querySelector("#uploadFile").files;
-  console.log("인풋파일", inputFiles);
 
   // 가져온 file 요소를 formData에 추가
   for (let i = 0; i < inputFiles.length; i++) {
     console.log("i: ", i);
     formData.append("uploadFile", inputFiles[i]);
   }
-  console.log("인풋파일2", formData);
+  
   // 비동기 formData 전송
   fetch("/uploadAjax", {
     method: "post",

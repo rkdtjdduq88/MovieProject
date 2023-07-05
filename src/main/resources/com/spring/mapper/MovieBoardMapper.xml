@@ -13,7 +13,7 @@ FROM (
     FROM movieboard_tbl
     WHERE 1=1
 ]]>      
-   <include refid="criteria"></include>   
+   <include refid="criteria"></include>
 <![CDATA[   
     ORDER BY BNO DESC
   )
@@ -60,9 +60,8 @@ WHERE RN > (#{page} - 1) * #{amount}
  <selectKey keyProperty="bno" order="BEFORE" resultType="int">
         select bno_sequence.nextval from dual
 </selectKey>
-    insert into MOVIEBOARD_TBL(bno, title, content, userid, attach) values(#{bno}, #{title}, #{content}, #{userid}, #{attachList.fileName})
+    insert into MOVIEBOARD_TBL(bno, title, content, userid, attach) values(#{bno}, #{title}, #{content}, #{userid}, #{attachList[0].fileName})
 </insert>
-
 
 <!-- 특정 번호의 게시물 조회 -->
 <select id="read" resultType="com.project.movie.domain.MovieBoardDTO">

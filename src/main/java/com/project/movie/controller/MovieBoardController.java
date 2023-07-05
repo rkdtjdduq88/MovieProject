@@ -118,22 +118,6 @@ public class MovieBoardController {
 		model.addAttribute("dto", dto);
 	}
 	
-//	@GetMapping({"/read", "/modify"})
-//	@ResponseBody
-//	public ResponseEntity<?> readGet(int bno, Model model, @ModelAttribute("cri") Criteria cri) {
-//	    log.info("read request " + bno);
-//	    List<BlogCommentDTO> comments = boardservice.getCommentsByBoard(bno);
-//	    // Add the comments to the model with the attribute name "comments"
-//	    model.addAttribute("comments", comments);
-//	    // bno에 해당하는 내용 가져오기
-//	    MovieBoardDTO dto = service.read(bno);
-//	    model.addAttribute("dto", dto);
-//	    
-//	    // 데이터를 JSON 형식으로 반환
-//	    return ResponseEntity.ok(model.asMap());
-//	}
-
-	
 	@PostMapping("/modify")
 	public String modifyPost(MovieBoardDTO boardDTO, RedirectAttributes rttr, Criteria cri) {
 		log.info("modify request"+cri); 
@@ -194,14 +178,14 @@ public class MovieBoardController {
 		
 		for(AttachFileDTO dto : attachList) {
 			// 파일 경로
-			Path path=Paths.get("c:\\upload\\"+dto.getUploadPath()+"\\"+dto.getUuid()+"_"+dto.getFileName());
+			Path path=Paths.get(dto.getUploadPath()+"\\"+dto.getUuid()+"_"+dto.getFileName());
 			
 			try {
 				Files.deleteIfExists(path);
 				
 				// 이미지 파일인 경우 썸네일 제거
 				if(Files.probeContentType(path).startsWith("image")) {
-					Path thumb=Paths.get("c:\\upload\\"+dto.getUploadPath()+"\\s_"+dto.getUuid()+"_"+dto.getFileName());
+					Path thumb=Paths.get(dto.getUploadPath()+"\\s_"+dto.getUuid()+"_"+dto.getFileName());
 					Files.deleteIfExists(thumb);
 				}
 			} catch (Exception e) {
