@@ -165,15 +165,12 @@
 						        	<input type="text" name="userid" id="userid" class="form-control" value="<security:authentication property="principal.username"/>" readonly/>
 						        </div>
 						      </div> 
-							   		
+							   
 						      <div class="modal-footer">
 								  <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-							       <security:authorize access="isAuthenticated()">
-								  		<security:authentication property="principal.username" var="username"/>
-								  		<c:if test="${username == cntDto.userid}">		   
-									        <button type="button" class="btn btn-primary">수정</button>
-							        	</c:if>
-								  </security:authorize>
+							      <button type="button" class="btn btn-primary">수정</button>
+
+							        	
 						      </div>
 						    </div>
 						  </div>
@@ -250,13 +247,11 @@
     
 	<script>
 		const title = '${detail.title}';
-<<<<<<< HEAD
-		const userid = document.querySelector("#userid2").value;
-=======
-		const userid = '${userid}';	
 
+		/* if(document.querySelector("#userid2")){			
+			const userid = document.querySelector("#userid2").value;
+		} */
 
->>>>>>> branch 'master' of https://github.com/rkdtjdduq88/MovieProject.git
 		const csrfToken='${_csrf.token}';
 
 	</script>

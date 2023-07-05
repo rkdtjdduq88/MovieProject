@@ -6,6 +6,12 @@ function movieDetailReplyList() {
     return;
   }
 
+  var userid = null; // userid 변수를 초기화합니다.
+  var useridElement = document.querySelector("#userid2"); // userid를 담고 있는 요소를 선택합니다.
+  if (useridElement) {
+    userid = useridElement.value; // 요소의 값에서 userid를 가져옵니다.
+  }
+
   fetch("/replies/list/" + title)
     .then((response) => {
       if (!response.ok) {
@@ -17,7 +23,7 @@ function movieDetailReplyList() {
       console.log(data);
       var reviewList = "";
       data.list.forEach((list) => {
-        var isCurrentUser = list.userid === userid; // 현재 사용자와 댓글 작성자를 비교
+        var isCurrentUser = userid && list.userid === userid; // 현재 사용자와 댓글 작성자를 비교
 
         var buttons = "";
         if (isCurrentUser) {
@@ -165,6 +171,7 @@ document.querySelector(".section-title").addEventListener("click", (e) => {
       alert("자신의 댓글만 수정이 가능합니다.");
       return;
     }
+
     fetch("/replies/" + rno)
       .then((response) => {
         if (!response.ok) {
@@ -176,7 +183,9 @@ document.querySelector(".section-title").addEventListener("click", (e) => {
         //console.log(data);
         document.querySelector(".modal-body #rno").value = data.rno;
         document.querySelector(".modal-body #replyContent").value = data.replyContent;
+        //글 작성자
         document.querySelector(".modal-body #userid").value = data.userid;
+
         $("#replyModal").modal("show");
       })
       .catch((error) => console.log(error));
