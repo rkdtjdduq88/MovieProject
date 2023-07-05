@@ -112,7 +112,9 @@ document.addEventListener("click", (e) => {
 
     fetch("/wish/remove/" + wno, {
       method: "delete",
-      "X-CSRF-TOKEN": csrfToken,
+      headers: {
+        "X-CSRF-TOKEN": csrfToken,
+      },
     })
       .then((response) => {
         if (!response.ok) {

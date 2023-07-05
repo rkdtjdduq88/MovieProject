@@ -165,15 +165,12 @@
 						        	<input type="text" name="userid" id="userid" class="form-control" value="<security:authentication property="principal.username"/>" readonly/>
 						        </div>
 						      </div> 
-							   		
+							   
 						      <div class="modal-footer">
 								  <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-							       <security:authorize access="isAuthenticated()">
-								  		<security:authentication property="principal.username" var="username"/>
-								  		<c:if test="${username == cntDto.userid}">		   
-									        <button type="button" class="btn btn-primary">수정</button>
-							        	</c:if>
-								  </security:authorize>
+							      <button type="button" class="btn btn-primary">수정</button>
+
+							        	
 						      </div>
 						    </div>
 						  </div>
@@ -245,18 +242,28 @@
  	<input type="hidden" name="directorNm" value="${detail.directorNm}" />
  	<input type="hidden" name="releaseDate" value="${detail.releaseDate}" />
  	<input type="hidden" name="posterUrl" value="${detail.posterUrl}" />
- 	<input type="hidden" name="userid" value="${userid}" />
+ 	
+ 	  <security:authorize access="isAuthenticated()">   
+ 	  	<%-- <c:if test="${ }"> --%>
+ 		<input type="hidden" name="userid" value="<security:authentication property="principal.username"/>" />  
+ 	  <%-- 	</c:if> --%>
+ 	 </security:authorize> 
+ 	
+ 	  <security:authorize access="isAnonymous()">   
+ 		<input type="hidden" name="userid" value="" />  
+ 	 </security:authorize> 
+ 	
+  	<%-- <input type="hidden" name="userid" value="${userid}" />   --%>
  </form>
     
 	<script>
-		const title = '${detail.title}';
+			const title = '${detail.title}';
 
-		const userid = document.querySelector("#userid2").value;
+		/* const userid = document.querySelector("#userid2").value; */
+		
+			const userid = document.querySelector("#wishForm [name='userid']").value;
 
-		const userid = '${userid}';	
-
-		const csrfToken='${_csrf.token}';
-
+			const csrfToken='${_csrf.token}';  
 	</script>
 	            
 	<!-- Core plugin JavaScript-->
