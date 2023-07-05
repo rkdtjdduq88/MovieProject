@@ -242,17 +242,28 @@
  	<input type="hidden" name="directorNm" value="${detail.directorNm}" />
  	<input type="hidden" name="releaseDate" value="${detail.releaseDate}" />
  	<input type="hidden" name="posterUrl" value="${detail.posterUrl}" />
- 	 <input type="hidden" name="userid" value="<security:authentication property="principal.username"/>" /> 
+ 	
+ 	  <security:authorize access="isAuthenticated()">   
+ 	  	<%-- <c:if test="${ }"> --%>
+ 		<input type="hidden" name="userid" value="<security:authentication property="principal.username"/>" />  
+ 	  <%-- 	</c:if> --%>
+ 	 </security:authorize> 
+ 	
+ 	  <security:authorize access="isAnonymous()">   
+ 		<input type="hidden" name="userid" value="" />  
+ 	 </security:authorize> 
+ 	
+  	<%-- <input type="hidden" name="userid" value="${userid}" />   --%>
  </form>
     
 	<script>
-		const title = '${detail.title}';
+			const title = '${detail.title}';
 
-		const userid = document.querySelector("#userid2").value;
+		/* const userid = document.querySelector("#userid2").value; */
+		
+			const userid = document.querySelector("#wishForm [name='userid']").value;
 
-		const csrfToken='${_csrf.token}';
-
-		/* const wishuserid = '${userid}';	 */
+			const csrfToken='${_csrf.token}';  
 	</script>
 	            
 	<!-- Core plugin JavaScript-->
