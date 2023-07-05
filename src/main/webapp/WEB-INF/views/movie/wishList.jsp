@@ -24,7 +24,7 @@
           <div class="row justify-content-md-center">
          
                 <div class="col-lg-8">
-                    <div class="product__page__content center-content" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="product__page__content wish_content center-content" style="display: flex; justify-content: center; align-items: center;">
                         <div class="product__page__title">
                            
                                 <div class="col-lg-8 col-md-8 col-sm-6">
@@ -32,12 +32,12 @@
                                         <h4>MY WISHLIST</h4>
                                     </div>  
                                 </div>           
-                            <div class="row wishList center-content">
+                           		<div class="row wishList center-content">
 
                                 </div>     
                        
                         </div>                       
-                    </div>    
+                    </div>     
                                                   
                      <div class="product__pagination">
 						<div class="pagination-container"></div>
@@ -82,7 +82,9 @@
 <script src="/js/jquery.slicknav.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/wishList.js"></script>          
+<script src="/js/addWish.js"></script>
+
+<!-- <script src="/js/wishList.js"></script>   -->        
 <!-- <script src="/js/search.js"></script> -->     
 
 <!-- sweet alert -->

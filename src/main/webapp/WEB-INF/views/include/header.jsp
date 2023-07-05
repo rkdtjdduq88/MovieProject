@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="/css/moviedetail.css" type="text/css">
 <link rel="stylesheet" href="/css/myPage.css" type="text/css">
 <link rel="stylesheet" href="/css/findPassword.css" type="text/css">
-<link rel="stylesheet" href="/css/wishList.css" type="text/css">
+<!-- <link rel="stylesheet" href="/css/wishList.css" type="text/css"> -->
 
 <!-- sweet alert -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
@@ -109,8 +109,7 @@ document.addEventListener("click", function(event) {
 				</div>
 				<div class="col-lg-2">
 					<div class="header__right">
-						<a href="#" class="search-switch"><span class="icon_search"></span></a>
-						
+						 <a href="#" class="search-switch"><span class="icon_search"></span></a>
 						<security:authorize access="isAuthenticated()">
 						    <a href="#" class="profile-switch" onclick="toggleDropdown()">
 						        <span class="icon_profile"></span>

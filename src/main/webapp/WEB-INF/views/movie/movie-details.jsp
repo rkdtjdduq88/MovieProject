@@ -247,11 +247,21 @@
     
 	<script>
 		const title = '${detail.title}';
+<<<<<<< HEAD
+=======
 
+		const userid = document.querySelector("#userid2").value;
+
+		const userid = '${userid}';	
+>>>>>>> branch 'master' of https://github.com/rkdtjdduq88/MovieProject.git
+
+<<<<<<< HEAD
 		/* if(document.querySelector("#userid2")){			
 			const userid = document.querySelector("#userid2").value;
 		} */
 
+=======
+>>>>>>> branch 'master' of https://github.com/rkdtjdduq88/MovieProject.git
 		const csrfToken='${_csrf.token}';
 
 	</script>
@@ -270,6 +280,7 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/addWish.js"></script>
     <script src="../js/moviedetail.js"></script>
     <script src="/js/youtube.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/moviedetail.css">
