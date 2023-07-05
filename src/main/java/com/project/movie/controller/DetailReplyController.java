@@ -44,7 +44,7 @@ public class DetailReplyController {
 	public ResponseEntity<MovieDetailReplyCntFavDTO> detailReplyList(@PathVariable("title") String title, Model model) {
 		log.info("리뷰 리스트 요청"+title);
 		MovieDetailReplyCntFavDTO dto = detailReplyService.getList(title);
-		System.out.println("dto 는 뭔데 "+dto);
+		//System.out.println("dto 는 뭔데 "+dto);
 		//model.addAttribute("cntDto",dto);
 		
 		return new ResponseEntity<MovieDetailReplyCntFavDTO>(detailReplyService.getList(title),HttpStatus.OK);
