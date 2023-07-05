@@ -7,15 +7,15 @@
 document.querySelector(".follow-btn").addEventListener("click", (e) => {
   e.preventDefault();
 
-  //   if (userid.trim() === "") {
-  //     // alert("로그인 후 이용이 가능합니다.");
-  //     Swal.fire({
-  //       icon: "warning",
-  //       title: "로그인 필요",
-  //       text: "로그인 후 이용이 가능합니다.",
-  //     });
-  //     return;
-  //   }
+  if (userid === "") {
+    // alert("로그인 후 이용이 가능합니다.");
+    Swal.fire({
+      icon: "warning",
+      title: "로그인 필요",
+      text: "로그인 후 이용이 가능합니다.",
+    });
+    return;
+  }
 
   const wishInfo = {
     title: document.querySelector('input[name="title"]').value,
