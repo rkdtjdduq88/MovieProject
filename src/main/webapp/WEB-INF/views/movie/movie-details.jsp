@@ -245,7 +245,7 @@
  	<input type="hidden" name="directorNm" value="${detail.directorNm}" />
  	<input type="hidden" name="releaseDate" value="${detail.releaseDate}" />
  	<input type="hidden" name="posterUrl" value="${detail.posterUrl}" />
- 	<input type="hidden" name="userid" value="${userid}" />
+ 	 <input type="hidden" name="userid" value="<security:authentication property="principal.username"/>" /> 
  </form>
     
 	<script>
@@ -253,7 +253,7 @@
 
 		const userid = document.querySelector("#userid2").value;
 
-		const userid = '${userid}';	
+		/* const wishuserid = '${userid}';	 */
 
 		const csrfToken='${_csrf.token}';
 
