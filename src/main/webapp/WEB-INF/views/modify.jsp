@@ -72,7 +72,7 @@
 </div>
 
 <form action="" id="operForm">
-    <input type="hidden" name="bno" value="${dto.bno}" />
+    <input type="hidden" name="bno" id = "Inputbno" value="${dto.bno}" />
     <input type="hidden" name="page" value="${cri.page}" />
     <input type="hidden" name="amount" value="${cri.amount}" />
     <input type="hidden" name="type" value="${cri.type}" />
@@ -99,11 +99,13 @@ $(document).ready(function() {
 </script>
 
 <script>
-	const bno=${dto.bno};
+
 	const path='${pageContext.request.requestURI}';
 	
 	// CSRF 토큰 값 생성
 	const csrfToken='${_csrf.token}';
+	
+	
 </script>
 </body>
 </html>

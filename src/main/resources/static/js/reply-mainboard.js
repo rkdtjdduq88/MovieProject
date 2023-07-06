@@ -1,3 +1,5 @@
+
+
 // 댓글 목록을 화면에 표시하는 함수
 function showComments(comments) {
   const chatList = document.querySelector(".chat.list-group");

@@ -7,15 +7,16 @@ function showAttachFile(uploadResultArr) {
     if (item.fileType) {
       // 썸네일 이미지 경로 생성
       let fileCallPath = encodeURIComponent(
-        "\\s_" + item.uuid + "_" + item.fileName
+        item.uploadPath + "\\s_" + item.uuid + "_" + item.fileName
       );
 
       // 썸네일 이미지 클릭 시 원본 이미지 보여주기
       let oriFileCallPath = encodeURIComponent(
-        "\\" + item.uuid + "_" + item.fileName
+        item.uploadPath + "\\" + item.uuid + "_" + item.fileName
       );
 
-      str += "<li" + "' data-uuid='" + item.uuid + "' ";
+      str +=
+        "<lidata-path='" + item.uploadPath + "' data-uuid='" + item.uuid + "' ";
       str +=
         " data-filename='" +
         item.fileName +
@@ -95,8 +96,8 @@ document.querySelector(".btn-secondary").addEventListener("click", () => {
 // 댓글 보여줄 영역 가져오기
 let page = 1;
 
-let chat = document.querySelector(".chat");
-showList(page);
+// let chat = document.querySelector(".chat");
+// showList(page);
 
 // function showReplyPage(total) {
 //   let endPage = Math.ceil(page / 10.0) * 10;
@@ -229,90 +230,90 @@ document.querySelector(".card-footer").addEventListener("click", (e) => {
 // });
 
 // 이벤트 전파: 자식의 이벤트는 부모에게 전달된다. => ul(li의 부모)에 이벤트를 걸면 된다.
-chat.addEventListener("click", (e) => {
-  // 어느 li에서 수정 버튼 클릭 시의 모달 이벤트가 발생했느냐?
-  // e.target: 이벤트 발생 대상
-  // 현재 버튼에서 위로 제일 가까운, 이벤트 발생 대상을 감싸고 있는 부모 li를 찾아주세요.
-  let li = e.target.closest("li");
-  console.log("이벤트 발생", li);
+// chat.addEventListener("click", (e) => {
+// 어느 li에서 수정 버튼 클릭 시의 모달 이벤트가 발생했느냐?
+// e.target: 이벤트 발생 대상
+// 현재 버튼에서 위로 제일 가까운, 이벤트 발생 대상을 감싸고 있는 부모 li를 찾아주세요.
+//   let li = e.target.closest("li");
+//   console.log("이벤트 발생", li);
 
-  // rno 가져오기(data-* 속성값 가져오기: dataset)
-  let rno = li.dataset.rno;
-  console.log("rno ", rno);
+//   // rno 가져오기(data-* 속성값 가져오기: dataset)
+//   let rno = li.dataset.rno;
+//   console.log("rno ", rno);
 
-  // 댓글 작성자 정보 가져오기
-  let replyer = li.firstElementChild.firstElementChild.innerHTML;
-  console.log("댓글 작성자 ", replyer);
+//   // 댓글 작성자 정보 가져오기
+//   let replyer = li.firstElementChild.firstElementChild.innerHTML;
+//   console.log("댓글 작성자 ", replyer);
 
-  // 로그인 사용자 정보 가져오기: 댓글 작성할 때의 글쓴이가 로그인 정보다.
-  let form_replyer = document.querySelector("#replyForm #replyer");
-  let login_user = "";
-  // 로그인 정보가 있다면
-  if (form_replyer) {
-    login_user = form_replyer.value;
-  }
+//   // 로그인 사용자 정보 가져오기: 댓글 작성할 때의 글쓴이가 로그인 정보다.
+//   let form_replyer = document.querySelector("#replyForm #replyer");
+//   let login_user = "";
+//   // 로그인 정보가 있다면
+//   if (form_replyer) {
+//     login_user = form_replyer.value;
+//   }
 
-  // 로그인 정보가 없다면
-  if (!login_user) {
-    alert("로그인 한 후 수정 및 삭제가 가능합니다.");
-    return;
-  }
+//   // 로그인 정보가 없다면
+//   if (!login_user) {
+//     alert("로그인 한 후 수정 및 삭제가 가능합니다.");
+//     return;
+//   }
 
-  // 이벤트를 부모가 감지를 하기 때문에
-  if (e.target.classList.contains("btn-warning")) {
-    // 로그인 사용자와 댓글 작성자가 같은지 확인
-    if (replyer != login_user) {
-      alert("자신의 댓글만 수정이 가능합니다.");
-      return;
-    }
+//   // 이벤트를 부모가 감지를 하기 때문에
+//   if (e.target.classList.contains("btn-warning")) {
+//     // 로그인 사용자와 댓글 작성자가 같은지 확인
+//     if (replyer != login_user) {
+//       alert("자신의 댓글만 수정이 가능합니다.");
+//       return;
+//     }
 
-    // 댓글 하나 가져오기(reply.js의 get function 가져오기)
-    replyService.get(rno, (result) => {
-      console.log(result);
+//     // 댓글 하나 가져오기(reply.js의 get function 가져오기)
+//     replyService.get(rno, (result) => {
+//       console.log(result);
 
-      // 댓글 모달 창 안에 가져온 댓글 내용 보여주기
-      document.querySelector(".modal-body #rno").value = result.rno;
-      document.querySelector(".modal-body #reply").value = result.reply;
-      document.querySelector(".modal-body #replyer").value = result.replyer;
+//       // 댓글 모달 창 안에 가져온 댓글 내용 보여주기
+//       document.querySelector(".modal-body #rno").value = result.rno;
+//       document.querySelector(".modal-body #reply").value = result.reply;
+//       document.querySelector(".modal-body #replyer").value = result.replyer;
 
-      $("#replyModal").modal("show");
-    });
-  } else if (e.target.classList.contains("btn-danger")) {
-    // 로그인 사용자와 댓글 작성자가 같은지 확인
-    if (replyer != login_user) {
-      alert("자신의 댓글만 삭제가 가능합니다.");
-      return;
-    }
+//       $("#replyModal").modal("show");
+//     });
+//   } else if (e.target.classList.contains("btn-danger")) {
+//     // 로그인 사용자와 댓글 작성자가 같은지 확인
+//     if (replyer != login_user) {
+//       alert("자신의 댓글만 삭제가 가능합니다.");
+//       return;
+//     }
 
-    // 삭제 버튼 클릭 시
-    replyService.remove(rno, replyer, (result) => {
-      if (result === "success") {
-        alert("삭제 성공");
-        showList(page);
-      }
-    });
-  }
-});
+//     // 삭제 버튼 클릭 시
+//     replyService.remove(rno, replyer, (result) => {
+//       if (result === "success") {
+//         alert("삭제 성공");
+//         showList(page);
+//       }
+//     });
+//   }
+// });
 
-// 모달 창 수정 버튼이 클릭되면 댓글 수정
-document
-  .querySelector(".modal-footer .btn-primary")
-  .addEventListener("click", () => {
-    // 모달 창 안에 있는 rno, reply 가져온 후 자바스크립트 객체 생성
-    const updateReply = {
-      rno: document.querySelector(".modal-body #rno").value,
-      reply: document.querySelector(".modal-body #reply").value,
-      replyer: document.querySelector(".modal-body #replyer").value,
-    };
+// // 모달 창 수정 버튼이 클릭되면 댓글 수정
+// document
+//   .querySelector(".modal-footer .btn-primary")
+//   .addEventListener("click", () => {
+//     // 모달 창 안에 있는 rno, reply 가져온 후 자바스크립트 객체 생성
+//     const updateReply = {
+//       rno: document.querySelector(".modal-body #rno").value,
+//       reply: document.querySelector(".modal-body #reply").value,
+//       replyer: document.querySelector(".modal-body #replyer").value,
+//     };
 
-    // replyService.update 호출
-    replyService.update(updateReply, (result) => {
-      // alert(result);
+//     // replyService.update 호출
+//     replyService.update(updateReply, (result) => {
+//       // alert(result);
 
-      // 모달 창 닫기
-      if (result === "success") {
-        $("#replyModal").modal("hide");
-        showList(page);
-      }
-    });
-  });
+//       // 모달 창 닫기
+//       if (result === "success") {
+//         $("#replyModal").modal("hide");
+//         showList(page);
+//       }
+//     });
+//   });

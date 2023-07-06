@@ -94,11 +94,15 @@ where b.bno=#{bno}
 </select>
 
 <!-- 게시물 수정 -->
+
 <update id="modify" parameterType="com.project.movie.domain.MovieBoardDTO">
   UPDATE movieboard_tbl
-  SET title = #{title}, content = #{content}, updatedate = sysdate
+  SET title = #{title}, content = #{content}, updatedate = sysdate,
+      uuid = #{attachList[0].uuid}, attach = #{attachList[0].fileName}
   WHERE bno = #{bno}
 </update>
+
+
 
 <!-- 게시물 삭제 -->
 <delete id="remove">

@@ -139,7 +139,7 @@
 </div>
 
 <form action="" id="operForm">
-	<input type="hidden" name="bno" value="${dto.bno}" />
+	<input type="hidden" name="bno" id = "inpitbno" value="${dto.bno}" />
     <input type="hidden" name="page" value="${cri.page}" />
     <input type="hidden" name="amount" value="${cri.amount}" />
     <!-- 수정 버튼 눌렀을 때 타입과 키워드 주소창에 유지 -->
@@ -152,6 +152,8 @@
 	
 	// CSRF 토큰 값 생성
 	const csrfToken='${_csrf.token}';
+
+    
 </script>
 <script src="/js/reply-mainboard.js"></script> <!-- 2번째 실행 -->
 <script src="/js/read.js"></script> <!-- 3번째 실행 -->

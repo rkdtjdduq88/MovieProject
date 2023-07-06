@@ -55,16 +55,21 @@ public class MovieBoardController {
 	// 전체 리스트 보여주기 컨트롤러 작성: list.jsp 보여주기
 	@GetMapping("/list")
 	public void getList(Model model, @ModelAttribute("cri") Criteria cri) {
-		log.info("list request");
-		
-		List<MovieBoardDTO> list=service.getList(cri); // 사용자가 요청한 번호에 맞는 게시물 목록 요청
-		int total=service.getTotalCnt(cri); // 전체 게시물 개수
-	     // Retrieve the comments associated with the blog post
-        
+	    log.info("list request");
 
-		model.addAttribute("list", list); // 목록 정보 넘기기
-		model.addAttribute("pageDTO", new PageDTO(cri, total)); // 페이지 관련 정보 넘기기
+	    List<MovieBoardDTO> list = service.getList(cri); // 사용자가 요청한 번호에 맞는 게시물 목록 요청
+
+	    for (MovieBoardDTO board : list) {
+	        int commentCount = boardservice.getCommentCountByBoard(board.getBno()); // 게시물에 대한 댓글 개수 조회
+	        board.setCommentCount(commentCount); // 게시물 DTO에 댓글 개수 설정
+	    }
+
+	    int total = service.getTotalCnt(cri); // 전체 게시물 개수
+
+	    model.addAttribute("list", list); // 목록 정보 넘기기
+	    model.addAttribute("pageDTO", new PageDTO(cri, total)); // 페이지 관련 정보 넘기기
 	}
+
 	
 	// register.jsp 보여주기
 	@PreAuthorize("isAuthenticated()")
@@ -109,14 +114,17 @@ public class MovieBoardController {
 	// http://localhost:8080/board/modify??page=1&amount=10&bno=917
 	@GetMapping({"/read", "/modify"})
 	public void readGet(int bno, Model model, @ModelAttribute("cri") Criteria cri) {
-		log.info("read request "+bno);
-		List<BlogCommentDTO> comments = boardservice.getCommentsByBoard(bno);
-        // Add the comments to the model with the attribute name "comments"
-        model.addAttribute("comments", comments);
-		// bno에 해당하는 내용 가져오기
-		MovieBoardDTO dto=service.read(bno);
-		model.addAttribute("dto", dto);
+	    log.info("read request " + bno);
+	    List<BlogCommentDTO> comments = boardservice.getCommentsByBoard(bno);
+	    model.addAttribute("comments", comments);
+	    
+	    // bno에 해당하는 내용 및 attachList 가져오기
+	    MovieBoardDTO dto = service.read(bno);
+	    List<AttachFileDTO> attachList = service.getAttachList(bno);
+	    model.addAttribute("dto", dto);
+	    model.addAttribute("attachList", attachList);
 	}
+
 	
 	@PostMapping("/modify")
 	public String modifyPost(MovieBoardDTO boardDTO, RedirectAttributes rttr, Criteria cri) {

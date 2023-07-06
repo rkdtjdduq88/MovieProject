@@ -23,7 +23,7 @@
     <div class="col-lg-6">
         <div class="row">
             <div class="col-lg-12">
-                <c:set var="thumbnail" value="${board.attachList[0].uuid}_${board.attach}" />
+                <c:set var="thumbnail" value="${board.uuid}_${board.attach}" />
                 <div class="blog__item set-bg" data-setbg="/img/blog/${thumbnail}">
                 
                     <div class="blog__item__text">

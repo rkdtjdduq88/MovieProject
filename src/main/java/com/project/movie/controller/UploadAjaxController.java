@@ -55,7 +55,7 @@ public class UploadAjaxController {
 		
 		List<AttachFileDTO> fileList = new ArrayList<AttachFileDTO>();
 		
-		String uploadPath = "C:\\source\\project\\MovieProject\\src\\main\\resources\\static\\img";
+		String uploadPath ="C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog";
 
 		for (MultipartFile multipartFile : uploadFile) {
 
@@ -104,7 +104,7 @@ public class UploadAjaxController {
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(String fileName) {
 		log.info("���� ��û" + fileName);
-		File file = new File("C:\\source\\project\\MovieProject\\src\\main\\resources\\static\\img" + fileName);
+		File file = new File(fileName);
 		// speingframework Headers
 		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<byte[]> result = null;
@@ -121,7 +121,7 @@ public class UploadAjaxController {
 	public ResponseEntity<Resource> downloadFile(String fileName, @RequestHeader("User-Agent") String userAgent) {
 		log.info("���� �ٿ�ε� ��û " + fileName);
 		
-		Resource resource = new FileSystemResource("C:\\source\\project\\MovieProject\\src\\main\\resources\\static\\img" + fileName);
+		Resource resource = new FileSystemResource("C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog\\" + fileName);
 		String oriFileName = fileName.substring(fileName.indexOf("_")+1);
 
 		if (!resource.exists()) {
@@ -149,11 +149,11 @@ public class UploadAjaxController {
 
 	@PostMapping("/deleteFile")
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<String> deleteFile(String fileName, String type){
-	    log.info("���� ���� ��û: " + fileName + ", type: " + type);
+	public ResponseEntity<String> deleteFile(String fileName, String type) {
+	    log.info("파일 삭제 요청: " + fileName + ", type: " + type);
 	    try {
-	        File file = new File("C:\\source\\project\\MovieProject\\src\\main\\resources\\static\\img", URLDecoder.decode(fileName, "utf-8"));
-	        file.delete(); // ���� ���� txt, ����� ����
+	        File file = new File("C:\\source\\projectsource\\MovieProject\\src\\main\\resources\\static\\img\\blog\\", URLDecoder.decode(fileName, "utf-8"));
+	        file.delete(); // 원본 파일, 썸네일 삭제
 
 	        if (type.equals("image")) {
 	            String originalFileName = file.getAbsolutePath().replace("s_", "");
