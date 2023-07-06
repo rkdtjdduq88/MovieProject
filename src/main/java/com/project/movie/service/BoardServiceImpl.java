@@ -110,4 +110,9 @@ public class BoardServiceImpl implements BoardService {
         return boardMapper.getNextPost(bno);
     }
 
+    @Override
+    public int getCommentCountByBoard(int bno) {
+        return boardMapper.getCommentCountByBoard(bno);
+    }
+
 }

@@ -65,16 +65,19 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="dto" items="${list}">
-			<tr>
-				<th scope="row">${dto.bno}</th>
-				<td><a href="${dto.bno}" class="move">${dto.title}</a></td>
-				<td>${dto.userid}</td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.regDate}" /></td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.updateDate}" /></td>
-			</tr>
-		</c:forEach>
-	</tbody>
+  <c:forEach var="dto" items="${list}">
+    <tr>
+      <th scope="row">${dto.bno}</th>
+      <td><a href="${dto.bno}" class="move">${dto.title}</a></td>
+      <td>${dto.userid}</td>
+      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.regDate}" /></td>
+      <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.updateDate}" /></td>
+      <td>
+        <span id="commentCount-${dto.bno}">-</span>
+      </td>
+    </tr>
+  </c:forEach>
+</tbody>
 </table>
 
 <!-- 페이지 나누기 시작 -->

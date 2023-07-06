@@ -113,6 +113,11 @@ FETCH FIRST 1 ROWS ONLY
 		movieboardreply_tbl
 		WHERE rno = #{rno}
 	</delete>
+	
+	  <!--게시글 대한 총 댓글 수 조회 -->
+	<select id="getCommentCountByBoard" resultType="int">
+		select count(*) from  movieboardreply_tbl where bno=#{bno}
+	</select>
 	<!-- 댓글 끝 -->
 
 	<!-- 페이지나누기 시작 -->

@@ -86,7 +86,7 @@ document.addEventListener("click", function(event) {
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="header__logo">
-						<a href="/"> <img src="/img/logo.png" alt="">
+						<a href="/"> <img src="/img/logo.png" alt="" >
 						</a>
 					</div>
 				</div>

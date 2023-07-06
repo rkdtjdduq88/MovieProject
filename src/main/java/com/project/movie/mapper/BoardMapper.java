@@ -21,7 +21,9 @@ public interface BoardMapper {
 																											// 개수
 
 	BoardDTO getBlogDetails(int bno); // 게시물 상세 조회
-
+	
+	int getCommentCountByBoard(int bno);//게시물당 댓글 수 
+	
 	void insertComment(BlogCommentDTO comment); // 댓글 입력
 
 	BlogCommentDTO getComment(int rno);

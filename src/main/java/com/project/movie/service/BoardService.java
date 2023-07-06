@@ -18,6 +18,8 @@ public interface BoardService {
 	void insertComment(BlogCommentDTO comment);
 
 	BlogCommentDTO getComment(int rno);
+	
+	int getCommentCountByBoard(int bno); //댓글수카운팅
 
 	List<BlogCommentDTO> getRepliesByComment(int rno); // 대댓글 조회 메서드 추가
 

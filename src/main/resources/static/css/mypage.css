@@ -13,13 +13,14 @@
   justify-content: flex-end;
 }
 
-.profile-image {
-  width: 100px;
-  height: 100px;
-  background-color: #ccc;
-  /* 프로필 사진 스타일링 */
-}
 
+.profile-image {
+width: 100px;
+height: 100px;
+background-color: #ccc;
+border-radius: 50%;
+/* 프로필 사진 스타일링 */
+}
 .profile-info {
   margin-top: 20px;
   margin-left: 20px;
@@ -149,4 +150,42 @@ input[type="text"] {
   display: inline-block; /* 수정된 부분 */
   margin-right: 10px; /* 버튼 사이 간격을 위해 추가 */
   margin-top: 10px;
+}
+
+
+.element-below {
+  margin-top: 20px; /* Adjust the margin value to create more vertical spacing */
+}
+.buttons .btn_change,
+.buttons .btn_unregister {
+  margin-left: 10px; /* Adjust the margin value to create horizontal spacing */
+}
+
+
+.btn_subscribe {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+    margin-right: 10px; 
+      margin-bottom: 20px
+}
+
+.btn_subscribe:hover {
+  background-color: #ffa726;
+  padding: 8px 12px;
+}
+
+.btn_subscribe .text {
+  margin-right: 10px;
+}
+
+
+.kakaopay-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }

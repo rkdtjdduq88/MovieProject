@@ -24,6 +24,8 @@ public class MovieBoardDTO {
 	private int cnt;
 	private String userid;
 	private String content;
+    private int CommentCount;
+    private String uuid;
 	
 	// 첨부파일 정보
 	private List<AttachFileDTO> attachList;

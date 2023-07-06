@@ -4,6 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" />
+
+
+
+
+
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
         <div class="container">
@@ -22,21 +29,29 @@
     <!-- myPage Section Begin -->
 		<section class="my-page">
 		    <div class="profile">
-		        <div class="profile-image">
-		            <!-- 프로필 사진 표시 -->
-		        </div>
-		        <div class="profile-info">
-		        	<h3 class="userid">사용자 ID</h3>
-		            <p class="userid">${member.userid}</p>
-		            <div class="buttons">
-		                <button id="change-password-button" class="btn_change" onclick="openPopup('${sessionScope.userid}')">
-		                    <span class="text">비밀번호 변경</span>
-		                </button>
-		                <button id="delete-profile-button" class="btn_unregister" onclick="delPopup('${sessionScope.userid}')">
-		                    <span class="text">회원 탈퇴</span>
-		                </button>
-		            </div>
-		        </div>
+
+		    <div class="profile-image">
+		        <!-- 프로필 사진 표시 -->
+		        <img src="https://avatars.dicebear.com/api/bottts/${comment.userid}.jpg" alt="img" style=" border-radius: 50%;">
+		    </div>
+		      <div class="profile-info">
+			  <h3 class="userid">사용자 ID</h3>
+			  <p class="userid">${member.userid}</p>
+			  <div class="buttons">
+			    <button id="change-password-button" class="btn_change" onclick="openPopup('${sessionScope.userid}')">
+			      <span class="text">비밀번호 변경</span>
+			    </button>
+			    <button id="delete-profile-button" class="btn_unregister" onclick="delPopup('${sessionScope.userid}')">
+			      <span class="text">회원 탈퇴</span>
+			    </button>
+				<button id="subscribe-button" class="btn_subscribe" onclick="handlePayment()">
+  <span class="text">구독하기</span>
+  <img src="https://www.tfmedia.co.kr/data/photos/20211042/art_16346976902789_aea105.jpg" alt="KakaoPay Icon" class="kakaopay-icon">
+</button>
+
+
+			  </div>
+			</div>
 		    </div>
 		    <div class="edit-info">
 		        <div class="user-info">
@@ -151,6 +166,7 @@
     <script src="/js/main.js"></script>
     <script src="/js/login.js"></script>
     <script src="/js/mypage.js"></script>
+    <script src="/js/payment.js"></script>
 
 
 </body>

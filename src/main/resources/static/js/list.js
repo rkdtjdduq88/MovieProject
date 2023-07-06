@@ -104,3 +104,27 @@ searchForm.addEventListener("submit", (e) => {
 
   searchForm.submit();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  // 각 게시글의 댓글 개수 조회
+  var rows = document.querySelectorAll("tbody tr");
+  rows.forEach(function (row) {
+    var bno = row.querySelector("th").textContent;
+    var commentCountSpan = row.querySelector(`#commentCount-${bno}`);
+
+    // AJAX로 댓글 개수 조회
+    fetch(`/getCountByBoard?title=${bno}`)
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("댓글 개수 조회 실패");
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        commentCountSpan.textContent = data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+});
