@@ -325,3 +325,22 @@ document.querySelector(".btn-secondary").addEventListener("click", (e) => {
   $("#replyModal").modal("hide");
   movieDetailReplyList();
 });
+// 초기 설정
+const actorContainer = document.querySelector(".actor-container");
+const actors = actorContainer.getElementsByClassName("actor");
+const toggleActorsButton = document.getElementById("toggle-actors-button");
+
+const maxDisplayActors = 5; // 최대 표시할 배우 수
+
+if (actors.length > maxDisplayActors) {
+  // 배우가 5명 이상일 경우에만 더보기 버튼 표시
+  toggleActorsButton.style.display = "block";
+}
+
+// 더보기/숨기기 버튼 클릭 시 동작
+toggleActorsButton.addEventListener("click", function () {
+  actorContainer.classList.toggle("show-all");
+
+  // 버튼 텍스트 변경
+  toggleActorsButton.textContent = actorContainer.classList.contains("show-all") ? "숨기기" : "더보기";
+});

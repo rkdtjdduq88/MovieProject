@@ -104,20 +104,26 @@ public class BlogController {
 
 
     @PostMapping("/blog-details/{bno}/comment")
-    public String addComment(@PathVariable int bno, @ModelAttribute BlogCommentDTO comment, HttpSession session) {
-        comment.setBno(bno); // 댓글의 게시물 번호 설정
-        String currentUserId = (String) session.getAttribute("userid");
-        if (currentUserId != null) {
-            comment.setUserid(currentUserId);
-        } else {
-            // 로그인하지 않은 사용자의 경우 처리 방법을 지정 (예: 익명 사용자로 설정)
-            comment.setUserid("anonymousUser");
-        }
+    public String addComment(@PathVariable int bno, @ModelAttribute BlogCommentDTO comment, HttpSession session, Model model) {
+        comment.setBno(bno); // Set the comment's post number
 
+        // Get the current authenticated user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserId = authentication.getName();
+
+        // Set the userid if it is not null, otherwise set it to "anonymousUser"
+        comment.setUserid(currentUserId != null ? currentUserId : "anonymousUser");
+
+        // Add the loggedInUser attribute to the model
+        model.addAttribute("loggedInUser", comment.getUserid());
+
+        // Insert the comment
         boardService.insertComment(comment);
         log.info("댓글 입력 요청: " + bno + ", " + comment);
+
         return "redirect:/blog-details/" + bno;
     }
+
     @PostMapping("/blog-details/{bno}/reply")
     public String addReply(@PathVariable int bno, @ModelAttribute BlogCommentDTO reply, HttpSession session) {
         reply.setBno(bno); // 대댓글의 게시물 번호 설정

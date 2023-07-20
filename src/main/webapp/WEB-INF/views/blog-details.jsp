@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.net.HttpURLConnection, java.net.URL, java.io.BufferedReader, java.io.InputStreamReader" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -11,28 +13,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-<!-- Blog Details Section Begin -->
-<section class="blog-details spad">
-	<div class="container">
-		<div class="row d-flex justify-content-center">
-			<div class="col-lg-8">
-				<div class="blog__details__title">
-					<h6>
+			<!-- Blog Details Section Begin -->
+			<section class="blog-details spad">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="col-lg-8">
+							<div class="blog__details__title">
+								<h6>
                            
                             <fmt:formatDate value="${boardDto.regDate}" pattern="yyyy-MM-dd" />
-                        
-					</h6>
-					<h2>${boardDto.title}</h2>
-					
-					<div class="blog__details__social">
-					<a id="clip-btn" href="javascript:clipboardShare()">
-      <img src="https://cdn.icon-icons.com/icons2/2551/PNG/512/clipboard_check_icon_152889.png" width="85" height="85" />
-</a>
-							  <a id="kakao-link-btn" href="javascript:kakaoShare()">
-    	<img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
-    </a><a href="#" class="facebook-share" onclick="shareFacebook()">
-    <img src="https://cdn-icons-png.flaticon.com/512/3536/3536394.png" width="73" height="73" >
-</a>
+		                        
+							</h6>
+							<h2>${boardDto.title}</h2>
+							
+							<div class="blog__details__social">
+							<a id="clip-btn" href="javascript:clipboardShare()">
+		      <img src="https://cdn.icon-icons.com/icons2/2551/PNG/512/clipboard_check_icon_152889.png" width="85" height="85" />
+		</a>
+									  <a id="kakao-link-btn" href="javascript:kakaoShare()">
+		    	<img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
+		    </a><a href="#" class="facebook-share" onclick="shareFacebook()">
+		    <img src="https://cdn-icons-png.flaticon.com/512/3536/3536394.png" width="73" height="73" >
+		</a>
 
 					</div>
 				</div>
@@ -103,18 +105,20 @@
                 <c:set var="isSameDay" value="${(currentTime - commentTime) < (24 * 60 * 60 * 1000)}" />
                 <span>
                  <fmt:formatDate value="${comment.replyDate}" pattern="HH:mm:ss" var="time" />
-<c:choose>
-  <c:when test="${isSameDay}">
-    ${time}
-  </c:when>
-  <c:otherwise>
-    <fmt:formatDate value="${comment.replyDate}" pattern="yyyy-MM-dd" />
-  </c:otherwise>
-</c:choose>
+				<c:choose>
+				  <c:when test="${isSameDay}">
+				    ${time}
+				  </c:when>
+				  <c:otherwise>
+				    <fmt:formatDate value="${comment.replyDate}" pattern="yyyy-MM-dd" />
+				  </c:otherwise>
+				</c:choose>
 
                 </span>
                 <h5 class="comment-userid">${comment.userid}</h5>
                 <p class="comment-content">${comment.replyContent}</p>
+                <sec:authentication var="loggedInUser" property="principal.username" />
+                
                 <c:if test="${comment.userid eq loggedInUser}">
                     <button type="button" data-rno="${comment.rno}" class="btn btn-primary edit-btn">수정</button>
                     <button type="button" data-rno="${comment.rno}" class="btn btn-confirm update-btn" style="display: none; color: white;">확인</button>
@@ -146,6 +150,8 @@
             <div class="col-lg-12">
                 <textarea id="commentContent" name="replyContent" rows="5" style="width: 100%;"></textarea>
                 <input type="hidden" name="bno" value="${boardDto.bno}" />
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                <input type="hidden" class="userid" id="userid2" value="<security:authentication property="principal.username"/>" readonly />
                 <button type="submit" class="site-btn">댓글 작성</button>
             </div>
         </div>
@@ -181,9 +187,11 @@
 <!-- kakao sdk 호출 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-const loggedInUser = "${loggedInUser}";
+const loggedInUser = document.getElementById("userid2").value;
+console.log(loggedInUser);
 	//게시물 글번호 가져오
 	const bno = ${boardDto.bno};
+	const csrfToken='${_csrf.token}';
 
 </script>
 <!-- 스크립트 태그 내의 코드 수정 -->

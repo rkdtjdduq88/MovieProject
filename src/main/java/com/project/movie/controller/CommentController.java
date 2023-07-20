@@ -29,7 +29,6 @@ public class CommentController {
         return ResponseEntity.ok(comments);
     }
     
-    // 다른 댓글 관련 API들을 추가로 작성할 수 있습니다.
     
 }
 

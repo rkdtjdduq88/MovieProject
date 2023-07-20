@@ -5,6 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<c:set var="loggedInUserId" value='<sec:authentication property="principal.userid" />' />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" />
 
 
@@ -32,9 +34,12 @@
 
 		    <div class="profile-image">
 		        <!-- 프로필 사진 표시 -->
-		        <img src="https://avatars.dicebear.com/api/bottts/${comment.userid}.jpg" alt="img" style=" border-radius: 50%;">
+		        <c:set var="loggedInUserId" value="${pageContext.request.userPrincipal.name}" />
+		        
+		       <img src="https://avatars.dicebear.com/api/bottts/${loggedInUserId}.jpg" alt="img" style="border-radius: 50%;">
+
 		    </div>
-		      <div class="profile-info">
+		    <div class="profile-info">
 			  <h3 class="userid">사용자 ID</h3>
 			  <p class="userid">${member.userid}</p>
 			  <div class="buttons">
@@ -44,15 +49,15 @@
 			    <button id="delete-profile-button" class="btn_unregister" onclick="delPopup('${sessionScope.userid}')">
 			      <span class="text">회원 탈퇴</span>
 			    </button>
-				<button id="subscribe-button" class="btn_subscribe" onclick="handlePayment()">
-  <span class="text">구독하기</span>
-  <img src="https://www.tfmedia.co.kr/data/photos/20211042/art_16346976902789_aea105.jpg" alt="KakaoPay Icon" class="kakaopay-icon">
-</button>
-
-
+			    <button id="subscribe-button" class="btn_subscribe" onclick="handlePayment()">
+			      <span class="text">구독하기</span>
+			      <img src="https://www.tfmedia.co.kr/data/photos/20211042/art_16346976902789_aea105.jpg" alt="KakaoPay Icon" class="kakaopay-icon">
+			    </button>
 			  </div>
 			</div>
-		    </div>
+			  </div>
+		
+		 
 		    <div class="edit-info">
 		        <div class="user-info">
 		            <h3 class="userinfo">사용자 정보</h3>
@@ -167,6 +172,7 @@
     <script src="/js/login.js"></script>
     <script src="/js/mypage.js"></script>
     <script src="/js/payment.js"></script>
+
 
 
 </body>

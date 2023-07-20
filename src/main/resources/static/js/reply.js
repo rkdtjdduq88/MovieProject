@@ -57,6 +57,9 @@ $(document).on("click", ".update-btn", function () {
   // Send an AJAX request to update the comment content
   $.ajax({
     type: "POST",
+    headers: {
+      "X-CSRF-TOKEN": csrfToken,
+    },
     url: `/blog-details/${bno}/comment/${commentId}/update`,
     contentType: "application/json", // Set the content type to JSON
     data: JSON.stringify({ replyContent: commentContent.text() }), // Serialize the data as JSON
@@ -83,6 +86,9 @@ $(document).on("click", ".delete-btn", function () {
     // Send an AJAX request to the delete controller endpoint
     $.ajax({
       type: "POST",
+      headers: {
+        "X-CSRF-TOKEN": csrfToken,
+      },
       url: `/blog-details/${bno}/comment/${commentId}/delete`,
       success: function (response) {
         // Handle the response or perform any necessary UI updates

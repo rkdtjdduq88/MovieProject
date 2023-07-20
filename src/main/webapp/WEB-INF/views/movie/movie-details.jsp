@@ -68,14 +68,20 @@
                                             <li><span>Genre:</span> ${detail.genre}</li>
                                           <%--   <li><span>Actors:</span> ${detail.actors}</li> --%>
                                           
-					                 <li><span>Actors:</span> 
-										  <c:forEach items="${detail.actors}" var="actor" varStatus="status">
-										    ${actor}
-										    <c:if test="${not status.last}">,</c:if>
-										  </c:forEach>
-										</li>
-                                       
-                                          
+					              
+								<li>
+  <span>Actors:</span>
+  <div class="actor-container">
+    <ul id="actor-list">
+      <c:forEach items="${detail.actors}" var="actor" varStatus="status">
+        <li class="actor">${actor}</li>
+      </c:forEach>
+    </ul>
+  </div>
+  <button id="toggle-actors-button" class="toggle-button">더보기</button>
+</li>
+
+
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
@@ -282,7 +288,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/addWish.js"></script>
     <script src="../js/moviedetail.js"></script>
-   <!-- <script src="/js/youtube.js"></script> -->
+   <script src="/js/youtube.js"></script> 
   <link rel="stylesheet" type="text/css" href="/css/moviedetail.css">
 
 

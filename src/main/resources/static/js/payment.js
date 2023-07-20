@@ -17,7 +17,7 @@ function handlePayment() {
     buyer_tel: "구매자 번호", // 구매자 전화번호
     buyer_addr: "POHAH F1", // 구매자 주소
     buyer_postcode: "701", // 구매자 우편번호
-    m_redirect_url: "결제 완료 후 리다이렉트할 URL", // 결제 완료 후 리다이렉트할 URL
+    m_redirect_url: "/index", // 결제 완료 후 리다이렉트할 URL
   };
 
   // Iamport 결제 요청
@@ -25,7 +25,7 @@ function handlePayment() {
     if (response.success) {
       // 결제 성공 시 수행할 작업
       var msg = "결제가 완료되었습니다.";
-      location.href = "결제 완료 페이지 URL";
+      location.href = "/";
     } else {
       // 결제 실패 시 수행할 작업
       var msg = "결제에 실패하였습니다. 에러 메시지: " + response.error_msg;
