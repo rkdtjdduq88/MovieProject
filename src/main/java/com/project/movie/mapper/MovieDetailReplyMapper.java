@@ -15,4 +15,6 @@ public interface MovieDetailReplyMapper {
 	public int getCountByTitle(String title);
 	public int avgGrade(String title);
 	public List<MovieDetailReplyDTO> rankGrade();
+	// 좋아요 수정
+	public int updateFav(int rno, int amount);
 }

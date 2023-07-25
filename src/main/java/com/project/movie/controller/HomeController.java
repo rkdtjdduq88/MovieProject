@@ -73,7 +73,7 @@ public class HomeController {
 		//model.addAttribute("userid", userid);
 		// 상세페이지 포스터 댓글 수 불러오기
 		MovieDetailReplyCntFavDTO dto=detailReplyService.getList(movieNm);
-		model.addAttribute("count", dto.getReplyCnt());
+		model.addAttribute("count", dto.getReplyCnt());		
 		
 		// 상세페이지 포스터 평점 불러오기
 		model.addAttribute("avg", detailReplyService.avgGrade(movieNm));

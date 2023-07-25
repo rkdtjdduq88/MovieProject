@@ -25,9 +25,7 @@ public class DetailReplyServiceImpl implements DetailReplyService {
 		// 기존 리뷰댓글 전체 목록 조회
 		List<MovieDetailReplyDTO> list = movieDetailReplyMapper.detailReplyList(title);
 		// 특정 영화에 대한 리뷰댓글 총 개수 조회 기능 추가
-		int replyCnt = movieDetailReplyMapper.getCountByTitle(title);
-		// 기존 댓글번호에 좋아요 테이블의 댓글번호 매핑		
-		//favoriteMapper.getFavoriteCountOne(rno);
+		int replyCnt = movieDetailReplyMapper.getCountByTitle(title);		
 		
 		int avgGrade=movieDetailReplyMapper.avgGrade(title);
 

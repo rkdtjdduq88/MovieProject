@@ -74,7 +74,7 @@
 										    <c:if test="${not status.last}">,</c:if>
 										  </c:forEach>
 										</li>
-                                       
+										                                   
                                           
                                         </ul>
                                     </div>
@@ -257,8 +257,8 @@
  </form>
     
 	<script>
-			const title = '${detail.title}';
-
+			const title = '${detail.title}';			
+			
 		/* const userid = document.querySelector("#userid2").value; */
 		
 			const userid = document.querySelector("#wishForm [name='userid']").value;

@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MovieDetailReplyCntFavDTO {
-	private int replyCnt;
-	//private int rno;
-	private List<MovieDetailReplyDTO> list;
-	
+	private int replyCnt;	
+	private List<MovieDetailReplyDTO> list;		
 	private int avgGrade;
 }

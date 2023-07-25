@@ -115,6 +115,11 @@ ol {
 .material-symbols-outlined {
   color: #ff0000;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  padding-right: 20px
+}
+.fa-heart {
+  color: red; /* 하트 색을 빨간색으로 설정 */
+  font-size: 130%; /* 기존 크기보다 30% 크게 설정 */
 }
 
 .userid {
@@ -1040,16 +1045,16 @@ ol {
 
 .rating i.fa-star,
 .rating i.fa-star-half {
-  color: #ffd700; /* 蹂꾩젏 �깋�긽 */
+  color: #ffd700; /* 癰귢쑴�젎 占쎄퉳占쎄맒 */
 }
 
 .rating i.fa-star-half::before {
-  content: "\f089"; /* 諛� 蹂� �븘�씠肄� 肄붾뱶 */
+  content: "\f089"; /* 獄쏉옙 癰귨옙 占쎈툡占쎌뵠�굜占� �굜遺얜굡 */
   color: #ffd700;
 }
 
 .rating i.fa-star::before {
-  content: "\f005"; /* �쟾泥� 蹂� �븘�씠肄� 肄붾뱶 */
+  content: "\f005"; /* 占쎌읈筌ｏ옙 癰귨옙 占쎈툡占쎌뵠�굜占� �굜遺얜굡 */
   color: #ffce00;
 }
 
@@ -1434,7 +1439,7 @@ ol {
   text-align: center;
   width: 100%;
   padding: 0 105px;
-  color: #ffffff; /* 글씨 색상 설정 */
+  color: #ffffff; /* 湲��뵪 �깋�긽 �꽕�젙 */
   z-index: 2;
 }
 
@@ -1448,7 +1453,7 @@ ol {
 }
 
 .blog__item__text h4 a {
-  font-size: 24px; /* 원하는 글씨 크기로 조정 */
+  font-size: 24px; /* �썝�븯�뒗 湲��뵪 �겕湲곕줈 議곗젙 */
   line-height: 34px;
   text-decoration: none;
 }
@@ -1797,7 +1802,7 @@ pagination
 }
 
 .blog__details__comment__item__text {
-  max-width: 80%; /* �썝�븯�뒗 媛�濡� 湲몄씠濡� 議곗젙 */
+  max-width: 80%; /* 占쎌뜚占쎈릭占쎈뮉 揶쏉옙嚥∽옙 疫뀀챷�뵠嚥∽옙 鈺곌퀣�젟 */
 }
 
 /*---------------------

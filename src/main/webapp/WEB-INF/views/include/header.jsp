@@ -28,6 +28,8 @@
 <!-- Bootstrap core JavaScript-->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- fontawesome -->
+<script src="https://kit.fontawesome.com/7e7810d502.js" crossorigin="anonymous"></script>
 
 <!-- Css Styles -->
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">

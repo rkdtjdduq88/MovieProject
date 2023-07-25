@@ -26,6 +26,9 @@ function movieDetailReplyList() {
         var isCurrentUser = userid && list.userid === userid; // 현재 사용자와 댓글 작성자를 비교
 
         var buttons = "";
+
+        // 좋아요 여부에 따라 하트 아이콘 상태를 결정
+        var heartIconClass = list.favorite > 0 ? "fa-solid fa-heart" : "fa-regular fa-heart";
         if (isCurrentUser) {
           buttons = `
             <button class="btn btn-danger" type="button">삭제</button>                        
@@ -43,12 +46,12 @@ function movieDetailReplyList() {
                     <div class="col">
                       <h6>${list.userid}</h6>                      
                     </div>
-                    <span class="material-symbols-outlined">
-                      favorite
-                      </span>
-                    <div class="col">
-                      <h6><span>${displayTime(list.replydate)}</span></h6>
-                    </div>
+                        <div class="col">
+                          <h6><span>${displayTime(list.replydate)}</span></h6>
+                        </div>  
+                                              
+                        <i class="${heartIconClass}" data-rno="${list.rno}"></i>
+                        <h6>${list.favorite}</h6>                                         
                         <div class="rating">
                             ${ratingStars}
                           </div>
@@ -98,6 +101,7 @@ rating.addEventListener("click", (e) => {
   grade = starRating.dataset.value;
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////
 // 리뷰 댓글 작성
 document.querySelector("#insertForm").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -257,6 +261,72 @@ document.querySelector(".modal-footer .btn-primary").addEventListener("click", (
       }
     })
     .catch((error) => console.log(error));
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// 좋아요 개수 추가
+document.querySelector(".section-title").addEventListener("click", (e) => {
+  const rno = e.target.dataset.rno;
+  const userid = document.querySelector("#userid2").value;
+  const amount = 1;
+
+  if (e.target.classList.contains("fa-regular")) {
+    fetch("/addFav", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+        "X-CSRF-TOKEN": csrfToken,
+      },
+      body: JSON.stringify({
+        rno: rno,
+        userid: userid,
+        amount: amount,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("입력 오류");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        //console.log(data);
+
+        // 하트 아이콘 클래스 변경
+        e.target.classList.remove("fa-regular");
+        e.target.classList.add("fa-solid");
+
+        movieDetailReplyList();
+      })
+      .catch((error) => console.log(error));
+  } else if (e.target.classList.contains("fa-solid")) {
+    fetch("/deleteFav", {
+      method: "delete",
+      headers: {
+        "content-type": "application/json",
+        "X-CSRF-TOKEN": csrfToken,
+      },
+      body: JSON.stringify({
+        rno: rno,
+        userid: userid,
+        amount: -amount, // 좋아요를 취소하는 경우 -1로 업데이트
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("입력 오류");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        // 좋아요 취소 후에 하트 아이콘을 변경
+        e.target.classList.remove("fa-solid");
+        e.target.classList.add("fa-regular");
+
+        movieDetailReplyList();
+      })
+      .catch((error) => console.log(error));
+  }
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

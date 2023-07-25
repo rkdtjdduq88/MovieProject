@@ -41,4 +41,8 @@
 		SELECT title, grade FROM (select title, avg(grade) as grade from detailreply_tbl GROUP BY title)
 		WHERE ROWNUM BETWEEN 1 AND 5 order by grade desc
 	</select>
+	<!-- 좋아요 개수 수정 -->
+	<update id="updateFav">
+		update detailreply_tbl set favorite = favorite + #{amount} where rno=#{rno}
+	</update>	
 </mapper>

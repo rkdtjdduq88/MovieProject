@@ -11,4 +11,5 @@ public class FavoriteDTO {
 	private int no;
 	private int rno;
 	private String userid;
+	private int amount;
 }

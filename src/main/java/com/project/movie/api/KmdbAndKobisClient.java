@@ -117,8 +117,11 @@ public class KmdbAndKobisClient {
 			//HS! 승리 HM 
 			String pattern = "[!\\s]|HS|HE";
 			String rawMovieNm = (String) rawItem.get("title");
+			//System.out.println("rawMovieNm "+rawMovieNm);
 			String chMovieNm = rawMovieNm.replaceAll(pattern, "");
+			//System.out.println("chMovieNm "+chMovieNm);
 			String finMovieNm = chMovieNm.replaceAll("[\"\\s\\p{Punct}]", "");
+			//System.out.println("finMovieNm "+finMovieNm);
 			
 			if(finMovieNm.equals(movieName)) {
 				//directors
@@ -160,8 +163,11 @@ public class KmdbAndKobisClient {
 				
 				// 제목
 				String mTitle = (String) rawItem.get("title");	//*
-				String mpattern = "\\s*(!HS|!HE)\\s*";	//*
+				//System.out.println("mTitle : "+mTitle);
+				//String mpattern = "\\s*(!HS|!HE)\\s*";	//*		
+				String mpattern = "\\s*(!HS|!HE|[\\p{Punct}\\s])\\s*";	//*					
 				String rTitle = mTitle.replaceAll(mpattern, "").trim();	//*
+				//System.out.println("rTitle : "+rTitle);
 				
 				dto.setRuntime(rawItem.get("runtime").toString());
 //				dto.setTitle(movieName);
@@ -277,7 +283,7 @@ public class KmdbAndKobisClient {
 	            .build()
 	            .toUri();
 
-	    System.out.println("uri " + uri);
+	    //System.out.println("uri " + uri);
 
 	    // 헤더 추가
 	    HttpHeaders headers = new HttpHeaders();
