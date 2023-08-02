@@ -1,6 +1,5 @@
 package com.project.movie.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.movie.domain.MovieDetailReplyCntFavDTO;
 import com.project.movie.domain.MovieDetailReplyDTO;
-import com.project.movie.domain.WishlistDTO;
+
 import com.project.movie.response.KmdbRes;
 import com.project.movie.response.TotalRes;
 import com.project.movie.service.DetailReplyService;
 import com.project.movie.service.MovieDetailService;
 import com.project.movie.service.MovieService;
-import com.project.movie.service.WishlistService;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,8 +33,7 @@ public class HomeController {
 	@Autowired
 	private DetailReplyService detailReplyService;
 	
-	@Autowired
-	private WishlistService wishlistService;
+
 	
 	@GetMapping("/")
 	public String main(Model model) {
